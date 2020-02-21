@@ -1,0 +1,2 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,Tests_withHotSpot/12_6mm_flp.csv,0.0001,Tests_withHotSpot/12_6mm_UniformPD_50Wcm2_ptrace.csv,True

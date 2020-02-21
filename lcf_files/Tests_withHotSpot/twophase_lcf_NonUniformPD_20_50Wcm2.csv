@@ -1,0 +1,3 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,Tests_withHotSpot/L0_twophase.csv,0.0001,Tests_withHotSpot/2mm_twophaseNonUniformPD_20_50Wcm2_ptrace.csv,True
+1,Tests_withHotSpot/L1_twophase.csv,0.0001,,False
