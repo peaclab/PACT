@@ -1,0 +1,5 @@
+UnitName,X,Y,Length (m),Width (m),ConfigFile,Label
+Unit_0_0,0,0,0.001,0.001,,TIM
+Unit_0_1,0.001,0,0.001,0.001,demo/sampleMissingLabelDef.config,TIM
+Unit_1_0,0,0.001,0.001,0.001,,TIM
+Unit_1_1,0.001,0.001,0.001,0.001,,TIM
