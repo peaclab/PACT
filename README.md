@@ -5,7 +5,7 @@ To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py
 
 
 
-Options for solvers: go to the /RuntimeAnalysis/modelParams_files/ and find the 'modelparam' file you want to modify. Go to the '[Solver]' section and modfiy both the solver name as well as the wrapper file. Support solvers are listed below:
+Options for solvers: go to the /RuntimeAnalysis/modelParams_files/ and find the 'modelparam' file you want to modify. Go to the '[Solver]' section and modfiy both the solver name as well as the wrapper file. Supported solvers are listed below:
 
 SuperLU (only for steady state): 
 name = SuperLU
@@ -25,4 +25,8 @@ transient grid temperature files are saved in ~/src folder as RC_transient_prach
 Potential error and solutions: 
 Error: cannot find grid mode, go to the 'modelparam' file and add "grid_mode = max" in the '[Grid]' section.
 Error: no 'Cu', uncomment the '[Cu]' section in the 'modelparam' file.
+
+Action Items:
+Liquid cooling via microchannels
+HotSpot medium cost heat sink
 
