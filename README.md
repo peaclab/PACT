@@ -5,7 +5,7 @@ To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py
 
 
 
-# Options for solvers: 
+# Options for Solvers: 
 
 go to the /RuntimeAnalysis/modelParams_files/ and find the 'modelparam' file you want to modify. Go to the '[Solver]' section and modfiy both the solver name as well as the wrapper file. For using SPICE solver, you have to have the Xyce 6.12 installed in your system. Supported solvers are listed below:
 
@@ -33,7 +33,7 @@ Note that, using SPICE transient will create an error. This error is for mapping
 
 transient grid temperature files are saved in ~/src folder as RC_transient_prachi.cir.csv
 
-# Potential error and solutions: 
+# Potential Error and Solutions: 
 
 Error: cannot find grid mode, go to the 'modelparam' file and add "grid_mode = max" in the '[Grid]' section.
 
