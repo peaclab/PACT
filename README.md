@@ -1,4 +1,4 @@
-## Peaclab_EDA_Thermal_SPICE
+# Peaclab_EDA_Thermal_SPICE
 All the source code are located inside the /src folder include the SuperLU solver as well as the SPICE solvers. SPICE solvers are currently seperate into SPICE_steady and SPICE_transient. 
 
 To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
