@@ -19,14 +19,18 @@ Steady-state grid temperature files are saved in ~/src folder as RC_steady_prach
 SPICE_transient (.TRAN):
 name = SPICE_transient
 wrapper = SPICESolver_transient.py
-Note that, using SPICE transient will create an error. This error is for mapping the steady-state grid temperatrues back to block temperatrues. You can ignore the error. \\
+Note that, using SPICE transient will create an error. This error is for mapping the steady-state grid temperatrues back to block temperatrues. You can ignore the error. 
 transient grid temperature files are saved in ~/src folder as RC_transient_prachi.cir.csv
 
-Potential error and solutions: \\
-Error: cannot find grid mode, go to the 'modelparam' file and add "grid_mode = max" in the '[Grid]' section.\\
-Error: no 'Cu', uncomment the '[Cu]' section in the 'modelparam' file.\\
+Potential error and solutions: 
+
+Error: cannot find grid mode, go to the 'modelparam' file and add "grid_mode = max" in the '[Grid]' section.
+
+Error: no 'Cu', uncomment the '[Cu]' section in the 'modelparam' file.
 
 Action Items:
+
 Liquid cooling via microchannels
+
 HotSpot medium cost heat sink
 
