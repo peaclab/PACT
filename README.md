@@ -7,7 +7,7 @@ To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py
 
 # Options for solvers: 
 
-go to the /RuntimeAnalysis/modelParams_files/ and find the 'modelparam' file you want to modify. Go to the '[Solver]' section and modfiy both the solver name as well as the wrapper file. Supported solvers are listed below:
+go to the /RuntimeAnalysis/modelParams_files/ and find the 'modelparam' file you want to modify. Go to the '[Solver]' section and modfiy both the solver name as well as the wrapper file. For using SPICE solver, you have to have the Xyce 6.12 installed in your system. Supported solvers are listed below:
 
 ## SuperLU (only for steady state): 
 
