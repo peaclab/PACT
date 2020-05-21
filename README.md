@@ -43,6 +43,9 @@ Error: no 'Cu', uncomment the '[Cu]' section in the 'modelparam' file.
 Clean up the repo 
 Rewrite Readme and include more details
 Define a universal path for the user to directly use
-Liquid cooling via microchannels
+Aditya test
+Release the first version of the tool
 HotSpot medium cost heat sink
+Liquid cooling via microchannels
+
 
