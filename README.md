@@ -34,10 +34,13 @@ https://xyce.sandia.gov/
 https://xyce.sandia.gov/documentation/BuildingGuide.html
 
 # Usage
-1. A numbered list
-  1. A nested numbered list
-  2. Which is numbered
-2. Which is numbered
+1. Config file (config_files): describe the layer material properties
+    1. thickness define the layer thichness.
+    2. htc define the heat transfer coeffcient of the layer.
+    3. thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
+    4. [Init] defines the initial temperature as well as the ambient temperature.
+2. floorplan (flp_files): decribe the chip floorplan
+    1.
 # Example Input and outputs
 To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
 
