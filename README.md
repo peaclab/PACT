@@ -114,7 +114,7 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
 # Enable Parallel Thermal Simulation:
 
-# Example Input and outputs
+# Example Inputs and outputs
 To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
 
 
