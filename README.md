@@ -19,7 +19,18 @@ All the source code are located inside the /src folder include the SuperLU solve
 
 
 # Requirements
-# Installation
+PACT is written in python and use __Xyce 6.12__ as the backend SPICE engine. It would be better to use Linux to run PACT. 
+
+Required Python version: > 3.6.5
+
+Required Python libraries: sys, numpy, pandas, math, os, scipy, argparse, configparser.
+
+Above library is enough for the Users to run PACT with SuperLU solver. For users who want to run PACT with SPICE engine. One need to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
+
+Installation guideline for __Xyce 6.12__: 
+https://xyce.sandia.gov/
+https://xyce.sandia.gov/documentation/BuildingGuide.html
+
 # Usage
 # Example Input and outputs
 To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
@@ -27,6 +38,7 @@ To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py
 # Options for Solvers: 
 
 go to the /RuntimeAnalysis/modelParams_files/ and find the 'modelparam' file you want to modify. Go to the '[Solver]' section and modfiy both the solver name as well as the wrapper file. For using SPICE solver, you have to have the __Xyce 6.12__ installed in your system. Supported solvers are listed below:
+
 
 ## SuperLU (only for steady state): 
 
