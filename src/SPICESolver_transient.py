@@ -135,8 +135,8 @@ class SPICE_transientSolver:
                 if(l < nl-1) Rb = find_res(l, i, j, model,3); else Rb = LARGENUM;
 
         """
-        with open('RC_transient_prachi.cir','w') as myfile:
-                myfile.write(".title prachi's spice transient solver\n")
+        with open('RC_transient.cir','w') as myfile:
+                myfile.write(".title spice transient solver\n")
                 myfile.write("Vg GND 0 318.15\n")
                 curidx=0
 		#print("PRACHI!!!!!!!!! Debug:nl, nr, nc",nl,nr,nc)
@@ -196,7 +196,7 @@ class SPICE_transientSolver:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
                     myfile.write("C_{}_{}_{} Node{}_{}_{} GND {}\n".format(layer,row,col,layer,row, col, self.C[layer][row][col]))
                 myfile.write('.TRAN 333u 33.3ms\n')
-		myfile.write('.Option TIMEINT METHOD=TRAP\n')
+                myfile.write('.OPTIONS TIMEINT METHOD=TRAP\n')
                 myfile.write('.OPTIONS OUTPUT INITIAL_INTERVAL=333us 33.3ms\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')
                 for grididx in range(self.size):
@@ -207,7 +207,7 @@ class SPICE_transientSolver:
                 myfile.write("\n")
                 myfile.write(".SAVE TYPE=IC\n")
                 myfile.write(".end\n")
-        os.system("Xyce RC_transient_prachi.cir")
+        os.system("Xyce RC_transient.cir")
       #  with open('RC_transient_prachi.cir.csv','r') as myfile:
       #      tmp = np.asarray(list(map(float,list(myfile)[1][:].split(','))))
       #      reshape_x = tmp.reshape(self.nl,self.nr,self.nc)

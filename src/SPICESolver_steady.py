@@ -135,8 +135,8 @@ class SPICE_steadySolver:
                 if(l < nl-1) Rb = find_res(l, i, j, model,3); else Rb = LARGENUM;
 
         """
-        with open('RC_steady_prachi.cir','w') as myfile:
-                myfile.write(".title prachi's spice solver\n")
+        with open('RC_steady.cir','w') as myfile:
+                myfile.write(".title spice solver\n")
                 myfile.write("Vg GND 0 318.15\n")
                 curidx=0
 		#print("PRACHI!!!!!!!!! Debug:nl, nr, nc",nl,nr,nc)
@@ -205,8 +205,8 @@ class SPICE_steadySolver:
                 myfile.write("\n")
                 myfile.write(".SAVE TYPE=IC\n")
                 myfile.write(".end\n")
-        os.system("Xyce RC_steady_prachi.cir")
-        with open('RC_steady_prachi.cir.csv','r') as myfile:
+        os.system("Xyce RC_steady.cir")
+        with open('RC_steady.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[1][:].split(','))))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
         return reshape_x
