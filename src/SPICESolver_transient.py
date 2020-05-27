@@ -196,6 +196,7 @@ class SPICE_transientSolver:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
                     myfile.write("C_{}_{}_{} Node{}_{}_{} GND {}\n".format(layer,row,col,layer,row, col, self.C[layer][row][col]))
                 myfile.write('.TRAN 333u 33.3ms\n')
+		myfile.write('.Option TIMEINT METHOD=TRAP\n')
                 myfile.write('.OPTIONS OUTPUT INITIAL_INTERVAL=333us 33.3ms\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')
                 for grididx in range(self.size):
