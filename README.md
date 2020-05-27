@@ -111,15 +111,13 @@ Users can modify the solver by changing the type name.
 Available solvers and usage can be found in [1] and Xyce user guide:
 
 https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
+
+# Enable Parallel Thermal Simulation:
+
 # Example Input and outputs
 To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
 
 
-# Potential Error and Solutions: 
-
-Error: cannot find grid mode, go to the 'modelparam' file and add "grid_mode = max" in the '[Grid]' section.
-
-Error: no 'Cu', uncomment the '[Cu]' section in the 'modelparam' file.
 
 # Reference:
 [1] Zihao Yuan, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to __IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),__ 2020.
