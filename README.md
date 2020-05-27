@@ -59,10 +59,6 @@ https://xyce.sandia.gov/documentation/BuildingGuide.html
     3. [Solver]: Selection of the solver (SuperLU, SPICE_steady, SPICE_transient)
     4. [Grid]: number of girds used in the simulation. 
 
-    
-# Example Input and outputs
-To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
-
 # Options for Solvers: 
 
 go to the /RuntimeAnalysis/modelParams_files/ and find the 'modelparam' file you want to modify. Go to the '[Solver]' section and modfiy both the solver name as well as the wrapper file. For using SPICE solver, you have to have the __Xyce 6.12__ installed in your system. Supported solvers are listed below:
@@ -92,6 +88,10 @@ Note that, using SPICE transient will create an error. This error is for mapping
 
 transient grid temperature files are saved in ~/src folder as RC_transient_prachi.cir.csv
 
+# Example Input and outputs
+To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
+
+
 # Potential Error and Solutions: 
 
 Error: cannot find grid mode, go to the 'modelparam' file and add "grid_mode = max" in the '[Grid]' section.
@@ -103,8 +103,6 @@ Error: no 'Cu', uncomment the '[Cu]' section in the 'modelparam' file.
 
 # Action Items:
 Clean up the repo 
-
-Rewrite Readme and include more details
 
 Define a universal path for the user to directly use
 
