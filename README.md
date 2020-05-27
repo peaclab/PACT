@@ -19,13 +19,13 @@ All the source code are located inside the /src folder include the SuperLU solve
 
 
 # Requirements
-PACT is written in python and use __Xyce 6.12__ as the backend SPICE engine. It would be better to use Linux to run PACT. 
+PACT is written in python and uses __Xyce 6.12__ as the backend SPICE engine. It would be better to use Linux to run PACT. 
 
 Required Python version: > 3.6.5
 
 Required Python libraries: sys, numpy, pandas, math, os, scipy, argparse, configparser.
 
-Above library is enough for the Users to run PACT with SuperLU solver. For users who want to run PACT with SPICE engine. One need to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
+The above libraries are enough for the users to run PACT with SuperLU solver. For users who want to run PACT with SPICE engine. One needs to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
 
 Installation guideline for __Xyce 6.12__: 
 
@@ -35,12 +35,31 @@ https://xyce.sandia.gov/documentation/BuildingGuide.html
 
 # Usage
 1. Config file (config_files): describe the layer material properties
-    1. thickness define the layer thichness.
-    2. htc define the heat transfer coeffcient of the layer.
-    3. thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
+    1. Thickness defines the layer thickness.
+    2. HTC define the heat transfer coefficient of the layer.
+    3. Thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
     4. [Init] defines the initial temperature as well as the ambient temperature.
-2. floorplan (flp_files): decribe the chip floorplan
-    1.
+2. Floorplan (flp_files): describe the chip floorplan
+    1. Depends on the simulation granularity, users can define a standard cell level chip floorplan with a large number of units or an architectural level floorplan with realistic hardware blocks.
+    2. UnitName is the name of the unit.
+    3. X and Y define the location of the unit.
+    4. Length (m) and Width (m) describe the unit size.
+    5. Label describes the material or the cooling property of the unit.
+    6. Users can ignore the configfile option for now.
+3.  Layer configuration file (lcf_files): describe the layer stack
+    1. Layer: describe the layer number, all layers are stacked vertically starting from layer 0
+    2. Floorplan file: describe the floorplan for the specific layer
+    3. PtraceFile: if the layer is active (consume power), then the corresponding power trace file to that layer needs to be specified here.
+4. Power trace file (ptrace_files):
+    1. UnitName: the name of the unit in the floorplan.
+    2. Power (W): the power consumption for the unit.
+5. Model parameter files (modelParams_files):
+    1. [PATH]: define the path to the library, ptrace, flp
+    2. [Simulation]: define the simulation type 
+    3. [Solver]: Selection of the solver (SuperLU, SPICE_steady, SPICE_transient)
+    4. [Grid]: number of girds used in the simulation. 
+
+    
 # Example Input and outputs
 To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
 
