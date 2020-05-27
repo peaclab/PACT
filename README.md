@@ -10,7 +10,7 @@ PACT takes config file, floorplan file, lcf file, modelParams file, and ptrace f
 
 The config file describes the material property, initial temperature, as well as cooling package information. The floorplan file describes the chip information that includes chip size, number of blocks, block sizes and location, and block material property. Lcf file stands for the layer configuration file, which basically shows the layer stack with cooling information. Ptrace file allocates the power number for each active block inside the chip stack. ModdelParams file shows the simulation information (e.g., steady-state/transient, solver type, number of grids, package information, etc.)
 
-More details about PACT can be found in [1]
+More details about PACT can be found in [1].
 
 
 
@@ -56,7 +56,7 @@ Error: cannot find grid mode, go to the 'modelparam' file and add "grid_mode = m
 Error: no 'Cu', uncomment the '[Cu]' section in the 'modelparam' file.
 
 # Reference:
-Zihao Yuan, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to __IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),__ 2020.
+[1] Zihao Yuan, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to __IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),__ 2020.
 
 # Action Items:
 Clean up the repo 
