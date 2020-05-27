@@ -28,7 +28,9 @@ Required Python libraries: sys, numpy, pandas, math, os, scipy, argparse, config
 Above library is enough for the Users to run PACT with SuperLU solver. For users who want to run PACT with SPICE engine. One need to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
 
 Installation guideline for __Xyce 6.12__: 
+
 https://xyce.sandia.gov/
+
 https://xyce.sandia.gov/documentation/BuildingGuide.html
 
 # Usage
