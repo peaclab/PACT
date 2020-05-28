@@ -1,2 +1,0 @@
-Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
-0,Tests_withHotSpot/L0_OverlapSi.csv,0.0001,Tests_withHotSpot/2mm_OverlapSiUniformPD_50Wcm2_ptrace.csv,True
