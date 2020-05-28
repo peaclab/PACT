@@ -123,7 +123,6 @@ To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py
 [1] Zihao Yuan, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to __IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),__ 2020.
 
 # Action Items:
-Clean up the repo 
 
 Define a universal path for the user to directly use
 
