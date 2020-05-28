@@ -122,6 +122,7 @@ to
 ```python
 os.system("mpirun -np <# procs> Xyce RC_steady.cir")
 ```
+-np specify the number of processors used for the simulation
 The common command for running parallel thermal simulation is listed below:
 ```python
 os.system("mpirun -np <# procs> Xyce [options] <netlist filename>")
