@@ -95,7 +95,7 @@ Note that, using SPICE transient will create an error. This error is for mapping
 transient grid temperature files are saved in ~/src folder as RC_transient.cir.csv
 
 ## Low-level solvers
-To change the low-level solver types for SPICE solver, users need to modify the SPICESolver.steady.py or SPICESolver.transient.py.
+To change the low-level solver types for SPICE solver, users need to modify the SPICESolver_steady.py or SPICESolver_transient.py.
 For transient simulation, change the following line:
 ```python
 myfile.write('.Option TIMEINT METHOD=TRAP\n')
@@ -113,7 +113,22 @@ Available solvers and usage can be found in [1] and Xyce user guide:
 https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
 # Enable Parallel Thermal Simulation:
+To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
+One need to modify the following line in SPICESolver_steady.py or SPICESolver_transient.py:
+```python
+os.system("Xyce RC_steady.cir")
+```
+to
+```python
+os.system("mpirun -np <# procs> Xyce RC_steady.cir")
+```
+The common command for running parallel thermal simulation is listed below:
+```python
+os.system("mpirun -np <# procs> Xyce [options] <netlist filename>")
+```
+Detailed commands of running PACT in parallel can be found here:
 
+https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 # Example Inputs and outputs
 To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
 
