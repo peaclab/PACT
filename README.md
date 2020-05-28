@@ -33,7 +33,7 @@ https://xyce.sandia.gov/
 
 https://xyce.sandia.gov/documentation/BuildingGuide.html
 
-For users who want to run parallel thermal simualtion with PACT, one need to install OpenMPI 3.1.4:
+For users who want to run parallel thermal simualtions with PACT, one need to install __OpenMPI 3.1.4__:
 
 https://www.open-mpi.org/
 
