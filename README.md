@@ -131,7 +131,7 @@ Detailed commands of running PACT in parallel can be found here:
 
 https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
-# Example Inputs and outputs
+# Example Test Cases:
 We have provided several test cases for the users to test.
 The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
 
