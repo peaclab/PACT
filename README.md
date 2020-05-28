@@ -82,7 +82,7 @@ name = SPICE_steady
 
 wrapper = SPICESolver_steady.py
 
-Steady-state grid temperature files are saved in ~/src folder as RC_steady_prachi.cir.csv
+Steady-state grid temperature files are saved in ~/src folder as RC_steady.cir.csv
 
 ### SPICE_transient (.TRAN):
 
@@ -92,7 +92,7 @@ wrapper = SPICESolver_transient.py
 
 Note that, using SPICE transient will create an error. This error is for mapping the steady-state grid temperatures back to block temperatures. You can ignore the error. 
 
-transient grid temperature files are saved in ~/src folder as RC_transient_prachi.cir.csv
+transient grid temperature files are saved in ~/src folder as RC_transient.cir.csv
 
 ## Low-level solvers
 To change the low-level solver types for SPICE solver, users need to modify the SPICESolver.steady.py or SPICESolver.transient.py.
