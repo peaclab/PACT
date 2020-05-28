@@ -1,4 +1,0 @@
-Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
-1,demo/L1_MissingLabelDefinition_flp.csv,2E-05,,TRUE
-2,demo/L2_flp.csv,0.00015,,TRUE
-0,demo/L0_flp.csv,0.00015,P1_ptrace.csv,TRUE
