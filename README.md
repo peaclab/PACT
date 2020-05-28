@@ -72,27 +72,27 @@ Go to the '[Solver]' section in the modelParam file and modify both the solver n
 
 ### SuperLU (only for steady-state): 
 
-name = SuperLU
+Name = SuperLU
 
-wrapper = SuperLU.py
+Wrapper = SuperLU.py
 
 ### SPICE_steady (.OP):
 
-name = SPICE_steady
+Name = SPICE_steady
 
-wrapper = SPICESolver_steady.py
+Wrapper = SPICESolver_steady.py
 
 Steady-state grid temperature files are saved in ~/src folder as RC_steady.cir.csv
 
 ### SPICE_transient (.TRAN):
 
-name = SPICE_transient
+Name = SPICE_transient
 
-wrapper = SPICESolver_transient.py
+Wrapper = SPICESolver_transient.py
 
 Note that, using SPICE transient will create an error. This error is for mapping the steady-state grid temperatures back to block temperatures. You can ignore the error. 
 
-transient grid temperature files are saved in ~/src folder as RC_transient.cir.csv
+Transient grid temperature files are saved in ~/src folder as RC_transient.cir.csv
 
 ## Low-level solvers
 To change the low-level solver types for SPICE solver, users need to modify the SPICESolver_steady.py or SPICESolver_transient.py.
@@ -130,8 +130,26 @@ os.system("mpirun -np <# procs> Xyce [options] <netlist filename>")
 Detailed commands of running PACT in parallel can be found here:
 
 https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
+
 # Example Inputs and outputs
-To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py . You can choose various synthetic power profiles and floorplans within the python script. 
+We have provided several test cases for the users to test.
+The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
+
+We include uniform power density test cases of [40,80,120,160,200] W/cm<sup>2</sup>.
+
+We have also included non-uniform power density test cases with a background power density of 50 W/cm<sup>2</sup> and hot spot power density of [500,750,1000,1350,1500] W/cm<sup>2</sup>. 
+
+Users can choose the location of the hot spot as well as the number of hot spots. 
+
+To test the heterogeneity, we also include chips with heterogeneous materials such as silicon and copper. 
+
+The cooling package is set to fixed air convection HTC, users can change the HTC based on their need. 
+
+Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.)
+
+To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py. You can choose various synthetic power profiles and floorplans within the python script. 
+
+Users can also modify the corresponding modelParam files in the /RuntimeAnalysis/modelParams_files/ to select the simulation type as well as the solver.
 
 
 
