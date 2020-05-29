@@ -82,7 +82,7 @@ Go to the '[Solver]' section in the modelParam file and modify both the solver n
 
 * Wrapper = SPICESolver_steady.py
 
-Steady-state grid temperature files are saved in ~/src folder as RC_steady.cir.csv
+Steady-state grid temperature files are saved in ~/src folder as RC_steady.cir.csv. The steady-state block level temperatures will be printed in the terminal.
 
 ### SPICE_transient (.TRAN):
 
@@ -90,9 +90,7 @@ Steady-state grid temperature files are saved in ~/src folder as RC_steady.cir.c
 
 * Wrapper = SPICESolver_transient.py
 
-Note that, using SPICE transient will create an error. This error is for mapping the steady-state grid temperatures back to block temperatures. You can ignore the error. 
-
-Transient grid temperature files are saved in ~/src folder as RC_transient.cir.csv
+Transient grid temperature files are saved in ~/src folder as RC_transient.cir.csv. The last step transient temperature results will be printed in the terminal.
 
 ## Low-level solvers
 To change the low-level solver types for SPICE solver, users need to modify the SPICESolver_steady.py or SPICESolver_transient.py.
@@ -152,7 +150,11 @@ To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py
 
 Users can also modify the corresponding modelParam files in the /RuntimeAnalysis/modelParams_files/ to select the simulation type as well as the solver.
 
-All the simulation log files and results are stored in the /RuntimeAnalysis/log/ and /RuntimeAnalysis/results/ folders, respectively. For simulation using SPICE solvers, users can also find the grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv.
+All the simulation log files and results are stored in the /RuntimeAnalysis/log/ and /RuntimeAnalysis/results/ folders, respectively. For simulation using SPICE solvers, users can also find the grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. For simulation using SuperLU, users can find the grid temperature simulation results in /RuntimeAnalysis/results/ folder. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
+
+Example block level temperature output:
+
+![](/image/PACTflow.PNG)
 
 # Developers:
 
