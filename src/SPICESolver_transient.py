@@ -208,7 +208,7 @@ class SPICE_transientSolver:
                 myfile.write(".SAVE TYPE=IC\n")
                 myfile.write(".end\n")
         os.system("Xyce RC_transient.cir")
-      #  with open('RC_transient_prachi.cir.csv','r') as myfile:
-      #      tmp = np.asarray(list(map(float,list(myfile)[1][:].split(','))))
-      #      reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
-      #  return reshape_x
+        with open('RC_transient.cir.csv','r') as myfile:
+            tmp = np.asarray(list(map(float,list(myfile)[-1][:].split(',')[1:])))
+            reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
+        return reshape_x
