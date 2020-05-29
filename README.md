@@ -133,6 +133,7 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
 # Example Test Cases:
 We have provided several test cases for the users to test.
+
 The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
 
 We include uniform power density test cases of [40,80,120,160,200] W/cm<sup>2</sup>.
