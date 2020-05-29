@@ -154,7 +154,7 @@ All the simulation log files and results are stored in the /RuntimeAnalysis/log/
 
 Example block level temperature output:
 
-![](/image/PACTflow.PNG)
+![](/image/output.PNG)
 
 # Developers:
 
