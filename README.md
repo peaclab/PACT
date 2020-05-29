@@ -152,7 +152,7 @@ To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py
 
 Users can also modify the corresponding modelParam files in the /RuntimeAnalysis/modelParams_files/ to select the simulation type as well as the solver.
 
-All the simulation log files and results are stored in the /RuntimeAnalysis/logs/ and /RuntimeAnalysis/results/ folders, respectively. For simulation using SPICE solvers, users can also find the grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv.
+All the simulation log files and results are stored in the /RuntimeAnalysis/log/ and /RuntimeAnalysis/results/ folders, respectively. For simulation using SPICE solvers, users can also find the grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv.
 
 
 
