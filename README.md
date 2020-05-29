@@ -134,19 +134,19 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 # Example Test Cases:
 We have provided several test cases for the users to test.
 
-The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
+* The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
 
-We include uniform power density test cases of [40,80,120,160,200] W/cm<sup>2</sup>.
+* We include uniform power density test cases of [40,80,120,160,200] W/cm<sup>2</sup>.
 
-We have also included non-uniform power density test cases with a background power density of 50 W/cm<sup>2</sup> and hot spot power density of [500,750,1000,1350,1500] W/cm<sup>2</sup>. 
+* We have also included non-uniform power density test cases with a background power density of 50 W/cm<sup>2</sup> and hot spot power density of [500,750,1000,1350,1500] W/cm<sup>2</sup>. 
 
-Users can choose the location of the hot spot as well as the number of hot spots. 
+* Users can choose the location of the hot spot as well as the number of hot spots. 
 
-To test the heterogeneity, we also include chips with heterogeneous materials such as silicon and copper. 
+* To test the heterogeneity, we also include chips with heterogeneous materials such as silicon and copper. 
 
-The cooling package is set to fixed air convection HTC, users can change the HTC based on their need. 
+* The cooling package is set to fixed air convection HTC, users can change the HTC based on their need. 
 
-Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.)
+* Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.)
 
 To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py. You can choose various synthetic power profiles, floorplans, and test cases within the python script. 
 
