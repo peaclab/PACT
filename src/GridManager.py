@@ -458,7 +458,7 @@ class GridManager:
     def calculate_block_temperatures(self,layer_obj,gridTemperatures,block_mode):
         layer_num = layer_obj.layer_num
         flp = layer_obj.flp_df
-         
+        print(f'layer number:{layer_num}') 
         if(block_mode == 'max'):
             #layer_obj.flp_df['BlockTemperature'] = flp.apply(lambda x : np.round(np.max((gridTemperatures[layer_num])\
             #    [int(x.grid_left_x):int(x.grid_right_x)+1, int(x.grid_top_y):int(x.grid_bottom_y)+1]) - 273.15,2),axis=1)
