@@ -21,21 +21,21 @@ All the source code are located inside the /src folder include the SuperLU solve
 # Requirements
 PACT is written in python and uses __Xyce 6.12__ as the backend SPICE engine. It would be better to use Linux to run PACT. 
 
-Required Python version: > 3.6.5
+* Required Python version: > 3.6.5
 
-Required Python libraries: sys, numpy, pandas, math, os, scipy, argparse, configparser.
+* Required Python libraries: sys, numpy, pandas, math, os, scipy, argparse, configparser.
 
 The above libraries are enough for the users to run PACT with SuperLU solver. For users who want to run PACT with SPICE engine. One needs to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
 
 Installation guideline for __Xyce 6.12__: 
 
-https://xyce.sandia.gov/
+* https://xyce.sandia.gov/
 
-https://xyce.sandia.gov/documentation/BuildingGuide.html
+* https://xyce.sandia.gov/documentation/BuildingGuide.html
 
 For users who want to run parallel thermal simualtions with PACT, one need to install __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__:
 
-https://www.open-mpi.org/
+* https://www.open-mpi.org/
 
 # Usage
 1. Config file (config_files): describe the layer material properties
