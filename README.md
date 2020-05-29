@@ -155,11 +155,11 @@ Users can also modify the corresponding modelParam files in the /RuntimeAnalysis
 All the simulation log files and results are stored in the /RuntimeAnalysis/log/ and /RuntimeAnalysis/results/ folders, respectively. For simulation using SPICE solvers, users can also find the grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv.
 
 # Developers:
-*Prachi Shukla
+ Markup : * Prachi Shukla
 
-*Zihao Yuan
+          * Zihao Yuan
 
-*Sofiane Chetoui
+          * Sofiane Chetoui
 
 If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
 
