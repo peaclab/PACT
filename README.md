@@ -156,6 +156,8 @@ Example block level temperature output:
 
 ![](/image/output.PNG)
 
+Here layer0 is the processor and layer1 is the cooling package. 
+
 # Developers:
 
 * Prachi Shukla
