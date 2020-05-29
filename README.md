@@ -148,7 +148,7 @@ The cooling package is set to fixed air convection HTC, users can change the HTC
 
 Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.)
 
-To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py. You can choose various synthetic power profiles and floorplans within the python script. 
+To run thermal simulations, go to /RuntimeAnalysis/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py. You can choose various synthetic power profiles, floorplans, and test cases within the python script. 
 
 Users can also modify the corresponding modelParam files in the /RuntimeAnalysis/modelParams_files/ to select the simulation type as well as the solver.
 
