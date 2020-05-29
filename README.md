@@ -170,12 +170,12 @@ If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
 
 # Action Items:
 
-Aditya test
+* Aditya test
 
-Release the first version of the tool
+* Release the first version of the tool
 
-HotSpot medium cost heat sink
+* HotSpot medium cost heat sink
 
-Liquid cooling via microchannels
+* Liquid cooling via microchannels
 
 
