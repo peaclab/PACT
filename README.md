@@ -72,23 +72,23 @@ Go to the '[Solver]' section in the modelParam file and modify both the solver n
 
 ### SuperLU (only for steady-state): 
 
-Name = SuperLU
+* Name = SuperLU
 
-Wrapper = SuperLU.py
+* Wrapper = SuperLU.py
 
 ### SPICE_steady (.OP):
 
-Name = SPICE_steady
+* Name = SPICE_steady
 
-Wrapper = SPICESolver_steady.py
+* Wrapper = SPICESolver_steady.py
 
 Steady-state grid temperature files are saved in ~/src folder as RC_steady.cir.csv
 
 ### SPICE_transient (.TRAN):
 
-Name = SPICE_transient
+* Name = SPICE_transient
 
-Wrapper = SPICESolver_transient.py
+* Wrapper = SPICESolver_transient.py
 
 Note that, using SPICE transient will create an error. This error is for mapping the steady-state grid temperatures back to block temperatures. You can ignore the error. 
 
