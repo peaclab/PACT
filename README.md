@@ -161,8 +161,6 @@ All the simulation log files and results are stored in the /RuntimeAnalysis/log/
 
 # Action Items:
 
-Define a universal path for the user to directly use
-
 Aditya test
 
 Release the first version of the tool
