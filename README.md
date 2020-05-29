@@ -82,7 +82,7 @@ Go to the '[Solver]' section in the modelParam file and modify both the solver n
 
 * Wrapper = SPICESolver_steady.py
 
-Steady-state grid temperature files are saved in ~/src folder as RC_steady.cir.csv. The steady-state block level temperatures will be printed in the terminal.
+Steady-state grid temperature files are saved in ~/src folder as RC_steady.cir.csv. The steady-state block-level temperatures will be printed in the terminal.
 
 ### SPICE_transient (.TRAN):
 
@@ -152,7 +152,7 @@ Users can also modify the corresponding modelParam files in the /RuntimeAnalysis
 
 All the simulation log files and results are stored in the /RuntimeAnalysis/log/ and /RuntimeAnalysis/results/ folders, respectively. For simulation using SPICE solvers, users can also find the grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. For simulation using SuperLU, users can find the grid temperature simulation results in /RuntimeAnalysis/results/ folder. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
 
-Example block level temperature output:
+Example block-level temperature output:
 
 ![](/image/output.PNG)
 
