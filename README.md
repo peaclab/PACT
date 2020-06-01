@@ -133,6 +133,8 @@ Detailed commands of running PACT in parallel can be found here:
 
 https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
+Note that, to run parallel simulation on a sever, users need to start an interactive seesion by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. 
+
 # Example Test Cases:
 We have provided several test cases for the users to test.
 
