@@ -180,8 +180,6 @@ If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
 
 # Action Items:
 
-* Aditya test
-
 * Release the first version of the tool
 
 * HotSpot medium cost heat sink
