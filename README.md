@@ -67,7 +67,6 @@ For users who want to run parallel thermal simualtions with PACT, one need to in
     ```python
     python CRICoolingTool.py <lcf> <config> <modelParams> --gridSteadyFile <grid_file>
     ```
-
 # Options for Solvers: 
 We divide the solver section into high-level solvers as well as low-level solvers. High-level solvers include SuperLU and SPICE solvers.
 Low-level solvers include KLU, KSparse, TRAP, BE, etc.
