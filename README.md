@@ -65,7 +65,7 @@ For users who want to run parallel thermal simualtions with PACT, one need to in
 
 6. Command to run simulation with PACT:
     ```python
-    python CRICoolingTool.py <lcf> <config> <modelParams> --gridSteadyFile <grid_file>
+    python CRICoolingTool.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
     ```
 # Options for Solvers: 
 We divide the solver section into high-level solvers as well as low-level solvers. High-level solvers include SuperLU and SPICE solvers.
