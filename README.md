@@ -119,10 +119,12 @@ To enable Parallel Thermal Simulation with PACT, users need to install the __Xyc
 One need to modify the following line in SPICESolver_steady.py or SPICESolver_transient.py:
 ```python
 os.system("Xyce RC_steady.cir")
+os.system("Xyce RC_transient.cir")
 ```
 to
 ```python
 os.system("mpirun -np <# procs> Xyce RC_steady.cir")
+os.system("mpirun -np <# procs> Xyce RC_transient.cir")
 ```
 -np specify the number of processors used for the simulation
 The common command for running parallel thermal simulation is listed below:
