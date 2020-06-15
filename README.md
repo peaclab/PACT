@@ -19,7 +19,7 @@ All the source code are located inside the /src folder include the SuperLU solve
 
 
 # Requirements
-PACT is written in python and uses __Xyce 6.12__ as the backend SPICE engine. It would be better to use Linux to run PACT. 
+PACT is written in python and uses __Xyce 6.12__ as the backend SPICE engine.
 
 * Required Python version: > 3.6.5
 
@@ -36,6 +36,13 @@ Installation guideline for __Xyce 6.12__:
 For users who want to run parallel thermal simualtions with PACT, one need to install __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__:
 
 * https://www.open-mpi.org/
+
+It's recommended to use Linux and macOS to run PACT. To enable sequential and parallel thermal simulation with PACT on Windows, users have to user __Cygwin__ to build the __Xyce 6.12__ and __OpenMPI 3.1.4__ and run PACT using __Cygwin__ terminal. __Cygwin__ download link:
+
+* https://www.cygwin.com/
+
+
+
 
 # Usage
 1. Config file (config_files): describe the layer material properties
