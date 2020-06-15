@@ -69,11 +69,11 @@ It's recommended to use Linux and macOS to run PACT. To enable sequential and pa
     2. [Simulation]: define the simulation type 
     3. [Solver]: Selection of the solver (SuperLU, SPICE_steady, SPICE_transient)
     4. [Grid]: number of girds used in the simulation. 
-
 6. Command to run simulation with PACT:
     ```python
     python CRICoolingTool.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
     ```
+    For steady-state simulation, the grid_file specific the steady-state grid temperature output of PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file.
 # Options for Solvers: 
 We divide the solver section into high-level solvers as well as low-level solvers. High-level solvers include SuperLU and SPICE solvers.
 Low-level solvers include KLU, KSparse, TRAP, BE, etc.
