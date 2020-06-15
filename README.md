@@ -188,6 +188,8 @@ Here layer0 is the processor and layer1 is the cooling package.
 
 * Sofiane Chetoui
 
+* Sean Nemtzow 
+
 If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
 
 
