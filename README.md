@@ -43,10 +43,9 @@ It's recommended to use Linux and macOS to run PACT. To enable sequential and pa
 
 
 If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux sever, then you can simply type in:
-```linux
+```
 module load xyce/6.12
 module load opemmpi/3.1.4
-
 ```
 
 
