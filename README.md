@@ -50,18 +50,18 @@ It's recommended to use Linux and macOS to run PACT. To enable sequential and pa
     2. HTC is the heat transfer coefficient between the ambient and the heat sink.
     3. Thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
     4. [Init] defines the initial temperature as well as the ambient temperature.
-2. Floorplan (flp_files): describe the chip floorplan
+2. Floorplan (flp_files (.CSV file)): describe the chip floorplan
     1. Depends on the simulation granularity, users can define a standard cell level chip floorplan with a large number of units or an architectural level floorplan with realistic hardware blocks.
     2. UnitName is the name of the unit.
     3. X and Y define the location of the unit.
     4. Length (m) and Width (m) describe the unit size.
     5. Label describes the material or the cooling property of the unit.
     6. Users can ignore the configfile option for now.
-3.  Layer configuration file (lcf_files): describe the layer stack
+3.  Layer configuration file (lcf_files (.CSV file)): describe the layer stack
     1. Layer: describe the layer number, all layers are stacked vertically starting from layer 0
     2. Floorplan file: describe the floorplan for the specific layer
     3. PtraceFile: if the layer is active (consume power), then the corresponding power trace file to that layer needs to be specified here.
-4. Power trace file (ptrace_files):
+4. Power trace file (ptrace_files (.CSV file)):
     1. UnitName: the name of the unit in the floorplan.
     2. Power (W): the power consumption for the unit.
 5. Model parameter files (modelParams_files):
