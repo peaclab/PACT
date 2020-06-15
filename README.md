@@ -42,12 +42,12 @@ It's recommended to use Linux and macOS to run PACT. To enable sequential and pa
 * https://www.cygwin.com/
 
 
-If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux sever, then you can simply type in:
+If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux sever, then you can simply type in the following lines to load Xyce and OpenMPI.
 ```
 module load xyce/6.12
 module load opemmpi/3.1.4
 ```
-to load Xyce and OpenMPI
+
 
 # Usage
 1. Config file (config_files): describe the layer material properties
