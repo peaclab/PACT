@@ -47,7 +47,7 @@ It's recommended to use Linux and macOS to run PACT. To enable sequential and pa
 # Usage
 1. Config file (config_files): describe the layer material properties
     1. Thickness defines the layer thickness.
-    2. HTC define the heat transfer coefficient of the layer.
+    2. HTC is the heat transfer coefficient between the ambient and the heat sink.
     3. Thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
     4. [Init] defines the initial temperature as well as the ambient temperature.
 2. Floorplan (flp_files): describe the chip floorplan
