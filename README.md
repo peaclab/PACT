@@ -47,7 +47,7 @@ If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux
 module load xyce/6.12
 module load opemmpi/3.1.4
 ```
-
+to load Xyce and OpenMPI
 
 # Usage
 1. Config file (config_files): describe the layer material properties
