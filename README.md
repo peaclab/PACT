@@ -135,11 +135,11 @@ os.system("mpirun -np <# procs> Xyce RC_transient.cir")
 ```
 -np specify the number of processors used for the simulation.
 
-E.g.,
+E.g., the following line tells PACT to use 4 cores to run steady-state thermal simulation and read the thermal netlist from RC_steady.cir file.
 ```python
 os.system("mpirun -np 4 Xyce RC_steady.cir")
 ```
-tells PACT to use 4 cores to run steady-state thermal simulation and read the thermal netlist from RC_steady.cir file.
+
 
 The common command for running parallel thermal simulation is listed below:
 ```python
