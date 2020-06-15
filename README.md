@@ -42,6 +42,12 @@ It's recommended to use Linux and macOS to run PACT. To enable sequential and pa
 * https://www.cygwin.com/
 
 
+If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux sever, then you can simply type in:
+```linux
+module load xyce/6.12
+module load opemmpi/3.1.4
+
+```
 
 
 # Usage
@@ -79,7 +85,9 @@ We divide the solver section into high-level solvers as well as low-level solver
 Low-level solvers include KLU, KSparse, TRAP, BE, etc.
 ## High-level solvers
 Go to the '[Solver]' section in the modelParam file and modify both the solver name as well as the wrapper file. For using SPICE solver, you have to have the __Xyce 6.12__ installed in your system. Supported high-level solvers are listed below:
-
+```python
+myfile.write('.Option TIMEINT METHOD=TRAP\n')
+```
 
 ### SuperLU (only for steady-state): 
 
