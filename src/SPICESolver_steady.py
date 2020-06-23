@@ -3,8 +3,9 @@ import numpy as np
 import math
 import os
 class SPICE_steadySolver:
-    def __init__(self,name):
+    def __init__(self,name,num_core):
         self.name = name
+        self.num_core = num_core
         return
 
     def display_solver(self):
@@ -205,7 +206,10 @@ class SPICE_steadySolver:
                 myfile.write("\n")
                 myfile.write(".SAVE TYPE=IC\n")
                 myfile.write(".end\n")
-        os.system("Xyce RC_steady.cir")
+        if int(self.num_core)<=1:
+            os.system("Xyce RC_steady.cir")
+        else:
+            os.system(f"mpirun -np {self.num_core} Xyce RC_steady.cir")
         with open('RC_steady.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[1][:].split(','))))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
