@@ -529,7 +529,8 @@ elif  modelParams._sections['Solver'].get('name') == 'SPICE_steady':
 
 elif  modelParams._sections['Solver'].get('name') == 'SPICE_transient':
     print(f"low-level solver = {modelParams._sections['Solver'].get('ll_transient_solver')}\n")
-    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_transient_solver'))" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core')) )
+    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_transient_solver'),modelParams._sections['Simulation'].get('step_size'),modelParams._sections['Simulation'].get('total_simulation_time'),modelParams._sections['Simulation'].get('ptrace_step_size'))" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core') ))
+
 ######## Zihao should modify the wrapper class (SuperLUSolver) #########
 #solver = SuperLUSolver(modelParams._sections['Solver'].get('name'))#" % (modelParams._sections['Solver'].get('name')) )
 #solver = SPICE_steadySolver(modelParams._sections['Solver'].get('name'))#" % (modelParams._sections['Solver'].get('name')) )
