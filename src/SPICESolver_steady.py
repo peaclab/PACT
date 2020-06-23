@@ -209,4 +209,6 @@ class SPICE_steadySolver:
         with open('RC_steady.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[1][:].split(','))))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
+        os.system("cp RC_steady.cir.csv ../RuntimeAnalysis/results/RC_steady.cir.csv")
+        os.system("rm -rf RC_steady.cir.csv")
         return reshape_x
