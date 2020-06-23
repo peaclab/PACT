@@ -3,10 +3,14 @@ import numpy as np
 import math
 import os
 class SPICE_transientSolver:
-    def __init__(self,name,num_core,ll_solver):
+    def __init__(self,name,num_core,ll_solver,step_size,total_time,ptrace_step_size):
         self.name = name
         self.num_core = num_core
         self.ll_solver = ll_solver
+        self.step_size = step_size
+        self.total_time = total_time
+        # use to define the pwl current function step size
+        self.ptrace_step_size = ptrace_step_size
         return
 
     def display_solver(self):
@@ -199,7 +203,7 @@ class SPICE_transientSolver:
                     myfile.write("C_{}_{}_{} Node{}_{}_{} GND {}\n".format(layer,row,col,layer,row, col, self.C[layer][row][col]))
                 myfile.write('.TRAN 333u 33.3ms\n')
                 myfile.write(f'.OPTIONS TIMEINT METHOD={self.ll_solver}\n')
-                myfile.write('.OPTIONS OUTPUT INITIAL_INTERVAL=333us 33.3ms\n')
+                myfile.write(f'.OPTIONS OUTPUT INITIAL_INTERVAL={self.step_size} {self.total_time}\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')
                 for grididx in range(self.size):
                     layer = int(grididx / self.prod)
