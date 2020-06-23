@@ -214,5 +214,5 @@ class SPICE_transientSolver:
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
         
         os.system("cp RC_transient.cir.csv ../Example/results/RC_transient.cir.csv")
-        os.system("rm -rf RC_steady.cir.csv")
+        os.system("rm -rf RC_transient.cir.csv")
         return reshape_x

@@ -30,3 +30,5 @@
 0inputs+27488outputs (0major+507069minor)pagefaults 0swaps
 2.43user 0.26system 0:03.05elapsed 88%CPU (0avgtext+0avgdata 93632maxresident)k
 0inputs+18448outputs (0major+57526minor)pagefaults 0swaps
+1.67user 0.18system 0:02.13elapsed 86%CPU (0avgtext+0avgdata 64156maxresident)k
+0inputs+18544outputs (0major+33225minor)pagefaults 0swaps
