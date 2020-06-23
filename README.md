@@ -210,6 +210,8 @@ If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
 
 * Add exmaple command line
 
+* Integrate Sofiane's vlsi flow code to this repo
+
 * Release the first version of the tool
 
 * HotSpot medium cost heat sink
