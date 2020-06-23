@@ -105,6 +105,7 @@ Steady-state grid temperature files are saved in ~/Example/results/ folder as RC
 
 * Wrapper = SPICESolver_transient.py
 
+Users can modify the step_size, total_simualtion_time, and ptrace_step_size options under the [Simulation] section in modelParams_files to redefine the simulation step size and simulation time of the transient simulation.
 Transient grid temperature files are saved in ~/Example/results/ folder as RC_transient.cir.csv. The last step transient temperature results will be printed in the terminal.
 
 ## Low-level solvers
