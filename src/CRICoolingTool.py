@@ -12,7 +12,7 @@ from SuperLUSolver import SuperLUSolver
 from SPICESolver_steady import SPICE_steadySolver
 from SPICESolver_transient import SPICE_transientSolver
 #from HeatMap import *
-import TemperatureDependent as LibTemperatureDependent 
+#import TemperatureDependent as LibTemperatureDependent 
 #import time
 #import cProfile , pstats, io
 #import SimulatedAnnealing as SA
