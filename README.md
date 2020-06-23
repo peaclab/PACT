@@ -84,9 +84,6 @@ We divide the solver section into high-level solvers as well as low-level solver
 Low-level solvers include KLU, KSparse, TRAP, BE, etc.
 ## High-level solvers
 Go to the '[Solver]' section in the modelParam file and modify both the solver name as well as the wrapper file. For using SPICE solver, you have to have the __Xyce 6.12__ installed in your system. Supported high-level solvers are listed below:
-```python
-myfile.write('.Option TIMEINT METHOD=TRAP\n')
-```
 
 ### SuperLU (only for steady-state): 
 
