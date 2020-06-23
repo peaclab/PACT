@@ -538,7 +538,7 @@ grid_cols=modelParams._sections['Grid'].get('cols')
 num_layers = chipStack.num_layers
 
 ############# Zihao: see this; DO NOT change ################
-print("Debug PRACHI***** chipStacl.Layers_data.items() list:",list(chipStack.Layers_data.items()))
+#print("Debug PRACHI***** chipStacl.Layers_data.items() list:",list(chipStack.Layers_data.items()))
 solver_properties={'grid_rows':grid_rows,'grid_cols':grid_cols,'num_layers':num_layers}
 dict_Rx = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].Rx for x in chipStack.Layers_data.keys()}
 dict_Ry = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].Ry for x in chipStack.Layers_data.keys()}

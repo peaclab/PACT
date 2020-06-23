@@ -15,7 +15,7 @@ def defineGridProperties(length, height,thickness,properties):
     Rz = ro*thickness/(length*height)
     #Capacitance=1*sp*length*height*thickness
     Capacitance=0.33*sp*thickness*length*height
-    print('Zihao Single cap ********************',Capacitance)
+    #print('Zihao Single cap ********************',Capacitance)
    
     I=0
     direction='z'
