@@ -522,9 +522,14 @@ chipStack = gridManager.createGrids(chipStack,label_config_dict)
 #######SOLVER#####
 if modelParams._sections['Solver'].get('name') == 'SuperLU':
     exec("solver = %sSolver(modelParams._sections['Solver'].get('name'))" % (modelParams._sections['Solver'].get('name')) )
-else:
-    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s)" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core')) )
 
+elif  modelParams._sections['Solver'].get('name') == 'SPICE_steady':
+    print(f"low-level solver = {modelParams._sections['Solver'].get('ll_steady_solver')}\n")
+    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_steady_solver'))" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core')))
+
+elif  modelParams._sections['Solver'].get('name') == 'SPICE_transient':
+    print(f"low-level solver = {modelParams._sections['Solver'].get('ll_transient_solver')}\n")
+    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_transient_solver'))" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core')) )
 ######## Zihao should modify the wrapper class (SuperLUSolver) #########
 #solver = SuperLUSolver(modelParams._sections['Solver'].get('name'))#" % (modelParams._sections['Solver'].get('name')) )
 #solver = SPICE_steadySolver(modelParams._sections['Solver'].get('name'))#" % (modelParams._sections['Solver'].get('name')) )

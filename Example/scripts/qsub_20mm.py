@@ -24,7 +24,7 @@ for grids in grids_ll:
     modelParamsFile = modelParams + '_'+grids
     for htc in htc_ll:
         configFile = folder + 'config_files/default_htc_' + htc + '_' + chiplabel + '.config'
-        #"""
+        """
         ### Non - Uniform Power density ####
         bgpd = [50]
         #hspd = [500,1000,1500,2000]
@@ -43,7 +43,7 @@ for grids in grids_ll:
         #"""
         ### Uniform Power density ####
         #bgpd = [50,100]
-'''
+
         bgpd = [50]
         pdenType = 'UniformPD'
         for bg_idx, bg in enumerate(bgpd):
@@ -55,4 +55,4 @@ for grids in grids_ll:
             os.system('20mm.sh '+ lcf_file + ' ' + configFile + ' ' + modelParamsFile + ' ' + grid_file + ' ' + scp_file + ' ' + log_file)
             #os.system('OverlapSi.sh '+ chiplabel + ' '+ folder + ' '+ lcf_file +' ' +configFile + ' ' + modelParamsFile + ' ' + pdenType + ' ' + pdenVal + ' ' + scp_dir + ' ' + grid_rows + ' ' + grid_cols + ' ' + runName)
         #"""
-'''
+

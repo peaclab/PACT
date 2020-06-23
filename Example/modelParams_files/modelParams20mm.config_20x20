@@ -17,10 +17,11 @@ layer = 1
 temperature_dependent_library = TemperatureDependent.py
 number_of_core = 4
 [Solver]
-#name = SuperLU
 name = SPICE_steady
-#wrapper = SuperLU.py
 wrapper = SPICESolver_steady.py
+#low level solver option, only for SPICE high level solver
+ll_steady_solver = KLU
+ll_transient_solver = TRAP
 
 [Grid]
 type = Uniform
