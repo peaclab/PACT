@@ -134,9 +134,9 @@ We have provided several test cases for the users to test.
 
 * The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
 
-* We include uniform power density test cases of [40,80,120,160,200] W/cm<sup>2</sup>.
+* We include uniform power density test cases of [40-200] W/cm<sup>2</sup>.
 
-* We have also included non-uniform power density test cases with a background power density of 50 W/cm<sup>2</sup> and hot spot power density of [500,750,1000,1350,1500] W/cm<sup>2</sup>. 
+* We have also included non-uniform power density test cases with a background power density of 50 W/cm<sup>2</sup> and hot spot power density of [500-2000] W/cm<sup>2</sup>. 
 
 * Users can choose the location of the hot spot as well as the number of hot spots by change the __hs_loc__ option in "qsub_Hetero_500um.py" scipt to ['center', 'edge', 'corner','multiple_center','multiple_offcenter']. The detailed non-uniform floorplans can be found in /Example/flp_files/ folder.
 
