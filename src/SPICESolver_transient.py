@@ -3,8 +3,9 @@ import numpy as np
 import math
 import os
 class SPICE_transientSolver:
-    def __init__(self,name):
+    def __init__(self,name,num_core):
         self.name = name
+        self.num_core = num_core
         return
 
     def display_solver(self):
@@ -208,7 +209,10 @@ class SPICE_transientSolver:
                 myfile.write(".SAVE TYPE=IC\n")
                 myfile.write(".end\n")
         #os.system("Xyce RC_transient.cir")
-        os.system("mpirun -np 4 Xyce RC_transient.cir")
+        if int(self.num_core)<=1:
+            os.system("Xyce RC_transient.cir")
+        else:
+            os.system(f"mpirun -np {self.num_core} Xyce RC_transient.cir")
         with open('RC_transient.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[-1][:].split(',')[1:])))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)

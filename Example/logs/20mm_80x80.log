@@ -52,3 +52,29 @@
 0inputs+79472outputs (6major+252915minor)pagefaults 0swaps
 13.36user 0.76system 0:04.80elapsed 294%CPU (0avgtext+0avgdata 94688maxresident)k
 0inputs+79456outputs (6major+262464minor)pagefaults 0swaps
+14.76user 0.54system 0:05.37elapsed 284%CPU (0avgtext+0avgdata 100800maxresident)k
+8inputs+79480outputs (6major+248791minor)pagefaults 0swaps
+14.01user 0.56system 0:05.14elapsed 283%CPU (0avgtext+0avgdata 98660maxresident)k
+0inputs+79472outputs (6major+248536minor)pagefaults 0swaps
+13.51user 0.57system 0:05.02elapsed 280%CPU (0avgtext+0avgdata 98620maxresident)k
+0inputs+79456outputs (6major+243147minor)pagefaults 0swaps
+15.08user 0.55system 0:05.40elapsed 289%CPU (0avgtext+0avgdata 100808maxresident)k
+0inputs+79480outputs (6major+250755minor)pagefaults 0swaps
+13.98user 0.57system 0:05.14elapsed 282%CPU (0avgtext+0avgdata 98716maxresident)k
+0inputs+79480outputs (6major+248501minor)pagefaults 0swaps
+13.43user 0.57system 0:04.99elapsed 280%CPU (0avgtext+0avgdata 102700maxresident)k
+0inputs+79464outputs (6major+241147minor)pagefaults 0swaps
+14.71user 0.57system 0:05.31elapsed 287%CPU (0avgtext+0avgdata 98928maxresident)k
+0inputs+79480outputs (6major+248731minor)pagefaults 0swaps
+13.96user 0.58system 0:05.12elapsed 283%CPU (0avgtext+0avgdata 100668maxresident)k
+0inputs+79472outputs (6major+249493minor)pagefaults 0swaps
+13.43user 0.56system 0:04.98elapsed 280%CPU (0avgtext+0avgdata 100680maxresident)k
+0inputs+79464outputs (6major+242777minor)pagefaults 0swaps
+14.68user 0.56system 0:05.36elapsed 284%CPU (0avgtext+0avgdata 100792maxresident)k
+0inputs+79480outputs (6major+249164minor)pagefaults 0swaps
+14.15user 0.52system 0:05.15elapsed 284%CPU (0avgtext+0avgdata 100664maxresident)k
+0inputs+79488outputs (6major+250200minor)pagefaults 0swaps
+13.94user 0.53system 0:05.10elapsed 283%CPU (0avgtext+0avgdata 100664maxresident)k
+0inputs+79456outputs (6major+249079minor)pagefaults 0swaps
+0.37user 0.05system 0:00.51elapsed 82%CPU (0avgtext+0avgdata 44648maxresident)k
+120inputs+0outputs (0major+11669minor)pagefaults 0swaps

@@ -15,7 +15,7 @@ temperature_dependent = False
 convergence = 0.1
 layer = 1
 temperature_dependent_library = TemperatureDependent.py
-
+number_of_core = 4
 [Solver]
 name = SPICE_steady
 wrapper = SPICESolver_steady.py

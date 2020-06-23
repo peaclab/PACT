@@ -1,20 +1,21 @@
 import os,sys
 
 
-htc_ll = ['1e4', '1e5', '1e6']
-#htc_ll = ['1e5']
+#htc_ll = ['1e4', '1e5', '1e6']
+htc_ll = ['1e5']
 hs_loc = ['center','edge','corner','multiple_center','multiple_offcenter']
 #hs_loc = ['center','edge','corner']
 #hs_loc = ['corner']
 
 #"""
 #For interactive jobs, run one 'chiplabel' at a time
-for n in range(0,1):
+for n in range(2,3):
     if n==0:
         chiplabel='10mm_500um_Hetero'
-        grid_rows= ['20','40','80','160','320']
+       # grid_rows= ['20','40','80','160','320']
+        #grid_rows= ['20']
         #grid_rows= ['20','40','80','160']
-        #grid_rows= ['40']
+        grid_rows= ['40']
 #"""
     elif n==1:
 #"""

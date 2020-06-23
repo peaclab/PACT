@@ -520,7 +520,10 @@ for (label,cfile) in label_config_dict.keys():
 chipStack = gridManager.createGrids(chipStack,label_config_dict)
 #chipStack.display_Floorplans()
 #######SOLVER#####
-exec("solver = %sSolver(modelParams._sections['Solver'].get('name'))" % (modelParams._sections['Solver'].get('name')) )
+if modelParams._sections['Solver'].get('name') == 'SuperLU':
+    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'))" % (modelParams._sections['Solver'].get('name')) )
+else:
+    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s)" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core')) )
 
 ######## Zihao should modify the wrapper class (SuperLUSolver) #########
 #solver = SuperLUSolver(modelParams._sections['Solver'].get('name'))#" % (modelParams._sections['Solver'].get('name')) )
