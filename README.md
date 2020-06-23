@@ -127,33 +127,7 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
 # Enable Parallel Thermal Simulation:
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
-One need to modify the following line in SPICESolver_steady.py or SPICESolver_transient.py:
-```python
-os.system("Xyce RC_steady.cir")
-os.system("Xyce RC_transient.cir")
-```
-to
-```python
-os.system("mpirun -np <# procs> Xyce RC_steady.cir")
-os.system("mpirun -np <# procs> Xyce RC_transient.cir")
-```
--np specify the number of processors used for the simulation.
-
-E.g., the following line tells PACT to use 4 cores to run steady-state thermal simulation and read the thermal netlist from RC_steady.cir file.
-```python
-os.system("mpirun -np 4 Xyce RC_steady.cir")
-```
-
-
-The common command for running parallel thermal simulation is listed below:
-```python
-os.system("mpirun -np <# procs> Xyce [options] <netlist filename>")
-```
-Detailed commands of running PACT in parallel can be found here:
-
-https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
-
-Note that, to run parallel simulation on a Linux sever, users need to start an interactive seesion by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. 
+One needs to modify the number_of_core option in the modelParams_files [Simulation] section to change the number of cores used in the PACT parallel simulation. Note that, to run parallel simulations on a Linux server, users need to start an interactive session by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. 
 
 # Example Test Cases:
 We have provided several test cases for the users to test.
