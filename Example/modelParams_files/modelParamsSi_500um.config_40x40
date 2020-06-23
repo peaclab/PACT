@@ -19,7 +19,9 @@ number_of_core = 4
 [Solver]
 name = SPICE_steady
 wrapper = SPICESolver_steady.py
-
+#low level solver option, only for SPICE high level solver
+ll_steady_solver = KLU
+ll_transient_solver = TRAP
 [Grid]
 type = Uniform
 granularity = Grid

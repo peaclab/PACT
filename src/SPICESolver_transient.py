@@ -3,9 +3,10 @@ import numpy as np
 import math
 import os
 class SPICE_transientSolver:
-    def __init__(self,name,num_core):
+    def __init__(self,name,num_core,ll_solver):
         self.name = name
         self.num_core = num_core
+        self.ll_solver = ll_solver
         return
 
     def display_solver(self):
@@ -197,7 +198,7 @@ class SPICE_transientSolver:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
                     myfile.write("C_{}_{}_{} Node{}_{}_{} GND {}\n".format(layer,row,col,layer,row, col, self.C[layer][row][col]))
                 myfile.write('.TRAN 333u 33.3ms\n')
-                myfile.write('.OPTIONS TIMEINT METHOD=TRAP\n')
+                myfile.write(f'.OPTIONS TIMEINT METHOD={self.ll_solver}\n')
                 myfile.write('.OPTIONS OUTPUT INITIAL_INTERVAL=333us 33.3ms\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')
                 for grididx in range(self.size):

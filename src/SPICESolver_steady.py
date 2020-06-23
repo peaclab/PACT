@@ -3,9 +3,10 @@ import numpy as np
 import math
 import os
 class SPICE_steadySolver:
-    def __init__(self,name,num_core):
+    def __init__(self,name,num_core,ll_solver):
         self.name = name
         self.num_core = num_core
+        self.ll_solver = ll_solver
         return
 
     def display_solver(self):
@@ -196,7 +197,7 @@ class SPICE_steadySolver:
                     else:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
                 myfile.write('.OP\n')
-                myfile.write('.OPTIONS LINSOL TYPE=KLU\n')
+                myfile.write(f'.OPTIONS LINSOL TYPE={self.ll_solver}\n')
                 myfile.write('.PRINT DC FORMAT=CSV PRECISION=4 ')
                 for grididx in range(self.size):
                     layer = int(grididx / self.prod)
