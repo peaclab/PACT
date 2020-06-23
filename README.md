@@ -108,18 +108,7 @@ Steady-state grid temperature files are saved in ~/Example/results/ folder as RC
 Transient grid temperature files are saved in ~/Example/results/ folder as RC_transient.cir.csv. The last step transient temperature results will be printed in the terminal.
 
 ## Low-level solvers
-To change the low-level solver types for SPICE solver, users need to modify the SPICESolver_steady.py or SPICESolver_transient.py.
-For transient simulation, change the __METHOD__ option of the following line to specify a transient low-level solver:
-```python
-myfile.write('.Option TIMEINT METHOD=TRAP\n')
-```
-Users can modify the solver by changing the method name.
-
-For steady-state simulation, change the __TYPE__ option of the following line to specify a steady-state low-level solver:
-```python
-myfile.write('.OPTIONS LINSOL TYPE=KLU\n')
-```
-Users can modify the solver by changing the type name.
+To change the low-level solver types for SPICE solver, users need to modify the ll_steady_solver or ll_transient_solver option under the [Solver] section in  modelParams_files. Note that, SuperLU solver does not support low-level solver.
 
 Available solvers and usage can be found in [1] and Xyce user guide:
 
