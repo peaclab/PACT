@@ -97,7 +97,7 @@ Go to the '[Solver]' section in the modelParam file and modify both the solver n
 
 * Wrapper = SPICESolver_steady.py
 
-Steady-state grid temperature files are saved in ~/Example/results/ folder as RC_steady.cir.csv. The steady-state block-level temperatures will be printed in the terminal.
+Steady-state grid temperature files are saved as RC_steady.cir.csv. The steady-state block-level temperatures will be printed in the terminal.
 
 ### SPICE_transient (.TRAN):
 
@@ -106,7 +106,7 @@ Steady-state grid temperature files are saved in ~/Example/results/ folder as RC
 * Wrapper = SPICESolver_transient.py
 
 Users can modify the step_size, total_simualtion_time, and ptrace_step_size options under the [Simulation] section in modelParams_files to redefine the simulation step size and simulation time of the transient simulation.
-Transient grid temperature files are saved in ~/Example/results/ folder as RC_transient.cir.csv. The last step transient temperature results will be printed in the terminal.
+Transient grid temperature files are saved as RC_transient.cir.csv. The last step transient temperature results will be printed in the terminal.
 
 ## Low-level solvers
 To change the low-level solver types for SPICE solver, users need to modify the ll_steady_solver or ll_transient_solver option under the [Solver] section in  modelParams_files. Note that, SuperLU solver does not support low-level solver.
@@ -149,7 +149,7 @@ To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_2
 
 Users can also modify the corresponding modelParam files in the /Example/modelParams_files/ to select the simulation type as well as the solver.
 
-All the simulation log files and results are stored in the /Example/log/ and /Example/results/ folders, respectively. For simulation using SPICE solvers, users can also find the grid temperature simulation results locate in /Example/results/ folder as RC_steady.cir.csv or RC_transient.cir.csv. For simulation using SuperLU, users can find the grid temperature simulation results in /Example/results/ folder. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
+All the simulation log files and results are stored in the /Example/log/ and /Example/results/ folders, respectively. For simulation using SPICE solvers, users can also find the grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. For simulation using SuperLU, users can find the grid temperature simulation results in /Example/results/ folder. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
 
 Example block-level temperature output:
 
