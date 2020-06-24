@@ -129,7 +129,7 @@ Here layer0 is the processor and layer1 is the cooling package. Note that, this 
 Here layer0 is the processor and layer1 is the cooling package. 
 
 # Example Script Test Cases:
-We have provided several script test cases for the users to test.
+We have provided several script test cases in the Example folder for the users to test.
 
 * The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
 
