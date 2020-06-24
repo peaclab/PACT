@@ -118,9 +118,18 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 # Enable Parallel Thermal Simulation:
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 One needs to modify the number_of_core option in the modelParams_files [Simulation] section to change the number of cores used in the PACT parallel simulation. Note that, to run parallel simulations on a Linux server, users need to start an interactive session by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. Note that, SuperLU solver does not support parallel thermal simulation, it only supports sequential thermal simulation.
+# Example Command Line Test Cases:
+The Example_command_line folder contains all the necessary file to run steady-state and transient simulation of a 10mmX10mm chip with a 500um hot spot placed at the center. The backgroud power density is set to 50 W/cm<sup>2</sup> and the hot spot power density is set to 1500 W/cm<sup>2</sup>. User can run this command line test case by typing the following command insdie the  Example_command_line folder:
 
-# Example Test Cases:
-We have provided several test cases for the users to test.
+```python
+    python ../src/CRICoolingTool.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
+```
+The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. 
+Here layer0 is the processor and layer1 is the cooling package. Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two softwares, please change the solver to SuperLU. 
+Here layer0 is the processor and layer1 is the cooling package. 
+
+# Example Script Test Cases:
+We have provided several script test cases for the users to test.
 
 * The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
 
