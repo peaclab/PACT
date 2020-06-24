@@ -3,7 +3,7 @@ import numpy as np
 import math
 import os
 class SPICE_transientSolver:
-    def __init__(self,name,num_core,ll_solver,step_size,total_time,ptrace_step_size):
+    def __init__(self,name,num_core,ll_solver,step_size,total_time,ptrace_step_size,ambient):
         self.name = name
         self.num_core = num_core
         self.ll_solver = ll_solver
@@ -11,6 +11,7 @@ class SPICE_transientSolver:
         self.total_time = total_time
         # use to define the pwl current function step size
         self.ptrace_step_size = ptrace_step_size
+        self.ambient = ambient
         return
 
     def display_solver(self):
@@ -143,7 +144,7 @@ class SPICE_transientSolver:
         """
         with open('RC_transient.cir','w') as myfile:
                 myfile.write(".title spice transient solver\n")
-                myfile.write("Vg GND 0 318.15\n")
+                myfile.write(f"Vg GND 0 {self.ambient}\n")
                 curidx=0
 		#print("PRACHI!!!!!!!!! Debug:nl, nr, nc",nl,nr,nc)
 		#sys.exit(2)

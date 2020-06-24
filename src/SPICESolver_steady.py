@@ -3,10 +3,11 @@ import numpy as np
 import math
 import os
 class SPICE_steadySolver:
-    def __init__(self,name,num_core,ll_solver):
+    def __init__(self,name,num_core,ll_solver,ambient):
         self.name = name
         self.num_core = num_core
         self.ll_solver = ll_solver
+        self.ambient = ambient
         return
 
     def display_solver(self):
@@ -139,7 +140,7 @@ class SPICE_steadySolver:
         """
         with open('RC_steady.cir','w') as myfile:
                 myfile.write(".title spice solver\n")
-                myfile.write("Vg GND 0 318.15\n")
+                myfile.write(f"Vg GND 0 {self.ambient}\n")
                 curidx=0
 		#print("PRACHI!!!!!!!!! Debug:nl, nr, nc",nl,nr,nc)
 		#sys.exit(2)
