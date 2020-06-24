@@ -22,7 +22,6 @@ echo "log file =  $log_file"
 
 time -ao ${log_file} python CRICoolingTool.py "${lcf}" "${config}" "${modelParams}" "--gridSteadyFile" "${grid_file}"
 
-#scp ${grid_file} prachis@128.197.127.15:${scp_file}
 
 popd 
 date
