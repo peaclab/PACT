@@ -79,7 +79,6 @@ parser.add_argument('modelParamsFile', action='store')
 parser.add_argument('--init', action='store',dest='initFile')
 parser.add_argument('--steady', action='store',dest='steadyFile')
 parser.add_argument('--gridSteadyFile', action='store',dest='gridSteadyFile')
-
 ### Display Arguments  ###
 #print(parser.parse_args())
 
@@ -261,11 +260,10 @@ for ll in list_of_labels:
     try:
         #if not (os.path.exists(modelParams.get(ll,'library'))):
         lib_location = modelParams.get(ll,'library')
-
         #if not (os.path.exists(lib_path+modelParams.get(ll,'library'))):
-        if not (os.path.exists(modelParams.get(ll,'library'))):
-            print('ERROR: Library for the label',ll,':',modelParams.get(ll,'library'),'not found in',modelParamsFile)
-            sys.exit(2)
+       # if not (os.path.exists(modelParams.get(ll,'library'))):
+       #     print('ERROR: Library for the label',ll,':',modelParams.get(ll,'library'),'not found in',modelParamsFile)
+       #     sys.exit(2)
         ######Below contains all libraries that should be imported###
         #lib_dict[ll]=lib_location.split(".")[0]
     except NoOptionError:
