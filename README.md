@@ -180,7 +180,7 @@ If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
 
 * Add exmaple command line----Done
 
-* Integrate Sofiane's vlsi flow code to this repo---Need to ask Sofiane and try running Sofiane's VLSI toll
+* Integrate Sofiane's vlsi flow code to this repo---Need to ask Sofiane and try running Sofiane's VLSI tool
 
 * Release the first version of the tool
 
