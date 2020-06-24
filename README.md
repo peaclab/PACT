@@ -118,7 +118,7 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 # Enable Parallel Thermal Simulation:
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 One needs to modify the number_of_core option in the modelParams_files [Simulation] section to change the number of cores used in the PACT parallel simulation. Note that, to run parallel simulations on a Linux server, users need to start an interactive session by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. Note that, SuperLU solver does not support parallel thermal simulation, it only supports sequential thermal simulation.
-# Example Command Line Test Cases:
+# Example Command Line Test Case:
 The Example_command_line folder contains all the necessary file to run steady-state and transient simulation of a 10mmX10mm chip with a 500um hot spot placed at the center. The backgroud power density is set to 50 W/cm<sup>2</sup> and the hot spot power density is set to 1500 W/cm<sup>2</sup>. Users can run this command line test case by typing the following command insdie the  Example_command_line folder:
 
 ```python
