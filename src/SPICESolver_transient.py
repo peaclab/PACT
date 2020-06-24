@@ -222,6 +222,6 @@ class SPICE_transientSolver:
             tmp = np.asarray(list(map(float,list(myfile)[-1][:].split(',')[1:])))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
         
-        os.system("cp RC_transient.cir.csv ../Example/results/RC_transient.cir.csv")
-        os.system("rm -rf RC_transient.cir.csv")
+        #os.system("cp RC_transient.cir.csv ../Example/results/RC_transient.cir.csv")
+        #os.system("rm -rf RC_transient.cir.csv")
         return reshape_x
