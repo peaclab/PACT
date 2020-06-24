@@ -176,9 +176,9 @@ If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
 # Action Items:
 * Remove unnecessary file and shrink the repo size
 
-* Change RuntimeAnalysis to example
+* Change RuntimeAnalysis to example----Done
 
-* Add exmaple command line
+* Add exmaple command line----Done
 
 * Integrate Sofiane's vlsi flow code to this repo
 
