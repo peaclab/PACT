@@ -159,9 +159,9 @@ Here layer0 is the processor and layer1 is the cooling package.
 
 # Developers:
 
-* Prachi Shukla
-
 * Zihao Yuan
+
+* Prachi Shukla
 
 * Sofiane Chetoui
 
@@ -169,6 +169,19 @@ Here layer0 is the processor and layer1 is the cooling package.
 
 If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
 
+# Principal Investigator (PI):
+
+Prof.Ayse K Coskun from Boston University
+
+https://www.bu.edu/eng/profile/ayse-coskun/
+
+Prof. Shereif Reda from Brown University
+
+https://vivo.brown.edu/display/sreda
+
+# Acknowledgment
+
+This project has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389.
 
 # Reference:
 [1] Zihao Yuan, Sofiane Chetoui, Prachi Shukla, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),_ 2020.
