@@ -286,3 +286,29 @@
 0inputs+17840outputs (6major+74140minor)pagefaults 0swaps
 2.96user 0.38system 0:01.87elapsed 178%CPU (0avgtext+0avgdata 60264maxresident)k
 0inputs+17824outputs (6major+74131minor)pagefaults 0swaps
+3.45user 0.63system 0:07.88elapsed 51%CPU (0avgtext+0avgdata 60284maxresident)k
+236704inputs+17856outputs (293major+73931minor)pagefaults 0swaps
+3.19user 0.37system 0:01.92elapsed 185%CPU (0avgtext+0avgdata 60260maxresident)k
+0inputs+17840outputs (6major+74147minor)pagefaults 0swaps
+2.92user 0.37system 0:01.86elapsed 176%CPU (0avgtext+0avgdata 60264maxresident)k
+0inputs+17824outputs (6major+74142minor)pagefaults 0swaps
+3.01user 0.45system 0:02.76elapsed 125%CPU (0avgtext+0avgdata 60260maxresident)k
+0inputs+17840outputs (6major+74107minor)pagefaults 0swaps
+2.69user 0.38system 0:01.79elapsed 171%CPU (0avgtext+0avgdata 60264maxresident)k
+0inputs+17848outputs (6major+74148minor)pagefaults 0swaps
+2.17user 0.39system 0:01.74elapsed 147%CPU (0avgtext+0avgdata 60268maxresident)k
+0inputs+17824outputs (6major+74113minor)pagefaults 0swaps
+2.19user 0.45system 0:02.51elapsed 105%CPU (0avgtext+0avgdata 60268maxresident)k
+0inputs+17840outputs (6major+74149minor)pagefaults 0swaps
+2.51user 0.34system 0:01.70elapsed 167%CPU (0avgtext+0avgdata 60272maxresident)k
+0inputs+17840outputs (6major+74128minor)pagefaults 0swaps
+2.54user 0.38system 0:01.75elapsed 166%CPU (0avgtext+0avgdata 60268maxresident)k
+0inputs+17832outputs (6major+74107minor)pagefaults 0swaps
+1.11user 0.26system 0:02.35elapsed 58%CPU (0avgtext+0avgdata 64164maxresident)k
+0inputs+1040outputs (0major+46024minor)pagefaults 0swaps
+1.24user 0.26system 0:02.87elapsed 52%CPU (0avgtext+0avgdata 64200maxresident)k
+0inputs+1440outputs (0major+46135minor)pagefaults 0swaps
+1.22user 0.24system 0:03.83elapsed 38%CPU (0avgtext+0avgdata 64204maxresident)k
+0inputs+1432outputs (0major+46151minor)pagefaults 0swaps
+1.22user 0.25system 0:02.93elapsed 50%CPU (0avgtext+0avgdata 64176maxresident)k
+0inputs+1432outputs (0major+46138minor)pagefaults 0swaps
