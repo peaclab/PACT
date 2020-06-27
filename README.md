@@ -76,7 +76,7 @@ module load opemmpi/3.1.4
     4. [Grid]: number of girds used in the simulation. 
 6. Command to run simulation with PACT:
     ```python
-    python CRICoolingTool.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
+    python PACT.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
     ```
     For steady-state simulation, the grid_file specific the steady-state grid temperature output of PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file.
 # Options for Solvers: 
@@ -122,7 +122,7 @@ One needs to modify the number_of_core option in the modelParams_files [Simulati
 The Example_command_line folder contains all the necessary file to run steady-state and transient simulation of a 10mmX10mm chip with a 500um hot spot placed at the center. The backgroud power density is set to 50 W/cm<sup>2</sup> and the hot spot power density is set to 1500 W/cm<sup>2</sup>. Users can run this command line test case by typing the following command insdie the  Example_command_line folder:
 
 ```python
-    python ../src/CRICoolingTool.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
+    python ../src/PACT.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
 ```
 The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. 
 Here layer0 is the processor and layer1 is the cooling package. Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two softwares, please change the solver to SuperLU. 
