@@ -72,7 +72,7 @@ heatMaps_path = home_path+'results/heat_maps/'
 
 ######! Command-Line Arguments Description !######
 #pr = cProfile.Profile()
-parser = argparse.ArgumentParser(prog='CRICoolingTool',)
+parser = argparse.ArgumentParser(prog='PACT',)
 parser.add_argument('lcfFile',action='store')
 parser.add_argument('configFile', action='store')
 parser.add_argument('modelParamsFile', action='store')

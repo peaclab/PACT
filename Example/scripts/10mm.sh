@@ -20,7 +20,7 @@ echo "grid file = $grid_file"
 echo "scp file =  $scp_file"
 echo "log file =  $log_file"
 
-time -ao ${log_file} python CRICoolingTool.py "${lcf}" "${config}" "${modelParams}" "--gridSteadyFile" "${grid_file}"
+time -ao ${log_file} python PACT.py "${lcf}" "${config}" "${modelParams}" "--gridSteadyFile" "${grid_file}"
 
 
 popd 
