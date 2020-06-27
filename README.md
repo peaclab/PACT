@@ -125,7 +125,9 @@ The Example_command_line folder contains all the necessary file to run steady-st
     python ../src/PACT.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
 ```
 The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. 
-Here layer0 is the processor and layer1 is the cooling package. Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1.
+Here layer0 is the processor and layer1 is the cooling package. 
+
+<font color="red"> Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. </font>
 Here layer0 is the processor and layer1 is the cooling package. 
 
 # Example Script Test Cases:
@@ -147,8 +149,8 @@ We have provided several script test cases in the Example folder for the users t
 
 To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py. You can choose various synthetic power profiles, floorplans, and test cases within the python script. 
 
-Note that, these example script test cases assume the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
-If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of __Xyce 6.12__, please make sure you set the number_of_core option in the modelParams files to 1.
+<font color="red"> Note that, these example script test cases assume the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
+If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of __Xyce 6.12__, please make sure you set the number_of_core option in the modelParams files to 1.</font>
 
 Users can also modify the corresponding modelParam files in the /Example/modelParams_files/ to select the simulation type as well as the solver.
 
