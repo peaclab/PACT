@@ -148,7 +148,7 @@ We have provided several script test cases in the Example folder for the users t
 
 * Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.). Users can specify the number of grids used in the simulation as multiple of 2 and 5 or as a power of 2.
 
-To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py as shown below. 
+To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py as shown below:
 
 ```
     $cd Example/scripts/
