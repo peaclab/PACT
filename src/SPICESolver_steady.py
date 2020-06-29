@@ -96,7 +96,7 @@ class SPICE_steadySolver:
         self.Rz = self.dict_properties['Rz']
         self.C = self.dict_properties['C']
         self.I = self.dict_properties['I']
-        print(self.I.items())
+        # print(self.I.items())
         #self.r_amb_reciprocal = round(1/self.r_amb,6)
         self.r_amb_reciprocal = 1/self.r_amb
         #self.r_amb_reciprocal = 1/self.r_amb 
@@ -209,9 +209,9 @@ class SPICE_steadySolver:
                 myfile.write(".SAVE TYPE=IC\n")
                 myfile.write(".end\n")
         if int(self.num_core)<=1:
-            os.system("Xyce RC_steady.cir")
+            os.system("Xyce RC_steady.cir -l RC_steady.log")
         else:
-            os.system(f"mpirun -np {self.num_core} Xyce RC_steady.cir")
+            os.system(f"mpirun -np {self.num_core} Xyce -l RC_steady.log RC_steady.cir")
         with open('RC_steady.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[1][:].split(','))))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)

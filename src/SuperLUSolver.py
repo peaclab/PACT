@@ -359,7 +359,7 @@ class SuperLUSolver:
         #y = np.round(x-273.15,6)
         #reshape_y = y.reshape(nl,nr,nc)
         reshape_x = x.reshape(self.nl,self.nr,self.nc)
-        print(reshape_x)
+        #print(reshape_x)
         #print(b.shape[0],b.shape[1])
         #print(A_csc.shape[0],A_csc.shape[1])
         #print(x)

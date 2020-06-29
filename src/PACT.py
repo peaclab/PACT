@@ -522,14 +522,17 @@ ambient_T = config._sections['Init'].get('ambient')
 ambient_T = float(ambient_T.split(' ')[0])
 print(ambient_T)
 if modelParams._sections['Solver'].get('name') == 'SuperLU':
+    print("high-level solver = SuperLU")
     exec("solver = %sSolver(modelParams._sections['Solver'].get('name'))" % (modelParams._sections['Solver'].get('name')) )
 
 elif  modelParams._sections['Solver'].get('name') == 'SPICE_steady':
-    print(f"low-level solver = {modelParams._sections['Solver'].get('ll_steady_solver')}\n")
+    print("high-level solver = SPICE_steady")
+    print(f"low-level solver = {modelParams._sections['Solver'].get('ll_steady_solver')}")
     exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_steady_solver'),%s)" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core'),ambient_T))
 
 elif  modelParams._sections['Solver'].get('name') == 'SPICE_transient':
-    print(f"low-level solver = {modelParams._sections['Solver'].get('ll_transient_solver')}\n")
+    print("high-level solver = SPICE_transient")
+    print(f"low-level solver = {modelParams._sections['Solver'].get('ll_transient_solver')}")
     exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_transient_solver'),modelParams._sections['Simulation'].get('step_size'),modelParams._sections['Simulation'].get('total_simulation_time'),modelParams._sections['Simulation'].get('ptrace_step_size'),%s)" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core'),ambient_T ))
 
 ######## Zihao should modify the wrapper class (SuperLUSolver) #########
