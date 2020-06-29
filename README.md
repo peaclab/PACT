@@ -148,7 +148,27 @@ We have provided several script test cases in the Example folder for the users t
 
 * Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.). Users can specify the number of grids used in the simulation as multiple of 2 and 5 or as a power of 2.
 
-To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py. You can choose various synthetic power profiles, floorplans, and test cases within the python script. 
+To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py as shown below. 
+
+```
+    $cd Example/scripts/
+    $python qsub_10mm.py
+```
+or
+
+```
+    $cd Example/scripts/
+    $python qsub_20mm.py
+```
+
+or
+
+```
+    $cd Example/scripts/
+    $python qsub_Hetero_500um.py
+```
+
+You can choose various synthetic power profiles, floorplans, and test cases within the python script. 
 
 Note that, these example script test cases assume the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of __Xyce 6.12__, please make sure you set the number_of_core option in the modelParams files to 1. 
