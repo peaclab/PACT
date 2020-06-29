@@ -185,9 +185,9 @@ Here layer0 is the processor and layer1 is the cooling package.
 
 # Developers:
 
-* Zihao Yuan
-
 * Prachi Shukla
+
+* Zihao Yuan
 
 * Sofiane Chetoui
 
