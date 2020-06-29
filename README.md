@@ -174,7 +174,7 @@ __qsub_10mm.py__: steady-state and transient analysis for homogeneous chips with
 
 __qsub_20mm.py__: steady-state and transient analysis for homogeneous chips with a chip size of 20mm with both uniform power density and non-uniform power density profiles.
 
-__qsub_Hetero_500um.py__: steady-state and transient analysis for heterogeneous chips with chip sizes of 5mm,10mm, and 20mm with non-uniform power density profiles. Users can select different hot spot locations and number of hot spots.
+__qsub_Hetero_500um.py__: steady-state and transient analysis for heterogeneous chips (Copper and Silicon) with chip sizes of 5mm,10mm, and 20mm with non-uniform power density profiles. Users can select different hot spot locations and the number of hot spots.
 
 Note that, these example script test cases assume the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of __Xyce 6.12__, please make sure you set the number_of_core option in the modelParams files to 1. 
