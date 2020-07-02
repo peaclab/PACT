@@ -220,7 +220,7 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 
 # Action Items:
 
-* Integrate Sofiane's vlsi flow code to this repo---Need to ask Sofiane and try running Sofiane's VLSI tool
+* Integrate Sofiane's vlsi flow code to this repo and add test cases---Need to ask Sofiane and try running Sofiane's VLSI tool
 
 * Add the transient ptrace to the data structure
 
