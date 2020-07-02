@@ -216,7 +216,7 @@ https://vivo.brown.edu/display/sreda
 PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389.
 
 # Reference:
-[1] Zihao Yuan, Sofiane Chetoui, Prachi Shukla, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),_ 2020.
+[1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),_ 2020.
 
 # Action Items:
 * move the repo to peaclab repo
