@@ -1,0 +1,2 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,../Example_command_line/example_flp.csv,0.0001,../Example_command_line/example_ptrace_2_lines.csv,True
