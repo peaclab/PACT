@@ -14,6 +14,8 @@ class SuperLUSolver:
         return
 
     def update(self):
+        print("PRACHI: UPDATE")
+        sys.exit(0)
         self.cooData.fill(0)
         self.cooX.fill(0)
         self.cooY.fill(0)
@@ -94,13 +96,20 @@ class SuperLUSolver:
         self.Ry = self.dict_properties['Ry']
         self.Rz = self.dict_properties['Rz']
         self.C = self.dict_properties['C']
+        #print(self.dict_properties['I'])
         self.I = self.dict_properties['I']
+        #print(self.I )
         #self.r_amb_reciprocal = round(1/self.r_amb,6)
         self.r_amb_reciprocal = 1/self.r_amb
         #self.r_amb_reciprocal = 1/self.r_amb 
         self.b=[]
+        #print("PRACHI:setup()")
         for key,value in self.I.items():
-            self.b = np.append(self.b,value.flatten())
+            mean_value = np.average(value,axis=0)
+            #print(mean_value)
+            #sys.exit(0)
+            self.b = np.append(self.b,mean_value.flatten())
+            #self.b = np.append(self.b,value.flatten())
         self.b = np.reshape(self.b,(self.size,1))
         return
         
