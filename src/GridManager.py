@@ -20,7 +20,7 @@ class GridManager:
         self.Ry = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
         self.Rz = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
         self.C = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
-        self.I = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
+        #self.I = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
         self.g2bmap = np.empty([int(self.grid_dict['rows']),int(self.grid_dict['cols'])],dtype="<U10")
         self.vector_evaluateRC = np.vectorize(self.evaluateRC,otypes=[None])
         #print(type(self.grid_dict))
@@ -37,6 +37,8 @@ class GridManager:
         self.label_config_dict = self.label_config_dict.fromkeys(self.label_config_dict,0)
 
     def createGrids(self, chipstack,label_config_dict):
+        self.I = np.zeros((int(chipstack.num_ptrace_lines),int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
+        print(self.I.shape,self.Rx.shape)
         self.length = round(chipstack.length,8)
         self.width = round(chipstack.width,8)
         self.initTemp = chipstack.initTemp
@@ -99,6 +101,7 @@ class GridManager:
         label_ll = flp_df['Label'].unique()
         #print(label_ll)
 
+        self.power_densities = 0
         if(layer_obj.layer_num < num_layers-1):
             ####FIND BOUNDARIES###
             #flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_width,8)), axis=1)
@@ -107,8 +110,21 @@ class GridManager:
             length_vals = np.round(flp_df['Length (m)'].values,8)
             height_vals = np.round(flp_df['Width (m)'].values,8)
             label_vals = flp_df['Label'].values
-
+            pd_vector_shape = (length_vals * height_vals).shape[0]
+            #print(pd_vector_shape)
             PowerDensities = flp_df['Power'].values / (length_vals * height_vals)
+            print(type(PowerDensities), PowerDensities.shape, PowerDensities)
+            ptrace_df = flp_df.filter(regex='^Power',axis=1)
+            print(ptrace_df)
+            ptrace_mat = ptrace_df.values
+            #print(ptrace_mat.shape,ptrace_mat)
+            layer_obj.add_power_densities(ptrace_mat / (length_vals * height_vals).reshape((pd_vector_shape,1)))
+            self.power_densities = layer_obj.power_densities
+
+            #data / vector.reshape((3,1))
+            print(self.power_densities)
+            #print("Works!")
+            #sys.exit(0)
 
             flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_length,8)), axis=1)
             flp_df['grid_bottom_y']= flp_df.apply(lambda x: int(self.grid_dict['rows']) - math.floor(round(float(x.Y)/grid_width,8)) - 1,axis=1)
@@ -211,8 +227,7 @@ class GridManager:
             #print("*************************************Zihao:",self.C)
             #sys.exit(0)
 		
-            self.vector_evaluateRC(X_vals,Y_vals,length_vals, height_vals, PowerDensities,left_x_vals,right_x_vals,bottom_y_vals,top_y_vals,label_vals,flp_df['ConfigFile'].values,block_counter,grid_length,grid_width)
-            #self.vector_evaluateRC(X_vals,Y_vals,length_vals, height_vals, PowerDensities,grid_left_x,grid_right_x,grid_bottom_y,grid_top_y,label_vals,flp_df['ConfigFile'].values,block_counter,grid_length,grid_width)
+            self.vector_evaluateRC(X_vals,Y_vals,length_vals, height_vals, PowerDensities,left_x_vals,right_x_vals,bottom_y_vals,top_y_vals,label_vals,flp_df['ConfigFile'].values,block_counter,grid_length,grid_width, layer_obj.layer_num)
 
                 #sys.exit(0)
             #print("Lateral Heat Flow for layer",layer_obj.layer_num,"is",layer_obj.LateralHeatFlow)
@@ -318,7 +333,9 @@ class GridManager:
             #P_noPackage = round(val/r_amb,6)
             P_noPackage = val/r_amb
             #print("PRACHI: (NoPackage) r_amb and Power(per_grid) for dummy layer are",r_amb,P_noPackage)
-            layer_obj.I = np.full((int(self.grid_dict['rows']),int(self.grid_dict['cols'])),P_noPackage)
+            #layer_obj.I = np.full((int(self.grid_dict['rows']),int(self.grid_dict['cols'])),P_noPackage)
+            #PRACHI: check the below statement
+            layer_obj.I = np.full((self.I.shape),P_noPackage)
             layer_obj.Lock = self.noPackage_Lock
             layer_obj.g2bmap = self.noPackage_g2bmap
             layer_obj.flp_df = flp_df
@@ -353,7 +370,7 @@ class GridManager:
     """
 
     ###RESUME HERE###
-    def evaluateRC(self, X,Y,length,width, PowerDensity,leftX,rightX,bottomY,topY,label,config,block_idx,grid_length, grid_width):
+    def evaluateRC(self, X,Y,length,width, PowerDensity,leftX,rightX,bottomY,topY,label,config,block_idx,grid_length, grid_width, layer_num):
         ##3Undo below two comments
         #print("power:",power)
         #print (X,Y,length, width,PowerDensity,leftX,rightX,bottomY,topY,label,config,block_idx)
@@ -369,6 +386,10 @@ class GridManager:
         area = grid_length * grid_width
         #power = round(PowerDensity * area,6)
         power = PowerDensity * area
+        power_mat = self.power_densities[layer_num] * area
+        power_mat_reshape = np.reshape(power_mat, (len(power_mat),1,1), order='C')
+        #print(type(power_mat),power_mat[0],power_mat)
+        #sys.exit(0)
         mode = self.label_mode_dict[label]
         length_lb_o = round((leftX+1)*grid_length - X,10)
         length_rb_o =  round((X+length) - (rightX)*grid_length,10)
@@ -381,7 +402,11 @@ class GridManager:
 
         if((length_lb_o == length_rb_o == grid_length) and (width_lb_o == width_lt_o == grid_width)):
             #print("Block",block_idx,"is not sharing its boundaries")
-            self.I[topY:bottomY+1,leftX:rightX+1] += power #+ self.label_config_dict[(label,config)]['I']
+            #self.I[topY:bottomY+1,leftX:rightX+1] += power #+ self.label_config_dict[(label,config)]['I']
+            self.I[:,topY:bottomY+1,leftX:rightX+1] +=  power_mat_reshape #power_mat[:,np.newaxis]  #+ self.label_config_dict[(label,config)]['I']
+            #print(self.I.shape, self.I)
+            #print(self.I[0])
+            #sys.exit(0)
             self.Lock[topY:bottomY+1,leftX:rightX+1] +=1
             if (mode == 'single'):
                 #self.Rz[topY:bottomY+1,leftX:rightX+1]= np.reciprocal( a +  mask * (1/self.label_config_dict[(label,config)]['Rz']))
@@ -416,7 +441,8 @@ class GridManager:
             mask[-1,-1] = rb_o
             mask[-1,0] = lb_o 
 
-            self.I[topY:bottomY+1,leftX:rightX+1] += mask * power
+            #self.I[topY:bottomY+1,leftX:rightX+1] += mask * power
+            self.I[:topY:bottomY+1,leftX:rightX+1] += mask * power_mat_reshape
             self.Lock[topY:bottomY+1,leftX:rightX+1] += mask
 
             if(self.label_mode_dict[label]=='single'):

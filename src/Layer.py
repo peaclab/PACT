@@ -36,13 +36,16 @@ class Layer:
 
     def append_ptraces(self,ptrace_file):
         #print(ptrace_file)
+        self.num_ptrace_lines = 1
         if (not pd.isnull(ptrace_file)):
             #print (ptrace_file)
             ptrace_df = pd.read_csv(ptrace_file)
             self.flp_df = pd.merge(self.flp_df,ptrace_df,on="UnitName", how='outer')
+            self.num_ptrace_lines = len(ptrace_df.columns) -1
         else:
             self.flp_df['Power']=0
-        self.flp_df['Power']=self.flp_df['Power'].round(6)
+        #power_cols = [col for col in self.flp_df.columns if 'Power' in col]
+        #self.flp_df['Power']=self.flp_df['Power'].round(6)
         return
 
     def add_Rx(self,numpy_arr):
@@ -60,8 +63,13 @@ class Layer:
     def add_I(self,numpy_arr):
         self.I=numpy_arr
     def display(self):
+        #print(self.layer_num, self.num_ptraces)   
         pass
         return
         #print(self.layer_num, self.thickness,self.LateralHeatFlow)
         #print('Length:',self.length,'Width:', self.width)
         #print(self.flp_df)
+    def get_num_ptrace_lines(self):
+        return self.num_ptrace_lines
+    def add_power_densities(self,numpy_arr):
+        self.power_densities = numpy_arr

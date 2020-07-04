@@ -429,6 +429,7 @@ chipStack = ChipStack(lcf_df, defaultConfig, initTemp, defaultConfigFile,virtual
 #print (chipStack.display_Floorplans())
 #chipStack.display_Floorplans()
 ###chipStack.display_Floorplans('0')
+#print(chipStack.Layers_data[0].num_ptraces)
 #sys.exit(2)
 
 #print("Checkpoint1")
@@ -457,7 +458,7 @@ gridManager = GridManager(modelParams._sections['Grid'])
 
 #gridManager.evaluateGridProperties(model)
 #chipStack = gridManager.createGrids(chipStack)
-#chipStack.display_Floorplans()
+chipStack.display_Floorplans()
 
 ####TRYING TO Calculate resistance###### (In-progress)
 #conditional imports of libraries

@@ -19,6 +19,8 @@ class ChipStack:
         lcf_df = lcf_df.reset_index(drop=True)
         self.Layers_data = lcf_df.apply(lambda x : Layer(x,defaultConfigFile,virtual_node_locations),axis=1) #Panda series
         self.Layers_data[self.num_layers-1].flp_df['Label']='NoPackage'
+        self.num_ptrace_lines = max([x.get_num_ptrace_lines() for y, x in self.Layers_data.items()])
+        print(self.num_ptrace_lines) 
         #Added
         #self.Layers_data[self.num_layers-1].VerticalHeatFlow = lcf_df[lcf_df['Layer']==self.num_layers-1]['VerticalHeatFlow']
         #self.display_Floorplans('All')
