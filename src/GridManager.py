@@ -113,16 +113,16 @@ class GridManager:
             pd_vector_shape = (length_vals * height_vals).shape[0]
             #print(pd_vector_shape)
             PowerDensities = flp_df['Power'].values / (length_vals * height_vals)
-            print(type(PowerDensities), PowerDensities.shape, PowerDensities)
+            #print(type(PowerDensities), PowerDensities.shape, PowerDensities)
             ptrace_df = flp_df.filter(regex='^Power',axis=1)
-            print(ptrace_df)
+            #print(ptrace_df)
             ptrace_mat = ptrace_df.values
             #print(ptrace_mat.shape,ptrace_mat)
             layer_obj.add_power_densities(ptrace_mat / (length_vals * height_vals).reshape((pd_vector_shape,1)))
             self.power_densities = layer_obj.power_densities
 
             #data / vector.reshape((3,1))
-            print(self.power_densities)
+            #print(self.power_densities)
             #print("Works!")
             #sys.exit(0)
 
@@ -386,10 +386,14 @@ class GridManager:
         area = grid_length * grid_width
         #power = round(PowerDensity * area,6)
         power = PowerDensity * area
-        power_mat = self.power_densities[layer_num] * area
+        #print(self.power_densities)
+        power_mat = self.power_densities[block_idx] * area
         power_mat_reshape = np.reshape(power_mat, (len(power_mat),1,1), order='C')
         #print(type(power_mat),power_mat[0],power_mat)
-        #sys.exit(0)
+        #print(power_mat)
+        #print(power_mat_reshape)
+        #if block_idx == 4:
+        #    sys.exit(0)
         mode = self.label_mode_dict[label]
         length_lb_o = round((leftX+1)*grid_length - X,10)
         length_rb_o =  round((X+length) - (rightX)*grid_length,10)
@@ -403,6 +407,8 @@ class GridManager:
         if((length_lb_o == length_rb_o == grid_length) and (width_lb_o == width_lt_o == grid_width)):
             #print("Block",block_idx,"is not sharing its boundaries")
             #self.I[topY:bottomY+1,leftX:rightX+1] += power #+ self.label_config_dict[(label,config)]['I']
+            #print(topY,bottomY,leftX,rightX)
+            #print("PRACHI: Reshape:",power_mat_reshape)
             self.I[:,topY:bottomY+1,leftX:rightX+1] +=  power_mat_reshape #power_mat[:,np.newaxis]  #+ self.label_config_dict[(label,config)]['I']
             #print(self.I.shape, self.I)
             #print(self.I[0])
