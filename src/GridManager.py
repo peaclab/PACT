@@ -38,7 +38,7 @@ class GridManager:
 
     def createGrids(self, chipstack,label_config_dict):
         self.I = np.zeros((int(chipstack.num_ptrace_lines),int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
-        print(self.I.shape,self.Rx.shape)
+        #print(self.I.shape,self.Rx.shape)
         self.length = round(chipstack.length,8)
         self.width = round(chipstack.width,8)
         self.initTemp = chipstack.initTemp
@@ -482,15 +482,16 @@ class GridManager:
         return
 
     #Should also send steady file as an optional argument
-    def grid2block(self,chipStack,gridTemperatures,block_mode):
-        chipStack.Layers_data = chipStack.Layers_data.apply(self.calculate_block_temperatures, \
-            args=(gridTemperatures,block_mode))
+    def grid2block(self,chipStack,gridTemperatures,block_mode,transient=False):
+        #chipStack.Layers_data = chipStack.Layers_data.apply(self.calculate_block_temperatures, \
+         #   args=(gridTemperatures,block_mode,transient))
+        chipStack.Layers_data.apply(self.calculate_block_temperatures, \
+            args=(gridTemperatures,block_mode,transient))
         return
 
-    def calculate_block_temperatures(self,layer_obj,gridTemperatures,block_mode):
+    def calculate_block_temperatures(self,layer_obj,gridTemperatures,block_mode,transient):
         layer_num = layer_obj.layer_num
         flp = layer_obj.flp_df
-        print(f'layer number:{layer_num}') 
         if(block_mode == 'max'):
             #layer_obj.flp_df['BlockTemperature'] = flp.apply(lambda x : np.round(np.max((gridTemperatures[layer_num])\
             #    [int(x.grid_left_x):int(x.grid_right_x)+1, int(x.grid_top_y):int(x.grid_bottom_y)+1]) - 273.15,2),axis=1)
@@ -505,7 +506,13 @@ class GridManager:
             layer_obj.flp_df['BlockTemperature'] = flp.apply(lambda x : round(np.mean((gridTemperatures[layer_num])\
                 [int(x.grid_top_y):int(x.grid_bottom_y)+1, int(x.grid_left_x):int(x.grid_right_x)+1]) - 273.15,3),axis=1)
        # print('Layer',layer_num,":\n",layer_obj.flp_df[['UnitName','BlockTemperature']])
-        print(layer_obj.flp_df[['UnitName','BlockTemperature']])
+        if transient == False:
+            print(f'layer number:{layer_num}') 
+            print(layer_obj.flp_df[['UnitName','BlockTemperature']])
+        else:
+            with(open("RC_transient_block_temp.csv","a")) as myfile:
+                myfile.write(f'layer number:{layer_num}')
+                myfile.write(str(layer_obj.flp_df[['UnitName','BlockTemperature']])+'\n')
         return
         
 

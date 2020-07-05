@@ -202,7 +202,7 @@ class SPICE_transientSolver:
                             text+=")\n"
                             myfile.write(text)
                         else:
-                            myfile.write("I_{}_{}_{} GND Node{}_{}_{} PULSE(0 {}A 0s 0s 0s 33.3ms 33.3ms)\n".format(layer,row,col,layer, row, col, self.I[layer][row][col]))
+                            myfile.write("I_{}_{}_{} GND Node{}_{}_{} PULSE(0 {}A 0s 0s 0s 33.3ms 33.3ms)\n".format(layer,row,col,layer, row, col, self.I[layer][0][row][col]))
                 #east resistance
                     if col != self.col_limit:
                         myfile.write("R_{}_{}_{}_1 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row,col+1,Re))

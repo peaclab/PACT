@@ -24,7 +24,7 @@ for grids in grids_ll:
     modelParamsFile = modelParams + '_'+grids
     for htc in htc_ll:
         configFile = folder + 'config_files/default_htc_' + htc + '_' + chiplabel + '.config'
-        """
+        
         ### Non - Uniform Power density ####
         bgpd = [50]
         #hspd = [500,1000,1500,2000]
@@ -38,9 +38,9 @@ for grids in grids_ll:
                 grid_file = grid_folder + outfile
                 scp_file = scp_folder + outfile
                 os.system('20mm.sh '+ lcf_file + ' ' + configFile + ' ' + modelParamsFile + ' ' + grid_file + ' ' + scp_file + ' ' + log_file)
-        #"""
+       
 
-        #"""
+        """
         ### Uniform Power density ####
         #bgpd = [50,100]
 

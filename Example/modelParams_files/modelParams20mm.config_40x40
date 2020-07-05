@@ -10,7 +10,7 @@ ptrace = %(home)sptrace_files/
 [Simulation]
 steady_state = True
 steady_state_solver = Solver
-transient = False
+transient = True
 step_size = 333us
 total_simulation_time = 33.3ms
 ptrace_step_size = 333us
@@ -20,8 +20,8 @@ layer = 1
 temperature_dependent_library = TemperatureDependent.py
 number_of_core = 4
 [Solver]
-name = SuperLU
-wrapper = SuperLU.py
+name = SPICE_steady
+wrapper = SPICESolver_steady.py
 #low level solver option, only for SPICE high level solver
 ll_steady_solver = KLU
 ll_transient_solver = TRAP

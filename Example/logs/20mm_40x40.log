@@ -178,3 +178,33 @@
 0inputs+48outputs (0major+25757minor)pagefaults 0swaps
 0.57user 0.14system 0:00.77elapsed 92%CPU (0avgtext+0avgdata 62556maxresident)k
 8inputs+48outputs (0major+25787minor)pagefaults 0swaps
+0.55user 0.11system 0:00.81elapsed 82%CPU (0avgtext+0avgdata 58980maxresident)k
+648inputs+0outputs (1major+26067minor)pagefaults 0swaps
+0.51user 0.10system 0:00.67elapsed 91%CPU (0avgtext+0avgdata 58980maxresident)k
+8inputs+8outputs (0major+26078minor)pagefaults 0swaps
+0.55user 0.12system 0:00.93elapsed 72%CPU (0avgtext+0avgdata 58988maxresident)k
+0inputs+0outputs (0major+26066minor)pagefaults 0swaps
+0.53user 0.09system 0:00.68elapsed 92%CPU (0avgtext+0avgdata 58984maxresident)k
+0inputs+0outputs (0major+26050minor)pagefaults 0swaps
+0.53user 0.10system 0:00.72elapsed 88%CPU (0avgtext+0avgdata 58984maxresident)k
+8inputs+0outputs (0major+26063minor)pagefaults 0swaps
+0.55user 0.13system 0:01.19elapsed 57%CPU (0avgtext+0avgdata 58980maxresident)k
+1168inputs+0outputs (2major+26063minor)pagefaults 0swaps
+0.59user 0.15system 0:01.62elapsed 45%CPU (0avgtext+0avgdata 58984maxresident)k
+16inputs+0outputs (0major+26072minor)pagefaults 0swaps
+0.64user 0.13system 0:01.52elapsed 51%CPU (0avgtext+0avgdata 58988maxresident)k
+288inputs+0outputs (2major+26036minor)pagefaults 0swaps
+0.56user 0.10system 0:00.71elapsed 92%CPU (0avgtext+0avgdata 58980maxresident)k
+0inputs+0outputs (0major+26064minor)pagefaults 0swaps
+0.53user 0.10system 0:00.75elapsed 85%CPU (0avgtext+0avgdata 58976maxresident)k
+296inputs+0outputs (3major+26070minor)pagefaults 0swaps
+0.61user 0.13system 0:01.50elapsed 49%CPU (0avgtext+0avgdata 58980maxresident)k
+21464inputs+0outputs (4major+26064minor)pagefaults 0swaps
+0.54user 0.08system 0:00.67elapsed 92%CPU (0avgtext+0avgdata 58984maxresident)k
+0inputs+0outputs (0major+26049minor)pagefaults 0swaps
+0.54user 0.09system 0:00.69elapsed 91%CPU (0avgtext+0avgdata 58984maxresident)k
+0inputs+0outputs (0major+26093minor)pagefaults 0swaps
+0.62user 0.12system 0:03.35elapsed 22%CPU (0avgtext+0avgdata 58980maxresident)k
+0inputs+8outputs (0major+26075minor)pagefaults 0swaps
+0.43user 0.08system 0:00.64elapsed 80%CPU (0avgtext+0avgdata 53924maxresident)k
+96inputs+0outputs (0major+14081minor)pagefaults 0swaps

@@ -92,6 +92,7 @@ lcfFile = parser_args.lcfFile
 defaultConfigFile = parser_args.configFile
 modelParamsFile = parser_args.modelParamsFile
 gridSteadyFile = parser_args.gridSteadyFile
+os.system("rm -rf RC_transient_block_temp.csv")
 #print(gridSteadyFile)
 #heatMapFile = heatMaps_path + parser.parse_args().gridSteadyFile.split('.csv')[0]+'.pdf'
 
@@ -458,7 +459,7 @@ gridManager = GridManager(modelParams._sections['Grid'])
 
 #gridManager.evaluateGridProperties(model)
 #chipStack = gridManager.createGrids(chipStack)
-chipStack.display_Floorplans()
+#chipStack.display_Floorplans()
 
 ####TRYING TO Calculate resistance###### (In-progress)
 #conditional imports of libraries
@@ -632,7 +633,19 @@ if(str(modelParams.get('Simulation','temperature_dependent'))=='True'):
     
     print("num iterations:",count)
 
+if modelParams._sections['Solver'].get('name') == 'SPICE_transient':
+     with open("RC_transient.cir.csv","r")as myfile:
+         for num, lines in enumerate(myfile):
+             if num!=0:
+                 tmp = np.asarray(list(map(float,lines.split(',')[1:])))
+                 reshape = tmp.reshape(int(num_layers),int(grid_rows),int(grid_cols))
+                 with open("RC_transient_block_temp.csv","a") as myfile:
+                     myfile.write("step "+str(num-1)+" ")
+                 #print(reshape)
+                 gridManager.grid2block(chipStack, reshape, modelParams.get('Grid','grid_mode'),transient=True)
 gridManager.grid2block(chipStack, grid_temperature,modelParams.get('Grid','grid_mode'))
+
+
 #print("Back in CRI.py")
 #print(virtual_node_labels)
 #block_temperature = gridManager.g2bmap(chipStack,grid_temperature)
