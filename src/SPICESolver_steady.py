@@ -96,14 +96,18 @@ class SPICE_steadySolver:
         self.Rz = self.dict_properties['Rz']
         self.C = self.dict_properties['C']
         self.I = self.dict_properties['I']
-        # print(self.I.items())
+        #print(self.I)
+        #print(self.I_avg)
         #self.r_amb_reciprocal = round(1/self.r_amb,6)
         self.r_amb_reciprocal = 1/self.r_amb
-        #self.r_amb_reciprocal = 1/self.r_amb 
-        self.b=[]
+        self.I_avg ={}
         for key,value in self.I.items():
-            self.b = np.append(self.b,value.flatten())
-        self.b = np.reshape(self.b,(self.size,1))
+             self.I_avg[key] = np.mean(value,axis=0)
+        #self.r_amb_reciprocal = 1/self.r_amb 
+        # self.b=[]
+        #for key,value in self.I.items():
+         #   self.b = np.append(self.b,value.flatten())
+        #self.b = np.reshape(self.b,(self.size,1))
         return
         
     def getTemperature(self,dict_properties, mode=None):
@@ -189,8 +193,8 @@ class SPICE_steadySolver:
                     Zihao modify this. self.I[layer] is now a 3D array
                     Take average and buil self.I_average;
                     """
-                    if layer!= self.layer_limit and self.I[layer][row][col]!=0:
-                        myfile.write("I_{}_{}_{} GND Node{}_{}_{} {}A\n".format(layer,row,col,layer, row, col, self.I[layer][row][col])) #Replace self.I with self.I_average
+                    if layer!= self.layer_limit and self.I_avg[layer][row][col]!=0:
+                        myfile.write("I_{}_{}_{} GND Node{}_{}_{} {}A\n".format(layer,row,col,layer, row, col, self.I_avg[layer][row][col])) #Replace self.I with self.I_average
                 #east resistance
                     if col != self.col_limit:
                         myfile.write("R_{}_{}_{}_1 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row,col+1,Re))

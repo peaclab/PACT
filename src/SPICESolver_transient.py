@@ -2,6 +2,7 @@ import sys
 import numpy as np
 import math
 import os
+import re
 class SPICE_transientSolver:
     def __init__(self,name,num_core,ll_solver,step_size,total_time,ptrace_step_size,ambient):
         self.name = name
@@ -104,10 +105,10 @@ class SPICE_transientSolver:
         #self.r_amb_reciprocal = round(1/self.r_amb,6)
         self.r_amb_reciprocal = 1/self.r_amb
         #self.r_amb_reciprocal = 1/self.r_amb 
-        self.b=[]
-        for key,value in self.I.items():
-            self.b = np.append(self.b,value.flatten())
-        self.b = np.reshape(self.b,(self.size,1))
+        #self.b=[]
+        #for key,value in self.I.items():
+        #    self.b = np.append(self.b,value.flatten())
+        #self.b = np.reshape(self.b,(self.size,1))
         return
         
     def getTemperature(self,dict_properties, mode=None):
@@ -188,8 +189,20 @@ class SPICE_transientSolver:
                     #if self.I[layer][row][col]!=0:
 		    #Zihao: I don't know why both layer1 and layer2 has power in this case, the ptrace and flp shows only the first layers has power. I need to ask prachi about this self.I.items.
                     #if layer == 0:
-                    if layer!= self.layer_limit and self.I[layer][row][col]!=0:
-                        myfile.write("I_{}_{}_{} GND Node{}_{}_{} PULSE(0 {}A 0s 0s 0s 33.3ms 33.3ms)\n".format(layer,row,col,layer, row, col, self.I[layer][row][col]))
+                    if layer!= self.layer_limit:
+                        i = 1
+                        #print(len(self.I[layer]))
+                        if len(self.I[layer])>1:
+                            text = "I_{}_{}_{} GND Node{}_{}_{} PWL(0s 0A".format(layer,row,col,layer, row, col)
+                            while i<=len(self.I[layer]):
+                                temp = re.compile("([0-9.]+)([a-zA-Z]+)")
+                                res = temp.match(self.ptrace_step_size).groups()
+                                text+=f" {(i)*float(res[0])}{res[1]} {self.I[layer][i-1][row][col]}A"
+                                i+=1
+                            text+=")\n"
+                            myfile.write(text)
+                        else:
+                            myfile.write("I_{}_{}_{} GND Node{}_{}_{} PULSE(0 {}A 0s 0s 0s 33.3ms 33.3ms)\n".format(layer,row,col,layer, row, col, self.I[layer][row][col]))
                 #east resistance
                     if col != self.col_limit:
                         myfile.write("R_{}_{}_{}_1 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row,col+1,Re))
@@ -202,7 +215,7 @@ class SPICE_transientSolver:
                     else:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
                     myfile.write("C_{}_{}_{} Node{}_{}_{} GND {}\n".format(layer,row,col,layer,row, col, self.C[layer][row][col]))
-                myfile.write('.TRAN 333u 33.3ms\n')
+                myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
                 myfile.write(f'.OPTIONS TIMEINT METHOD={self.ll_solver}\n')
                 myfile.write(f'.OPTIONS OUTPUT INITIAL_INTERVAL={self.step_size} {self.total_time}\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')
@@ -222,7 +235,16 @@ class SPICE_transientSolver:
         with open('RC_transient.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[-1][:].split(',')[1:])))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
-        
+#        print(reshape_x)
+ #       with open("RC_block_temp_transient.cir.csv",'w') as myfile:
+  #          with open("RC_transient.cir.csv","r")as myfile1:
+   #             for num, lines in enumerate(myfile1):
+        #            if num!=0:
+         #               tmp = np.asarray(list(map(float,lines.split(',')[1:])))
+          #              reshape = tmp.reshape(self.nl,self.nr,self.nc)
+                        
+			
+	     
         #os.system("cp RC_transient.cir.csv ../Example/results/RC_transient.cir.csv")
         #os.system("rm -rf RC_transient.cir.csv")
         return reshape_x

@@ -98,7 +98,6 @@ class SuperLUSolver:
         self.C = self.dict_properties['C']
         #print(self.dict_properties['I'])
         self.I = self.dict_properties['I']
-        #print(self.I )
         #self.r_amb_reciprocal = round(1/self.r_amb,6)
         self.r_amb_reciprocal = 1/self.r_amb
         #self.r_amb_reciprocal = 1/self.r_amb 
@@ -106,7 +105,6 @@ class SuperLUSolver:
         #print("PRACHI:setup()")
         for key,value in self.I.items():
             mean_value = np.average(value,axis=0)
-            #print(mean_value)
             #sys.exit(0)
             self.b = np.append(self.b,mean_value.flatten())
             #self.b = np.append(self.b,value.flatten())
