@@ -1,1 +1,4 @@
-*/__pycache__/*
+# Byte-compiled / optimized / DLL files
+src/__pycache__/
+*.py[cod]
+
