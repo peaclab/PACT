@@ -125,12 +125,11 @@ The background power density is set to 50 W/cm<sup>2</sup> and the hot spot powe
 ```python
     python ../src/PACT.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
 ```
-The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. 
-Here layer0 is the processor and layer1 is the cooling package. 
+The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. Here layer0 is the processor and layer1 is the cooling package. The steady-state and transient SPICE simulation grid temperature results will be saved as RC_steady.cir.csv and RC_transient.cir.csv, respectively. The transient block temperature results will be saved as RC_transient_block_temp.csv.
+
 
 Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. 
 
-Here layer0 is the processor and layer1 is the cooling package. 
 
 # Example Script Test Cases:
 We have provided several script test cases in the Example folder for the users to test.
