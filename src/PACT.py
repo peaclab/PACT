@@ -92,7 +92,6 @@ lcfFile = parser_args.lcfFile
 defaultConfigFile = parser_args.configFile
 modelParamsFile = parser_args.modelParamsFile
 gridSteadyFile = parser_args.gridSteadyFile
-os.system("rm -rf RC_transient_block_temp.csv")
 #print(gridSteadyFile)
 #heatMapFile = heatMaps_path + parser.parse_args().gridSteadyFile.split('.csv')[0]+'.pdf'
 
@@ -534,6 +533,7 @@ elif  modelParams._sections['Solver'].get('name') == 'SPICE_steady':
 
 elif  modelParams._sections['Solver'].get('name') == 'SPICE_transient':
     print("high-level solver = SPICE_transient")
+    os.system("rm -rf RC_transient_block_temp.csv")
     print(f"low-level solver = {modelParams._sections['Solver'].get('ll_transient_solver')}")
     exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_transient_solver'),modelParams._sections['Simulation'].get('step_size'),modelParams._sections['Simulation'].get('total_simulation_time'),modelParams._sections['Simulation'].get('ptrace_step_size'),%s)" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core'),ambient_T ))
 
