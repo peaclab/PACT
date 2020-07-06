@@ -105,8 +105,8 @@ Steady-state SPICE solver grid temperature files are saved as RC_steady.cir.csv.
 
 * Wrapper = SPICESolver_transient.py
 
-Users can modify the step_size, total_simualtion_time, and ptrace_step_size options under the [Simulation] section in modelParams_files to redefine the simulation step size and simulation time of the transient simulation.
-Transient SPICE solver grid temperature files are saved as RC_transient.cir.csv. Transient SPICE solver log files are saved as RC_transioent.log. The last step transient temperature results will be printed in the terminal.
+Users can modify the step_size, total_simualtion_time, and ptrace_step_size options under the [Simulation] section in modelParams_files to redefine the simulation step size and simulation time, and ptrace step size of the transient simulation, respectively.
+Transient SPICE solver grid temperature files are saved as RC_transient.cir.csv. Transient SPICE solver block temperature files are saved as RC_transient_block_temp.csv. SPICE solver log files are saved as RC_transioent.log. The last step block_level transient temperature results will be printed in the terminal.
 
 ## Low-level solvers
 To change the low-level solver types for SPICE solver, users need to modify the ll_steady_solver or ll_transient_solver option under the [Solver] section in  modelParams_files. Note that, SuperLU solver does not support low-level solver.
@@ -120,12 +120,12 @@ To enable Parallel Thermal Simulation with PACT, users need to install the __Xyc
 One needs to modify the number_of_core option in the modelParams_files [Simulation] section to change the number of cores used in the PACT parallel simulation. Note that, to run parallel simulations on a Linux server, users need to start an interactive session by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. Note that, SuperLU solver does not support parallel thermal simulation, it only supports sequential thermal simulation. If the users are running PACT with serial version of __Xyce 6.12__, please set number_of_core to 1.
 # Example Command Line Test Case:
 The Example_command_line folder contains all the necessary files to run steady-state and transient simulations of a 10mmX10mm chip with a 500um hot spot placed at the center. The example_ptrace.csv contains 3 power traces. For steady-state simulation, PACT will average the power trace for each block and perform steady-state simulations. For transient simulation, PACT with SPICE_transient solver will performance transient simulation with user-defined ptrace step size, simulation step size, and total simulation time. User can define these 3 parameters in example_modelParans.config.
-The background power density is set to 50 W/cm<sup>2</sup> and the hot spot power density is set to 1500 W/cm<sup>2</sup>. Users can run this command line test case by typing the following command inside the  Example_command_line folder:
+Users can run this command line test case by typing the following command inside the Example_command_line folder:
 
 ```python
     python ../src/PACT.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
 ```
-The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. Here layer0 is the processor and layer1 is the cooling package. The steady-state and transient SPICE simulation grid temperature results will be saved as RC_steady.cir.csv and RC_transient.cir.csv, respectively. The transient block temperature results will be saved as RC_transient_block_temp.csv. The SPICE simulation log information will be saved as RC_steady.log or RC_transient.log.
+The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. Here layer0 is the processor and layer1 is the cooling package. The steady-state and transient SPICE simulation grid temperature results will be saved as RC_steady.cir.csv and RC_transient.cir.csv. The transient block temperature results will be saved as RC_transient_block_temp.csv. The SPICE simulation log information will be saved as RC_steady.log or RC_transient.log.
 
 
 Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two software, please change the solver to SuperLU. If the users are running PACT with serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. 
@@ -134,7 +134,7 @@ Note that, this command line test case assumes the users have already installed 
 # Example Script Test Cases:
 We have provided several script test cases in the Example folder for the users to test.
 
-* The test chip sizes are set to 5mmX5mm, 10mmX10mm, 20mmX20mm.
+* The test chip sizes are set to 5mmX5mm, 10mmX10mm, and 20mmX20mm.
 
 * We include uniform power density test cases of [40-200] W/cm<sup>2</sup>.
 
@@ -181,7 +181,7 @@ If the users haven't installed these two software, please change the solver to S
 
 Users can also modify the corresponding modelParam files in the /Example/modelParams_files/ to select the simulation type as well as the solver.
 
-All the simulation log files and results are stored in the /Example/log/ and /Example/results/ folders, respectively. For simulation using SPICE solvers, users can also find the SPICE solver grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. Users can also find the SPICE transient block temperature results in /src/ folder as RC_transient_block_temp.csv. Users can also find the SPICE solver log files located in /src/ folder as RC_steady.log or RC_transient.log. For simulation using SuperLU, users can find the grid temperature simulation results in /Example/results/ folder. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
+For simulation using SPICE solvers, users can find the SPICE solver grid temperature simulation results located in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. Users can also find the SPICE transient block temperature results in /src/ folder as RC_transient_block_temp.csv. The SPICE solver log files are located in /src/ folder as RC_steady.log or RC_transient.log. For simulation using SuperLU, users can find the grid temperature simulation results and log fies in /Example/results/ and /Example/logs/ folders. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
 
 Example block-level temperature output:
 
