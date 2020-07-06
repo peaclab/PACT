@@ -388,6 +388,7 @@ class GridManager:
         power = PowerDensity * area
         #print(self.power_densities)
         power_mat = self.power_densities[block_idx] * area
+        
         power_mat_reshape = np.reshape(power_mat, (len(power_mat),1,1), order='C')
         #print(type(power_mat),power_mat[0],power_mat)
         #print(power_mat)
@@ -408,7 +409,8 @@ class GridManager:
             #print("Block",block_idx,"is not sharing its boundaries")
             #self.I[topY:bottomY+1,leftX:rightX+1] += power #+ self.label_config_dict[(label,config)]['I']
             #print(topY,bottomY,leftX,rightX)
-            #print("PRACHI: Reshape:",power_mat_reshape)
+            #print("PRACHI: Reshape:",power_mat_reshape.shape,self.I[:,topY:bottomY+1,leftX:rightX+1].shape)
+            #sys.exit(0)
             self.I[:,topY:bottomY+1,leftX:rightX+1] +=  power_mat_reshape #power_mat[:,np.newaxis]  #+ self.label_config_dict[(label,config)]['I']
             #print(self.I.shape, self.I)
             #print(self.I[0])
@@ -426,7 +428,8 @@ class GridManager:
             return
             #self.g2bmap[topY:bottomY+1,leftX:rightX+1]= "B"+str(block_idx)+"_1"
         else:
-            print("Boundary sharing for block",block_idx,"...Shouldn't be the case")
+            #print("Boundary sharing for block",block_idx,"...Shouldn't be the case")
+            print("Boundary sharing for block",block_idx)
             lb_o = np.round(length_lb_o * width_lb_o / (area),8)
             rb_o = np.round(length_rb_o * width_rb_o / (area),8)
             lt_o = np.round(length_lt_o *  width_lt_o / (area),8)
@@ -436,6 +439,9 @@ class GridManager:
             top_edge_cells_o = round(width_lt_o /grid_width,8)
             bottom_edge_cells_o = round(width_lb_o / grid_width,8)
             edge_cells_o = {'lb_o':lb_o,'rb_o':rb_o,'lt_o':lt_o,'rt_o':rt_o,'left_edge_cells_o':left_edge_cells_o, 'right_edge_cells_o':right_edge_cells_o, 'top_edge_cells_o':top_edge_cells_o, 'bottom_edge_cells_o':bottom_edge_cells_o}
+            #print(edge_cells_o)
+
+            #print(self.I.shape,self.I.shape[0])
 
             mask = np.ones((bottomY - topY + 1, rightX - leftX + 1))
             mask[:,0] = left_edge_cells_o
@@ -447,8 +453,53 @@ class GridManager:
             mask[-1,-1] = rb_o
             mask[-1,0] = lb_o 
 
+            mask_I = np.ones((self.I.shape[0],bottomY - topY + 1, rightX - leftX + 1))
+            mask_I[:,:,0] = left_edge_cells_o
+            mask_I[:,:,-1] = right_edge_cells_o
+            mask_I[:,0,:] = top_edge_cells_o
+            mask_I[:,-1,:] = bottom_edge_cells_o 
+            mask_I[:,0,0] = lt_o
+            mask_I[:,0,-1] = rt_o
+            mask_I[:,-1,-1] = rb_o
+            mask_I[:,-1,0] = lb_o 
+
+            np.set_printoptions(threshold=np.inf)
+            #print(mask)
+            #if block_idx==1:
+            #    print(mask_I)
+                #sys.exit(0)
+
             #self.I[topY:bottomY+1,leftX:rightX+1] += mask * power
-            self.I[:topY:bottomY+1,leftX:rightX+1] += mask * power_mat_reshape
+            #print(self.I[:topY:bottomY+1,leftX:rightX+1])
+            #print("I's shape:",self.I[:topY:bottomY+1,leftX:rightX+1].shape)
+            #print("mask_I 'shape:",mask_I.shape,'power_mat  shape:',power_mat_reshape.shape)
+            #print("product shape:",(mask_I * power_mat_reshape).shape)
+            #print("power_mat_reshape block ",block_idx, ":",power_mat_reshape)
+            mask_I = mask_I * power_mat_reshape
+            #if block_idx==1:
+                #print(mask_I)
+                #sys.exit(0)
+            #placeholder_mat = np.zeros_like(self.I[:,topY:bottomY+1,leftX:rightX+1])
+            placeholder_mat = np.zeros_like(self.I)
+            #print(placeholder_mat)
+            #placeholder_mat[:mask_I.shape[0], :mask_I.shape[1], :mask_I.shape[2]] = mask_I 
+            placeholder_mat[:, topY:bottomY+1,leftX:rightX+1] = mask_I 
+            #print(placeholder_mat)
+            #a = self.I[:topY:bottomY+1,leftX:rightX+1]
+            #print("placeholder shape:",placeholder_mat.shape)
+            #print("I sub array shape:",(self.I[:topY:bottomY+1,leftX:rightX+1]).shape)
+            #print("I sub array shape:",a.shape, bottomY,topY,rightX,leftX)
+            #sys.exit(0)
+            #if block_idx == 4:
+            #    print("Before")
+            #    print(self.I[0])
+            #    print(placeholder_mat)
+            #self.I[:topY:bottomY+1,leftX:rightX+1] += placeholder_mat
+            self.I += placeholder_mat
+            #if block_idx == 4:
+            #    print("After")
+            #    print(self.I[0])
+            #    sys.exit(0)
             self.Lock[topY:bottomY+1,leftX:rightX+1] += mask
 
             if(self.label_mode_dict[label]=='single'):
@@ -492,6 +543,7 @@ class GridManager:
     def calculate_block_temperatures(self,layer_obj,gridTemperatures,block_mode,transient):
         layer_num = layer_obj.layer_num
         flp = layer_obj.flp_df
+        #block_mode = 'avg'
         if(block_mode == 'max'):
             #layer_obj.flp_df['BlockTemperature'] = flp.apply(lambda x : np.round(np.max((gridTemperatures[layer_num])\
             #    [int(x.grid_left_x):int(x.grid_right_x)+1, int(x.grid_top_y):int(x.grid_bottom_y)+1]) - 273.15,2),axis=1)
