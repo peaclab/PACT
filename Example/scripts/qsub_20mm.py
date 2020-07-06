@@ -1,8 +1,8 @@
 import os,sys
 
 
-#grid_rows= ['80']
-grid_rows= ['40','80','160']
+grid_rows= ['40']
+#grid_rows= ['40','80','160']
 grid_cols =  grid_rows
 grids_ll = [x+'x'+y for (x,y) in zip(grid_rows,grid_cols)]
 print(grids_ll)
@@ -25,6 +25,7 @@ for grids in grids_ll:
     for htc in htc_ll:
         configFile = folder + 'config_files/default_htc_' + htc + '_' + chiplabel + '.config'
         
+        #"""
         ### Non - Uniform Power density ####
         bgpd = [50]
         #hspd = [500,1000,1500,2000]
@@ -38,7 +39,7 @@ for grids in grids_ll:
                 grid_file = grid_folder + outfile
                 scp_file = scp_folder + outfile
                 os.system('20mm.sh '+ lcf_file + ' ' + configFile + ' ' + modelParamsFile + ' ' + grid_file + ' ' + scp_file + ' ' + log_file)
-       
+        #"""
 
         """
         ### Uniform Power density ####
@@ -54,5 +55,6 @@ for grids in grids_ll:
             scp_file = scp_folder + outfile
             os.system('20mm.sh '+ lcf_file + ' ' + configFile + ' ' + modelParamsFile + ' ' + grid_file + ' ' + scp_file + ' ' + log_file)
             #os.system('OverlapSi.sh '+ chiplabel + ' '+ folder + ' '+ lcf_file +' ' +configFile + ' ' + modelParamsFile + ' ' + pdenType + ' ' + pdenVal + ' ' + scp_dir + ' ' + grid_rows + ' ' + grid_cols + ' ' + runName)
-        #"""
+        """
+
 

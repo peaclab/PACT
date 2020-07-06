@@ -2,3 +2,6 @@
 src/__pycache__/
 *.py[cod]
 
+# Timing logs:
+src/Example/logs/*.log
+
