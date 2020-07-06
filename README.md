@@ -125,10 +125,10 @@ The background power density is set to 50 W/cm<sup>2</sup> and the hot spot powe
 ```python
     python ../src/PACT.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
 ```
-The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. Here layer0 is the processor and layer1 is the cooling package. The steady-state and transient SPICE simulation grid temperature results will be saved as RC_steady.cir.csv and RC_transient.cir.csv, respectively. The transient block temperature results will be saved as RC_transient_block_temp.csv.
+The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. Here layer0 is the processor and layer1 is the cooling package. The steady-state and transient SPICE simulation grid temperature results will be saved as RC_steady.cir.csv and RC_transient.cir.csv, respectively. The transient block temperature results will be saved as RC_transient_block_temp.csv. The SPICE simulation log information will be saved as RC_steady.log or RC_transient.log.
 
 
-Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. 
+Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two software, please change the solver to SuperLU. If the users are running PACT with serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. 
 
 
 # Example Script Test Cases:
@@ -177,11 +177,11 @@ __qsub_20mm.py__: steady-state and transient analysis for homogeneous chips with
 __qsub_Hetero_500um.py__: steady-state and transient analysis for heterogeneous chips (Copper and Silicon) with chip sizes of 5mm,10mm, and 20mm with non-uniform power density profiles. Users can select different hot spot locations and the number of hot spots.
 
 Note that, these example script test cases assume the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
-If the users haven't installed these two softwares, please change the solver to SuperLU. If the users are running PACT with serial version of __Xyce 6.12__, please make sure you set the number_of_core option in the modelParams files to 1. 
+If the users haven't installed these two software, please change the solver to SuperLU. If the users are running PACT with serial version of __Xyce 6.12__, please make sure you set the number_of_core option in the modelParams files to 1. 
 
 Users can also modify the corresponding modelParam files in the /Example/modelParams_files/ to select the simulation type as well as the solver.
 
-All the simulation log files and results are stored in the /Example/log/ and /Example/results/ folders, respectively. For simulation using SPICE solvers, users can also find the SPICE solver grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. Users can also find the SPICE solver log files locate in /src/ folder as RC_steady.log or RC_transient.log. For simulation using SuperLU, users can find the grid temperature simulation results in /Example/results/ folder. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
+All the simulation log files and results are stored in the /Example/log/ and /Example/results/ folders, respectively. For simulation using SPICE solvers, users can also find the SPICE solver grid temperature simulation results locate in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. Users can also find the SPICE transient block temperature results in /src/ folder as RC_transient_block_temp.csv. Users can also find the SPICE solver log files located in /src/ folder as RC_steady.log or RC_transient.log. For simulation using SuperLU, users can find the grid temperature simulation results in /Example/results/ folder. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
 
 Example block-level temperature output:
 
