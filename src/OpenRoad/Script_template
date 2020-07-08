@@ -1,0 +1,4 @@
+read_liberty sc12_cln65lp_base_lvt_tt_typical_max_1p20v_25c.lib
+read_lef merged.lef
+read_def routed.def
+create_clock -name clk -period 0.3333  {clk}
