@@ -144,3 +144,5 @@
 0inputs+0outputs (0major+54779minor)pagefaults 0swaps
 9.64user 0.29system 0:27.98elapsed 35%CPU (0avgtext+0avgdata 94544maxresident)k
 216inputs+58256outputs (6major+72134minor)pagefaults 0swaps
+0.13user 0.04system 0:00.35elapsed 50%CPU (0avgtext+0avgdata 19888maxresident)k
+24inputs+0outputs (0major+5337minor)pagefaults 0swaps
