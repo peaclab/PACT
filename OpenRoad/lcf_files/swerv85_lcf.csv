@@ -1,2 +1,2 @@
 Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
-0,../OpenRoad/flp_files/swerv85_flp.csv,0.0001,../Example/ptrace_files/swerv85_ptrace.csv,True
+0,../OpenRoad/flp_files/swerv85_flp.csv,0.0001,../OpenRoad/ptrace_files/swerv85_ptrace.csv,True

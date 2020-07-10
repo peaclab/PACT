@@ -63,7 +63,7 @@ class GridManager:
             print("grid_length*cols:",grid_length*cols,"chipStacl.length:",chipStack.length,\
                 "grid_width*rows:",grid_width*rows,"chipStack.width:",chipStack.width)
             print("Unifrom grids cannot be formed. Choose a multiple of 2 or 5 as rows and columns")
-            sys.exit(2)
+           # sys.exit(2)
         #self.Layers_data.apply(self.disp, args=(5,6))
         layers = chipStack.Layers_data
         a = [chipStack.Layers_data.loc[i].flp_df['X'] for i in layers.index]

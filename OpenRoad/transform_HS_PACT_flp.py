@@ -12,6 +12,7 @@ for flp in flps:
 			line = line.strip().split(' ')
 			line[1],line[3] = line[3],line[1]
 			line[2],line[4] = line[4],line[2]
+			line.append('')
 			line.append('Si')
 			flp_mat.append(",".join(line))
 			#print(" ".join(line))

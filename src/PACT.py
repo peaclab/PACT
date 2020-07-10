@@ -202,9 +202,10 @@ flp_files = lcf_df['FloorplanFile'].unique()
 ### Create tuples of config_file and floorplan_file to check if the details of the  materials to be modeled are present ###
 config_label_df = pd.DataFrame()
 for ff in flp_files:
-    #print(ff)
+   # print(ff)
     try:
         ff_df = pd.read_csv(ff,lineterminator='\n')
+       # print(ff_df)
     except FileNotFoundError:
         print('Error: Floorplan file not found',ff)
         sys.exit(2)
@@ -213,6 +214,7 @@ for ff in flp_files:
 
     #config_label_df = config_label_df.append(ff_df[['ConfigFile','Label']].drop_duplicates(), ignore_index=True)[['ConfigFile','Label']].drop_duplicates()
     config_label_df = config_label_df.append(ff_df[['ConfigFile','Label']].drop_duplicates(), ignore_index=True)
+#print(config_label_df)
 config_label_df.drop_duplicates(inplace=True)
 config_label_df['ConfigFile'] = config_label_df['ConfigFile'].fillna(defaultConfigFile)
 #print(config_label_df)

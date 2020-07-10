@@ -13,5 +13,6 @@ for ptrace in ptraces:
 		unit_name = str(hsptrace[0]).strip().split(' ')
 		ptrace_val = str(hsptrace[1]).strip().split(' ')
 	with open(f"ptrace_files/{ptrace_name}_ptrace.csv","w") as pactptrace:
+		pactptrace.write("UnitName,Power\n")
 		for idx,val in enumerate(unit_name):
 			pactptrace.write(f"{unit_name[idx]},{ptrace_val[idx]}\n")

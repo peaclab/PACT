@@ -8,7 +8,7 @@ flp = %(home)sflp_files/
 ptrace = %(home)sptrace_files/
 
 [Simulation]
-steady_state = False
+steady_state = True
 steady_state_solver = Solver
 transient = True
 step_size = 333us
