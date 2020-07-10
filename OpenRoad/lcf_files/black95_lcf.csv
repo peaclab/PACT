@@ -1,0 +1,2 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,../OpenRoad/flp_files/black95_flp.csv,0.0001,../Example/ptrace_files/black95_ptrace.csv,True
