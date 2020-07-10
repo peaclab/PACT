@@ -39,8 +39,8 @@ class GridManager:
     def createGrids(self, chipstack,label_config_dict):
         self.I = np.zeros((int(chipstack.num_ptrace_lines),int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
         #print(self.I.shape,self.Rx.shape)
-        self.length = round(chipstack.length,8)
-        self.width = round(chipstack.width,8)
+        self.length = round(chipstack.length,20)
+        self.width = round(chipstack.width,20)
         self.initTemp = chipstack.initTemp
         #print("createGrids")
         if (self.grid_dict['type']=='Uniform') and (self.grid_dict['granularity']=='Grid'):
@@ -57,12 +57,12 @@ class GridManager:
         print(f"chipstack length {chipStack.length}")
         print(f"chipstack width {chipStack.width}")
 	#Zihao modify it to 20 decimal points
-        grid_length = round(chipStack.length/cols,20)
-        self.grid_width = round(chipStack.width/rows,20)
-        self.grid_length = round(chipStack.length/cols,20)
-        grid_width = round(chipStack.width/rows,20)
+        grid_length = round(chipStack.length/cols,40)
+        self.grid_width = round(chipStack.width/rows,40)
+        self.grid_length = round(chipStack.length/cols,40)
+        grid_width = round(chipStack.width/rows,40)
         print(rows,"x",cols,"; grid_length and width:",grid_length,grid_width)
-        if (round(grid_length*cols,10) != chipStack.length) or (round(grid_width*rows,10) != chipStack.width):
+        if (round(grid_length*cols,20) != chipStack.length) or (round(grid_width*rows,20) != chipStack.width):
             print("grid_length*cols:",grid_length*cols,"chipStacl.length:",chipStack.length,\
                 "grid_width*rows:",grid_width*rows,"chipStack.width:",chipStack.width)
             print("Unifrom grids cannot be formed. Choose a multiple of 2 or 5 as rows and columns")
@@ -108,10 +108,10 @@ class GridManager:
         if(layer_obj.layer_num < num_layers-1):
             ####FIND BOUNDARIES###
             #flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_width,8)), axis=1)
-            X_vals = np.round(flp_df['X'].values,8)
-            Y_vals = np.round(flp_df['Y'].values,8)
-            length_vals = np.round(flp_df['Length (m)'].values,8)
-            height_vals = np.round(flp_df['Width (m)'].values,8)
+            X_vals = np.round(flp_df['X'].values,20)
+            Y_vals = np.round(flp_df['Y'].values,20)
+            length_vals = np.round(flp_df['Length (m)'].values,20)
+            height_vals = np.round(flp_df['Width (m)'].values,20)
             label_vals = flp_df['Label'].values
             pd_vector_shape = (length_vals * height_vals).shape[0]
             #print(pd_vector_shape)
@@ -129,10 +129,10 @@ class GridManager:
             #print("Works!")
             #sys.exit(0)
 
-            flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_length,8)), axis=1)
-            flp_df['grid_bottom_y']= flp_df.apply(lambda x: int(self.grid_dict['rows']) - math.floor(round(float(x.Y)/grid_width,8)) - 1,axis=1)
-            temp_x = flp_df.apply(lambda x: (round(float(x.X),8)+round(float(x['Length (m)']),8))/grid_length, axis=1).round(8) #Panda Series
-            temp_y = flp_df.apply(lambda x: (round(float(x.Y),8)+round(float(x['Width (m)']),8))/grid_width, axis=1).round(8)
+            flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_length,40)), axis=1)
+            flp_df['grid_bottom_y']= flp_df.apply(lambda x: int(self.grid_dict['rows']) - math.floor(round(float(x.Y)/grid_width,40)) - 1,axis=1)
+            temp_x = flp_df.apply(lambda x: (round(float(x.X),20)+round(float(x['Length (m)']),20))/grid_length, axis=1).round(40) #Panda Series
+            temp_y = flp_df.apply(lambda x: (round(float(x.Y),20)+round(float(x['Width (m)']),20))/grid_width, axis=1).round(40)
             flp_df['grid_right_x'] = temp_x.apply(lambda x : math.floor(x) if math.ceil(x) != math.floor(x) else math.ceil(x) - 1 )
             flp_df['grid_top_y'] = temp_y.apply(lambda x : int(self.grid_dict['rows']) -  math.ceil(x) if math.ceil(x) != math.floor(x) else int(self.grid_dict['rows']) -math.floor(x))
 
@@ -153,10 +153,10 @@ class GridManager:
             #    print(PowerDensities)
             ############
 
-            left_x_vals = np.round(flp_df['grid_left_x'].values,8)
-            right_x_vals = np.round(flp_df['grid_right_x'].values,8)
-            top_y_vals = np.round(flp_df['grid_top_y'].values,8)
-            bottom_y_vals = np.round(flp_df['grid_bottom_y'].values,8)
+            left_x_vals = np.round(flp_df['grid_left_x'].values,40)
+            right_x_vals = np.round(flp_df['grid_right_x'].values,40)
+            top_y_vals = np.round(flp_df['grid_top_y'].values,40)
+            bottom_y_vals = np.round(flp_df['grid_bottom_y'].values,40)
             label_config_arr = list(zip(label_vals, flp_df['ConfigFile'].values))
             #listCoords=list(zip(grid_left_x,grid_right_x,grid_bottom_y,grid_top_y))
             #listCoords1=list(zip(left_x_vals,right_x_vals,bottom_y_vals,top_y_vals))
@@ -394,18 +394,19 @@ class GridManager:
         
         power_mat_reshape = np.reshape(power_mat, (len(power_mat),1,1), order='C')
         #print(type(power_mat),power_mat[0],power_mat)
+        #Zihao Debug
         #print(power_mat)
         #print(power_mat_reshape)
         #if block_idx == 4:
         #    sys.exit(0)
         mode = self.label_mode_dict[label]
-        length_lb_o = round((leftX+1)*grid_length - X,10)
-        length_rb_o =  round((X+length) - (rightX)*grid_length,10)
+        length_lb_o = round((leftX+1)*grid_length - X,40)
+        length_rb_o =  round((X+length) - (rightX)*grid_length,40)
         length_lt_o = length_lb_o
         length_rt_o = length_rb_o
-        width_lb_o = round((int(self.grid_dict['rows']) - bottomY )*grid_width  - Y,10)
+        width_lb_o = round((int(self.grid_dict['rows']) - bottomY )*grid_width  - Y,40)
         width_rb_o = width_lb_o
-        width_lt_o = round((topY + 1) * grid_width  - (self.width - Y - width),10)
+        width_lt_o = round((topY + 1) * grid_width  - (self.width - Y - width),40)
         width_rt_o = width_lt_o
 
         if((length_lb_o == length_rb_o == grid_length) and (width_lb_o == width_lt_o == grid_width)):
@@ -432,15 +433,15 @@ class GridManager:
             #self.g2bmap[topY:bottomY+1,leftX:rightX+1]= "B"+str(block_idx)+"_1"
         else:
             #print("Boundary sharing for block",block_idx,"...Shouldn't be the case")
-            print("Boundary sharing for block",block_idx)
-            lb_o = np.round(length_lb_o * width_lb_o / (area),8)
-            rb_o = np.round(length_rb_o * width_rb_o / (area),8)
-            lt_o = np.round(length_lt_o *  width_lt_o / (area),8)
-            rt_o = np.round(length_rt_o * width_rt_o / (area),8)
-            left_edge_cells_o = round(length_lb_o / grid_length,8)
-            right_edge_cells_o = round(length_rb_o / grid_length,8)
-            top_edge_cells_o = round(width_lt_o /grid_width,8)
-            bottom_edge_cells_o = round(width_lb_o / grid_width,8)
+            #print("Boundary sharing for block",block_idx)
+            lb_o = np.round(length_lb_o * width_lb_o / (area),40)
+            rb_o = np.round(length_rb_o * width_rb_o / (area),40)
+            lt_o = np.round(length_lt_o *  width_lt_o / (area),40)
+            rt_o = np.round(length_rt_o * width_rt_o / (area),40)
+            left_edge_cells_o = round(length_lb_o / grid_length,40)
+            right_edge_cells_o = round(length_rb_o / grid_length,40)
+            top_edge_cells_o = round(width_lt_o /grid_width,40)
+            bottom_edge_cells_o = round(width_lb_o / grid_width,40)
             edge_cells_o = {'lb_o':lb_o,'rb_o':rb_o,'lt_o':lt_o,'rt_o':rt_o,'left_edge_cells_o':left_edge_cells_o, 'right_edge_cells_o':right_edge_cells_o, 'top_edge_cells_o':top_edge_cells_o, 'bottom_edge_cells_o':bottom_edge_cells_o}
             #print(edge_cells_o)
 
@@ -471,7 +472,7 @@ class GridManager:
             #if block_idx==1:
             #    print(mask_I)
                 #sys.exit(0)
-
+            # print(mask_I)
             #self.I[topY:bottomY+1,leftX:rightX+1] += mask * power
             #print(self.I[:topY:bottomY+1,leftX:rightX+1])
             #print("I's shape:",self.I[:topY:bottomY+1,leftX:rightX+1].shape)
@@ -486,7 +487,10 @@ class GridManager:
             placeholder_mat = np.zeros_like(self.I)
             #print(placeholder_mat)
             #placeholder_mat[:mask_I.shape[0], :mask_I.shape[1], :mask_I.shape[2]] = mask_I 
+            #Zihao debug:
+            #print(mask_I,leftX,rightX)
             placeholder_mat[:, topY:bottomY+1,leftX:rightX+1] = mask_I 
+	    
             #print(placeholder_mat)
             #a = self.I[:topY:bottomY+1,leftX:rightX+1]
             #print("placeholder shape:",placeholder_mat.shape)

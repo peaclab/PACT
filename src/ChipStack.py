@@ -32,8 +32,8 @@ class ChipStack:
         if (len(length) != 1) and (len(width)!=1):
             print("length/width mismatch between layers")
             sys.exit(2)
-        self.length = round(float(length.pop()),6)
-        self.width = round(float(width.pop()),6)
+        self.length = round(float(length.pop()),20)
+        self.width = round(float(width.pop()),20)
        # print("length and width:",self.length,self.width)
         return
 
