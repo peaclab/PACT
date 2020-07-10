@@ -24,7 +24,8 @@ for grids in grids_ll:
     for htc in htc_ll:
         configFile = folder+'config_files/' + chiplabel +'_htc_'+htc+'.config'
         #configFile = folder+'config_files/default_htc_'+htc+'_'+'10mm'+'.config'
-        utilization = ['85','90','95']
+        #utilization = ['85','90','95']
+        utilization = ['90']
         for util in utilization:
             lcf_file = lcf+util+'_lcf.csv'	
             outfile = chiplabel+util+"_"+grids+'.grid.steady'

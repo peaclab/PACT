@@ -54,10 +54,13 @@ class GridManager:
         cols = int(self.grid_dict['cols'])
         #grid_length = round(chipStack.length/cols,6)
         #grid_width = round(chipStack.width/rows,6)
-        grid_length = round(chipStack.length/cols,10)
-        self.grid_width = round(chipStack.width/rows,10)
-        self.grid_length = round(chipStack.length/cols,10)
-        grid_width = round(chipStack.width/rows,10)
+        print(f"chipstack length {chipStack.length}")
+        print(f"chipstack width {chipStack.width}")
+	#Zihao modify it to 20 decimal points
+        grid_length = round(chipStack.length/cols,20)
+        self.grid_width = round(chipStack.width/rows,20)
+        self.grid_length = round(chipStack.length/cols,20)
+        grid_width = round(chipStack.width/rows,20)
         print(rows,"x",cols,"; grid_length and width:",grid_length,grid_width)
         if (round(grid_length*cols,10) != chipStack.length) or (round(grid_width*rows,10) != chipStack.width):
             print("grid_length*cols:",grid_length*cols,"chipStacl.length:",chipStack.length,\
