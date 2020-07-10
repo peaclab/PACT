@@ -1,10 +1,7 @@
 import os
 
-
 fp=open('./routed.def')
 listline=fp.readlines()
-
-
 
 mylines=[]
 for line in listline:
@@ -23,7 +20,6 @@ for j in range(start,len(mylines)):
                         break
 
 end=j
-
 inst=[]
 xcoord=[]
 ycoord=[]
@@ -34,13 +30,8 @@ for i in range(start,end):
 		xcoord.append(mylines[i][mylines[i].index('(')+1])
 		ycoord.append(mylines[i][mylines[i].index('(')+2])
 
-
-
-
 for i in range(len(inst)):
 	inst[i]=inst[i].replace('\\','')
-
-
 
 command='report_power -instances "'
 
@@ -48,7 +39,6 @@ for i in range(0,len(inst)):
 	command='%s %s'%(command,inst[i])
 
 command='%s" > out'%(command)
-
 
 
 with open("script", "a") as f:

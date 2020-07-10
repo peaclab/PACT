@@ -1,11 +1,24 @@
-xdim=1468800 
-ydim=1465600
+fp=open('./routed.def')
 gridsize=128
 power_blocks=[0.0]*gridsize*gridsize
 xcoord_blocks=[]
 ycoord_blocks=[]
 mylines=[]
 
+
+listline=fp.readlines()
+mylines=[]
+
+for line in listline:
+        mylines.append(line.split())
+
+for i in range(len(mylines)):
+        if(len(mylines[i])!=0):
+                if(mylines[i][0]=='DIEAREA'):
+                        break
+
+xdim=int(mylines[i][6])
+ydim=int(mylines[i][7])
 
 fp=open('./outputhotspot')
 listlines=fp.readlines()
@@ -17,8 +30,6 @@ for i in range(len(mylines)):
 	mylines[i][0]=float(mylines[i][0])
 	mylines[i][1]=float(mylines[i][1])
 	mylines[i][2]=float(mylines[i][2])
-
-
 
 flags=[1]*len(mylines)
 block_index=-1
