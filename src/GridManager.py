@@ -522,7 +522,7 @@ class GridManager:
                 a = self.Rz[topY:bottomY+1,leftX:rightX+1]
                 a = np.reciprocal(a, where = a !=0, out = np.zeros_like(a))
                 self.Rz[topY:bottomY+1,leftX:rightX+1]= np.reciprocal( a +  mask * (1/self.label_config_dict[(label,config)]['Rz']))
-
+                self.C[topY:bottomY+1,leftX:rightX+1]= self.label_config_dict[(label,config)]['Capacitance']
             ###DEBUG
             """
             if(block_idx==4):

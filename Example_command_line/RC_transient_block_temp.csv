@@ -11,242 +11,362 @@ layer number:1  UnitName  BlockTemperature
 3  Block_3              45.0
 4  Block_4              45.0
 step 1 layer number:0  UnitName  BlockTemperature
-0  Block_0             45.03
+0  Block_0             45.40
 1  Block_1             45.03
 2  Block_2             45.42
 3  Block_3             45.03
 4  Block_4             45.03
 layer number:1  UnitName  BlockTemperature
-0  Block_0             45.02
+0  Block_0             45.20
 1  Block_1             45.02
 2  Block_2             45.21
 3  Block_3             45.02
 4  Block_4             45.02
 step 2 layer number:0  UnitName  BlockTemperature
-0  Block_0             45.15
+0  Block_0             46.36
 1  Block_1             45.15
 2  Block_2             46.45
 3  Block_3             45.15
 4  Block_4             45.15
 layer number:1  UnitName  BlockTemperature
-0  Block_0             45.09
+0  Block_0             45.71
 1  Block_1             45.09
 2  Block_2             45.77
 3  Block_3             45.09
 4  Block_4             45.09
 step 3 layer number:0  UnitName  BlockTemperature
-0  Block_0             45.33
+0  Block_0             47.57
 1  Block_1             45.33
 2  Block_2             47.78
 3  Block_3             45.33
 4  Block_4             45.33
 layer number:1  UnitName  BlockTemperature
-0  Block_0              45.2
-1  Block_1              45.2
-2  Block_2              46.5
-3  Block_3              45.2
-4  Block_4              45.2
+0  Block_0             46.36
+1  Block_1             45.20
+2  Block_2             46.50
+3  Block_3             45.20
+4  Block_4             45.20
 step 4 layer number:0  UnitName  BlockTemperature
-0  Block_0             45.62
-1  Block_1             45.62
-2  Block_2             49.55
-3  Block_3             45.62
-4  Block_4             45.62
+0  Block_0             49.18
+1  Block_1             45.64
+2  Block_2             49.60
+3  Block_3             45.64
+4  Block_4             45.64
 layer number:1  UnitName  BlockTemperature
-0  Block_0             45.38
-1  Block_1             45.38
-2  Block_2             47.48
-3  Block_3             45.38
-4  Block_4             45.38
+0  Block_0             47.25
+1  Block_1             45.39
+2  Block_2             47.51
+3  Block_3             45.39
+4  Block_4             45.39
 step 5 layer number:0  UnitName  BlockTemperature
-0  Block_0             45.93
-1  Block_1             45.93
-2  Block_2             51.39
-3  Block_3             45.93
-4  Block_4             45.93
+0  Block_0             50.87
+1  Block_1             45.97
+2  Block_2             51.51
+3  Block_3             45.97
+4  Block_4             45.97
 layer number:1  UnitName  BlockTemperature
-0  Block_0             45.57
-1  Block_1             45.57
-2  Block_2             48.50
-3  Block_3             45.57
-4  Block_4             45.57
+0  Block_0             48.17
+1  Block_1             45.59
+2  Block_2             48.57
+3  Block_3             45.59
+4  Block_4             45.59
 step 6 layer number:0  UnitName  BlockTemperature
-0  Block_0             46.33
-1  Block_1             46.33
-2  Block_2             53.48
-3  Block_3             46.33
-4  Block_4             46.33
+0  Block_0             52.55
+1  Block_1             46.31
+2  Block_2             53.42
+3  Block_3             46.31
+4  Block_4             46.31
 layer number:1  UnitName  BlockTemperature
-0  Block_0             45.81
-1  Block_1             45.81
-2  Block_2             49.67
-3  Block_3             45.81
-4  Block_4             45.81
+0  Block_0             49.10
+1  Block_1             45.79
+2  Block_2             49.64
+3  Block_3             45.79
+4  Block_4             45.79
 step 7 layer number:0  UnitName  BlockTemperature
-0  Block_0             46.74
+0  Block_0             54.46
 1  Block_1             46.74
 2  Block_2             55.62
 3  Block_3             46.74
 4  Block_4             46.74
 layer number:1  UnitName  BlockTemperature
-0  Block_0             46.05
-1  Block_1             46.05
+0  Block_0             50.15
+1  Block_1             46.06
 2  Block_2             50.87
-3  Block_3             46.05
-4  Block_4             46.05
+3  Block_3             46.06
+4  Block_4             46.06
 step 8 layer number:0  UnitName  BlockTemperature
-0  Block_0             47.20
+0  Block_0             56.41
 1  Block_1             47.20
 2  Block_2             57.87
 3  Block_3             47.20
 4  Block_4             47.20
 layer number:1  UnitName  BlockTemperature
-0  Block_0             46.33
+0  Block_0             51.23
 1  Block_1             46.33
 2  Block_2             52.13
 3  Block_3             46.33
 4  Block_4             46.33
 step 9 layer number:0  UnitName  BlockTemperature
-0  Block_0             47.67
-1  Block_1             47.67
-2  Block_2             60.15
-3  Block_3             47.67
-4  Block_4             47.67
+0  Block_0             58.36
+1  Block_1             47.66
+2  Block_2             60.12
+3  Block_3             47.66
+4  Block_4             47.66
 layer number:1  UnitName  BlockTemperature
-0  Block_0             46.61
-1  Block_1             46.61
-2  Block_2             53.40
-3  Block_3             46.61
-4  Block_4             46.61
+0  Block_0             52.31
+1  Block_1             46.60
+2  Block_2             53.38
+3  Block_3             46.60
+4  Block_4             46.60
 step 10 layer number:0  UnitName  BlockTemperature
-0  Block_0             48.17
-1  Block_1             48.17
-2  Block_2             62.47
-3  Block_3             48.17
-4  Block_4             48.17
+0  Block_0             60.37
+1  Block_1             48.16
+2  Block_2             62.44
+3  Block_3             48.16
+4  Block_4             48.16
 layer number:1  UnitName  BlockTemperature
-0  Block_0              46.9
-1  Block_1              46.9
-2  Block_2              54.7
-3  Block_3              46.9
-4  Block_4              46.9
+0  Block_0             53.42
+1  Block_1             46.90
+2  Block_2             54.69
+3  Block_3             46.90
+4  Block_4             46.90
 step 11 layer number:0  UnitName  BlockTemperature
-0  Block_0             48.63
-1  Block_1             48.66
-2  Block_2             64.49
-3  Block_3             48.79
-4  Block_4             48.63
+0  Block_0             61.43
+1  Block_1             48.57
+2  Block_2             63.77
+3  Block_3             48.57
+4  Block_4             48.57
 layer number:1  UnitName  BlockTemperature
-0  Block_0             47.18
-1  Block_1             47.20
-2  Block_2             55.85
-3  Block_3             47.26
-4  Block_4             47.18
+0  Block_0             54.06
+1  Block_1             47.14
+2  Block_2             55.48
+3  Block_3             47.14
+4  Block_4             47.14
 step 12 layer number:0  UnitName  BlockTemperature
-0  Block_0             49.04
-1  Block_1             49.12
-2  Block_2             66.17
-3  Block_3             49.53
-4  Block_4             49.03
+0  Block_0             61.62
+1  Block_1             48.85
+2  Block_2             64.13
+3  Block_3             48.85
+4  Block_4             48.85
+layer number:1  UnitName  BlockTemperature
+0  Block_0             54.21
+1  Block_1             47.31
+2  Block_2             55.72
+3  Block_3             47.31
+4  Block_4             47.31
+step 13 layer number:0  UnitName  BlockTemperature
+0  Block_0             61.17
+1  Block_1             48.98
+2  Block_2             63.74
+3  Block_3             48.98
+4  Block_4             48.98
+layer number:1  UnitName  BlockTemperature
+0  Block_0             53.99
+1  Block_1             47.38
+2  Block_2             55.53
+3  Block_3             47.38
+4  Block_4             47.38
+step 14 layer number:0  UnitName  BlockTemperature
+0  Block_0             60.10
+1  Block_1             48.93
+2  Block_2             62.61
+3  Block_3             48.93
+4  Block_4             48.93
+layer number:1  UnitName  BlockTemperature
+0  Block_0             53.42
+1  Block_1             47.34
+2  Block_2             54.92
+3  Block_3             47.34
+4  Block_4             47.34
+step 15 layer number:0  UnitName  BlockTemperature
+0  Block_0             59.04
+1  Block_1             48.88
+2  Block_2             61.48
+3  Block_3             48.88
+4  Block_4             48.88
+layer number:1  UnitName  BlockTemperature
+0  Block_0             52.85
+1  Block_1             47.30
+2  Block_2             54.30
+3  Block_3             47.30
+4  Block_4             47.30
+step 16 layer number:0  UnitName  BlockTemperature
+0  Block_0             57.40
+1  Block_1             48.59
+2  Block_2             59.63
+3  Block_3             48.59
+4  Block_4             48.59
+layer number:1  UnitName  BlockTemperature
+0  Block_0             51.94
+1  Block_1             47.13
+2  Block_2             53.27
+3  Block_3             47.13
+4  Block_4             47.13
+step 17 layer number:0  UnitName  BlockTemperature
+0  Block_0             55.69
+1  Block_1             48.27
+2  Block_2             57.69
+3  Block_3             48.27
+4  Block_4             48.27
+layer number:1  UnitName  BlockTemperature
+0  Block_0             51.01
+1  Block_1             46.93
+2  Block_2             52.19
+3  Block_3             46.93
+4  Block_4             46.93
+step 18 layer number:0  UnitName  BlockTemperature
+0  Block_0             53.98
+1  Block_1             47.95
+2  Block_2             55.75
+3  Block_3             47.95
+4  Block_4             47.95
+layer number:1  UnitName  BlockTemperature
+0  Block_0             50.07
+1  Block_1             46.74
+2  Block_2             51.11
+3  Block_3             46.74
+4  Block_4             46.74
+step 19 layer number:0  UnitName  BlockTemperature
+0  Block_0             52.07
+1  Block_1             47.52
+2  Block_2             53.54
+3  Block_3             47.52
+4  Block_4             47.52
+layer number:1  UnitName  BlockTemperature
+0  Block_0             49.01
+1  Block_1             46.48
+2  Block_2             49.87
+3  Block_3             46.48
+4  Block_4             46.48
+step 20 layer number:0  UnitName  BlockTemperature
+0  Block_0             50.13
+1  Block_1             47.07
+2  Block_2             51.30
+3  Block_3             47.07
+4  Block_4             47.07
+layer number:1  UnitName  BlockTemperature
+0  Block_0             47.94
+1  Block_1             46.21
+2  Block_2             48.62
+3  Block_3             46.21
+4  Block_4             46.21
+step 21 layer number:0  UnitName  BlockTemperature
+0  Block_0             49.11
+1  Block_1             46.68
+2  Block_2             50.02
+3  Block_3             46.68
+4  Block_4             46.68
+layer number:1  UnitName  BlockTemperature
+0  Block_0             47.32
+1  Block_1             45.98
+2  Block_2             47.85
+3  Block_3             45.98
+4  Block_4             45.98
+step 22 layer number:0  UnitName  BlockTemperature
+0  Block_0             48.94
+1  Block_1             46.42
+2  Block_2             49.69
+3  Block_3             46.42
+4  Block_4             46.42
+layer number:1  UnitName  BlockTemperature
+0  Block_0             47.19
+1  Block_1             45.83
+2  Block_2             47.63
+3  Block_3             45.83
+4  Block_4             45.83
+step 23 layer number:0  UnitName  BlockTemperature
+0  Block_0             49.41
+1  Block_1             46.30
+2  Block_2             50.10
+3  Block_3             46.30
+4  Block_4             46.30
 layer number:1  UnitName  BlockTemperature
 0  Block_0             47.42
-1  Block_1             47.47
-2  Block_2             56.80
-3  Block_3             47.68
-4  Block_4             47.42
-step 13 layer number:0  UnitName  BlockTemperature
-0  Block_0             49.41
-1  Block_1             49.56
-2  Block_2             67.70
-3  Block_3             50.31
-4  Block_4             49.39
+1  Block_1             45.77
+2  Block_2             47.83
+3  Block_3             45.77
+4  Block_4             45.77
+step 24 layer number:0  UnitName  BlockTemperature
+0  Block_0             50.49
+1  Block_1             46.36
+2  Block_2             51.24
+3  Block_3             46.36
+4  Block_4             46.36
 layer number:1  UnitName  BlockTemperature
-0  Block_0             47.65
-1  Block_1             47.72
-2  Block_2             57.67
-3  Block_3             48.12
-4  Block_4             47.64
-step 14 layer number:0  UnitName  BlockTemperature
-0  Block_0             49.69
-1  Block_1             49.93
-2  Block_2             68.88
-3  Block_3             51.16
-4  Block_4             49.66
+0  Block_0             48.00
+1  Block_1             45.81
+2  Block_2             48.45
+3  Block_3             45.81
+4  Block_4             45.81
+step 25 layer number:0  UnitName  BlockTemperature
+0  Block_0             51.57
+1  Block_1             46.42
+2  Block_2             52.39
+3  Block_3             46.42
+4  Block_4             46.42
 layer number:1  UnitName  BlockTemperature
-0  Block_0             47.81
-1  Block_1             47.94
-2  Block_2             58.34
-3  Block_3             48.60
+0  Block_0             48.57
+1  Block_1             45.85
+2  Block_2             49.08
+3  Block_3             45.85
+4  Block_4             45.85
+step 26 layer number:0  UnitName  BlockTemperature
+0  Block_0             53.21
+1  Block_1             46.72
+2  Block_2             54.25
+3  Block_3             46.72
+4  Block_4             46.72
+layer number:1  UnitName  BlockTemperature
+0  Block_0             49.48
+1  Block_1             46.03
+2  Block_2             50.11
+3  Block_3             46.03
+4  Block_4             46.03
+step 27 layer number:0  UnitName  BlockTemperature
+0  Block_0             54.92
+1  Block_1             47.04
+2  Block_2             56.19
+3  Block_3             47.04
+4  Block_4             47.04
+layer number:1  UnitName  BlockTemperature
+0  Block_0             50.42
+1  Block_1             46.23
+2  Block_2             51.20
+3  Block_3             46.23
+4  Block_4             46.23
+step 28 layer number:0  UnitName  BlockTemperature
+0  Block_0             56.63
+1  Block_1             47.36
+2  Block_2             58.13
+3  Block_3             47.36
+4  Block_4             47.36
+layer number:1  UnitName  BlockTemperature
+0  Block_0             51.36
+1  Block_1             46.42
+2  Block_2             52.28
+3  Block_3             46.42
+4  Block_4             46.42
+step 29 layer number:0  UnitName  BlockTemperature
+0  Block_0             58.55
+1  Block_1             47.79
+2  Block_2             60.35
+3  Block_3             47.79
 4  Block_4             47.79
-step 15 layer number:0  UnitName  BlockTemperature
-0  Block_0             49.97
-1  Block_1             50.30
-2  Block_2             70.06
-3  Block_3             52.00
-4  Block_4             49.92
 layer number:1  UnitName  BlockTemperature
-0  Block_0             47.98
-1  Block_1             48.16
-2  Block_2             59.01
-3  Block_3             49.07
-4  Block_4             47.95
-step 16 layer number:0  UnitName  BlockTemperature
-0  Block_0             50.17
-1  Block_1             50.61
-2  Block_2             71.05
-3  Block_3             52.85
-4  Block_4             50.12
+0  Block_0             52.42
+1  Block_1             46.68
+2  Block_2             53.51
+3  Block_3             46.68
+4  Block_4             46.68
+step 30 layer number:0  UnitName  BlockTemperature
+0  Block_0             60.49
+1  Block_1             48.24
+2  Block_2             62.59
+3  Block_3             48.24
+4  Block_4             48.24
 layer number:1  UnitName  BlockTemperature
-0  Block_0             48.10
-1  Block_1             48.34
-2  Block_2             59.56
-3  Block_3             49.55
-4  Block_4             48.07
-step 17 layer number:0  UnitName  BlockTemperature
-0  Block_0             50.38
-1  Block_1             50.92
-2  Block_2             72.03
-3  Block_3             53.70
-4  Block_4             50.31
-layer number:1  UnitName  BlockTemperature
-0  Block_0             48.22
-1  Block_1             48.52
-2  Block_2             60.12
-3  Block_3             50.03
-4  Block_4             48.19
-step 18 layer number:0  UnitName  BlockTemperature
-0  Block_0             50.54
-1  Block_1             51.19
-2  Block_2             72.93
-3  Block_3             54.55
-4  Block_4             50.46
-layer number:1  UnitName  BlockTemperature
-0  Block_0             48.32
-1  Block_1             48.68
-2  Block_2             60.62
-3  Block_3             50.51
-4  Block_4             48.28
-step 19 layer number:0  UnitName  BlockTemperature
-0  Block_0             50.71
-1  Block_1             51.46
-2  Block_2             73.83
-3  Block_3             55.40
-4  Block_4             50.61
-layer number:1  UnitName  BlockTemperature
-0  Block_0             48.42
-1  Block_1             48.83
-2  Block_2             61.13
-3  Block_3             50.99
-4  Block_4             48.37
-step 20 layer number:0  UnitName  BlockTemperature
-0  Block_0             50.86
-1  Block_1             51.72
-2  Block_2             74.69
-3  Block_3             56.25
-4  Block_4             50.74
-layer number:1  UnitName  BlockTemperature
-0  Block_0             48.52
-1  Block_1             48.98
-2  Block_2             61.62
-3  Block_3             51.47
-4  Block_4             48.45
+0  Block_0             53.49
+1  Block_1             46.95
+2  Block_2             54.77
+3  Block_3             46.95
+4  Block_4             46.95

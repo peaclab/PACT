@@ -13,6 +13,7 @@ def defineGridProperties(length, height,thickness,properties):
     Rx = ro*length/(height*thickness)
     Ry = ro*height/(length*thickness)
     Rz = ro*thickness/(length*height)
+    #Zihao use this capacitance to validate with COMSOL
     #Capacitance=1*sp*length*height*thickness
     Capacitance=0.33*sp*thickness*length*height
     #print('Zihao Single cap ********************',Capacitance)
