@@ -12,8 +12,8 @@ Prerequisites
 
 The following tools and files are required to run the flow, use the provided links to setup the tools:
   
-1- Openroad flow for "Synthesis, Placement and routing" to convert the RTL files to a DEF file. [OpenRoad Flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow/tree/master/flow)  
-2- Resizer is used for power estimation. [Resizer](https://github.com/The-OpenROAD-Project-Attic/Resizer)    
+1- Openroad flow for "Synthesis, Placement and routing" to convert the RTL files to a DEF file. Use the following link to setup the tool: [OpenRoad Flow.](https://github.com/The-OpenROAD-Project/OpenROAD-flow/tree/master/flow)    
+2- Resizer is used for power estimation. Use the following link to setup the tool: [Resizer.](https://github.com/The-OpenROAD-Project-Attic/Resizer)    
 3- The library files : lib and lef files.  
 
 
