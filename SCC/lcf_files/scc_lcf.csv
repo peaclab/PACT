@@ -1,0 +1,2 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,../SCC/flp_files/scc_flp.csv,0.00075,../SCC/ptrace_files/scc_ptrace.csv,True

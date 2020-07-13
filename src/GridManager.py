@@ -187,12 +187,30 @@ class GridManager:
                         #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
                         self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
                         #print(self.label_config_dict[(label,cfile)])
+                    #Zihao add this for Mono3D simulation
+                    elif(label=='Diel'):
+                        #print("3")
+                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Diel'])
+                        #print(self.label_config_dict[(label,cfile)])
+                    elif(label=='Metal'):
+                        #print("3")
+                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Metal'])
+                    elif(label=='Metal7_8'):
+                        #print("3")
+                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Metal7_8'])
+                    elif(label=='Liq'):
+                        #print("3")
+                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Liq'])
                     elif(label=='NoPackage'):
                         #print("4")
                         #self.label_config_dict[(label,cfile)]=LibNoPackage.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['NoPackage'])
                         self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['NoPackage'])
                         #print(self.label_config_dict[(label,cfile)])
-
+			
                 elif(label in label_ll and self.label_mode_dict[label]=='matrix'):
                     #print(label,self.label_mode_dict[label],label_ll)
                     #if(label=='HybridWick'):
@@ -571,6 +589,7 @@ class GridManager:
         else:
             with(open("RC_transient_block_temp.csv","a")) as myfile:
                 myfile.write(f'layer number:{layer_num}')
+                pd.options.display.max_rows = 600
                 myfile.write(str(layer_obj.flp_df[['UnitName','BlockTemperature']])+'\n')
         return
         

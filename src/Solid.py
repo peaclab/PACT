@@ -21,7 +21,7 @@ def defineGridProperties(length, height,thickness,properties):
     I=0
     direction='z'
     out = {"Rx":Rx,"Ry":Ry,"Rz":Rz,"Capacitance":Capacitance,"I":I,"direction":direction}
-    #out = {"R":{"Rx":Rx,"Ry":Ry,"Rz":Rz},"Capacitance":Capacitance,"I":{"I":I,"direction":direction}}
+    #out = {"R":{"Rx":Rx,"Ry":Ry,"Rz":Rz},"Capacitance":Capacitance,"I":{"I":I,"direction":direction}}  
     #return Rx,Ry,Rz,Capacitance,I
     return out
 """
