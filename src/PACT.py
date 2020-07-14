@@ -562,14 +562,23 @@ dict_Ry = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].Ry for x 
 dict_Rz = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].Rz for x in chipStack.Layers_data.keys()}
 dict_C = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].C for x in chipStack.Layers_data.keys()}
 dict_I = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].I for x in chipStack.Layers_data.keys()}
+dict_Conv = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].Conv for x in chipStack.Layers_data.keys()}
+dict_others = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].others for x in chipStack.Layers_data.keys()}
+dict_g2bmap = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].g2bmap for x in chipStack.Layers_data.keys()}
 dict_virtual_nodes = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].virtual_node for x in chipStack.Layers_data.keys()}
 solver_properties['Rx']=dict_Rx
 solver_properties['Ry']=dict_Ry
 solver_properties['Rz']=dict_Rz
 solver_properties['C']=dict_C
 solver_properties['I']=dict_I
+solver_properties['Conv']=dict_Conv
+solver_properties['others']=dict_others
+solver_properties['g2bmap']=dict_g2bmap
 #print("Printing dictionary")
-#print("HELLLLOOOOOO",solver_properties['Rx'])
+#print("HELLLLOOOOOO",solver_properties['others'])
+#print("HELLLLOOOOOO",solver_properties['Conv'])
+#print("HELLLLOOOOOO",solver_properties['g2bmap'])
+sys.exit(0)
 solver_properties['layer_virtual_nodes']=dict_virtual_nodes
 solver_properties['factor_virtual_nodes']=modelParams._sections['VirtualNodes']
 solver_properties['r_amb']=chipStack.Layers_data[num_layers-1].r_amb

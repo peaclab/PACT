@@ -9,6 +9,7 @@ class Layer:
         #print(lcf_row['LateralHeatFlow'])
         self.VerticalHeatFlow = lcf_row['VerticalHeatFlow']
         self.append_ptraces(lcf_row['PtraceFile'])
+        self.others = {}
         self.display()
         return
 
@@ -62,6 +63,11 @@ class Layer:
         self.C=numpy_arr
     def add_I(self,numpy_arr):
         self.I=numpy_arr
+    def add_Conv(self,numpy_arr):
+        self.Conv=numpy_arr
+    def update_others_constants(self,key,val):
+        self.others[key] = val
+        #print("Layer.py (update_others):", key,val)
     def display(self):
         #print(self.layer_num, self.num_ptraces)   
         pass

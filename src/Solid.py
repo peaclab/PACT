@@ -13,6 +13,7 @@ def defineGridProperties(length, height,thickness,properties):
     Rx = ro*length/(height*thickness)
     Ry = ro*height/(length*thickness)
     Rz = ro*thickness/(length*height)
+    Conv = 0
     #Zihao use this capacitance to validate with COMSOL
     #Capacitance=1*sp*length*height*thickness
     Capacitance=0.33*sp*thickness*length*height
@@ -20,7 +21,7 @@ def defineGridProperties(length, height,thickness,properties):
    
     I=0
     direction='z'
-    out = {"Rx":Rx,"Ry":Ry,"Rz":Rz,"Capacitance":Capacitance,"I":I,"direction":direction}
+    out = {"Rx":Rx,"Ry":Ry,"Rz":Rz,"Capacitance":Capacitance,"I":I,"direction":direction,"Conv":Conv}
     #out = {"R":{"Rx":Rx,"Ry":Ry,"Rz":Rz},"Capacitance":Capacitance,"I":{"I":I,"direction":direction}}  
     #return Rx,Ry,Rz,Capacitance,I
     return out
@@ -63,9 +64,10 @@ def defineGridPropertiesMatrix(length, height,thickness,properties):
     #Capacitance = np.zeros((grid_rows,grid_cols))
     capacitance=0.33*sp*thickness*length*height
     Capacitance  = np.full((grid_rows,grid_cols),capacitance)
+    Conv = 0
     print('Zihao matrix cap ********************',capacitance)
     
     I = np.zeros((grid_rows,grid_cols))
     direction='0'
-    out = {"Rx":Rx,"Ry":Ry,"Rz":Rz,"Capacitance":Capacitance,"I":I,"direction":direction}
+    out = {"Rx":Rx,"Ry":Ry,"Rz":Rz,"Capacitance":Capacitance,"I":I,"direction":direction, "Conv":Conv}
     return out
