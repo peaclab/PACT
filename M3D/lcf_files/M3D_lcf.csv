@@ -31,4 +31,4 @@ Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
 29,../M3D/flp_files/M3D_10mm_other_poly_flp.csv,0.000000085,,True
 30,../M3D/flp_files/M3D_10mm_other_diel_flp.csv,0.000000085,,True
 31,../M3D/flp_files/M3D_10mm_tier0_flp.csv,0.0000005,../M3D/ptrace_files/M3D_tier0_ptrace.csv,True
-32,../M3D/flp_files/M3D_10mm_other_poly_flp.csv,0.000000076,,True
+32,../M3D/flp_files/M3D_10mm_other_poly_flp.csv,0.000076,,True
