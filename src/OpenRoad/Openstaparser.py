@@ -1,6 +1,44 @@
 import os
+import argparse 
 
-fp=open('./routed.def')
+parser= argparse.ArgumentParser(description= 'Generates power map')
+parser.add_argument('--lib',type=str,required=True,metavar='', help='Path to the library file')
+parser.add_argument('--lef',type=str,required=True, metavar='',help='Path to the lef file')
+parser.add_argument('--deff',type=str,required=True, metavar='',help='Path to the routed def file')
+parser.add_argument('--resizer',type=str,required=True, metavar='',help='Path to resizer binary files')
+parser.add_argument('--clk',type=str,required=True, metavar='',help='Clock period of the design')
+
+args= parser.parse_args()
+line='read_liberty '
+line='%s %s %s'%(line,args.lib,'\n')
+f = open("Script_template", "a")
+f.write(line)
+f.close
+
+
+line='read_lef '
+line='%s %s %s'%(line,args.lef,'\n')
+f = open("Script_template", "a")
+f.write(line)
+f.close
+
+line='read_def '
+line='%s %s %s'%(line,args.deff,'\n')
+f = open("Script_template", "a")
+f.write(line)
+f.close
+
+line='create_clock -name clk -period '
+line='%s %s %s %s'%(line,args.clk,'{clk}','\n')
+f = open("Script_template", "a")
+f.write(line)
+f.close
+
+
+
+
+
+fp=open(args.deff)
 listline=fp.readlines()
 
 mylines=[]
@@ -45,7 +83,8 @@ with open("script", "a") as f:
 	f.write(command)
 
 
-os.system('/local-disk/tools/OpenROAD/alpha-release/openroad/OpenROAD-2019-07-30_05-17/bin/resizer -exit script')
+exec_command='%s %s'%(args.resizer,' -exit script')
+os.system(exec_command)
 
 fp=open('out')
 stalistline=fp.readlines()

@@ -1,5 +1,17 @@
-fp=open('./routed.def')
-gridsize=128
+import argparse 
+
+parser= argparse.ArgumentParser(description= 'Generates power map')
+parser.add_argument('--deff',type=str,required=True, metavar='',help='Path to the routed def file')
+parser.add_argument('--gridsize',type=int,required=True, metavar='',help='gridsize')
+args= parser.parse_args()
+
+
+
+
+
+
+fp=open(args.deff)
+gridsize=args.gridsize
 power_blocks=[0.0]*gridsize*gridsize
 xcoord_blocks=[]
 ycoord_blocks=[]
