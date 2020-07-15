@@ -6,6 +6,7 @@ import math
 #import Solid as LibCu
 #import Solid as LibNoPackage
 import Solid as LibSolid
+import Liquid as LibLiquid
 import HybridWick_LookupTable as LibHybridWick
 #import TwoPhaseVC as LibTwoPhase
 import sys
@@ -20,6 +21,8 @@ class GridManager:
         self.Ry = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
         self.Rz = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
         self.C = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
+        self.Conv = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
+        self.others = {}
         #self.I = np.zeros((int(self.grid_dict['rows']),int(self.grid_dict['cols'])))
         self.g2bmap = np.empty([int(self.grid_dict['rows']),int(self.grid_dict['cols'])],dtype="<U10")
         self.vector_evaluateRC = np.vectorize(self.evaluateRC,otypes=[None])
@@ -102,6 +105,7 @@ class GridManager:
         self.g2bmap = np.empty(self.g2bmap.shape,dtype="<U10")
         flp_df = layer_obj.flp_df
         label_ll = flp_df['Label'].unique()
+        self.Conv = np.zeros(self.Conv.shape)
         #print(label_ll)
 
         self.power_densities = 0
@@ -187,12 +191,34 @@ class GridManager:
                         #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
                         self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
                         #print(self.label_config_dict[(label,cfile)])
+                    #Zihao add this for Mono3D simulation
+                    elif(label=='Diel'):
+                        #print("3")
+                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Diel'])
+                        #print(self.label_config_dict[(label,cfile)])
+                    elif(label=='Metal'):
+                        #print("3")
+                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Metal'])
+                    elif(label=='Metal7_8'):
+                        #print("3")
+                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Metal7_8'])
+                    elif(label=='Liq'):
+                        #print("3")
+                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
+                        self.label_config_dict[(label,cfile)]=LibLiquid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Liq'])
                     elif(label=='NoPackage'):
                         #print("4")
                         #self.label_config_dict[(label,cfile)]=LibNoPackage.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['NoPackage'])
                         self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['NoPackage'])
                         #print(self.label_config_dict[(label,cfile)])
-
+    
+                    for key in self.label_config_dict[(label,cfile)].keys():
+                        if key.endswith("_constant"):
+                            layer_obj.update_others_constants(key, self.label_config_dict[(label,cfile)][key])
+			
                 elif(label in label_ll and self.label_mode_dict[label]=='matrix'):
                     #print(label,self.label_mode_dict[label],label_ll)
                     #if(label=='HybridWick'):
@@ -218,17 +244,23 @@ class GridManager:
                     self.Rz += self.label_config_dict[(label,cfile)]['Rz']
                     self.C += self.label_config_dict[(label,cfile)]['Capacitance']
                     self.I += self.label_config_dict[(label,cfile)]['I']
+                    self.Conv += self.label_config_dict[(label,cfile)]['Conv']
                     break
                         #self.g2bmap[topY+1:bottomY,leftX+1:rightX]= "B"+str(block_idx)+"_1"
 
                         #sys.exit(2)
-                        
+            #for key in self.label_config_dict[(label,cfile)].keys():
+            #    if key.endswith("_constant"):
+            #        layer_obj.update_others_constants(val, self.others[val])
+            #    else:
+            #        print(val, "does not end with")
+            #print(type(self.label_config_dict[(label,cfile)]))
+
             #print(flp_df.loc[780])
                 #print("hey there layer",layer_obj.layer_num)
                 #for x in label_ll:
                 #    print('single' in self.label_mode_dict[x])
             #print("*************************************Zihao:",self.C)
-            #sys.exit(0)
 		
             self.vector_evaluateRC(X_vals,Y_vals,length_vals, height_vals, PowerDensities,left_x_vals,right_x_vals,bottom_y_vals,top_y_vals,label_vals,flp_df['ConfigFile'].values,block_counter,grid_length,grid_width, layer_obj.layer_num)
 
@@ -245,8 +277,9 @@ class GridManager:
 
             layer_obj.Rz = self.Rz
             layer_obj.C = self.C
+            layer_obj.Conv = self.Conv
+            #print("others:",self.others)
 #Zihao 
-            #sys.exit(0)
             layer_obj.I = self.I
             layer_obj.Lock = self.Lock
             layer_obj.g2bmap = self.g2bmap
@@ -260,7 +293,8 @@ class GridManager:
                 #self.noPackage_grid_right_x = grid_right_x
                 #self.noPackage_grid_bottom_y = grid_bottom_y
                 #self.noPackage_grid_top_y = grid_top_y
-                self.noPackage_g2bmap = self.g2bmap
+                #self.noPackage_g2bmap = self.g2bmap
+                #self.noPackage_g2bmap = np.full((rows,cols),"NoPackage"))
                 self.noPackage_Lock = self.Lock
                 #print("Earlier no PAckage resistances: Rx and Ry",self.Rx,self.Ry)
                 #self.noPackage_Rx = self.Rx
@@ -298,13 +332,15 @@ class GridManager:
                 #print("noPackage layer has lateral TRUE")
                 layer_obj.Rx = np.ones(self.Rx.shape) * NoPackage_info['Rx']
                 layer_obj.Ry = np.ones(self.Ry.shape) * NoPackage_info['Ry']
-                layer_obj.C = np.ones(self.Ry.shape) * NoPackage_info['Capacitance']
+                layer_obj.C = np.ones(self.C.shape) * NoPackage_info['Capacitance']
                 #layer_obj.Ry = self.noPackage_Ry
             else:
                 #print("noPackage layer has lateral FALSE")
                 layer_obj.Rx = np.ones(self.Rx.shape) * math.inf
                 layer_obj.Ry = np.ones(self.Ry.shape) * math.inf
-                layer_obj.C = np.ones(self.Ry.shape) * NoPackage_info['Capacitance']
+                layer_obj.C = np.ones(self.C.shape) * NoPackage_info['Capacitance']
+            layer_obj.Conv = np.ones(self.Conv.shape) * NoPackage_info['Conv']
+
 
 
             #print(layer_obj.VerticalHeatFlow)
@@ -340,7 +376,8 @@ class GridManager:
             #PRACHI: check the below statement
             layer_obj.I = np.full((self.I.shape),P_noPackage)
             layer_obj.Lock = self.noPackage_Lock
-            layer_obj.g2bmap = self.noPackage_g2bmap
+            #layer_obj.g2bmap = self.noPackage_g2bmap
+            layer_obj.g2bmap = np.full((rows,cols),"NoPackage")
             layer_obj.flp_df = flp_df
             layer_obj.r_amb = r_amb
 
@@ -420,6 +457,7 @@ class GridManager:
             #print(self.I[0])
             #sys.exit(0)
             self.Lock[topY:bottomY+1,leftX:rightX+1] +=1
+            self.g2bmap[topY:bottomY+1,leftX:rightX+1]= label
             if (mode == 'single'):
                 #self.Rz[topY:bottomY+1,leftX:rightX+1]= np.reciprocal( a +  mask * (1/self.label_config_dict[(label,config)]['Rz']))
                 self.Rx[topY:bottomY+1,leftX:rightX+1]= self.label_config_dict[(label,config)]['Rx']
@@ -456,6 +494,10 @@ class GridManager:
             mask[0,-1] = rt_o
             mask[-1,-1] = rb_o
             mask[-1,0] = lb_o 
+            conditions = [mask >= 0.9]
+            choice = [label]
+            #mask2[1:2,2:3] = np.select([mask[1:2,2:3]>= 0.5],["Liq"])
+            self.g2bmap[topY:bottomY+1,leftX:rightX+1] = np.select(conditions, choice)
 
             mask_I = np.ones((self.I.shape[0],bottomY - topY + 1, rightX - leftX + 1))
             mask_I[:,:,0] = left_edge_cells_o
@@ -522,7 +564,12 @@ class GridManager:
                 a = self.Rz[topY:bottomY+1,leftX:rightX+1]
                 a = np.reciprocal(a, where = a !=0, out = np.zeros_like(a))
                 self.Rz[topY:bottomY+1,leftX:rightX+1]= np.reciprocal( a +  mask * (1/self.label_config_dict[(label,config)]['Rz']))
-                self.C[topY:bottomY+1,leftX:rightX+1]= self.label_config_dict[(label,config)]['Capacitance']
+                #self.C[topY:bottomY+1,leftX:rightX+1]= self.label_config_dict[(label,config)]['Capacitance']
+                #Prachi: Zihao, maybe you should do this
+                self.C[topY:bottomY+1,leftX:rightX+1] += mask * self.label_config_dict[(label,config)]['Capacitance']
+
+                #Prachi: Zihao, check the formula
+                self.Conv[topY:bottomY+1,leftX:rightX+1] += mask * self.label_config_dict[(label,config)]['Conv']
             ###DEBUG
             """
             if(block_idx==4):
@@ -571,6 +618,7 @@ class GridManager:
         else:
             with(open("RC_transient_block_temp.csv","a")) as myfile:
                 myfile.write(f'layer number:{layer_num}')
+                pd.options.display.max_rows = 600
                 myfile.write(str(layer_obj.flp_df[['UnitName','BlockTemperature']])+'\n')
         return
         
