@@ -578,7 +578,7 @@ solver_properties['g2bmap']=dict_g2bmap
 #print("HELLLLOOOOOO",solver_properties['others'])
 #print("HELLLLOOOOOO",solver_properties['Conv'])
 #print("HELLLLOOOOOO",solver_properties['g2bmap'])
-sys.exit(0)
+#sys.exit(0)
 solver_properties['layer_virtual_nodes']=dict_virtual_nodes
 solver_properties['factor_virtual_nodes']=modelParams._sections['VirtualNodes']
 solver_properties['r_amb']=chipStack.Layers_data[num_layers-1].r_amb

@@ -207,6 +207,8 @@ class SPICE_steadySolver:
                     else:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
                 myfile.write('.OP\n')
+                #disable zoltan for mono3D simulation
+                #myfile.write(f'.OPTIONS LINSOL TYPE={self.ll_solver} TR_PARTITION = 0\n')
                 myfile.write(f'.OPTIONS LINSOL TYPE={self.ll_solver}\n')
                 myfile.write('.PRINT DC FORMAT=CSV PRECISION=4 ')
                 for grididx in range(self.size):
