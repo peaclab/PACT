@@ -96,10 +96,6 @@ class SPICE_steadySolver:
         self.Rz = self.dict_properties['Rz']
         self.C = self.dict_properties['C']
         self.I = self.dict_properties['I']
-        self.Conv = self.dict_properties['Conv']
-        self.glabels = self.dict_properties['g2bmap']
-        self.inlet_T_constant = float(self.dict_properties['others'][1]['inlet_T_constant'])
-        print(self.glabels)
         #print(self.I)
         #print(self.I_avg)
         #self.r_amb_reciprocal = round(1/self.r_amb,6)
@@ -177,14 +173,14 @@ class SPICE_steadySolver:
                         #Rs = math.inf
                         Rs = 10000000
                     if(layer > 0):
-                        Ra = float(self.factorVN[self.layerVN[layer-1]])*self.Rz[layer-1][row][col] + \
-                        (1-float(self.factorVN[self.layerVN[layer]]))*self.Rz[layer][row][col]
+                        Ra = int(self.factorVN[self.layerVN[layer-1]])*self.Rz[layer-1][row][col] + \
+                        (1-int(self.factorVN[self.layerVN[layer]]))*self.Rz[layer][row][col]
                     else:
                         #Ra = math.inf
                         Ra = 100000000
                     if(layer < self.layer_limit):
-                        Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
-                        (1-float(self.factorVN[self.layerVN[layer+1]]))*self.Rz[layer+1][row][col]
+                        Rb = int(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
+                        (1-self.factorVN[self.layerVN[layer+1]])*self.Rz[layer+1][row][col]
                     else: 
                         #Rb = math.inf
                         Rb = 100000000
