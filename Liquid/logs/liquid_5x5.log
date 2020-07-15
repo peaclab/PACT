@@ -112,3 +112,37 @@
 0inputs+16520outputs (6major+59824minor)pagefaults 0swaps
 1.13user 0.52system 0:09.89elapsed 16%CPU (0avgtext+0avgdata 59164maxresident)k
 342656inputs+16528outputs (301major+59546minor)pagefaults 0swaps
+0.70user 0.21system 0:05.93elapsed 15%CPU (0avgtext+0avgdata 59988maxresident)k
+124368inputs+120outputs (86major+30978minor)pagefaults 0swaps
+0.60user 0.16system 0:01.36elapsed 56%CPU (0avgtext+0avgdata 59736maxresident)k
+0inputs+32outputs (0major+25192minor)pagefaults 0swaps
+0.64user 0.14system 0:01.35elapsed 57%CPU (0avgtext+0avgdata 59740maxresident)k
+0inputs+32outputs (0major+25208minor)pagefaults 0swaps
+0.43user 0.12system 0:01.46elapsed 37%CPU (0avgtext+0avgdata 50824maxresident)k
+0inputs+0outputs (0major+13521minor)pagefaults 0swaps
+0.60user 0.12system 0:00.95elapsed 76%CPU (0avgtext+0avgdata 59676maxresident)k
+560inputs+32outputs (0major+25236minor)pagefaults 0swaps
+0.66user 0.19system 0:01.51elapsed 56%CPU (0avgtext+0avgdata 59856maxresident)k
+0inputs+88outputs (0major+30860minor)pagefaults 0swaps
+0.61user 0.22system 0:01.67elapsed 50%CPU (0avgtext+0avgdata 59852maxresident)k
+0inputs+64outputs (0major+30732minor)pagefaults 0swaps
+0.67user 0.19system 0:01.74elapsed 50%CPU (0avgtext+0avgdata 59868maxresident)k
+0inputs+88outputs (0major+30911minor)pagefaults 0swaps
+0.64user 0.16system 0:01.31elapsed 61%CPU (0avgtext+0avgdata 59848maxresident)k
+0inputs+56outputs (0major+30740minor)pagefaults 0swaps
+0.65user 0.20system 0:01.68elapsed 51%CPU (0avgtext+0avgdata 59852maxresident)k
+0inputs+88outputs (0major+30898minor)pagefaults 0swaps
+0.65user 0.15system 0:01.26elapsed 63%CPU (0avgtext+0avgdata 59860maxresident)k
+0inputs+88outputs (0major+30888minor)pagefaults 0swaps
+0.62user 0.21system 0:01.62elapsed 51%CPU (0avgtext+0avgdata 59852maxresident)k
+0inputs+88outputs (0major+30906minor)pagefaults 0swaps
+0.62user 0.19system 0:01.61elapsed 51%CPU (0avgtext+0avgdata 59848maxresident)k
+0inputs+88outputs (0major+30893minor)pagefaults 0swaps
+0.60user 0.15system 0:01.25elapsed 60%CPU (0avgtext+0avgdata 59864maxresident)k
+0inputs+96outputs (0major+30882minor)pagefaults 0swaps
+0.60user 0.19system 0:01.60elapsed 49%CPU (0avgtext+0avgdata 59856maxresident)k
+0inputs+88outputs (0major+30904minor)pagefaults 0swaps
+0.59user 0.13system 0:01.03elapsed 70%CPU (0avgtext+0avgdata 59844maxresident)k
+0inputs+88outputs (0major+30890minor)pagefaults 0swaps
+0.60user 0.16system 0:01.13elapsed 67%CPU (0avgtext+0avgdata 59852maxresident)k
+0inputs+64outputs (0major+30751minor)pagefaults 0swaps

@@ -206,8 +206,6 @@ class GridManager:
                         #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
                         self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Metal7_8'])
                     elif(label=='Liq'):
-                        #print("3")
-                        #self.label_config_dict[(label,cfile)]=LibCu.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Cu'])
                         self.label_config_dict[(label,cfile)]=LibLiquid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Liq'])
                     elif(label=='NoPackage'):
                         #print("4")
@@ -415,7 +413,7 @@ class GridManager:
         #print("power:",power)
         #print (X,Y,length, width,PowerDensity,leftX,rightX,bottomY,topY,label,config,block_idx)
 
-        #print("\nPRACHI Block",block_idx)
+        #print("\nPRACHI Block",block_idx,label)
         #print ("X,Y,length, width,PowerDensity,leftX,rightX,bottomY,topY,label,config,block_idx:")
         #print (X,Y,length, width,PowerDensity,leftX,rightX,bottomY,topY,label,config,block_idx)
         if(self.label_mode_dict[label]=='matrix' and PowerDensity == 0):
@@ -464,6 +462,7 @@ class GridManager:
                 self.Ry[topY:bottomY+1,leftX:rightX+1]= self.label_config_dict[(label,config)]['Ry']
                 self.Rz[topY:bottomY+1,leftX:rightX+1]= self.label_config_dict[(label,config)]['Rz']
                 self.C[topY:bottomY+1,leftX:rightX+1]= self.label_config_dict[(label,config)]['Capacitance']
+                self.Conv[topY:bottomY+1,leftX:rightX+1]= self.label_config_dict[(label,config)]['Conv']
               #  print(self.C)
               #  sys.exit(0)
 
