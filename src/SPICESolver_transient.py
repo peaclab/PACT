@@ -219,7 +219,7 @@ class SPICE_transientSolver:
                 # disable zorltan for mono3D simualtion
                 #myfile.write(f'.OPTIONS LINSOL TR_PARTITION=0\n')
                 myfile.write(f'.OPTIONS TIMEINT METHOD={self.ll_solver}\n')
-                myfile.write(f'.OPTIONS OUTPUT INITIAL_INTERVAL={self.step_size} {self.total_time}\n')
+                #myfile.write(f'.OPTIONS OUTPUT INITIAL_INTERVAL={self.step_size} {self.total_time}\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')
                 for grididx in range(self.size):
                     layer = int(grididx / self.prod)

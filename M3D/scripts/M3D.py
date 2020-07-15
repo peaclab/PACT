@@ -2,7 +2,7 @@ import os,sys
 
 #grid_rows=['40']
 #grid_rows= ['5']
-grid_rows= ['100']
+grid_rows= ['50']
 grid_cols =  grid_rows
 grids_ll = [x+'x'+y for (x,y) in zip(grid_rows,grid_cols)]
 print(grids_ll)

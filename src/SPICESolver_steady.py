@@ -209,7 +209,8 @@ class SPICE_steadySolver:
                 myfile.write('.OP\n')
                 #disable zoltan for mono3D simulation
                 #myfile.write(f'.OPTIONS LINSOL TYPE={self.ll_solver} TR_PARTITION = 0\n')
-                myfile.write(f'.OPTIONS LINSOL TYPE={self.ll_solver}\n')
+                myfile.write(f'.OPTIONS LINSOL TR_PARTITION = 0\n')
+               # myfile.write(f'.OPTIONS LINSOL TYPE={self.ll_solver}\n')
                 myfile.write('.PRINT DC FORMAT=CSV PRECISION=4 ')
                 for grididx in range(self.size):
                     layer = int(grididx / self.prod)
