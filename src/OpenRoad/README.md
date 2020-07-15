@@ -22,13 +22,25 @@ Launching the flow
 
 After installing the previously mentioned tools and generating the DEF file, the following steps are required to generate the power map:  
   
-1- Add the path to the lib, lef and def files in lines 1,2 and 3 of the Script_template file.  
-2- Add the path to the DEF file in line 3 of the Openparser.py file.  
-3- Add the path to the Resizer binary file in line 48 of the Openparser.py file.  
-4- Add the path to the DEF file in line 1 of the gridmesh.py file.  
-5- Add the desired gridsize in line 2 of the gridmesh.py file.  
-6- Using python 3 run Openparser.py.  
-7- In the same folder and using python 3 run gridmesh.py.  
+  
+1- Launch the Openparser.py python file by providing:  
+  - The path to the DEF file  
+  - The path to the LEF file  
+  - The path to the LIB file  
+  - The path to the LEF file
+  - The clock period of the design    
+  - The path to resizer binary files  
+ 
+2- In the same folder Launch  the gridmesh.py  python file by providing:  
+  - The path to the DEF file  
+  - The gridsize  
+  
+  ```
+$ python3 Openstaparser.py --deff ./routed.def --lef merged.lef --lib sc12_cln65lp_base_lvt_tt_typical_max_1p20v_25c.lib --clk 0.5 --resizer /local-disk/tools/OpenROAD/alpha-release/openroad/OpenROAD-2019-07-30_05-17/bin/resizer
+$ python3 gridmesh.py --deff ./routed.def --gridsize 128
+```
+  
+
 
 The flow generates two files:  
 1- flp : contains the dimensions and the coordinates of each block in the grid.  
