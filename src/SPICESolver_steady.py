@@ -98,8 +98,12 @@ class SPICE_steadySolver:
         self.I = self.dict_properties['I']
         self.Conv = self.dict_properties['Conv']
         self.glabels = self.dict_properties['g2bmap']
-        self.inlet_T_constant = float(self.dict_properties['others'][1]['inlet_T_constant'])
-        print(self.glabels)
+        self.liq_layer = []
+        for layer,label in self.glabels.items():
+            if 'Liq' in label:
+                self.liq_layer.append(layer)
+        if 'inlet_T_constant' in self.dict_properties['others'][1].keys():
+            self.inlet_T_constant = float(self.dict_properties['others'][1]['inlet_T_constant'])
         #print(self.I)
         #print(self.I_avg)
         #self.r_amb_reciprocal = round(1/self.r_amb,6)
@@ -128,6 +132,7 @@ class SPICE_steadySolver:
             self.update()
             #sys.exit(2)
         #print(Rx[0][0][0])
+        #print(self.Rz)
         """
         Without detailed_3d:
         if (j>0) Rw = find_res_3D(l,i,j-1,model,1)
@@ -149,9 +154,10 @@ class SPICE_steadySolver:
         with open('RC_steady.cir','w') as myfile:
                 myfile.write(".title spice solver\n")
                 myfile.write(f"Vg GND 0 {self.ambient}\n")
+                if 'inlet_T_constant' in self.dict_properties['others'][1].keys():
+                   myfile.write(f"Vin INLET 0 {self.inlet_T_constant+273.15}\n")
                 curidx=0
 		#print("PRACHI!!!!!!!!! Debug:nl, nr, nc",nl,nr,nc)
-		#sys.exit(2)
                 for grididx in range(self.size):
                     layer = int(grididx / self.prod)
                     row = int((grididx - layer*self.prod)/self.nc) 
@@ -183,11 +189,21 @@ class SPICE_steadySolver:
                         #Ra = math.inf
                         Ra = 100000000
                     if(layer < self.layer_limit):
-                        Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
-                        (1-float(self.factorVN[self.layerVN[layer+1]]))*self.Rz[layer+1][row][col]
+                        if layer in self.liq_layer:
+                            Rb = 0.5*self.Rz[layer][row][col] 
+                        elif layer+1 in self.liq_layer:
+                            Rb =  self.Rz[layer][row][col]+0.5*self.Rz[layer+1][row][col] 
+                        else:
+                            Rb = self.Rz[layer][row][col]
                     else: 
                         #Rb = math.inf
                         Rb = 100000000
+                   # if(layer < self.layer_limit):
+                   #     Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
+                   #     (1-float(self.factorVN[self.layerVN[layer+1]]))*self.Rz[layer+1][row][col]
+                   # else: 
+                   #     #Rb = math.inf
+                   #     Rb = 100000000
                 #current
                     #if self.I[layer][row][col]!=0:
 		    #Zihao: I don't know why both layer1 and layer2 has power in this case, the ptrace and flp shows only the first layers has power. I need to ask prachi about this self.I.items.
@@ -204,7 +220,22 @@ class SPICE_steadySolver:
                         myfile.write("R_{}_{}_{}_1 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row,col+1,Re))
                 #north resistance
                     if row != self.row_limit:	    
-                        myfile.write("R_{}_{}_{}_2 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row+1,col,Rs))
+                        #not liquid grid cell
+                        if self.glabels[layer][row][col]!='Liq':
+                            myfile.write("R_{}_{}_{}_2 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row+1,col,Rs))
+                        #liquid grid cell
+                        else:
+                            if row == 0:
+                                #inlet
+                                myfile.write("G_%d_%d_%d INLET Node%d_%d_%d INLET 0 %s\n"%(layer,row,col,layer,row,col,self.Conv[layer][row][col]))
+                                #channel
+                            else:
+                                myfile.write("G_%d_%d_%d Node%d_%d_%d Node%d_%d_%d VALUE = {(V(Node%d_%d_%d)+V(Node%d_%d_%d))/2*%s}\n"%(layer,row,col,layer,row-1,col,layer,row,col,layer,row-1,col,layer,row,col,self.Conv[layer][row][col]))
+                    if row == self.row_limit and self.glabels[layer][row][col] == 'Liq':
+                        #last channel
+                        myfile.write("G_%d_%d_%d Node%d_%d_%d Node%d_%d_%d VALUE = {(V(Node%d_%d_%d)+V(Node%d_%d_%d))/2*%s}\n"%(layer,row,col,layer,row-1,col,layer,row,col,layer,row-1,col,layer,row,col,self.Conv[layer][row][col]))
+                        #outlet
+                        myfile.write("G_%d_%d_%d Node%d_%d_%d INLET Node%d_%d_%d 0 %s\n"%(layer,row+1,col,layer,row,col,layer,row,col,self.Conv[layer][row][col]))
                 #above resistance
                     if layer != self.layer_limit: 
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer+1,row,col,Rb))
@@ -231,6 +262,7 @@ class SPICE_steadySolver:
         with open('RC_steady.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[1][:].split(','))))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
+            print(reshape_x)
         #os.system("cp RC_steady.cir.csv ../Example/results/RC_steady.cir.csv")
         #os.system("rm -rf RC_steady.cir.csv")
         return reshape_x

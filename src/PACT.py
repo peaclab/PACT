@@ -574,9 +574,10 @@ solver_properties['I']=dict_I
 solver_properties['Conv']=dict_Conv
 solver_properties['others']=dict_others
 solver_properties['g2bmap']=dict_g2bmap
+solver_properties['others']=dict_others
 #print("Printing dictionary")
 #print("HELLLLOOOOOO",solver_properties['others'])
-print("HELLLLOOOOOO",solver_properties['Conv'])
+#print("HELLLLOOOOOO",solver_properties['Conv'])
 #print("HELLLLOOOOOO",solver_properties['g2bmap'])
 #sys.exit(0)
 solver_properties['layer_virtual_nodes']=dict_virtual_nodes
