@@ -22,3 +22,31 @@
 0inputs+18816outputs (6major+74242minor)pagefaults 0swaps
 2.23user 0.36system 0:01.72elapsed 150%CPU (0avgtext+0avgdata 60288maxresident)k
 0inputs+18816outputs (6major+74263minor)pagefaults 0swaps
+2.21user 0.34system 0:01.89elapsed 134%CPU (0avgtext+0avgdata 60416maxresident)k
+40inputs+18832outputs (6major+74289minor)pagefaults 0swaps
+2.21user 0.29system 0:01.63elapsed 153%CPU (0avgtext+0avgdata 60416maxresident)k
+8inputs+18832outputs (6major+74321minor)pagefaults 0swaps
+2.18user 0.30system 0:01.76elapsed 141%CPU (0avgtext+0avgdata 60424maxresident)k
+8inputs+18824outputs (6major+74319minor)pagefaults 0swaps
+2.20user 0.39system 0:02.56elapsed 101%CPU (0avgtext+0avgdata 60420maxresident)k
+0inputs+18832outputs (6major+74306minor)pagefaults 0swaps
+2.17user 1.33system 0:02.30elapsed 152%CPU (0avgtext+0avgdata 60420maxresident)k
+8inputs+18832outputs (6major+74426minor)pagefaults 0swaps
+2.18user 0.35system 0:01.96elapsed 129%CPU (0avgtext+0avgdata 60416maxresident)k
+0inputs+18824outputs (6major+74331minor)pagefaults 0swaps
+2.22user 0.34system 0:02.03elapsed 126%CPU (0avgtext+0avgdata 60424maxresident)k
+0inputs+18824outputs (6major+74335minor)pagefaults 0swaps
+2.24user 0.35system 0:02.02elapsed 128%CPU (0avgtext+0avgdata 60420maxresident)k
+0inputs+18832outputs (6major+74322minor)pagefaults 0swaps
+2.28user 0.39system 0:04.51elapsed 59%CPU (0avgtext+0avgdata 60428maxresident)k
+24376inputs+18832outputs (58major+74271minor)pagefaults 0swaps
+2.19user 0.30system 0:01.63elapsed 153%CPU (0avgtext+0avgdata 60428maxresident)k
+0inputs+18824outputs (6major+74306minor)pagefaults 0swaps
+2.16user 0.34system 0:01.59elapsed 157%CPU (0avgtext+0avgdata 60420maxresident)k
+0inputs+18832outputs (6major+74306minor)pagefaults 0swaps
+2.13user 0.31system 0:01.56elapsed 156%CPU (0avgtext+0avgdata 60424maxresident)k
+0inputs+18824outputs (6major+74249minor)pagefaults 0swaps
+2.11user 0.34system 0:01.64elapsed 150%CPU (0avgtext+0avgdata 60412maxresident)k
+0inputs+18824outputs (6major+74269minor)pagefaults 0swaps
+2.14user 0.30system 0:01.56elapsed 156%CPU (0avgtext+0avgdata 60412maxresident)k
+0inputs+18824outputs (6major+74268minor)pagefaults 0swaps

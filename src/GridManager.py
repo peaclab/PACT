@@ -11,6 +11,39 @@ import HybridWick_LookupTable as LibHybridWick
 #import TwoPhaseVC as LibTwoPhase
 import sys
 
+def round_to_grid_X(coord,grid_dim):
+    tmp = round(float(coord)/grid_dim,40)
+    tmp_floor = math.floor(tmp)
+    tmp_ceil = math.ceil(tmp)
+    #print(tmp,tmp_ceil,abs(tmp-tmp_ceil))
+    if (abs(tmp-tmp_ceil))>0.001:
+        #print(f"X,FLOOR: {tmp_floor}")
+        return tmp_floor
+    else:
+        #print(f"X,CEIL: {tmp_ceil}")
+        return tmp_ceil
+def round_to_grid_tmp(coord,grid_dim):
+    tmp = round(float(coord)/grid_dim,40)
+    tmp_floor = math.floor(tmp)
+    tmp_ceil = math.ceil(tmp)
+    print(tmp,tmp_ceil,abs(tmp-tmp_ceil))
+    if (abs(tmp-tmp_ceil))>0.001:
+        print(f"X,FLOOR: {tmp_floor}")
+        return float(tmp_floor)
+    else:
+        print(f"X,CEIL: {tmp_ceil}")
+        return float(tmp_ceil)
+def round_to_grid_Y(coord,grid_dim):
+    tmp = round(float(coord)/grid_dim,40)
+    tmp_floor = math.floor(tmp)
+    tmp_ceil = math.ceil(tmp)
+    #print(tmp,tmp_ceil,abs(tmp-tmp_ceil))
+    if (abs(tmp-tmp_ceil))>0.001:
+        #print(f"Y,FLOOR: {tmp_floor}")
+        return tmp_floor
+    else:
+        #print(f"Y,CEIL: {tmp_ceil}")
+        return tmp_ceil
 class GridManager:
     def __init__(self,config_grid):
         #print("GridManager.py __init__()")
@@ -132,16 +165,30 @@ class GridManager:
             #print(self.power_densities)
             #print("Works!")
             #sys.exit(0)
-
-            flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_length,40)), axis=1)
+            
+            #flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_length,40)), axis=1)
+            flp_df['grid_left_x']= flp_df.apply(lambda x: round_to_grid_X(x.X,grid_length), axis=1)
+            flp_df['grid_bottom_y']= flp_df.apply(lambda x: int(self.grid_dict['rows']) - round_to_grid_Y(x.Y,grid_width) - 1,axis=1)
             flp_df['grid_bottom_y']= flp_df.apply(lambda x: int(self.grid_dict['rows']) - math.floor(round(float(x.Y)/grid_width,40)) - 1,axis=1)
+            #temp_x = flp_df.apply(lambda x: round(round_to_grid_tmp(round(float(x.X),20)+round(float(x['Length (m)']),20),grid_length),20), axis=1).round(40) #Panda Series
             temp_x = flp_df.apply(lambda x: (round(float(x.X),20)+round(float(x['Length (m)']),20))/grid_length, axis=1).round(40) #Panda Series
+            #temp_y = flp_df.apply(lambda x: round(round_to_grid_tmp(round(float(x.Y),20)+round(float(x['Width (m)']),20),grid_width),20), axis=1).round(40) #Panda Series
             temp_y = flp_df.apply(lambda x: (round(float(x.Y),20)+round(float(x['Width (m)']),20))/grid_width, axis=1).round(40)
+            for label,item in temp_x.items():
+                if abs(math.floor(item)-item)<0.001:
+                    temp_x[label] = math.floor(item)
+                elif abs(math.ceil(item)-item)<0.001:
+                    temp_x[label] = math.ceil(item)
+            for label,item in temp_y.items():
+                if abs(math.floor(item)-item)<0.001:
+                    temp_y[label] = math.floor(item)
+                elif abs(math.ceil(item)-item)<0.001:
+                    temp_y[label] = math.ceil(item)
             flp_df['grid_right_x'] = temp_x.apply(lambda x : math.floor(x) if math.ceil(x) != math.floor(x) else math.ceil(x) - 1 )
             flp_df['grid_top_y'] = temp_y.apply(lambda x : int(self.grid_dict['rows']) -  math.ceil(x) if math.ceil(x) != math.floor(x) else int(self.grid_dict['rows']) -math.floor(x))
-
+            #print(temp_x)
+            #print(temp_y)
             #print(flp_df)
-
             #left_x = set(flp_df['grid_left_x'].values)
             #right_x = set(flp_df['grid_right_x'].values)
             #top_y = set(flp_df['grid_top_y'].values)
@@ -622,4 +669,4 @@ class GridManager:
         return
         
 
-        
+    

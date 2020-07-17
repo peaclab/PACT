@@ -20,3 +20,5 @@
 184inputs+388024outputs (7major+2814791minor)pagefaults 0swaps
 189.67user 6.04system 1:10.05elapsed 279%CPU (0avgtext+0avgdata 738944maxresident)k
 0inputs+388000outputs (6major+2899162minor)pagefaults 0swaps
+127.55user 4.39system 0:41.15elapsed 320%CPU (0avgtext+0avgdata 739180maxresident)k
+96inputs+150232outputs (6major+2201261minor)pagefaults 0swaps

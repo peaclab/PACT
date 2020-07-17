@@ -2,7 +2,7 @@ import os,sys
 
 #grid_rows=['40']
 #grid_rows= ['5']
-grid_rows= ['256']
+grid_rows= ['128']
 grid_cols =  grid_rows
 grids_ll = [x+'x'+y for (x,y) in zip(grid_rows,grid_cols)]
 print(grids_ll)
@@ -27,7 +27,7 @@ for grids in grids_ll:
         utilization = ['85','90','95']
         for util in utilization:
             lcf_file = lcf+util+'_lcf.csv'	
-            outfile = chiplabel+util+"_"+grids+'.grid.steady'
+            outfile = chiplabel+util+"_"+grids+'.grid.pact.steady'
             grid_file = grid_folder+outfile
             scp_file = folder+outfile
             os.system('black.sh '+ lcf_file + ' ' + configFile + ' ' + modelParamsFile + ' ' + grid_file + ' ' + scp_file + ' ' + log_file)

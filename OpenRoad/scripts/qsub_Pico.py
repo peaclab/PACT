@@ -28,7 +28,7 @@ for grids in grids_ll:
         #utilization = ['90']
         for util in utilization:
             lcf_file = lcf+util+'_lcf.csv'	
-            outfile = chiplabel+util+"_"+grids+'.grid.steady'
+            outfile = chiplabel+util+"_"+grids+'.grid.pact.steady'
             grid_file = grid_folder+outfile
             scp_file = folder+outfile
             os.system('Pico.sh '+ lcf_file + ' ' + configFile + ' ' + modelParamsFile + ' ' + grid_file + ' ' + scp_file + ' ' + log_file)

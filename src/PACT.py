@@ -429,7 +429,6 @@ lcf_df = lcf_df.append(noPackage_layer)
 chipStack = ChipStack(lcf_df, defaultConfig, initTemp, defaultConfigFile,virtual_node_labels)
 #print (lcf_df, config, initTemp)
 #print (chipStack.display_Floorplans())
-#chipStack.display_Floorplans()
 ###chipStack.display_Floorplans('0')
 #print(chipStack.Layers_data[0].num_ptraces)
 #sys.exit(2)
@@ -657,6 +656,9 @@ if modelParams._sections['Solver'].get('name') == 'SPICE_transient':
                  gridManager.grid2block(chipStack, reshape, modelParams.get('Grid','grid_mode'),transient=True)
 gridManager.grid2block(chipStack, grid_temperature,modelParams.get('Grid','grid_mode'))
 
+#chipStack.display_Floorplans()
+#pd.set_option('display.max_rows', None)
+#pd.set_option('display.max_columns', None)
 
 #print("Back in CRI.py")
 #print(virtual_node_labels)
