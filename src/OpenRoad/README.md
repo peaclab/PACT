@@ -51,7 +51,7 @@ Addtional scripts
 
 transform_OpenRoad_flp_ptrace_to_HS.py: transform the OpenRoad flp and ptrace to HotSpot flp and ptrace
 
-python```
+```python
 python transform_OpenRoad_flp_ptrace_to_HS.py <flp> <ptrace>
 ```
   
