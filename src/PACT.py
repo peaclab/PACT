@@ -246,6 +246,7 @@ label_mode = {x: modelParams.get(x,'mode') for x in list_of_labels}
 #print(label_mode)
 #virtual_node_labels['NoPackage'] = 'bottom_center'
 #print(virtual_node_labels)
+#sys.exit(0)
 #DEBUG: print (list_of_labels)
 #DEBUG: print (config_label_dict)
 

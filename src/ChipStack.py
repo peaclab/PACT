@@ -2,6 +2,7 @@ import pandas as pd
 import math
 #from Layer import *
 from Layer import Layer
+import sys
 
 class ChipStack:
     def __init__(self,lcf_df,config_df,initTemp,defaultConfigFile,virtual_node_locations):
@@ -19,6 +20,8 @@ class ChipStack:
         lcf_df = lcf_df.reset_index(drop=True)
         self.Layers_data = lcf_df.apply(lambda x : Layer(x,defaultConfigFile,virtual_node_locations),axis=1) #Panda series
         self.Layers_data[self.num_layers-1].flp_df['Label']='NoPackage'
+        self.Layers_data[self.num_layers-1].virtual_node='bottom_center'
+        #print(self.Layers_data[self.num_layers-1].flp_df['virtual_node'])
         self.num_ptrace_lines = max([x.get_num_ptrace_lines() for y, x in self.Layers_data.items()])
         #print(self.num_ptrace_lines) 
         #Added
