@@ -5,7 +5,7 @@ import numpy as np
 def defineGridProperties(length, height,thickness,properties):
     ro = float(properties['thermalresistivity ((m-k)/w)'])
     sp = float(properties['specificheatcapacity (j/m^3k)'])
-    if height/length<1:
+    if thickness/length<1:
         aspect_ratio = thickness/length
     else:
         aspect_ratio = length/thickness
