@@ -188,6 +188,7 @@ class SPICE_steadySolver:
                     else:
                         #Ra = math.inf
                         Ra = 100000000
+                    """
                     if(layer < self.layer_limit):
                         if layer in self.liq_layer:
                             Rb = 0.5*self.Rz[layer][row][col] 
@@ -198,12 +199,13 @@ class SPICE_steadySolver:
                     else: 
                         #Rb = math.inf
                         Rb = 100000000
-                   # if(layer < self.layer_limit):
-                   #     Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
-                   #     (1-float(self.factorVN[self.layerVN[layer+1]]))*self.Rz[layer+1][row][col]
-                   # else: 
-                   #     #Rb = math.inf
-                   #     Rb = 100000000
+                    """
+                    if(layer < self.layer_limit):
+                        Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
+                        (1-float(self.factorVN[self.layerVN[layer+1]]))*self.Rz[layer+1][row][col]
+                    else: 
+                        #Rb = math.inf
+                        Rb = 100000000
                 #current
                     #if self.I[layer][row][col]!=0:
 		    #Zihao: I don't know why both layer1 and layer2 has power in this case, the ptrace and flp shows only the first layers has power. I need to ask prachi about this self.I.items.
