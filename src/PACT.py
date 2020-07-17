@@ -644,7 +644,7 @@ if(str(modelParams.get('Simulation','temperature_dependent'))=='True'):
             sys.exit(2)
     
     print("num iterations:",count)
-
+'''
 if modelParams._sections['Solver'].get('name') == 'SPICE_transient':
      with open("RC_transient.cir.csv","r")as myfile:
          for num, lines in enumerate(myfile):
@@ -655,6 +655,7 @@ if modelParams._sections['Solver'].get('name') == 'SPICE_transient':
                      myfile.write("step "+str(num-1)+" ")
                  #print(reshape)
                  gridManager.grid2block(chipStack, reshape, modelParams.get('Grid','grid_mode'),transient=True)
+'''
 gridManager.grid2block(chipStack, grid_temperature,modelParams.get('Grid','grid_mode'))
 
 #chipStack.display_Floorplans()

@@ -12,7 +12,7 @@ steady_state = False
 steady_state_solver = Solver
 transient = True
 step_size = 3.33ms
-total_simulation_time = 33.3ms
+total_simulation_time = 333ms
 ptrace_step_size = 3.33ms
 temperature_dependent = False
 convergence = 0.1
@@ -29,8 +29,8 @@ ll_transient_solver = TRAP
 [Grid]
 type = Uniform
 granularity = Grid
-rows = 256
-cols = 256
+rows = 1024
+cols = 1024
 grid_mode = max
 
 
