@@ -169,7 +169,7 @@ class GridManager:
             #flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_length,40)), axis=1)
             flp_df['grid_left_x']= flp_df.apply(lambda x: round_to_grid_X(x.X,grid_length), axis=1)
             flp_df['grid_bottom_y']= flp_df.apply(lambda x: int(self.grid_dict['rows']) - round_to_grid_Y(x.Y,grid_width) - 1,axis=1)
-            flp_df['grid_bottom_y']= flp_df.apply(lambda x: int(self.grid_dict['rows']) - math.floor(round(float(x.Y)/grid_width,40)) - 1,axis=1)
+            #flp_df['grid_bottom_y']= flp_df.apply(lambda x: int(self.grid_dict['rows']) - math.floor(round(float(x.Y)/grid_width,40)) - 1,axis=1)
             #temp_x = flp_df.apply(lambda x: round(round_to_grid_tmp(round(float(x.X),20)+round(float(x['Length (m)']),20),grid_length),20), axis=1).round(40) #Panda Series
             temp_x = flp_df.apply(lambda x: (round(float(x.X),20)+round(float(x['Length (m)']),20))/grid_length, axis=1).round(40) #Panda Series
             #temp_y = flp_df.apply(lambda x: round(round_to_grid_tmp(round(float(x.Y),20)+round(float(x['Width (m)']),20),grid_width),20), axis=1).round(40) #Panda Series
