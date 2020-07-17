@@ -44,4 +44,14 @@ $ python3 gridmesh.py --deff ./routed.def --gridsize 128
 
 The flow generates two files:  
 1- flp : contains the dimensions and the coordinates of each block in the grid.  
-2- ptrace : contains the power values of each block in the grid.  
+2- ptrace : contains the power values of each block in the grid. 
+
+Addtional scripts
+------------------
+
+transform_OpenRoad_flp_ptrace_to_HS.py: transform the OpenRoad flp and ptrace to HotSpot flp and ptrace
+python'''
+python transform_OpenRoad_flp_ptrace_to_HS.py <flp> <ptrace>
+'''
+transform_HS_PACT_flp.py: transform the HotSpot flp to PACT flp
+transform_HS_PACT_ptrace.py: transform the HotSpot ptrace to PACT ptrace
