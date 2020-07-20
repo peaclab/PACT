@@ -2,8 +2,8 @@ import os,sys
 
 #grid_rows=['40']
 #grid_rows= ['5']
-grid_rows= ['5']
-grid_cols =  grid_rows
+grid_rows= ['1000']
+grid_cols =  ['5']
 grids_ll = [x+'x'+y for (x,y) in zip(grid_rows,grid_cols)]
 print(grids_ll)
 htc_ll = ['0.01']
