@@ -219,16 +219,15 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 [1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),_ 2020.
 
 # Action Items:
+* Add the Xyce dependencies in the readme
+
+* For OpenRoad, Liquid cooling, M3D, and SCC test case, write a brief readme inside of the folder
+
 * move the repo to peaclab repo
-
-* Integrate Sofiane's vlsi flow code to this repo and add test cases---Need to ask Sofiane and try running Sofiane's VLSI tool
-
-* Add the transient ptrace to the data structure
 
 * Release the first version of the tool
 
 * HotSpot medium cost heat sink
 
-* Liquid cooling via microchannels
 
 
