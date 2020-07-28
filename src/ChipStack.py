@@ -7,20 +7,27 @@ import sys
 class ChipStack:
     def __init__(self,lcf_df,config_df,initTemp,defaultConfigFile,virtual_node_locations):
         self.create_InitTemp(initTemp)
-        self.create_Layer_data(lcf_df,defaultConfigFile,virtual_node_locations)
+        self.create_Layer_data(lcf_df,defaultConfigFile,virtual_node_locations,config_df)
         self.getChipDimensions()
         self.create_Config_dict(config_df)
         self.getVirtualNodes()
         #self.add_ConfigData(config_df)
         return
 
-    def create_Layer_data(self,lcf_df,defaultConfigFile,virtual_node_locations):
+    def create_Layer_data(self,lcf_df,defaultConfigFile,virtual_node_locations,config_df):
         self.num_layers=lcf_df['Layer'].count()
         lcf_df = lcf_df.sort_values('Layer',ascending=True)
         lcf_df = lcf_df.reset_index(drop=True)
         self.Layers_data = lcf_df.apply(lambda x : Layer(x,defaultConfigFile,virtual_node_locations),axis=1) #Panda series
-        self.Layers_data[self.num_layers-1].flp_df['Label']='NoPackage'
-        self.Layers_data[self.num_layers-1].virtual_node='bottom_center'
+        if "NoPackage" in config_df:
+            self.Layers_data[self.num_layers-1].flp_df['Label']='NoPackage'
+            self.Layers_data[self.num_layers-1].virtual_node='bottom_center'
+        if "HeatSink" in config_df:
+            self.Layers_data[self.num_layers-2].flp_df['Label']='HeatSink'
+            self.Layers_data[self.num_layers-1].flp_df['Label']='HeatSink'
+            self.Layers_data[self.num_layers-2].virtual_node='bottom_center'
+            self.Layers_data[self.num_layers-1].virtual_node='bottom_center'
+       
         #print(self.Layers_data[self.num_layers-1].flp_df['virtual_node'])
         self.num_ptrace_lines = max([x.get_num_ptrace_lines() for y, x in self.Layers_data.items()])
         #print(self.num_ptrace_lines) 

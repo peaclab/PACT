@@ -174,19 +174,41 @@ num_layers = lcf_df['Layer'].max()
 #noPackage_layer = lcf_df[lcf_df['Layer']==num_layers]
 #print("PRACHI debug:",num_layers)
 lcf_df.loc[:,'VerticalHeatFlow']=True #Add Vetical True for all other layers
-noPackage_layer = pd.DataFrame([],columns=['FloorplanFile','Layer','PtraceFile','LateralHeatFlow','VerticalHeatFlow','Thickness (m)'])
-noPackage_layer.loc[0,'FloorplanFile']=lcf_df.loc[num_layers,'FloorplanFile']
-noPackage_layer.loc[0,'Layer']=num_layers+1
-noPackage_layer.loc[0,'PtraceFile']=None
-noPackage_layer.loc[0,'LateralHeatFlow']=modelParams.get('NoPackage','LateralHeatFlow')
-noPackage_layer.loc[0,'VerticalHeatFlow']=modelParams.get('NoPackage','VerticalHeatFlow')
-noPackage_layer.loc[0,'Thickness (m)']=defaultConfig.get('NoPackage','thickness (m)')
-noPackage_layer.loc[0,'ConfigFile']=defaultConfigFile
-lcf_df = lcf_df.append(noPackage_layer,sort=False)
-#print(lcf_df.columns)
+if "NoPackage" in modelParams:
+    noPackage_layer = pd.DataFrame([],columns=['FloorplanFile','Layer','PtraceFile','LateralHeatFlow','VerticalHeatFlow','Thickness (m)'])
+    noPackage_layer.loc[0,'FloorplanFile']=lcf_df.loc[num_layers,'FloorplanFile']
+    noPackage_layer.loc[0,'Layer']=num_layers+1
+    noPackage_layer.loc[0,'PtraceFile']=None
+    noPackage_layer.loc[0,'LateralHeatFlow']=modelParams.get('NoPackage','LateralHeatFlow')
+    noPackage_layer.loc[0,'VerticalHeatFlow']=modelParams.get('NoPackage','VerticalHeatFlow')
+    noPackage_layer.loc[0,'Thickness (m)']=defaultConfig.get('NoPackage','thickness (m)')
+    noPackage_layer.loc[0,'ConfigFile']=defaultConfigFile
+    lcf_df = lcf_df.append(noPackage_layer,sort=False)
+    thickness_layers[num_layers+1] = float(defaultConfig.get('NoPackage','thickness (m)'))
+if "HeatSink" in modelParams:
+    HeatSpreader_layer = pd.DataFrame([],columns=['FloorplanFile','Layer','PtraceFile','LateralHeatFlow','VerticalHeatFlow','Thickness (m)'])
+    HeatSpreader_layer.loc[0,'FloorplanFile']=lcf_df.loc[num_layers,'FloorplanFile']
+    HeatSpreader_layer.loc[0,'Layer']=num_layers+1
+    HeatSpreader_layer.loc[0,'PtraceFile']=None
+    HeatSpreader_layer.loc[0,'LateralHeatFlow']=modelParams.get('HeatSink','LateralHeatFlow')
+    HeatSpreader_layer.loc[0,'VerticalHeatFlow']=modelParams.get('HeatSink','VerticalHeatFlow')
+    HeatSpreader_layer.loc[0,'Thickness (m)']=defaultConfig.get('HeatSink','heatspreader_thickness (m)')
+    HeatSpreader_layer.loc[0,'ConfigFile']=defaultConfigFile
+    lcf_df = lcf_df.append(HeatSpreader_layer,sort=False,ignore_index=True)
+    thickness_layers[num_layers+1] = float(defaultConfig.get('HeatSink','heatsink_thickness (m)'))
+    HeatSink_layer = pd.DataFrame([],columns=['FloorplanFile','Layer','PtraceFile','LateralHeatFlow','VerticalHeatFlow','Thickness (m)'])
+    HeatSink_layer.loc[0,'FloorplanFile']=lcf_df.loc[num_layers,'FloorplanFile']
+    HeatSink_layer.loc[0,'Layer']=num_layers+2
+    HeatSink_layer.loc[0,'PtraceFile']=None
+    HeatSink_layer.loc[0,'LateralHeatFlow']=modelParams.get('HeatSink','LateralHeatFlow')
+    HeatSink_layer.loc[0,'VerticalHeatFlow']=modelParams.get('HeatSink','VerticalHeatFlow')
+    HeatSink_layer.loc[0,'Thickness (m)']=defaultConfig.get('HeatSink','heatsink_thickness (m)')
+    HeatSink_layer.loc[0,'ConfigFile']=defaultConfigFile
+    lcf_df = lcf_df.append(HeatSink_layer,sort=False,ignore_index=True)
+    thickness_layers[num_layers+2] = float(defaultConfig.get('HeatSink','heatsink_thickness (m)'))
+    print(lcf_df)
 #sys.exit(0)
 #lcf_df = lcf_df.append(pd.Series([num_layers+1,lcf_df.loc[num_layers,'FloorplanFile'],defaultConfig.get('NoPackage','thickness (m)'), '',modelParams.get('NoPackage','LateralHeatFlow'), modelParams.get('NoPackage','VerticalHeatFlow')], index=lcf_df.columns ), ignore_index=True)
-thickness_layers[num_layers+1] = float(defaultConfig.get('NoPackage','thickness (m)'))
 #print(lcf_df)
 #sys.exit(2)
 #print(thickness_layers)
@@ -229,7 +251,10 @@ config_label_df['ConfigFile'] = config_label_df['ConfigFile'].fillna(defaultConf
 
 #np.unique(a.set_index(['fname','lname']).index.values)
 config_label_dict = {k: g["Label"].tolist() for k,g in config_label_df.groupby("ConfigFile")}
-config_label_dict[defaultConfigFile] = config_label_dict[defaultConfigFile] + ['NoPackage']
+if "NoPackage" in modelParams:
+    config_label_dict[defaultConfigFile] = config_label_dict[defaultConfigFile] + ['NoPackage']
+if "HeatSink" in modelParams:
+    config_label_dict[defaultConfigFile] = config_label_dict[defaultConfigFile] + ['HeatSink']
 #config_label_dict[default_config_file] = config_label_dict[default_config_file] + ['NoPackage']
 #print(config_label_dict)
 ##### debuf for No Package #####
@@ -238,7 +263,10 @@ config_label_dict[defaultConfigFile] = config_label_dict[defaultConfigFile] + ['
 #########
 
 list_of_labels = config_label_df['Label'].unique()
-list_of_labels = np.append(list_of_labels,['NoPackage'],axis=0)
+if "NoPackage" in modelParams:
+    list_of_labels = np.append(list_of_labels,['NoPackage'],axis=0)
+if "HeatSink" in modelParams:
+    list_of_labels = np.append(list_of_labels,['HeatSink'],axis=0)
 
 #print(list_of_labels,type(list_of_labels),list_of_labels.shape)
 virtual_node_labels = {x: modelParams.get(x,'virtual_node') for x  in list_of_labels}
@@ -324,6 +352,7 @@ for cf in config_label_dict.keys():
             if not (set(properties_needed).issubset(set(properties))):
                 #print(set(properties_needed))
                 #print(set(properties))
+                #print(set(properties_needed).difference(set(properties)))
                 print("ERROR: Mising information about \'", section,"\'in",cf)
                 print("Please ensure all the properties in the modelParams file are specified in the config file.")
                 sys.exit(2)

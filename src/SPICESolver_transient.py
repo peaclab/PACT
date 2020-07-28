@@ -104,15 +104,32 @@ class SPICE_transientSolver:
         self.Conv = self.dict_properties['Conv']
         self.glabels = self.dict_properties['g2bmap']
         self.liq_layer = []
+        self.heatsink_layer = []
+        self.heatsink = None
+        self.heatspreader = None
+        self.heatsink_others = {}
+        self.heatspreader_others = {}
         for layer,label in self.glabels.items():
             if 'Liq' in label:
                 self.liq_layer.append(layer)
-        if 'inlet_T_constant' in self.dict_properties['others'][1].keys():
-            self.inlet_T_constant = float(self.dict_properties['others'][1]['inlet_T_constant'])
-
+        for layer,label in self.glabels.items():
+            if 'HeatSink' in label:
+                self.heatsink_layer.append(layer)
+        if len(self.heatsink_layer)!=0:
+            self.heatspreader = self.heatsink_layer[0] 
+            self.heatsink = self.heatsink_layer[1] 
+            self.heatsink_others = self.dict_properties['others'][self.heatsink]
+            self.heatspreader_others = self.dict_properties['others'][self.heatspreader]
+        for item in self.dict_properties['others'].items():
+            for key in item[1].keys():
+                if key == 'inlet_T_constant':
+                    self.inlet_T_constant=float(item[1][key]) 
         # print(self.I.items())
         #self.r_amb_reciprocal = round(1/self.r_amb,6)
         self.r_amb_reciprocal = 1/self.r_amb
+        self.I_avg = {}
+        for key,value in self.I.items():
+            self.I_avg[key] = np.mean(value,axis=0)
         #self.r_amb_reciprocal = 1/self.r_amb 
         #self.b=[]
         #for key,value in self.I.items():
@@ -212,7 +229,7 @@ class SPICE_transientSolver:
                     #if self.I[layer][row][col]!=0:
 		    #Zihao: I don't know why both layer1 and layer2 has power in this case, the ptrace and flp shows only the first layers has power. I need to ask prachi about this self.I.items.
                     #if layer == 0:
-                    if layer!= self.layer_limit:
+                    if layer!= self.layer_limit and layer!=self.heatspreader and self.I_avg[layer][row][col]!=0:
                         i = 1
                         #print(len(self.I[layer]))
                         if len(self.I[layer])>1:
@@ -224,11 +241,23 @@ class SPICE_transientSolver:
                                 i+=1
                             text+=")\n"
                             myfile.write(text)
-                        else:
+                        elif layer!=self.heatspreader and self.I_avg[layer][row][col]!=0:
                             myfile.write("I_{}_{}_{} GND Node{}_{}_{} PULSE(0 {}A 0s 0s 0s {} {})\n".format(layer,row,col,layer, row, col, self.I[layer][0][row][col],self.total_time,self.total_time))
                 #east resistance
                     if col != self.col_limit:
                         myfile.write("R_{}_{}_{}_1 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row,col+1,Re))
+                    #Heat Spreader right
+                    if col == self.col_limit and layer==self.heatspreader:
+                        myfile.write("Rsp_{}_{}_{}_1 Node{}_{}_{} Node_sp_right {}\n".format(layer,row,col,layer, row, col,self.Rx[layer][row][col]/2+self.row_limit*self.heatspreader_others['r_sp1_x_constant']))
+                #Heat Sink right
+                    if col == self.col_limit and layer==self.heatsink:
+                        myfile.write("Rhs_{}_{}_{}_1 Node{}_{}_{} Node_hs_right {}\n".format(layer,row,col,layer, row, col,self.Rx[layer][row][col]/2+self.row_limit*self.heatsink_others['r_hs1_x_constant']))
+                #Heat Spreader left
+                    if col == 0 and layer==self.heatspreader:
+                        myfile.write("Rsp_{}_{}_{}_1 Node{}_{}_{} Node_sp_left {}\n".format(layer,row,col,layer, row, col,self.Rx[layer][row][col]/2+self.row_limit*self.heatspreader_others['r_sp1_x_constant']))
+                #Heat Sink left
+                    if col == 0 and layer==self.heatsink:
+                        myfile.write("Rhs_{}_{}_{}_1 Node{}_{}_{} Node_hs_right {}\n".format(layer,row,col,layer, row, col,self.Rx[layer][row][col]/2+self.row_limit*self.heatsink_others['r_hs1_x_constant']))
                 #north resistance
                     if row != self.row_limit:
                         #not liquid grid cell
@@ -250,17 +279,92 @@ class SPICE_transientSolver:
 
                 #    if row != self.row_limit:	    
                 #        myfile.write("R_{}_{}_{}_2 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row+1,col,Rs))
+                #Heat spreader top
+                    if row == self.row_limit and layer==self.heatspreader:
+                        myfile.write("Rsp_{}_{}_{}_2 Node{}_{}_{} Node_sp_top {}\n".format(layer,row,col,layer, row, col,self.Ry[layer][row][col]/2+self.col_limit*self.heatspreader_others['r_sp1_y_constant']))
+                #Heat sink top
+                    if row == self.row_limit and layer==self.heatsink:
+                        myfile.write("Rhs_{}_{}_{}_2 Node{}_{}_{} Node_hs_top {}\n".format(layer,row,col,layer, row, col,self.Ry[layer][row][col]/2+self.col_limit*self.heatsink_others['r_hs1_y_constant']))
+                #Heat spreader bot
+                    if row == 0 and layer==self.heatspreader:
+                        myfile.write("Rsp_{}_{}_{}_2 Node{}_{}_{} Node_sp_bot {}\n".format(layer,row,col,layer, row, col,self.Ry[layer][row][col]/2+self.col_limit*self.heatspreader_others['r_sp1_y_constant']))
+                #Heat sink top
+                    if row == 0 and layer==self.heatsink:
+                        myfile.write("Rhs_{}_{}_{}_2 Node{}_{}_{} Node_hs_bot {}\n".format(layer,row,col,layer, row, col,self.Ry[layer][row][col]/2+self.col_limit*self.heatsink_others['r_hs1_y_constant']))
                 #above resistance
                     if layer != self.layer_limit: 
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer+1,row,col,Rb))
-                    else:
+                    elif layer!=self.heatsink:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
                     myfile.write("C_{}_{}_{} Node{}_{}_{} GND {}\n".format(layer,row,col,layer,row, col, self.C[layer][row][col]))
-                myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
+                if len(self.heatsink_layer)!=0:
+                #add heat spreader to heat sink inner node
+                    myfile.write(f"R_sp_hs_in_left Node_sp_left Node_hs_in_left {self.heatspreader_others['r_sp_per_x_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_sp_hs_in_right Node_sp_right Node_hs_in_right {self.heatspreader_others['r_sp_per_x_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_sp_hs_in_top Node_sp_top Node_hs_in_top {self.heatspreader_others['r_sp_per_y_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_sp_hs_in_bot Node_sp_bot Node_hs_in_bot {self.heatspreader_others['r_sp_per_y_constant']}")
+                    myfile.write('\n')
+                    #add heat hinfk inner to heat sink outter node
+                    myfile.write(f"R_hs_hs_left Node_hs_in_left Node_hs_out_left {self.heatsink_others['r_hs2_x_constant']+self.heatsink_others['r_hs_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_hs_right Node_hs_in_right Node_hs_out_right {self.heatsink_others['r_hs2_x_constant']+self.heatsink_others['r_hs_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_hs_top Node_hs_in_top Node_hs_out_top {self.heatsink_others['r_hs2_y_constant']+self.heatsink_others['r_hs_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_hs_bot Node_hs_in_bot Node_hs_out_bot {self.heatsink_others['r_hs2_y_constant']+self.heatsink_others['r_hs_constant']}")
+                    myfile.write('\n')
+                    #add heat sink to ambient R
+                    myfile.write(f"R_hs_amb_in_left Node_hs_in_left GND {self.heatsink_others['r_hs_c_per_x_constant']+self.heatsink_others['r_amb_c_per_x_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_amb_in_right Node_hs_in_right GND {self.heatsink_others['r_hs_c_per_x_constant']+self.heatsink_others['r_amb_c_per_x_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_amb_in_top Node_hs_in_top GND {self.heatsink_others['r_hs_c_per_y_constant']+self.heatsink_others['r_amb_c_per_y_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_amb_in_bot Node_hs_in_bot GND {self.heatsink_others['r_hs_c_per_y_constant']+self.heatsink_others['r_amb_c_per_y_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_amb_out_left Node_hs_out_left GND {self.heatsink_others['r_hs_per_constant']+self.heatsink_others['r_amb_per_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_amb_out_right Node_hs_out_right GND {self.heatsink_others['r_hs_per_constant']+self.heatsink_others['r_amb_per_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_amb_out_top Node_hs_out_top GND {self.heatsink_others['r_hs_per_constant']+self.heatsink_others['r_amb_per_constant']}")
+                    myfile.write('\n')
+                    myfile.write(f"R_hs_amb_out_bot Node_hs_out_bot GND {self.heatsink_others['r_hs_per_constant']+self.heatsink_others['r_amb_per_constant']}")
+                    myfile.write('\n')
+
+
+
+                    #add capaciatance for extra package node
+    #add capacit    ance for extra package nodes
+                    myfile.write("C_sp_per_y_top Node_sp_top GND {}\n".format(self.heatspreader_others['c_sp_per_y_constant']))
+                    myfile.write("C_sp_per_y_bot Node_sp_bot GND {}\n".format(self.heatspreader_others['c_sp_per_y_constant']))
+                    myfile.write("C_sp_per_x_left Node_sp_left GND {}\n".format(self.heatspreader_others['c_sp_per_x_constant']))
+                    myfile.write("C_sp_per_x_right Node_sp_right GND {}\n".format(self.heatspreader_others['c_sp_per_x_constant']))
+                    myfile.write("C_hs_c_per_y_top Node_hs_in_top GND {}\n".format(self.heatsink_others['c_hs_c_per_y_constant']))
+                    myfile.write("C_hs_c_per_y_bot Node_hs_in_bot GND {}\n".format(self.heatsink_others['c_hs_c_per_y_constant']))
+                    myfile.write("C_hs_c_per_x_left Node_hs_in_left GND {}\n".format(self.heatsink_others['c_hs_c_per_x_constant']))
+                    myfile.write("C_hs_c_per_x_right Node_hs_in_right GND {}\n".format(self.heatsink_others['c_hs_c_per_x_constant']))
+                    myfile.write("C_hs_per_top Node_hs_out_top GND {}\n".format(self.heatsink_others['c_hs_per_constant']))
+                    myfile.write("C_hs_per_bot Node_hs_out_bot GND {}\n".format(self.heatsink_others['c_hs_per_constant']))
+                    myfile.write("C_hs_per_left Node_hs_out_left GND {}\n".format(self.heatsink_others['c_hs_per_constant']))
+                    myfile.write("C_hs_per_right Node_hs_out_right GND {}\n".format(self.heatsink_others['c_hs_per_constant']))
+                    myfile.write("C_amb_per_top Node_hs_out_top GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
+                    myfile.write("C_amb_per_bot Node_hs_out_bot GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
+                    myfile.write("C_amb_per_left Node_hs_out_left GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
+                    myfile.write("C_amb_per_right Node_hs_out_right GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
+            
+
+
+
+
+
+                #myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
                 # disable zorltan for mono3D simualtion (useful for solving the linear system partitioning probelm)
                 #myfile.write(f'.OPTIONS LINSOL TR_PARTITION=0 \n')
                 # enable flat round robin device partitioning (useful for device partitioning problem)
-                #myfile.write(f'.OPTIONS DIST STRATEGY=2\n')
+                myfile.write(f'.OPTIONS DIST STRATEGY=2\n')
                 myfile.write(f'.OPTIONS TIMEINT METHOD={self.ll_solver}\n')
                 myfile.write(f'.OPTIONS OUTPUT INITIAL_INTERVAL={self.step_size} {self.total_time}\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')

@@ -6,6 +6,8 @@ import math
 #import Solid as LibCu
 #import Solid as LibNoPackage
 import Solid as LibSolid
+import HeatSink as LibHeatSink
+import HeatSpreader as LibHeatSpreader
 import Liquid as LibLiquid
 import HybridWick_LookupTable as LibHybridWick
 #import TwoPhaseVC as LibTwoPhase
@@ -137,12 +139,12 @@ class GridManager:
         self.Lock = np.zeros(self.Lock.shape)
         self.g2bmap = np.empty(self.g2bmap.shape,dtype="<U10")
         flp_df = layer_obj.flp_df
+        chip_length = (flp_df['Length (m)']+flp_df['X']).max()
+        chip_width = (flp_df['Width (m)']+flp_df['Y']).max()
         label_ll = flp_df['Label'].unique()
         self.Conv = np.zeros(self.Conv.shape)
-        #print(label_ll)
-
         self.power_densities = 0
-        if(layer_obj.layer_num < num_layers-1):
+        if(layer_obj.layer_num < num_layers-1) and ("HeatSink" not in label_ll):
             ####FIND BOUNDARIES###
             #flp_df['grid_left_x']= flp_df.apply(lambda x: math.floor(round(float(x.X)/grid_width,8)), axis=1)
             X_vals = np.round(flp_df['X'].values,20)
@@ -259,7 +261,9 @@ class GridManager:
                         #self.label_config_dict[(label,cfile)]=LibNoPackage.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['NoPackage'])
                         self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['NoPackage'])
                         #print(self.label_config_dict[(label,cfile)])
-    
+                    elif(label=='HeatSink'):
+                        self.label_config_dict[(label,cfile)]=LibHeatSink.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['HeatSink'],chip_length,chip_width)
+                    
                     for key in self.label_config_dict[(label,cfile)].keys():
                         if key.endswith("_constant"):
                             layer_obj.update_others_constants(key, self.label_config_dict[(label,cfile)][key])
@@ -311,6 +315,7 @@ class GridManager:
 
                 #sys.exit(0)
             #print("Lateral Heat Flow for layer",layer_obj.layer_num,"is",layer_obj.LateralHeatFlow)
+            
             if(str(layer_obj.LateralHeatFlow) == 'True'):
                 #print("Lateral Heat Flow is TRUE for layer",layer_obj.layer_num)
                 layer_obj.Rx = self.Rx
@@ -323,13 +328,11 @@ class GridManager:
             layer_obj.Rz = self.Rz
             layer_obj.C = self.C
             layer_obj.Conv = self.Conv
-            #print("others:",self.others)
 #Zihao 
             layer_obj.I = self.I
             layer_obj.Lock = self.Lock
             layer_obj.g2bmap = self.g2bmap
-
-            if(layer_obj.layer_num == num_layers-2):
+            if(layer_obj.layer_num == num_layers-2) and ("NoPackage" in self.config):
                 self.noPackage_grid_left_x = flp_df['grid_left_x']
                 self.noPackage_grid_right_x = flp_df['grid_right_x']
                 self.noPackage_grid_bottom_y = flp_df['grid_bottom_y']
@@ -350,8 +353,29 @@ class GridManager:
                 #print(layer_obj.Rx, layer_obj.Ry)
                 #layer_obj.Rx = np.ones(self.Rx.shape) * math.inf
                 #layer_obj.Ry = np.ones(self.Rx.shape) * math.inf
+            if(layer_obj.layer_num == num_layers-3) and ("HeatSink" in self.config):
+                self.HeatSink_grid_left_x = flp_df['grid_left_x']
+                self.HeatSink_grid_right_x = flp_df['grid_right_x']
+                self.HeatSink_grid_bottom_y = flp_df['grid_bottom_y']
+                self.HeatSink_grid_top_y = flp_df['grid_top_y']
+                #self.noPackage_grid_left_x = grid_left_x
+                #self.noPackage_grid_right_x = grid_right_x
+                #self.noPackage_grid_bottom_y = grid_bottom_y
+                #self.noPackage_grid_top_y = grid_top_y
+                #self.noPackage_g2bmap = self.g2bmap
+                #self.noPackage_g2bmap = np.full((rows,cols),"NoPackage"))
+                self.HeatSink_Lock = self.Lock
+                #print("Earlier no PAckage resistances: Rx and Ry",self.Rx,self.Ry)
+                #self.noPackage_Rx = self.Rx
+                #self.noPackage_Ry = self.Ry
+            #if(layer_obj.layer_num == 1):
+                #print("VC Layer!!! Rz values:")
+                #print(layer_obj.Rz)
+                #print(layer_obj.Rx, layer_obj.Ry)
+                #layer_obj.Rx = np.ones(self.Rx.shape) * math.inf
+                #layer_obj.Ry = np.ones(self.Rx.shape) * math.inf
 
-        else:
+        elif "NoPackage" in self.config:
             #print("NoPackageLayer")
             #print("layer_obj.LateralHeatFlow =",layer_obj.LateralHeatFlow )
             #print("layer_obj.VerticalHeatFlow =",layer_obj.VerticalHeatFlow )
@@ -445,7 +469,106 @@ class GridManager:
         #    print("r_amb not in Layer",layer_obj.layer_num)
             #pass
         #print("Hello")
+        else:
+            #print("HeatSinkLayer")
+            #print("layer_obj.LateralHeatFlow =",layer_obj.LateralHeatFlow )
+            #print("layer_obj.VerticalHeatFlow =",layer_obj.VerticalHeatFlow )
+            #sys.exit(2)
+            #print(f"layer_number:{num_layers}")
+            flp_df['grid_left_x']=self.HeatSink_grid_left_x 
+            flp_df['grid_right_x']=self.HeatSink_grid_right_x 
+            flp_df['grid_bottom_y']=self.HeatSink_grid_bottom_y
+            flp_df['grid_top_y']=self.HeatSink_grid_top_y 
+            #print(grid_length,grid_width,thickness,self.config._sections['NoPackage'])
+            if(layer_obj.LateralHeatFlow or layer_obj.VerticalHeatFlow):
+                for (label,cfile) in self.label_config_dict.keys():
+                    #print ("PRACHI",label,cfile)
+                    if(label=='HeatSink'):
+                        #print("4")
+                        #NoPackage_info=LibNoPackage.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['NoPackage'])
+                        HeatSink_info=LibHeatSink.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['HeatSink'],chip_length,chip_width)
+                        HeatSpreader_info=LibHeatSpreader.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['HeatSink'],chip_length,chip_width)
+                        break
+            #layer_obj.Rx = np.full((int(self.grid_dict['rows']),int(self.grid_dict['cols'])),np.inf)
+            #layer_obj.Ry = np.full((int(self.grid_dict['rows']),int(self.grid_dict['cols'])),np.inf)
+            for key in HeatSink_info.keys():
+                if key.endswith("_constant"):
+                    layer_obj.update_others_constants(key, HeatSink_info[key])
+            for key in HeatSpreader_info.keys():
+                if key.endswith("_constant"):
+                    layer_obj.update_others_constants(key, HeatSpreader_info[key])
+            #print(layer_obj.LateralHeatFlow)
+            if (str(layer_obj.LateralHeatFlow) == 'True'):
+                #print("noPackage layer has lateral TRUE")
+                if(layer_obj.layer_num == num_layers-1):
+                    layer_obj.Rx = np.ones(self.Rx.shape) * HeatSink_info['Rx']
+                    layer_obj.Ry = np.ones(self.Ry.shape) * HeatSink_info['Ry']
+                    layer_obj.C = np.ones(self.C.shape) * HeatSink_info['Capacitance']
+                if(layer_obj.layer_num == num_layers-2):
+                    layer_obj.Rx = np.ones(self.Rx.shape) * HeatSpreader_info['Rx']
+                    layer_obj.Ry = np.ones(self.Ry.shape) * HeatSpreader_info['Ry']
+                    layer_obj.C = np.ones(self.C.shape) * HeatSpreader_info['Capacitance']
+                #layer_obj.Ry = self.noPackage_Ry
+            else:
+                #print("noPackage layer has lateral FALSE")
+                if(layer_obj.layer_num == num_layers-1):
+                    layer_obj.Rx = np.ones(self.Rx.shape) * math.inf
+                    layer_obj.Ry = np.ones(self.Ry.shape) * math.inf
+                    layer_obj.C = np.ones(self.C.shape) * HeatSink_info['Capacitance']
+                if(layer_obj.layer_num == num_layers-2):
+                    layer_obj.Rx = np.ones(self.Rx.shape) * math.inf
+                    layer_obj.Ry = np.ones(self.Ry.shape) * math.inf
+                    layer_obj.C = np.ones(self.C.shape) * HeatSpreader_info['Capacitance']
+            layer_obj.Conv = np.ones(self.Conv.shape) * HeatSink_info['Conv']
+
+
+
+            #print(layer_obj.VerticalHeatFlow)
+            r_amb = 1/(1e5*grid_length*grid_width) + HeatSink_info['Rz']
+            layer_obj.Rz = np.full((int(self.grid_dict['rows']),int(self.grid_dict['cols'])),r_amb)
+            if(layer_obj.layer_num == num_layers-2):
+                layer_obj.Rz = np.ones(self.Rz.shape) * HeatSpreader_info['Rz']
+
+            
+            #print("Rz",layer_obj.Rz)
+            #layer_obj.C = np.ones((int(self.grid_dict['rows']),int(self.grid_dict['cols'])),dtype=float)
+            val, unit = self.config.get('Init','ambient').split()
+            if (unit=='K' or unit == 'Kelvin'):
+                val = round(float(val),6)
+            elif (unit=='C' or 'Celsius'):
+                val = round(float(val),6) + 273.15
+            #P_noPackage = round(val/r_amb,6)
+            P_HeatSink = val/r_amb
+            layer_obj.r_amb = r_amb
+            #print("PRACHI: (NoPackage) r_amb and Power(per_grid) for dummy layer are",r_amb,P_noPackage)
+            #layer_obj.I = np.full((int(self.grid_dict['rows']),int(self.grid_dict['cols'])),P_noPackage)
+            #PRACHI: check the below statement
+            layer_obj.I = np.full((self.I.shape),P_HeatSink)
+            layer_obj.Lock = self.HeatSink_Lock
+            #layer_obj.g2bmap = self.noPackage_g2bmap
+            layer_obj.g2bmap = np.full((rows,cols),"HeatSink")
+            layer_obj.flp_df = flp_df
+        #np.set_printoptions(threshold=np.inf)
+        #####Undo below prints if you want more detailed insights
+        #print("Layer",layer_obj.layer_num)
+        #print("Rx",np.max(layer_obj.Rx), np.min(layer_obj.Rx),layer_obj.Rx)
+        #print("Ry",np.max(layer_obj.Ry), np.min(layer_obj.Ry),layer_obj.Ry)
+        #print("Rz",np.max(layer_obj.Rz), np.min(layer_obj.Rz),layer_obj.Rz)
+        #print("C",layer_obj.C)
+        #print("I",layer_obj.I)
+        #if(layer_obj.layer_num == 1):
+        #    sys.exit(2)
+
+        #print(layer_obj.Lock)
+        #print("g2bmap",layer_obj.g2bmap)
+        #try:
+        #    print("r_amb =",layer_obj.r_amb,"in layer",layer_obj.layer_num)
+        #except:
+        #    print("r_amb not in Layer",layer_obj.layer_num)
+            #pass
+        #print("Hello")
         return layer_obj
+
 
     """
     def createUniformGridsWithOccupancy(self, layer_obj, grid_length, grid_width):
