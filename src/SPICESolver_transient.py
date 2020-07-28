@@ -360,11 +360,11 @@ class SPICE_transientSolver:
 
 
 
-                #myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
+                myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
                 # disable zorltan for mono3D simualtion (useful for solving the linear system partitioning probelm)
                 #myfile.write(f'.OPTIONS LINSOL TR_PARTITION=0 \n')
                 # enable flat round robin device partitioning (useful for device partitioning problem)
-                myfile.write(f'.OPTIONS DIST STRATEGY=2\n')
+                #myfile.write(f'.OPTIONS DIST STRATEGY=2\n')
                 myfile.write(f'.OPTIONS TIMEINT METHOD={self.ll_solver}\n')
                 myfile.write(f'.OPTIONS OUTPUT INITIAL_INTERVAL={self.step_size} {self.total_time}\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')

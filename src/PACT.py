@@ -206,7 +206,6 @@ if "HeatSink" in modelParams:
     HeatSink_layer.loc[0,'ConfigFile']=defaultConfigFile
     lcf_df = lcf_df.append(HeatSink_layer,sort=False,ignore_index=True)
     thickness_layers[num_layers+2] = float(defaultConfig.get('HeatSink','heatsink_thickness (m)'))
-    print(lcf_df)
 #sys.exit(0)
 #lcf_df = lcf_df.append(pd.Series([num_layers+1,lcf_df.loc[num_layers,'FloorplanFile'],defaultConfig.get('NoPackage','thickness (m)'), '',modelParams.get('NoPackage','LateralHeatFlow'), modelParams.get('NoPackage','VerticalHeatFlow')], index=lcf_df.columns ), ignore_index=True)
 #print(lcf_df)

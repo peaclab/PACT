@@ -3,7 +3,7 @@
 ***** Welcome to the Xyce(TM) Parallel Electronic Simulator
 *****
 ***** This is version Xyce Release 6.12-opensource
-***** Date: Mon Jul 27 20:08:14 EDT 2020
+***** Date: Mon Jul 27 20:44:38 EDT 2020
 
 
 ***** Executing netlist RC_transient.cir
@@ -27,83 +27,83 @@
 ***** Beginning Transient Calculation...
 
 ***** Percent complete: 1.05 %
-***** Current system time: Mon Jul 27 20:08:15 2020
-***** Estimated time to completion:  1 min., 56 sec.
+***** Current system time: Mon Jul 27 20:44:39 2020
+***** Estimated time to completion: 54 sec.
 
 ***** Percent complete: 2.11667 %
-***** Current system time: Mon Jul 27 20:08:15 2020
-***** Estimated time to completion: 59 sec.
+***** Current system time: Mon Jul 27 20:44:39 2020
+***** Estimated time to completion: 29 sec.
 
 ***** Percent complete: 3.33333 %
-***** Current system time: Mon Jul 27 20:08:15 2020
-***** Estimated time to completion: 39 sec.
-
-***** Percent complete: 4.82667 %
-***** Current system time: Mon Jul 27 20:08:16 2020
-***** Estimated time to completion: 31 sec.
-
-***** Percent complete: 6.53333 %
-***** Current system time: Mon Jul 27 20:08:16 2020
-***** Estimated time to completion: 23 sec.
-
-***** Percent complete: 7.6 %
-***** Current system time: Mon Jul 27 20:08:16 2020
-***** Estimated time to completion: 22 sec.
-
-***** Percent complete: 8.66667 %
-***** Current system time: Mon Jul 27 20:08:16 2020
+***** Current system time: Mon Jul 27 20:44:39 2020
 ***** Estimated time to completion: 20 sec.
 
+***** Percent complete: 4.82667 %
+***** Current system time: Mon Jul 27 20:44:39 2020
+***** Estimated time to completion: 18 sec.
+
+***** Percent complete: 6.53333 %
+***** Current system time: Mon Jul 27 20:44:39 2020
+***** Estimated time to completion: 14 sec.
+
+***** Percent complete: 7.6 %
+***** Current system time: Mon Jul 27 20:44:39 2020
+***** Estimated time to completion: 14 sec.
+
+***** Percent complete: 8.66667 %
+***** Current system time: Mon Jul 27 20:44:39 2020
+***** Estimated time to completion: 13 sec.
+
 ***** Percent complete: 10 %
-***** Current system time: Mon Jul 27 20:08:16 2020
-***** Estimated time to completion: 17 sec.
+***** Current system time: Mon Jul 27 20:44:39 2020
+***** Estimated time to completion: 12 sec.
 
 ***** Percent complete: 11.4933 %
-***** Current system time: Mon Jul 27 20:08:16 2020
-***** Estimated time to completion: 17 sec.
+***** Current system time: Mon Jul 27 20:44:40 2020
+***** Estimated time to completion: 12 sec.
 
 ***** Percent complete: 13.2 %
-***** Current system time: Mon Jul 27 20:08:16 2020
-***** Estimated time to completion: 15 sec.
+***** Current system time: Mon Jul 27 20:44:40 2020
+***** Estimated time to completion: 10 sec.
 
 ***** Percent complete: 16.6133 %
-***** Current system time: Mon Jul 27 20:08:16 2020
-***** Estimated time to completion: 11 sec.
+***** Current system time: Mon Jul 27 20:44:40 2020
+***** Estimated time to completion:  8 sec.
 
 ***** Percent complete: 23.44 %
-***** Current system time: Mon Jul 27 20:08:16 2020
-***** Estimated time to completion:  7 sec.
-
-***** Percent complete: 33.44 %
-***** Current system time: Mon Jul 27 20:08:16 2020
+***** Current system time: Mon Jul 27 20:44:40 2020
 ***** Estimated time to completion:  5 sec.
 
-***** Percent complete: 43.44 %
-***** Current system time: Mon Jul 27 20:08:17 2020
+***** Percent complete: 33.44 %
+***** Current system time: Mon Jul 27 20:44:40 2020
 ***** Estimated time to completion:  3 sec.
 
-***** Percent complete: 53.44 %
-***** Current system time: Mon Jul 27 20:08:17 2020
+***** Percent complete: 43.44 %
+***** Current system time: Mon Jul 27 20:44:40 2020
 ***** Estimated time to completion:  2 sec.
 
+***** Percent complete: 53.44 %
+***** Current system time: Mon Jul 27 20:44:40 2020
+***** Estimated time to completion:  1 sec.
+
 ***** Percent complete: 63.44 %
-***** Current system time: Mon Jul 27 20:08:17 2020
+***** Current system time: Mon Jul 27 20:44:40 2020
 ***** Estimated time to completion:  1 sec.
 
 ***** Percent complete: 73.44 %
-***** Current system time: Mon Jul 27 20:08:17 2020
-***** Estimated time to completion:  1 sec.
+***** Current system time: Mon Jul 27 20:44:40 2020
+***** Estimated time to completion:  0 sec.
 
 ***** Percent complete: 83.44 %
-***** Current system time: Mon Jul 27 20:08:17 2020
+***** Current system time: Mon Jul 27 20:44:40 2020
 ***** Estimated time to completion:  0 sec.
 
 ***** Percent complete: 93.44 %
-***** Current system time: Mon Jul 27 20:08:17 2020
+***** Current system time: Mon Jul 27 20:44:40 2020
 ***** Estimated time to completion:  0 sec.
 
-***** Problem read in and set up time: 0.388406 seconds
- ***** DCOP time: 0.800209 seconds.  Breakdown follows:
+***** Problem read in and set up time: 0.390754 seconds
+ ***** DCOP time: 0.145525 seconds.  Breakdown follows:
 	Number Successful Steps Taken:		1
 	Number Failed Steps Attempted:		0
 	Number Jacobians Evaluated:		3
@@ -112,11 +112,11 @@
 	Number Failed Linear Solves:		0
 	Number Residual Evaluations:		4
 	Number Nonlinear Convergence Failures:	0
-	Total Residual Load Time:		0.00351167 seconds
-	Total Jacobian Load Time:		0.00330472 seconds
-	Total Linear Solution Time:		0.107001 seconds
+	Total Residual Load Time:		0.00288892 seconds
+	Total Jacobian Load Time:		0.0033679 seconds
+	Total Linear Solution Time:		0.10774 seconds
 
- ***** Transient Stepping time: 2.29893 seconds.  Breakdown follows:
+ ***** Transient Stepping time: 2.31596 seconds.  Breakdown follows:
 	Number Successful Steps Taken:		32
 	Number Failed Steps Attempted:		0
 	Number Jacobians Evaluated:		63
@@ -125,9 +125,9 @@
 	Number Failed Linear Solves:		0
 	Number Residual Evaluations:		95
 	Number Nonlinear Convergence Failures:	0
-	Total Residual Load Time:		0.0466249 seconds
-	Total Jacobian Load Time:		0.0648427 seconds
-	Total Linear Solution Time:		2.03297 seconds
+	Total Residual Load Time:		0.0446796 seconds
+	Total Jacobian Load Time:		0.0643797 seconds
+	Total Linear Solution Time:		2.0512 seconds
 
 
 ***** Solution Summary *****
@@ -139,13 +139,13 @@
 	Number Failed Linear Solves:		0
 	Number Residual Evaluations:		99
 	Number Nonlinear Convergence Failures:	0
-	Total Residual Load Time:		0.0501366 seconds
-	Total Jacobian Load Time:		0.0681474 seconds
-	Total Linear Solution Time:		2.13997 seconds
+	Total Residual Load Time:		0.0475686 seconds
+	Total Jacobian Load Time:		0.0677476 seconds
+	Total Linear Solution Time:		2.15894 seconds
 
 
-***** Total Simulation Solvers Run Time: 3.13991 seconds
-***** Total Elapsed Run Time:            3.49099 seconds
+***** Total Simulation Solvers Run Time: 2.50182 seconds
+***** Total Elapsed Run Time:            2.85603 seconds
 *****
 ***** End of Xyce(TM) Simulation
 *****
@@ -153,44 +153,44 @@
 Timing summary of processor 0
                  Stats                   Count       CPU Time              Wall Time
 ---------------------------------------- ----- --------------------- ---------------------
-Xyce                                         1        2.653 (100.0%)        3.703 (100.0%)
-  Analysis                                   1        2.276 (85.77%)        3.140 (84.80%)
-    Transient                                1        2.238 (84.37%)        3.103 (83.79%)
-      Nonlinear Solve                       33        2.075 (78.22%)        2.271 (61.33%)
-        Residual                            99        0.043 ( 1.62%)        0.050 ( 1.36%)
-        Jacobian                            66        0.062 ( 2.33%)        0.068 ( 1.84%)
-        Linear Solve                        66        1.959 (73.83%)        2.140 (57.80%)
-      Successful DCOP Steps                  1        0.012 ( 0.44%)        0.675 (18.23%)
-      Successful Step                       32        0.144 ( 5.43%)        0.146 ( 3.94%)
-  Netlist Import                             1        0.219 ( 8.27%)        0.228 ( 6.15%)
-    Parse Context                            1        0.035 ( 1.33%)        0.037 ( 1.00%)
-    Distribute Devices                       1        0.128 ( 4.83%)        0.132 ( 3.56%)
+Xyce                                         1        2.672 (100.0%)        3.033 (100.0%)
+  Analysis                                   1        2.309 (86.40%)        2.502 (82.49%)
+    Transient                                1        2.273 (85.07%)        2.465 (81.29%)
+      Nonlinear Solve                       33        2.107 (78.84%)        2.287 (75.41%)
+        Residual                            99        0.047 ( 1.74%)        0.048 ( 1.58%)
+        Jacobian                            66        0.063 ( 2.37%)        0.068 ( 2.24%)
+        Linear Solve                        66        1.988 (74.38%)        2.159 (71.19%)
+      Successful DCOP Steps                  1        0.014 ( 0.53%)        0.020 ( 0.66%)
+      Successful Step                       32        0.145 ( 5.44%)        0.147 ( 4.86%)
+  Netlist Import                             1        0.213 ( 7.98%)        0.230 ( 7.58%)
+    Parse Context                            1        0.036 ( 1.34%)        0.037 ( 1.23%)
+    Distribute Devices                       1        0.121 ( 4.54%)        0.135 ( 4.44%)
     Verify Devices                           1        0.000 (<0.01%)        0.000 (<0.01%)
-    Instantiate                              1        0.024 ( 0.89%)        0.025 ( 0.66%)
-  Late Initialization                        1        0.120 ( 4.50%)        0.121 ( 3.28%)
-    Global Indices                           1        0.041 ( 1.55%)        0.041 ( 1.11%)
-  Setup Matrix Structure                     1        0.019 ( 0.73%)        0.019 ( 0.52%)
+    Instantiate                              1        0.023 ( 0.85%)        0.025 ( 0.81%)
+  Late Initialization                        1        0.118 ( 4.43%)        0.123 ( 4.04%)
+    Global Indices                           1        0.042 ( 1.57%)        0.043 ( 1.42%)
+  Setup Matrix Structure                     1        0.019 ( 0.71%)        0.019 ( 0.63%)
 
 
 Timing summary of 4 processors
                                                      CPU Time              CPU Time              CPU Time              Wall Time             Wall Time             Wall Time
                  Stats                   Count   Sum (% of System)     Min (% of System)     Max (% of System)     Sum (% of System)     Min (% of System)     Max (% of System)
 ---------------------------------------- ----- --------------------- --------------------- --------------------- --------------------- --------------------- ---------------------
-Xyce                                         4       12.830 (100.0%)        2.653 (20.68%)        3.408 (26.56%)       14.689 (100.0%)        3.636 (24.75%)        3.703 (25.21%)
-  Analysis                                   4       11.342 (88.40%)        2.276 (17.74%)        3.041 (23.70%)       12.542 (85.39%)        3.134 (21.34%)        3.140 (21.38%)
-    Transient                                4       11.193 (87.24%)        2.238 (17.45%)        3.004 (23.41%)       12.393 (84.37%)        3.097 (21.08%)        3.103 (21.12%)
-      Nonlinear Solve                      132        8.839 (68.89%)        2.075 (16.17%)        2.260 (17.61%)        9.073 (61.77%)        2.265 (15.42%)        2.271 (15.46%)
-        Residual                           396        0.183 ( 1.43%)        0.043 ( 0.34%)        0.049 ( 0.38%)        0.195 ( 1.33%)        0.046 ( 0.31%)        0.051 ( 0.35%)
-        Jacobian                           264        0.255 ( 1.99%)        0.062 ( 0.48%)        0.065 ( 0.51%)        0.280 ( 1.90%)        0.068 ( 0.46%)        0.071 ( 0.48%)
-        Linear Solve                       264        8.355 (65.12%)        1.959 (15.27%)        2.137 (16.66%)        8.552 (58.22%)        2.137 (14.55%)        2.140 (14.57%)
-      Successful DCOP Steps                  4        1.763 (13.75%)        0.012 ( 0.09%)        0.604 ( 4.71%)        2.700 (18.38%)        0.675 ( 4.60%)        0.675 ( 4.60%)
-      Successful Step                      128        0.438 ( 3.41%)        0.092 ( 0.72%)        0.144 ( 1.12%)        0.462 ( 3.14%)        0.105 ( 0.71%)        0.146 ( 0.99%)
-  Netlist Import                             4        0.873 ( 6.80%)        0.213 ( 1.66%)        0.221 ( 1.72%)        0.911 ( 6.20%)        0.228 ( 1.55%)        0.228 ( 1.55%)
-    Parse Context                            4        0.147 ( 1.14%)        0.035 ( 0.27%)        0.037 ( 0.29%)        0.149 ( 1.01%)        0.037 ( 0.25%)        0.037 ( 0.25%)
-    Distribute Devices                       4        0.508 ( 3.96%)        0.121 ( 0.94%)        0.130 ( 1.02%)        0.526 ( 3.58%)        0.131 ( 0.89%)        0.132 ( 0.90%)
+Xyce                                         4       11.219 (100.0%)        2.672 (23.82%)        2.852 (25.42%)       12.112 (100.0%)        3.026 (24.99%)        3.033 (25.04%)
+  Analysis                                   4        9.749 (86.90%)        2.309 (20.58%)        2.487 (22.17%)        9.988 (82.47%)        2.496 (20.60%)        2.502 (20.65%)
+    Transient                                4        9.606 (85.62%)        2.273 (20.26%)        2.451 (21.84%)        9.842 (81.26%)        2.459 (20.30%)        2.465 (20.35%)
+      Nonlinear Solve                      132        8.936 (79.66%)        2.107 (18.78%)        2.282 (20.34%)        9.139 (75.45%)        2.282 (18.84%)        2.287 (18.88%)
+        Residual                           396        0.181 ( 1.61%)        0.043 ( 0.38%)        0.048 ( 0.43%)        0.186 ( 1.53%)        0.044 ( 0.36%)        0.048 ( 0.40%)
+        Jacobian                           264        0.259 ( 2.31%)        0.062 ( 0.56%)        0.067 ( 0.60%)        0.278 ( 2.30%)        0.068 ( 0.56%)        0.070 ( 0.58%)
+        Linear Solve                       264        8.453 (75.34%)        1.988 (17.72%)        2.156 (19.22%)        8.628 (71.24%)        2.156 (17.80%)        2.159 (17.83%)
+      Successful DCOP Steps                  4        0.071 ( 0.64%)        0.014 ( 0.13%)        0.020 ( 0.18%)        0.080 ( 0.66%)        0.020 ( 0.17%)        0.020 ( 0.17%)
+      Successful Step                      128        0.444 ( 3.96%)        0.095 ( 0.85%)        0.145 ( 1.29%)        0.463 ( 3.82%)        0.105 ( 0.86%)        0.147 ( 1.22%)
+  Netlist Import                             4        0.859 ( 7.65%)        0.210 ( 1.88%)        0.221 ( 1.97%)        0.919 ( 7.59%)        0.230 ( 1.90%)        0.230 ( 1.90%)
+    Parse Context                            4        0.147 ( 1.31%)        0.036 ( 0.32%)        0.037 ( 0.33%)        0.149 ( 1.23%)        0.037 ( 0.31%)        0.037 ( 0.31%)
+    Distribute Devices                       4        0.498 ( 4.44%)        0.121 ( 1.08%)        0.129 ( 1.15%)        0.537 ( 4.43%)        0.134 ( 1.11%)        0.135 ( 1.11%)
     Verify Devices                           4        0.000 (<0.01%)        0.000 (<0.01%)        0.000 (<0.01%)        0.000 (<0.01%)        0.000 (<0.01%)        0.000 (<0.01%)
-    Instantiate                              4        0.113 ( 0.88%)        0.024 ( 0.18%)        0.035 ( 0.27%)        0.118 ( 0.80%)        0.025 ( 0.17%)        0.036 ( 0.24%)
-  Late Initialization                        4        0.477 ( 3.72%)        0.118 ( 0.92%)        0.121 ( 0.94%)        0.486 ( 3.31%)        0.121 ( 0.83%)        0.122 ( 0.83%)
-    Global Indices                           4        0.165 ( 1.29%)        0.041 ( 0.32%)        0.042 ( 0.33%)        0.165 ( 1.13%)        0.041 ( 0.28%)        0.042 ( 0.28%)
-  Setup Matrix Structure                     4        0.075 ( 0.59%)        0.018 ( 0.14%)        0.019 ( 0.15%)        0.077 ( 0.52%)        0.019 ( 0.13%)        0.019 ( 0.13%)
+    Instantiate                              4        0.109 ( 0.97%)        0.023 ( 0.20%)        0.034 ( 0.30%)        0.117 ( 0.96%)        0.025 ( 0.20%)        0.036 ( 0.30%)
+  Late Initialization                        4        0.481 ( 4.29%)        0.118 ( 1.06%)        0.122 ( 1.09%)        0.491 ( 4.05%)        0.123 ( 1.01%)        0.123 ( 1.01%)
+    Global Indices                           4        0.171 ( 1.52%)        0.042 ( 0.37%)        0.043 ( 0.38%)        0.172 ( 1.42%)        0.043 ( 0.35%)        0.043 ( 0.36%)
+  Setup Matrix Structure                     4        0.076 ( 0.68%)        0.019 ( 0.17%)        0.019 ( 0.17%)        0.076 ( 0.63%)        0.019 ( 0.16%)        0.019 ( 0.16%)
 
