@@ -1,7 +1,8 @@
 # Liquid cooling via microchannel Test Cases (Section IV-C)
 
 
-This folder contains all the necessary files to run simulations described in the Section IV-C of our paper [1].
+This folder contains all the necessary files to run simulations described in Section IV-C of our paper [1].
+For a detailed discussion of the simulation setup and experimental results, please refer to our paper [1].
 
 ![](/image/chipstack.PNG)
 
