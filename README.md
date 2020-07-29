@@ -125,6 +125,10 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 # Enable Parallel Thermal Simulation:
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 One needs to modify the number_of_core option in the modelParams_files [Simulation] section to change the number of cores used in the PACT parallel simulation. Note that, to run parallel simulations on a Linux server, users need to start an interactive session by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. Note that, SuperLU solver does not support parallel thermal simulation, it only supports sequential thermal simulation. If the users are running PACT with serial version of __Xyce 6.12__, please set number_of_core to 1.
+
+# OpenROAD Interface:
+Please go to the ~/src/OpenRoad folder for more information
+
 # Example Command Line Test Case:
 The Example_command_line folder contains all the necessary files to run steady-state and transient simulations of a 10mmX10mm chip with a 500um hot spot placed at the center. The example_ptrace.csv contains 3 power traces. For steady-state simulation, PACT will average the power trace for each block and perform steady-state simulations. For transient simulation, PACT with SPICE_transient solver will performance transient simulation with user-defined ptrace step size, simulation step size, and total simulation time. User can define these 3 parameters in example_modelParans.config. The default heat sink is a medium-cost heat sink adopted from HotSpot [2] Users can uncomment the [NoPackge] and [NoPackage_sec] labels and comment out [HeatSink] and [HeatSink_sec] labels in example_modelParams.config to enable the fixed-air convection heat sink. In addtion, users also need to uncomment the [NoPackage] label and comment out the [HeatSink] label in the example.config file.
 Users can run this command line test case by typing the following command inside the Example_command_line folder:
