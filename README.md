@@ -223,20 +223,17 @@ https://vivo.brown.edu/display/sreda
 PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389. Some of the features in PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the superLU solver. This is a design decision to ease the use of PACT for the community.
 
 # Reference:
-[1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),_ 2020.
+[1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)_, 2020.
 
-[2] Skadron, K., Stan, M. R., Huang, W., Velusamy, S., Sankaranarayanan, K., and Tarjan, D. "Temperature-aware microarchitecture." _ACM SIGARCH Computer Architecture News,_ 2003.
+[2] Skadron, K., Stan, M. R., Huang, W., Velusamy, S., Sankaranarayanan, K., and Tarjan, D. "Temperature-aware microarchitecture." _ACM SIGARCH Computer Architecture News_, 2003.
 
-[3] Shukla, Prachi, et al. "An overview of thermal challenges and opportunities for monolithic 3D ICs." _Proceedings of the 2019 on Great Lakes Symposium on VLSI,_ 2019.
+[3] Shukla, Prachi, et al. "An overview of thermal challenges and opportunities for monolithic 3D ICs." _Proceedings of the 2019 on Great Lakes Symposium on VLSI_, 2019.
 
-[4] Coskun, A., Eris, F., Joshi, A., Kahng, A. B., Ma, Y., and Srinivas, V. "A cross-layer methodology for design and optimization of networks in 2.5 d systems." _Proceedings of the International Conference on Computer-Aided Design,_ 2018.
+[4] Coskun, A., Eris, F., Joshi, A., Kahng, A. B., Ma, Y., and Srinivas, V. "A cross-layer methodology for design and optimization of networks in 2.5 d systems." _Proceedings of the International Conference on Computer-Aided Design_, 2018.
 
-[5] Ajayi, Tutu, et al. "Toward an open-source digital flow: First learnings from the openroad project." _Proceedings of the 56th Annual Design Automation Conference,_ 2019.
+[5] Ajayi, Tutu, et al. "Toward an open-source digital flow: First learnings from the openroad project." _Proceedings of the 56th Annual Design Automation Conference_, 2019.
 
 # Action Items:
-* Add the Xyce dependencies in the readme
-
-* For OpenRoad, Liquid cooling, M3D, and SCC test case, write a brief readme inside of the folder
 
 * move the repo to peaclab repo
 
