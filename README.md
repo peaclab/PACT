@@ -42,7 +42,7 @@ It's recommended to use Linux and macOS to run PACT. To enable sequential and pa
 * https://www.cygwin.com/
 
 
-If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux sever, then you can simply load the following dependencies to load Xyce and OpenMPI.
+If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux server, then you can simply load the following dependencies to load Xyce and OpenMPI.
 ```
 module load python3/3.6.5
 module load gcc/5.5.0
