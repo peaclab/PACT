@@ -232,7 +232,7 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 
 * Release the first version of the tool
 
-* HotSpot medium cost heat sink
+
 
 
 
