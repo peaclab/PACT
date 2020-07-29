@@ -3,7 +3,7 @@ This folder contains all the necessary files to run simulations described in Sec
 For a detailed discussion of the simulation setup and experimental results, please refer to our paper [1].
 The layer configration file and power traces are adopted from a recent work [3].
 <p align="center">
-<img src= "https://github.com/yuan1z/PACT/image/M3D.png" width="350" alt="M3D"/>
+<img src= "https://github.com/yuan1z/PACT/tree/master/image/M3D.png" width="350" alt="M3D"/>
 </p>
 Users can manipulate the power number in ptrace_files/liquid_ptrace.csv. 
 Users can also change the liquid flow velocity in /modelParams_files/modelParams_liquid.config.
