@@ -15,7 +15,7 @@ More details about PACT can be found in [1].
 
 
 
-All the source code are located inside the /src folder include the SuperLU solver as well as the SPICE solvers. Steady-state and transient SPICE-based solvers are named as SPICE_steady and SPICE_transient, respectively.
+All the source codes are located inside the /src folder include the SuperLU solver as well as the SPICE solvers. Steady-state and transient SPICE-based solvers are named as SPICE_steady and SPICE_transient, respectively.
 
 
 # Requirements
@@ -60,6 +60,7 @@ module load xyce/6.12
     2. HTC is the heat transfer coefficient between the ambient and the heat sink.
     3. Thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
     4. [Init] defines the initial temperature as well as the ambient temperature.
+    5. Users can select the heat sink as well as its parameters.
 2. Floorplan (flp_files (.CSV file)): describe the chip floorplan
     1. Depends on the simulation granularity, users can define a standard cell level chip floorplan with a large number of units or an architectural level floorplan with realistic hardware blocks.
     2. UnitName is the name of the unit.
@@ -79,6 +80,7 @@ module load xyce/6.12
     2. [Simulation]: define the simulation type 
     3. [Solver]: Selection of the solver (SuperLU, SPICE_steady, SPICE_transient)
     4. [Grid]: number of girds used in the simulation. 
+    5. Users can also define the heat sink library, cooling properties, and cooling options.
 6. Command to run simulation with PACT:
     ```python
     python PACT.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
@@ -124,7 +126,7 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 One needs to modify the number_of_core option in the modelParams_files [Simulation] section to change the number of cores used in the PACT parallel simulation. Note that, to run parallel simulations on a Linux server, users need to start an interactive session by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. Note that, SuperLU solver does not support parallel thermal simulation, it only supports sequential thermal simulation. If the users are running PACT with serial version of __Xyce 6.12__, please set number_of_core to 1.
 # Example Command Line Test Case:
-The Example_command_line folder contains all the necessary files to run steady-state and transient simulations of a 10mmX10mm chip with a 500um hot spot placed at the center. The example_ptrace.csv contains 3 power traces. For steady-state simulation, PACT will average the power trace for each block and perform steady-state simulations. For transient simulation, PACT with SPICE_transient solver will performance transient simulation with user-defined ptrace step size, simulation step size, and total simulation time. User can define these 3 parameters in example_modelParans.config.
+The Example_command_line folder contains all the necessary files to run steady-state and transient simulations of a 10mmX10mm chip with a 500um hot spot placed at the center. The example_ptrace.csv contains 3 power traces. For steady-state simulation, PACT will average the power trace for each block and perform steady-state simulations. For transient simulation, PACT with SPICE_transient solver will performance transient simulation with user-defined ptrace step size, simulation step size, and total simulation time. User can define these 3 parameters in example_modelParans.config. The default heat sink is a medium-cost heat sink adopted from HotSpot [2] Users can uncomment the [NoPackge] and [NoPackage_sec] labels and comment out [HeatSink] and [HeatSink_sec] labels in example_modelParams.config to enable the fixed-air convection heat sink. In addtion, users also need to uncomment the [NoPackage] label and comment out the [HeatSink] label in the example.config file.
 Users can run this command line test case by typing the following command inside the Example_command_line folder:
 
 ```python
@@ -222,6 +224,7 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 
 # Reference:
 [1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),_ 2020.
+[2] Skadron, K., Stan, M. R., Huang, W., Velusamy, S., Sankaranarayanan, K., & Tarjan, D. (2003). Temperature-aware microarchitecture. ACM SIGARCH Computer Architecture News, 31(2), 2-13.
 
 # Action Items:
 * Add the Xyce dependencies in the readme
