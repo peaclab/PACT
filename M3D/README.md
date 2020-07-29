@@ -7,15 +7,14 @@ The layer configration file and power traces are adopted from a recent work [3].
 <img src= "/image/M3D.png" />
 </p>
 
-Users can manipulate the power number in ptrace_files/liquid_ptrace.csv. 
-Users can also change the liquid flow velocity in /modelParams_files/modelParams_liquid.config.
-To run liquid cooling simulations, go to scripts and run the following commands:
+Users can manipulate the power number in ptrace_files/M3D_tier0_ptrace.csv and ptrace_files/M3D_tier1_ptrace.csv. 
+Users can also change the layer configurations in /lcf_files/M3D_lcf.csv.
+To run M3D simulations, go to scripts folder and run the following commands:
 
 ```python
-python liquid.py
+python M3D.py
 ```
 
 The steady-state simulation grid results as well as the last step transient simulation results are saved in /results folder.
-If you want to modify the number of channels in the liquid cooling layers, make sure you change the liquid_flp.csv as well as the num_of_channels option in liquid.config.
 The transient grid level simulation results are saved in ~/src/RC_transient.cir.csv. 
 The transient grid level simulation results are saved in ~/src/RC_transient_block_temp.csv. 
