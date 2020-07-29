@@ -13,5 +13,6 @@ To run liquid cooling simulations, go to scripts and run the following commands:
 python liquid.py
 ```
 The steady-state simulation grid results as well as the last step transient simulation results are saved in /results folder.
+If you want to modify the number of channels in the liquid cooling layers, make sure you change the liquid_flp.csv as well as the num_of_channels option in liquid.config.
 The transient grid level simulation results are saved in ~/src/RC_transient.cir.csv. 
 The transient grid level simulation results are saved in ~/src/RC_transient_block_temp.csv. 
