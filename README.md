@@ -224,7 +224,9 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 
 # Reference:
 [1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),_ 2020.
+
 [2] Skadron, K., Stan, M. R., Huang, W., Velusamy, S., Sankaranarayanan, K., & Tarjan, D. (2003). Temperature-aware microarchitecture. ACM SIGARCH Computer Architecture News, 31(2), 2-13.
+
 [3] Shukla, P., Coskun, A. K., Pavlidis, V. F., & Salman, E. (2019, May). An overview of thermal challenges and opportunities for monolithic 3D ICs. In Proceedings of the 2019 on Great Lakes Symposium on VLSI (pp. 439-444).
 
 # Action Items:
