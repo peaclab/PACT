@@ -1,5 +1,5 @@
-# Monolithic 3D Test Cases (Section IV-C)
-This folder contains all the necessary files to run simulations described in Section IV-C of our paper [1].
+# Monolithic 3D Test Cases (Section IV-A)
+This folder contains all the necessary files to run simulations described in Section IV-A of our paper [1].
 For a detailed discussion of the simulation setup and experimental results, please refer to our paper [1].
 The layer configration file and power traces are adopted from a recent work [3].
 
