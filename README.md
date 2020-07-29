@@ -188,7 +188,7 @@ If the users haven't installed these two software, please change the solver to S
 
 Users can also modify the corresponding modelParam files in the /Example/modelParams_files/ to select the simulation type as well as the solver.
 
-For simulation using SPICE solvers, users can find the SPICE solver grid temperature simulation results located in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. Users can also find the SPICE transient block temperature results in /src/ folder as RC_transient_block_temp.csv. The SPICE solver log files are located in /src/ folder as RC_steady.log or RC_transient.log. For simulation using SuperLU, users can find the grid temperature simulation results and log fies in /Example/results/ and /Example/logs/ folders. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
+For simulation using SPICE solvers, users can find the SPICE solver grid temperature simulation results located in /src/ folder as RC_steady.cir.csv or RC_transient.cir.csv. Users can also find the SPICE transient block temperature results in /src/ folder as RC_transient_block_temp.csv. The SPICE solver log files are located in /src/ folder as RC_steady.log or RC_transient.log. For simulation using SuperLU, users can find the grid temperature simulation results and log files in /Example/results/ and /Example/logs/ folders. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
 
 Example block-level temperature output:
 
@@ -206,7 +206,7 @@ Here layer0 is the processor and layer1 is the cooling package.
 
 * Sean Nemtzow 
 
-If you have any questions regarding PACT, please send email to yuan1z@bu.edu.
+If you have any questions regarding PACT, please send emails to yuan1z@bu.edu.
 
 # Principal Investigator (PI):
 
@@ -220,7 +220,7 @@ https://vivo.brown.edu/display/sreda
 
 # Acknowledgment
 
-PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389.
+PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389. Some of the features in PACT frontend have been implemented with inspiration from HotSpot (cite/link), such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the superLU solver. This is a design decision to ease the use of PACT for the community.
 
 # Reference:
 [1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD),_ 2020.
