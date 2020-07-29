@@ -8,7 +8,7 @@ For a detailed discussion of the simulation setup and experimental results, plea
 
 Users can manipulate the power number in ptrace_files/liquid_ptrace.csv. 
 Users can also change the liquid flow velocity in /modelParams_files/modelParams_liquid.config.
-To run liquid cooling simulations, go to scripts and run the following commands:
+To run liquid cooling simulations, go to scripts folder and run the following commands:
 ```python
 python liquid.py
 ```
