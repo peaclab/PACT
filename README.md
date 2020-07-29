@@ -231,6 +231,8 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 
 [4] Coskun, A., Eris, F., Joshi, A., Kahng, A. B., Ma, Y., and Srinivas, V. "A cross-layer methodology for design and optimization of networks in 2.5 d systems." _Proceedings of the International Conference on Computer-Aided Design,_ 2018.
 
+[5] Ajayi, Tutu, et al. "Toward an open-source digital flow: First learnings from the openroad project." _Proceedings of the 56th Annual Design Automation Conference,_ 2019.
+
 # Action Items:
 * Add the Xyce dependencies in the readme
 
