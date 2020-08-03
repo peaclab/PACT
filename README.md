@@ -49,7 +49,7 @@ module load gcc/5.5.0
 module load fftw/3.3.8
 module load netcdf/4.6.1
 module laod blis/0.6.0
-module load opemmpi/3.1.4
+module load openmpi/3.1.4
 module load xyce/6.12
 ```
 
