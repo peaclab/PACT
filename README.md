@@ -237,11 +237,6 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 
 [5] Ajayi, Tutu, et al. "Toward an open-source digital flow: First learnings from the openroad project." _Proceedings of the 56th Annual Design Automation Conference_, 2019.
 
-# Action Items:
-
-* move the repo to peaclab repo
-
-* Release the first version of the tool
 
 
 
