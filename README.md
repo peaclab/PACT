@@ -25,6 +25,11 @@ PACT is written in python and uses __Xyce 6.12__ as the backend SPICE engine.
 
 * Required Python libraries: sys, numpy, pandas, math, os, scipy, argparse, configparser.
 
+* Users can directly install all the Python through the following commands:
+```Python
+pip install -r requirement.txt
+```
+
 The above libraries are enough for the users to run PACT with SuperLU solver. For users who want to run PACT with SPICE engine. One needs to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
 
 Installation guideline for __Xyce 6.12__: 
