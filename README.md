@@ -49,7 +49,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
 
 
 # Usage
-1. Config file (i.e., Example/config_files): describe the layer material properties
+1. Config file (i.e., [./Example/config_files/] (./Example/config_files/)): describe the layer material properties
     1. Thickness defines the layer thickness.
     2. HTC is the heat transfer coefficient between the ambient and the heat sink.
     3. Thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
