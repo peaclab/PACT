@@ -208,7 +208,7 @@ If you have any questions regarding PACT, please send emails to yuan1z@bu.edu.
 
 # Principal Investigator (PI):
 
-Prof.Ayse K Coskun from Boston University
+Prof. Ayse K Coskun from Boston University
 
 https://www.bu.edu/eng/profile/ayse-coskun/
 
