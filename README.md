@@ -212,7 +212,7 @@ Prof. Ayse K Coskun from Boston University
 
 https://www.bu.edu/eng/profile/ayse-coskun/
 
-Prof. Shereif Reda from Brown University
+Prof. Sherief Reda from Brown University
 
 https://vivo.brown.edu/display/sreda
 
