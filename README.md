@@ -1,4 +1,4 @@
-# PACT: A Standard Cell Level to Architectural Level Parrallel Compact Thermal Simulator
+# PACT: A Standard Cell Level to Architectural Level Parallel Compact Thermal Simulator
 # Introduction
 PACT is a SPICE-based PArallel Compact Thermal simulator (PACT) that enables fast and accurate standard cell level to architectural level steady-state and transient parallel thermal simulation. PACT utilizes the advantages of multi-core processing (OpenMPI) and includes several solvers to speed up both steady-state and transient simulations. PACT can be easily extended to model a variety of emerging integration and cooling technologies, such as 3D stacking, liquid cooling via microchannels, and others, by simply modifying the thermal netlist. PACT can be also used with popular architectural level performance and power simulators to evaluate the thermal profile. 
 
@@ -7,9 +7,9 @@ The simulation flow of PACT is shown in the following image.
 ![](/image/PACTflow.PNG)
 
 PACT takes config file, floorplan file, lcf file, modelParams file, and ptrace file as inputs and outputs the steady-state/transient temperature results.
-
+<!---
 The config file describes the material property, initial temperature, as well as cooling package information. The floorplan file describes the chip information that includes chip size, number of blocks, block sizes and location, and block material property. Lcf file stands for the layer configuration file, which basically shows the layer stack with cooling information. Ptrace file allocates the power number for each active block inside the chip stack. ModelParams file shows the simulation information (e.g., steady-state/transient, solver type, number of grids, package information, etc.)
-
+-->
 More details about PACT can be found in [1].
 
 
@@ -37,45 +37,39 @@ For users who want to run parallel thermal simualtions with PACT, one need to in
 
 * https://www.open-mpi.org/
 
-It's recommended to use Linux and macOS to run PACT. To enable sequential and parallel thermal simulation with PACT on Windows, users have to user __Cygwin__ to build the __Xyce 6.12__ and __OpenMPI 3.1.4__ and run PACT using __Cygwin__ terminal. __Cygwin__ download link:
+It's recommended to use Linux and macOS to run PACT. To enable sequential and parallel thermal simulation with PACT on Windows, users have to use __Cygwin__ to build the __Xyce 6.12__ and __OpenMPI 3.1.4__ and run PACT using __Cygwin__ terminal. __Cygwin__ download link:
 
 * https://www.cygwin.com/
 
 
 If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux server, then you can simply load the following dependencies to load Xyce and OpenMPI.
 ```
-module load python3/3.6.5
-module load gcc/5.5.0
-module load fftw/3.3.8
-module load netcdf/4.6.1
-module load blis/0.6.0
-module load openmpi/3.1.4
-module load xyce/6.12
+module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3.1.4 xyce/6.12
 ```
 
 
 # Usage
-1. Config file (config_files): describe the layer material properties
+1. Config file (i.e., Example/config_files): describe the layer material properties
     1. Thickness defines the layer thickness.
     2. HTC is the heat transfer coefficient between the ambient and the heat sink.
     3. Thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
     4. [Init] defines the initial temperature as well as the ambient temperature.
     5. Users can select the heat sink as well as its parameters.
-2. Floorplan (flp_files (.CSV file)): describe the chip floorplan
+2. Floorplan (i.e., Example/flp_files (.CSV file)): describe the chip floorplan
     1. Depends on the simulation granularity, users can define a standard cell level chip floorplan with a large number of units or an architectural level floorplan with realistic hardware blocks.
     2. UnitName is the name of the unit.
     3. X and Y define the location of the unit.
     4. Length (m) and Width (m) describe the unit size.
     5. Label describes the material or the cooling property of the unit.
     6. Users can ignore the configfile option for now.
-3.  Layer configuration file (lcf_files (.CSV file)): describe the layer stack
+3.  Layer configuration file (i.e., Example/lcf_files (.CSV file)): describe the layer stack
     1. Layer: describe the layer number, all layers are stacked vertically starting from layer 0
     2. Floorplan file: describe the floorplan for the specific layer
     3. PtraceFile: if the layer is active (consume power), then the corresponding power trace file to that layer needs to be specified here.
-4. Power trace file (ptrace_files (.CSV file)):
+4. Power trace file (i.e., Example/ptrace_files (.CSV file)):
     1. UnitName: the name of the unit in the floorplan.
     2. Power (W): the power consumption for the unit.
-5. Model parameter files (modelParams_files):
+5. Model parameter files (i.e., Example/modelParams_files):
     1. [PATH]: define the path to the library, ptrace, flp
     2. [Simulation]: define the simulation type 
     3. [Solver]: Selection of the solver (SuperLU, SPICE_steady, SPICE_transient)
