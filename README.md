@@ -26,7 +26,7 @@ PACT is written in python and uses __Xyce 6.12__ as the backend SPICE engine.
 * Required Python libraries: sys, numpy, pandas, math, os, scipy, argparse, configparser.
 
 * Users can directly install all the Python through the following commands:
-```Python
+```
 pip install -r requirement.txt
 ```
 
