@@ -13,8 +13,6 @@ The config file describes the material property, initial temperature, as well as
 More details about PACT can be found in [1].
 
 
-
-
 All the source codes are located inside the /src folder include the SuperLU solver as well as the SPICE solvers. Steady-state and transient SPICE-based solvers are named as SPICE_steady and SPICE_transient, respectively.
 
 
@@ -25,7 +23,7 @@ PACT is written in python and uses __Xyce 6.12__ as the backend SPICE engine.
 
 * Required Python libraries: sys, numpy, pandas, math, os, scipy, argparse, configparser.
 
-* Users can directly install the correct version of Python packages through the following commands:
+* Users can directly install the correct version of the Python packages through the following commands:
 ```
 pip install -r requirements.txt
 ```
