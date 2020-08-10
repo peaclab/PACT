@@ -594,6 +594,13 @@ dict_Conv = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].Conv fo
 dict_others = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].others for x in chipStack.Layers_data.keys()}
 dict_g2bmap = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].g2bmap for x in chipStack.Layers_data.keys()}
 dict_virtual_nodes = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].virtual_node for x in chipStack.Layers_data.keys()}
+# Ensure there is no singular R matrix 
+for key,value in dict_Rx.items():
+    value[value==0.0]=1e-9
+for key,value in dict_Ry.items():
+    value[value==0.0]=1e-9
+for key,value in dict_Rz.items():
+    value[value==0.0]=1e-9
 solver_properties['Rx']=dict_Rx
 solver_properties['Ry']=dict_Ry
 solver_properties['Rz']=dict_Rz
@@ -616,20 +623,6 @@ solver_properties['r_amb']=chipStack.Layers_data[num_layers-1].r_amb
 #print(label_config_dict)
 #sys.exit(2)
 
-"""
-simulate = True
-while(simulate == True)
-    if (!simul or !exhaustive)
-        simulate = False
-    else:
-        if simulated annealing:
-            SA.update_material_prop(MaterialProp_dict)
-        elif exhaustive:
-            ES.update_material_prop(MaterialProp_dict)
-        update (Rs. Cs, I)
-        update solver properties (grid Rx Ry Rz, layers):
-        hybrid_wick_properties = MaterialProp_dict[(defaultConfigFile,"HybridWick")]
-"""
 ############Zihao: see this; DO NOT modify#############
 grid_temperature = solver.getTemperature(solver_properties)
 #sys.exit(2)
