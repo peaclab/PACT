@@ -596,11 +596,11 @@ dict_g2bmap = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].g2bma
 dict_virtual_nodes = {chipStack.Layers_data[x].layer_num:chipStack.Layers_data[x].virtual_node for x in chipStack.Layers_data.keys()}
 # Ensure there is no singular R matrix 
 for key,value in dict_Rx.items():
-    value[value==0.0]=1e-9
+    value[value==0.0]=1e-6
 for key,value in dict_Ry.items():
-    value[value==0.0]=1e-9
+    value[value==0.0]=1e-6
 for key,value in dict_Rz.items():
-    value[value==0.0]=1e-9
+    value[value==0.0]=1e-6
 solver_properties['Rx']=dict_Rx
 solver_properties['Ry']=dict_Ry
 solver_properties['Rz']=dict_Rz
