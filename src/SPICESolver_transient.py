@@ -14,46 +14,36 @@ class SPICE_transientSolver:
         self.ptrace_step_size = ptrace_step_size
         self.ambient = ambient
         return
-
+    # Display solver name function
     def display_solver(self):
         print(self.name)
         return
-
+    # Temperature-dependent simulation framework update function
     def update(self):
         self.cooData.fill(0)
         self.cooX.fill(0)
         self.cooY.fill(0)
-        #print(self.dict_properties_update['update'])
         for (layer,prop) in self.dict_properties_update['update'].items():
             if(prop=='Rz'):
-                #print("Before:",self.dict_properties["Rz"])
-                #print("Before:",self.Rz)
-                #self.Rz[layer] = self.dict_properties['Rz'][layer]
                 self.dict_properties['Rz'].update(self.dict_properties_update["Rz"])
                 self.Rz.update(self.dict_properties_update['Rz'])
-                #print("After:",self.dict_properties["Rz"])
-                #print("After:",self.Rz)
             elif(prop=='Rx'):
                 self.dict_properties['Rx'].update(self.dict_properties_update["Rx"])
                 self.Rx.update(self.dict_properties_update['Rx'])
-                #self.Rx[layer] = self.dict_properties['Rx'][layer]
             elif(prop=='Ry'):
                 self.dict_properties['Ry'].update(self.dict_properties_update["Ry"])
                 self.Ry.update(self.dict_properties_update['Ry'])
-                #self.Ry[layer] = self.dict_properties['Ry'][layer]
             elif(prop=='C'):
                 self.dict_properties['C'].update(self.dict_properties_update["C"])
                 self.C.update(self.dict_properties_update['C'])
-                #self.C[layer] = self.dict_properties['C'][layer]
             elif(prop=='I'):
                 self.dict_properties['I'].update(self.dict_properties_update["I"])
                 self.I.update(self.dict_properties_update['I'])
-                #self.I[layer] = self.dict_properties['I'][layer]
                 for key,value in self.I.items():
                     self.b = np.append(self.b,value.flatten())
                 self.b = np.reshape(self.b,(self.size,1))
         return
-
+    # Setup function for solver
     def setup(self):
         self.nr = int(self.dict_properties['grid_rows'])
         self.nc = int(self.dict_properties['grid_cols'])
@@ -65,37 +55,14 @@ class SPICE_transientSolver:
         self.col_limit = self.nc - 1
         self.row_limit = self.nr - 1
         self.layer_limit = self.nl - 1
-        #print("PRACHI1",layerVN)
-        #print("PRACHI2",factorVN)
-        
-        #Num of non-zeros
-        #each layer Five diagonal  : c*r, c*(r-1), (c-1)*r, c*(r-1), (c-1)*r
-        #vertical connections      : 2*(nl-1)*nr*nc
-        #sp and hs layer peripheral: 2 * 2 * (2*nr+2*nc)
-        #diaganal for pkg nodes    : EXTRA
-        #between pkg nodes         : 2 * 2 * 4
-        #
-
-        #print("nl nr nc",nl,nr,nc)
-        #self.nnz = 5*nr*nc-2*(nr+nc)
-        #self.nnz = nnz*nl
-        #self.nnz = nnz + 2*(nl-1)*nr*nc
         self.nnz = self.nl * self.nr * self.nc + 2 * (self.nl-1) * self.nr * self.nc + 2 * self.nl * (self.nr-1) * \
             self.nc +  2 * self.nl * self.nr * (self.nc-1)
         self.addY={0:1,1:-1,2:-self.nc,3:self.nc,4:-self.nr*self.nc,5:self.nr*self.nc} # 0...6 correspond to [Re,Rw,Rn,Rs,Ra,Rb]
         self.prod = self.nr*self.nc
-        #print("nnz:",nnz,"nnz1:",nnz1)
-        #nnz = 5*nr*nc-2*(nr+nc)
-        #nnz = nnz*(nl-1) + 2*(nr*nc)
-        #nnz = nnz + (nl-2)*nr*nc
-        #print("nnz:",nnz)
-        #nnz2 = nnz + 2*(nl-1)*nr*nc
 
         self.cooData = np.zeros((self.nnz))
         self.cooX = np.zeros((self.nnz))
         self.cooY = np.zeros((self.nnz))
-        #print(self.A)
-        #shold I replace self.Rx with self.dict_properties['Rx'] in this python file?
         self.Rx = self.dict_properties['Rx']
         self.Ry = self.dict_properties['Ry']
         self.Rz = self.dict_properties['Rz']
@@ -124,51 +91,20 @@ class SPICE_transientSolver:
             for key in item[1].keys():
                 if key == 'inlet_T_constant':
                     self.inlet_T_constant=float(item[1][key]) 
-        # print(self.I.items())
-        #self.r_amb_reciprocal = round(1/self.r_amb,6)
         self.r_amb_reciprocal = 1/self.r_amb
         self.I_avg = {}
         for key,value in self.I.items():
             self.I_avg[key] = np.mean(value,axis=0)
-        #self.r_amb_reciprocal = 1/self.r_amb 
-        #self.b=[]
-        #for key,value in self.I.items():
-        #    self.b = np.append(self.b,value.flatten())
-        #self.b = np.reshape(self.b,(self.size,1))
         return
-        
+    # Solve the thermal RC matrices and return the grid temperatures
     def getTemperature(self,dict_properties, mode=None):
-        #self.dict_properties = dict_properties
         res = [] 
-        #self.vector_buildMatrixA = np.vectorize(self.buildMatrixA,otypes=[None])
-        #print("SuperLU_wrapper")
         if(mode==None):
             self.dict_properties = dict_properties
             self.setup()
         elif(mode=='temperature_dependent'):
-            #print("temperature_dependent mode")
             self.dict_properties_update = dict_properties
             self.update()
-            #sys.exit(2)
-        #print(Rx[0][0][0])
-        """
-        Without detailed_3d:
-        if (j>0) Rw = find_res_3D(l,i,j-1,model,1)
-        if(j < nc-1) Re = find_res_3D(l,i,j+1,model,1); else Re = LARGENUM;
-        if(i > 0)    Rn = find_res_3D(l,i-1,j,model,2); else Rn = LARGENUM;
-        if(i < nr-1) Rs = find_res_3D(l,i+1,j,model,2); else Rs = LARGENUM;
-        if(l > 0)    Ra = find_res_3D(l-1,i,j,model,3); else Ra = LARGENUM;
-        if(l < nl-1) Rb = find_res_3D(l,i,j,model,3);   else Rb = LARGENUM;
-
-        With Detailed_3D:
-        if(j > 0)    Rw = find_res(l,i,j-1,model,1)/2 + find_res(l,i,j,model,1)/2; else Rw = LARGENUM;
-                if(j < nc-1) Re = find_res(l,i,j+1,model,1)/2 + find_res(l,i,j,model,1)/2; else Re = LARGENUM;
-                if(i > 0)    Rn = find_res(l,i-1,j,model,2)/2 + find_res(l,i,j,model,2)/2; else Rn = LARGENUM;
-                if(i < nr-1) Rs = find_res(l,i+1,j,model,2)/2 + find_res(l,i,j,model,2)/2; else Rs = LARGENUM;
-                if(l > 0)    Ra = find_res(l-1,i,j,model,3); else Ra = LARGENUM;
-                if(l < nl-1) Rb = find_res(l, i, j, model,3); else Rb = LARGENUM;
-
-        """
         with open('RC_transient.cir','w') as myfile:
                 myfile.write(".title spice transient solver\n")
                 myfile.write(f"Vg GND 0 {self.ambient}\n")
@@ -176,8 +112,6 @@ class SPICE_transientSolver:
                    myfile.write(f"Vin INLET 0 {self.inlet_T_constant+273.15}\n")
 
                 curidx=0
-		#print("PRACHI!!!!!!!!! Debug:nl, nr, nc",nl,nr,nc)
-		#sys.exit(2)
                 for grididx in range(self.size):
                     layer = int(grididx / self.prod)
                     row = int((grididx - layer*self.prod)/self.nc) 
@@ -185,53 +119,33 @@ class SPICE_transientSolver:
                     if (col > 0):
                         Rw = self.Rx[layer][row][col-1]/2 + self.Rx[layer][row][col]/2
                     else:
-                        #Rw = math.inf
                         Rw = 100000000
                     if(col < (self.col_limit)):
                         Re = self.Rx[layer][row][col+1]/2 + self.Rx[layer][row][col]/2
                     else:
-                        #Re = math.inf
                         Re = 100000000
                     if(row > 0):
                         Rn = self.Ry[layer][row-1][col]/2 + self.Ry[layer][row][col]/2
                     else:
-                       # Rn = math.inf;
                         Rn = 10000000
                     if(row < self.row_limit):
                         Rs = self.Ry[layer][row+1][col]/2 + self.Ry[layer][row][col]/2
                     else:
-                        #Rs = math.inf
                         Rs = 10000000
                     if(layer > 0):
                         Ra = float(self.factorVN[self.layerVN[layer-1]])*self.Rz[layer-1][row][col] + \
                         (1-float(self.factorVN[self.layerVN[layer]]))*self.Rz[layer][row][col]
                     else:
-                        #Ra = math.inf
                         Ra = 100000000
-                    #if(layer < self.layer_limit):
-                        #if layer in self.liq_layer:
-                            #Rb = 0.5*self.Rz[layer][row][col]
-                        #elif layer+1 in self.liq_layer:
-                            #Rb =  self.Rz[layer][row][col]+0.5*self.Rz[layer+1][row][col]
-                        #else:
-                            #Rb = self.Rz[layer][row][col]
-                    #else:
-                        #Rb = math.inf
-                        #Rb = 100000000
 
                     if(layer < self.layer_limit):
                         Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
                         (1-float(self.factorVN[self.layerVN[layer+1]]))*self.Rz[layer+1][row][col]
                     else: 
-                        #Rb = math.inf
                          Rb = 100000000
-                #current:
-                    #if self.I[layer][row][col]!=0:
-		    #Zihao: I don't know why both layer1 and layer2 has power in this case, the ptrace and flp shows only the first layers has power. I need to ask prachi about this self.I.items.
-                    #if layer == 0:
+                    #current:
                     if layer!= self.layer_limit and layer!=self.heatspreader and self.I_avg[layer][row][col]!=0:
                         i = 1
-                        #print(len(self.I[layer]))
                         if len(self.I[layer])>1:
                             text = "I_{}_{}_{} GND Node{}_{}_{} PWL(0s 0A".format(layer,row,col,layer, row, col)
                             while i<=len(self.I[layer]):
@@ -243,22 +157,22 @@ class SPICE_transientSolver:
                             myfile.write(text)
                         elif layer!=self.heatspreader and self.I_avg[layer][row][col]!=0:
                             myfile.write("I_{}_{}_{} GND Node{}_{}_{} PULSE(0 {}A 0s 0s 0s {} {})\n".format(layer,row,col,layer, row, col, self.I[layer][0][row][col],self.total_time,self.total_time))
-                #east resistance
+                    #east resistance
                     if col != self.col_limit:
                         myfile.write("R_{}_{}_{}_1 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row,col+1,Re))
                     #Heat Spreader right
                     if col == self.col_limit and layer==self.heatspreader:
                         myfile.write("Rsp_{}_{}_{}_1 Node{}_{}_{} Node_sp_right {}\n".format(layer,row,col,layer, row, col,self.Rx[layer][row][col]/2+self.row_limit*self.heatspreader_others['r_sp1_x_constant']))
-                #Heat Sink right
+                    #Heat Sink right
                     if col == self.col_limit and layer==self.heatsink:
                         myfile.write("Rhs_{}_{}_{}_1 Node{}_{}_{} Node_hs_right {}\n".format(layer,row,col,layer, row, col,self.Rx[layer][row][col]/2+self.row_limit*self.heatsink_others['r_hs1_x_constant']))
-                #Heat Spreader left
+                    #Heat Spreader left
                     if col == 0 and layer==self.heatspreader:
                         myfile.write("Rsp_{}_{}_{}_1 Node{}_{}_{} Node_sp_left {}\n".format(layer,row,col,layer, row, col,self.Rx[layer][row][col]/2+self.row_limit*self.heatspreader_others['r_sp1_x_constant']))
-                #Heat Sink left
+                    #Heat Sink left
                     if col == 0 and layer==self.heatsink:
                         myfile.write("Rhs_{}_{}_{}_1 Node{}_{}_{} Node_hs_right {}\n".format(layer,row,col,layer, row, col,self.Rx[layer][row][col]/2+self.row_limit*self.heatsink_others['r_hs1_x_constant']))
-                #north resistance
+                    #north resistance
                     if row != self.row_limit:
                         #not liquid grid cell
                         if self.glabels[layer][row][col]!='Liq':
@@ -277,28 +191,26 @@ class SPICE_transientSolver:
                         #outlet
                         myfile.write("G_%d_%d_%d Node%d_%d_%d INLET Node%d_%d_%d 0 %s\n"%(layer,row+1,col,layer,row,col,layer,row,col,self.Conv[layer][row][col]))
 
-                #    if row != self.row_limit:	    
-                #        myfile.write("R_{}_{}_{}_2 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer,row+1,col,Rs))
-                #Heat spreader top
+                    #Heat spreader top
                     if row == self.row_limit and layer==self.heatspreader:
                         myfile.write("Rsp_{}_{}_{}_2 Node{}_{}_{} Node_sp_top {}\n".format(layer,row,col,layer, row, col,self.Ry[layer][row][col]/2+self.col_limit*self.heatspreader_others['r_sp1_y_constant']))
-                #Heat sink top
+                    #Heat sink top
                     if row == self.row_limit and layer==self.heatsink:
                         myfile.write("Rhs_{}_{}_{}_2 Node{}_{}_{} Node_hs_top {}\n".format(layer,row,col,layer, row, col,self.Ry[layer][row][col]/2+self.col_limit*self.heatsink_others['r_hs1_y_constant']))
-                #Heat spreader bot
+                    #Heat spreader bot
                     if row == 0 and layer==self.heatspreader:
                         myfile.write("Rsp_{}_{}_{}_2 Node{}_{}_{} Node_sp_bot {}\n".format(layer,row,col,layer, row, col,self.Ry[layer][row][col]/2+self.col_limit*self.heatspreader_others['r_sp1_y_constant']))
-                #Heat sink top
+                    #Heat sink top
                     if row == 0 and layer==self.heatsink:
                         myfile.write("Rhs_{}_{}_{}_2 Node{}_{}_{} Node_hs_bot {}\n".format(layer,row,col,layer, row, col,self.Ry[layer][row][col]/2+self.col_limit*self.heatsink_others['r_hs1_y_constant']))
-                #above resistance
+                    #above resistance
                     if layer != self.layer_limit: 
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer+1,row,col,Rb))
                     elif layer!=self.heatsink:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
                     myfile.write("C_{}_{}_{} Node{}_{}_{} GND {}\n".format(layer,row,col,layer,row, col, self.C[layer][row][col]))
                 if len(self.heatsink_layer)!=0:
-                #add heat spreader to heat sink inner node
+                    #add heat spreader to heat sink inner node
                     myfile.write(f"R_sp_hs_in_left Node_sp_left Node_hs_in_left {self.heatspreader_others['r_sp_per_x_constant']}")
                     myfile.write('\n')
                     myfile.write(f"R_sp_hs_in_right Node_sp_right Node_hs_in_right {self.heatspreader_others['r_sp_per_x_constant']}")
@@ -337,7 +249,6 @@ class SPICE_transientSolver:
 
 
                     #add capaciatance for extra package node
-    #add capacit    ance for extra package nodes
                     myfile.write("C_sp_per_y_top Node_sp_top GND {}\n".format(self.heatspreader_others['c_sp_per_y_constant']))
                     myfile.write("C_sp_per_y_bot Node_sp_bot GND {}\n".format(self.heatspreader_others['c_sp_per_y_constant']))
                     myfile.write("C_sp_per_x_left Node_sp_left GND {}\n".format(self.heatspreader_others['c_sp_per_x_constant']))
@@ -354,6 +265,10 @@ class SPICE_transientSolver:
                     myfile.write("C_amb_per_bot Node_hs_out_bot GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
                     myfile.write("C_amb_per_left Node_hs_out_left GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
                     myfile.write("C_amb_per_right Node_hs_out_right GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
+                    myfile.write("C_amb_per_in_top Node_hs_in_top GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
+                    myfile.write("C_amb_per_in_bot Node_hs_in_bot GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
+                    myfile.write("C_amb_per_in_left Node_hs_in_left GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
+                    myfile.write("C_amb_per_in_right Node_hs_in_right GND {}\n".format(self.heatsink_others['c_amb_per_constant']))
             
 
 
@@ -362,9 +277,9 @@ class SPICE_transientSolver:
 
                 myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
                 # disable zorltan for mono3D simualtion (useful for solving the linear system partitioning probelm)
-                #myfile.write(f'.OPTIONS LINSOL TR_PARTITION=0 \n')
+                myfile.write(f'.OPTIONS LINSOL TR_PARTITION=0 \n')
                 # enable flat round robin device partitioning (useful for device partitioning problem)
-                #myfile.write(f'.OPTIONS DIST STRATEGY=2\n')
+                myfile.write(f'.OPTIONS DIST STRATEGY=2\n')
                 myfile.write(f'.OPTIONS TIMEINT METHOD={self.ll_solver}\n')
                 myfile.write(f'.OPTIONS OUTPUT INITIAL_INTERVAL={self.step_size} {self.total_time}\n')
                 myfile.write('.PRINT TRAN FORMAT=CSV PRECISION=4 ')
@@ -376,7 +291,6 @@ class SPICE_transientSolver:
                 myfile.write("\n")
                 myfile.write(".SAVE TYPE=IC\n")
                 myfile.write(".end\n")
-        #os.system("Xyce RC_transient.cir")
         if int(self.num_core)<=1:
             os.system("Xyce -l RC_transient.log RC_transient.cir")
         else:
@@ -384,16 +298,4 @@ class SPICE_transientSolver:
         with open('RC_transient.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[-1][:].split(',')[1:])))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
-#        print(reshape_x)
- #       with open("RC_block_temp_transient.cir.csv",'w') as myfile:
-  #          with open("RC_transient.cir.csv","r")as myfile1:
-   #             for num, lines in enumerate(myfile1):
-        #            if num!=0:
-         #               tmp = np.asarray(list(map(float,lines.split(',')[1:])))
-          #              reshape = tmp.reshape(self.nl,self.nr,self.nc)
-                        
-			
-	     
-        #os.system("cp RC_transient.cir.csv ../Example/results/RC_transient.cir.csv")
-        #os.system("rm -rf RC_transient.cir.csv")
         return reshape_x

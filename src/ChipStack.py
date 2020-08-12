@@ -1,6 +1,5 @@
 import pandas as pd
 import math
-#from Layer import *
 from Layer import Layer
 import sys
 
@@ -11,7 +10,6 @@ class ChipStack:
         self.getChipDimensions()
         self.create_Config_dict(config_df)
         self.getVirtualNodes()
-        #self.add_ConfigData(config_df)
         return
 
     def create_Layer_data(self,lcf_df,defaultConfigFile,virtual_node_locations,config_df):
@@ -28,12 +26,7 @@ class ChipStack:
             self.Layers_data[self.num_layers-2].virtual_node='bottom_center'
             self.Layers_data[self.num_layers-1].virtual_node='bottom_center'
        
-        #print(self.Layers_data[self.num_layers-1].flp_df['virtual_node'])
         self.num_ptrace_lines = max([x.get_num_ptrace_lines() for y, x in self.Layers_data.items()])
-        #print(self.num_ptrace_lines) 
-        #Added
-        #self.Layers_data[self.num_layers-1].VerticalHeatFlow = lcf_df[lcf_df['Layer']==self.num_layers-1]['VerticalHeatFlow']
-        #self.display_Floorplans('All')
         return
 
     def getChipDimensions(self):
@@ -44,7 +37,6 @@ class ChipStack:
             sys.exit(2)
         self.length = round(float(length.pop()),20)
         self.width = round(float(width.pop()),20)
-       # print("length and width:",self.length,self.width)
         return
 
     def create_Config_dict(self,config_df):
@@ -58,8 +50,6 @@ class ChipStack:
             self.initTemp = initTemp
         return
 
-    #def add_ConfigData(self,config_df):
-        #return
 
     def updateConfigNaN(self,defaultConfigFile):
         self["ConfigFile"].fillna(defaultConfigFile)
@@ -68,14 +58,11 @@ class ChipStack:
         if (flag == 'All'):
             for key, value in self.Layers_data.items():
                 print("-------- Floorplan for Layer",self.Layers_data[key].layer_num,"--------")
-                #print("-------- Floorplan for Layer",key,"--------")
                 print(self.Layers_data[key].flp_df,"\n")
-                #print(type(self.Layers_data[key].flp_df))
         else:
             for key, value in self.Layers_data.items():
                 if(int(self.Layers_data[key].layer_num)==int(flag)):
                     print("-------- Floorplan for Layer",self.Layers_data[key].layer_num,"--------")
-                    #print("-------- Floorplan for Layer",key,"--------")
                     print(self.Layers_data[key].flp_df,"\n")
         return
 
