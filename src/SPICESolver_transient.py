@@ -141,8 +141,10 @@ class SPICE_transientSolver:
                     if(layer < self.layer_limit):
                         Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
                         (1-float(self.factorVN[self.layerVN[layer+1]]))*self.Rz[layer+1][row][col]
+                    elif layer == self.heatsink:
+                        Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col]
                     else: 
-                         Rb = 100000000
+                        Rb = 100000000
                     #current:
                     if layer!= self.layer_limit and layer!=self.heatspreader and self.I_avg[layer][row][col]!=0:
                         i = 1
@@ -208,6 +210,8 @@ class SPICE_transientSolver:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer+1,row,col,Rb))
                     elif layer!=self.heatsink:
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
+                    elif layer==self.heatsink:
+                        myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,Rb))
                     myfile.write("C_{}_{}_{} Node{}_{}_{} GND {}\n".format(layer,row,col,layer,row, col, self.C[layer][row][col]))
                 if len(self.heatsink_layer)!=0:
                     #add heat spreader to heat sink inner node
