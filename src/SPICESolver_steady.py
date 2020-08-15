@@ -133,8 +133,9 @@ class SPICE_steadySolver:
                     if(layer < self.layer_limit):
                         Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col] + \
                         (1-float(self.factorVN[self.layerVN[layer+1]]))*self.Rz[layer+1][row][col]
+                    elif layer == self.heatsink:
+                        Rb = float(self.factorVN[self.layerVN[layer]])*self.Rz[layer][row][col]
                     else: 
-                        #Rb = math.inf
                         Rb = 100000000
                     if layer!= self.layer_limit and self.I_avg[layer][row][col]!=0 and layer!=self.heatspreader:
                         myfile.write("I_{}_{}_{} GND Node{}_{}_{} {}A\n".format(layer,row,col,layer, row, col, self.I_avg[layer][row][col])) #Replace self.I with self.I_average
@@ -186,8 +187,10 @@ class SPICE_steadySolver:
                     #above resistance
                     if layer != self.layer_limit: 
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} Node{}_{}_{} {}\n".format(layer,row,col,layer, row, col,layer+1,row,col,Rb))
-                    elif layer!=self.heatsink:
+                    elif layer !=self.heatsink: 
                         myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,self.r_amb))
+                    elif layer==self.heatsink:
+                        myfile.write("R_{}_{}_{}_3 Node{}_{}_{} GND {}\n".format(layer,row,col,layer, row, col,Rb))
                 if len(self.heatsink_layer)!=0:
                     #add heat spreader to heat sink inner node
                     myfile.write(f"R_sp_hs_in_left Node_sp_left Node_hs_in_left {self.heatspreader_others['r_sp_per_x_constant']}")
