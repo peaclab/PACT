@@ -95,7 +95,7 @@ Go to the '[Solver]' section in the modelParam file and modify both the solver n
 
 * Wrapper = SuperLU.py
 
-* SuperLU solver do not support liquid cooling, medium cost heat sink, and parallel thermal simulation.
+* SuperLU solver does not support liquid cooling, medium cost heat sink, and parallel thermal simulation.
 
 ### SPICE_steady (.OP):
 
