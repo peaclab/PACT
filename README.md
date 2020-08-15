@@ -131,7 +131,7 @@ The Example_command_line folder contains all the necessary files to run steady-s
 Users can run this command line test case by typing the following command inside the Example_command_line folder:
 
 ```python
-    python ../src/PACT.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
+python ../src/PACT.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
 ```
 The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. Here layer0 is the processor and layer1 is the cooling package. The steady-state and transient SPICE simulation grid temperature results will be saved as RC_steady.cir.csv and RC_transient.cir.csv. The transient block temperature results will be saved as RC_transient_block_temp.csv. The SPICE simulation log information will be saved as RC_steady.log or RC_transient.log.
 
