@@ -19,17 +19,17 @@ def defineGridProperties(length, height,thickness,properties,chip_length,chip_he
     heatspreader_thickness = float(properties['heatspreader_thickness (m)'])
     hs_ro = 1/float(properties['heatspreader_thermalconductivity (w/(m-k))'])
     hs_sp = float(properties['heatspreader_specificheatcapacity (j/m^3k)'])
-    hk_Rx = hk_ro*length/(height*thickness)
-    hk_Ry = hk_ro*height/(length*thickness)
-    hk_Rz = hk_ro*thickness/(length*height)
-    hs_Rx = hs_ro*length/(height*thickness)
-    hs_Ry = hs_ro*height/(length*thickness)
-    hs_Rz = hs_ro*thickness/(length*height)
+    hk_Rx = hk_ro*length/(height*heatsink_thickness)
+    hk_Ry = hk_ro*height/(length*heatsink_thickness)
+    hk_Rz = hk_ro*heatsink_thickness/(length*height)+con_r*(heatsink_side*heatsink_side)/(length*height)
+    hs_Rx = hs_ro*length/(height*heatspreader_thickness)
+    hs_Ry = hs_ro*height/(length*heatspreader_thickness)
+    hs_Rz = hs_ro*heatspreader_thickness/(length*height)
     Conv = 0
     #use this capacitance to validate with COMSOL
     #Capacitance=1*sp*length*height*thickness
-    hk_cap=0.33*hk_sp*thickness*length*height
-    hs_cap=0.33*hs_sp*thickness*length*height
+    hk_cap=0.33*hk_sp*heatsink_thickness*length*height
+    hs_cap=0.33*hs_sp*heatspreader_thickness*length*height
     # Extra thermal resistors
     r_sp1_x = getr(1/hs_ro,(heatspreader_side-chip_length)/4.0,(heatspreader_side+3*chip_height)/4.0*heatspreader_thickness) 
     r_sp1_y = getr(1/hs_ro,(heatspreader_side-chip_height)/4.0,(heatspreader_side+3*chip_length)/4.0*heatspreader_thickness) 
