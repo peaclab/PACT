@@ -138,7 +138,7 @@ python ../src/PACT.py example_lcf.csv example.config example_modelParams.config 
 The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. Here layer0 is the processor and layer1 is the cooling package. The steady-state and transient SPICE simulation grid temperature results will be saved as RC_steady.cir.csv and RC_transient.cir.csv. The transient block temperature results will be saved as RC_transient_block_temp.csv. The SPICE simulation log information will be saved as RC_steady.log or RC_transient.log.
 
 
-Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two software, please change the solver to SuperLU. If the users are running PACT with serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. 
+Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two software, please change the solver to SuperLU and change the heat sink to NoPackage. If the users are running serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. 
 
 
 # Example Script Test Cases:
