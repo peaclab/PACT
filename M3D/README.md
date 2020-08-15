@@ -14,7 +14,7 @@ To run M3D simulations, go to the scripts folder and run the following commands:
 ```python
 python M3D.py
 ```
-Since M3D simulation is kind of complex compared to 2D and 2.5D simulations, it is recommended to disable the ZOLTAN load balancer and choose the flat round-robin partitioning strategy for parallel thermal simulations. Users can achieve these by uncommenting lines 365 and 367 in ~/src/SPICESolver_transient.py and line 326 in ~/src/SPICESolver_steady.py.
+Since M3D simulation is kind of complex compared to 2D and 2.5D simulations, it is recommended to disable the ZOLTAN load balancer and choose the flat round-robin partitioning strategy for parallel thermal simulations. Users can achieve these by uncommenting lines 284 and 286 in ~/src/SPICESolver_transient.py and line 326 in ~/src/SPICESolver_steady.py.
 
 
 The steady-state simulation grid results as well as the last step transient simulation results are saved in /results folder.
