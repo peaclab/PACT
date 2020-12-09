@@ -157,7 +157,7 @@ flp_files = lcf_df['FloorplanFile'].unique()
 config_label_df = pd.DataFrame()
 for ff in flp_files:
     try:
-        ff_df = pd.read_csv(ff,lineterminator='\n')
+        ff_df = pd.read_csv(ff)
     except FileNotFoundError:
         print('Error: Floorplan file not found',ff)
         sys.exit(2)
