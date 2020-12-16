@@ -1,4 +1,5 @@
 import pandas as pd
+import sys
 
 class Layer:
     def __init__(self, lcf_row,defaultConfigFile,virtual_node_locations):
@@ -14,6 +15,7 @@ class Layer:
     # Create floorplan dataframe
     def create_flp_df(self,flp_file,defaultConfigFile,virtual_node_locations):
         flp_df = pd.read_csv(flp_file)
+        self.flp_file = flp_file
         self.flp_df = flp_df.sort_values(['Y','X'],ascending=True)
         if (self.flp_df.iloc[0].X != 0): 
             self.flp_df['X']=self.flp_df['X'] - min(self.flp_df['X'])
@@ -34,6 +36,17 @@ class Layer:
         self.num_ptrace_lines = 1
         if (not pd.isnull(ptrace_file)):
             ptrace_df = pd.read_csv(ptrace_file)
+            units_ptrace = ptrace_df["UnitName"].values.tolist()
+            units_flp = self.flp_df["UnitName"].values.tolist()
+            units_ptrace.sort()
+            units_flp.sort()
+            if not (len(units_flp) == len(units_ptrace)):
+                print(f'Mismatch between number of blocks in flp file ({self.flp_file}) and ptrace file ({ptrace_file})')
+                sys.exit(-1)
+            if not (units_flp == units_ptrace):
+                print(f'Mismatch between block names in flp file ({self.flp_file}) and ptrace file ({ptrace_file})')
+                sys.exit(-1)
+
             self.flp_df = pd.merge(self.flp_df,ptrace_df,on="UnitName", how='outer')
             self.num_ptrace_lines = len(ptrace_df.columns) -1
         else:
