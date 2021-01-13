@@ -16,4 +16,4 @@ To run OpenRPAD MPSoCs simulations (i.e., PicoSoC), go to the scripts folder and
 python qsub_Pico.py
 ```
 Users can change the floorplan utilization level inside of the python script.
-The steady-state simulation grid results as well as the last step transient simulation results are saved in /results folder. The transient grid level simulation results are saved in ~/src/RC_transient.cir.csv. The transient grid level simulation results are saved in ~/src/RC_transient_block_temp.csv.
+The steady-state simulation grid results as well as the last step transient simulation results are saved in /results folder. The transient grid level simulation results are saved in ~/src/RC_transient.cir.csv. The transient grid level simulation results are saved in ~/OpenRoad/results/{Chip_folder}/{Chip_Name}{utlization}_{grid num}.gird.block.transient.csv.
