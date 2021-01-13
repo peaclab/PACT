@@ -428,12 +428,12 @@ class GridManager:
         self.lib_dict=lib_dict
         return
     # Map grid temperatures to block temperatures
-    def grid2block(self,chipStack,gridTemperatures,block_mode,transient=False):
+    def grid2block(self,chipStack,gridTemperatures,block_mode,transient=False,transientFile = None):
         chipStack.Layers_data.apply(self.calculate_block_temperatures, \
-            args=(gridTemperatures,block_mode,transient))
+            args=(gridTemperatures,block_mode,transient,transientFile))
         return
      
-    def calculate_block_temperatures(self,layer_obj,gridTemperatures,block_mode,transient):
+    def calculate_block_temperatures(self,layer_obj,gridTemperatures,block_mode,transient,transientFile):
         layer_num = layer_obj.layer_num
         flp = layer_obj.flp_df
         if(block_mode == 'max'):
@@ -449,7 +449,7 @@ class GridManager:
             print(f'layer number:{layer_num}') 
             print(layer_obj.flp_df[['UnitName','BlockTemperature']])
         else:
-            with(open("RC_transient_block_temp.csv","a")) as myfile:
+            with(open(transientFile,"a")) as myfile:
                 myfile.write(f'layer number:{layer_num}')
                 pd.options.display.max_rows = 600
                 myfile.write(str(layer_obj.flp_df[['UnitName','BlockTemperature']])+'\n')

@@ -71,6 +71,7 @@ lcfFile = parser_args.lcfFile
 defaultConfigFile = parser_args.configFile
 modelParamsFile = parser_args.modelParamsFile
 gridSteadyFile = parser_args.gridSteadyFile
+gridtransientFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-1])+'.transient.csv'
 
 if (parser_args.initFile is not None):
     initFile = parser.parse_args().initFile
@@ -330,18 +331,16 @@ if(str(modelParams.get('Simulation','temperature_dependent'))=='True'):
     
     print("num iterations:",count)
 # Map grid to block
-'''
 if modelParams._sections['Solver'].get('name') == 'SPICE_transient':
      with open("RC_transient.cir.csv","r")as myfile:
          for num, lines in enumerate(myfile):
              if num!=0:
                  tmp = np.asarray(list(map(float,lines.split(',')[1:])))
                  reshape = tmp.reshape(int(num_layers),int(grid_rows),int(grid_cols))
-                 with open("RC_transient_block_temp.csv","a") as myfile:
+                 with open(gridtransientFile,"a") as myfile:
                      myfile.write("step "+str(num-1)+" ")
                  #print(reshape)
-                 gridManager.grid2block(chipStack, reshape, modelParams.get('Grid','grid_mode'),transient=True)
-'''
+                 gridManager.grid2block(chipStack, reshape, modelParams.get('Grid','grid_mode'),transient=True,transientFile = gridtransientFile)
 gridManager.grid2block(chipStack, grid_temperature,modelParams.get('Grid','grid_mode'))
 
 grid_temperature  = grid_temperature.reshape(num_layers,-1)
