@@ -121,6 +121,9 @@ Available solvers and usage can be found in [1] and Xyce user guide:
 
 https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
+## Iterative Solver Convergence Issue
+When doing steady-state simulations with iterative solvers such as AztecOO, for some of the problems, there might be convergence issue. PACT will report "time step too small" error. To avoid this, users need to change the steady-state solver for both steady-state and transient to direct solvers such as KLU or KSparse. We set the DC analysis (steady-state) solver as KLU for transient simulation as default. 
+
 # Enable Parallel Thermal Simulation:
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 One needs to modify the number_of_core option in the modelParams_files [Simulation] section to change the number of cores used in the PACT parallel simulation. Note that, to run parallel simulations on a Linux server, users need to start an interactive session by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. Note that, SuperLU solver does not support parallel thermal simulation, it only supports sequential thermal simulation. If the users are running PACT with serial version of __Xyce 6.12__, please set number_of_core to 1.
