@@ -71,7 +71,7 @@ lcfFile = parser_args.lcfFile
 defaultConfigFile = parser_args.configFile
 modelParamsFile = parser_args.modelParamsFile
 gridSteadyFile = parser_args.gridSteadyFile
-gridtransientFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-1])+'.transient.csv'
+gridtransientFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-2])+'.block.transient.csv'
 
 if (parser_args.initFile is not None):
     initFile = parser.parse_args().initFile
