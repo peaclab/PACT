@@ -335,7 +335,7 @@ if(str(modelParams.get('Simulation','temperature_dependent'))=='True'):
 if modelParams._sections['Solver'].get('name') == 'SPICE_transient':
      with open("RC_transient.cir.csv","r")as myfile:
          for num, lines in enumerate(myfile):
-             if num!=0:
+             if num>1:
                  tmp = np.asarray(list(map(float,lines.split(',')[1:])))
                  reshape = tmp.reshape(int(num_layers),int(grid_rows),int(grid_cols))
                  with open(gridtransientFile,"a") as myfile:

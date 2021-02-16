@@ -1,5 +1,0 @@
-import: unable to open X server `' @ error/import.c/ImportImageCommand/344.
-/var/spool/sge/scc-pi5/job_scripts/2262785: line 5: [64]: command not found
-/var/spool/sge/scc-pi5/job_scripts/2262785: line 6: grid_cols: command not found
-/var/spool/sge/scc-pi5/job_scripts/2262785: line 7: syntax error near unexpected token `('
-/var/spool/sge/scc-pi5/job_scripts/2262785: line 7: `grids_ll = [x+'x'+y for (x,y) in zip(grid_rows,grid_cols)]'

@@ -1,9 +1,0 @@
-Tue Jan  5 13:04:20 EST 2021
-scc-we4
-~/PACT/src ~/PACT/Covert2D_testcase/scripts
-lcffile = ../Covert2D_testcase/lcf_files/Haswell_tileslcf_alllayers.csv
-config file=  ../Covert2D_testcase/config_files/Haswell.config
-model params file =  ../Covert2D_testcase/modelParams_files/Haswell_modelParams.config
-grid file = ../Covert2D_testcase/results/CovertM3D_Haswell/CovertM3D_Haswell_64x64.grid.steady
-scp file =  ../Covert2D_testcase/CovertM3D_Haswell_64x64.grid.steady
-log file =  ../Covert2D_testcase/logs/CovertM3D_Haswell_64x64.log

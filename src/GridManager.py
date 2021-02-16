@@ -456,9 +456,9 @@ class GridManager:
             print(layer_obj.flp_df[['UnitName','BlockTemperature']])
         else:
             with(open(transientFile,"a")) as myfile:
-                myfile.write(f'layer number:{layer_num}')
-                pd.options.display.max_rows = 600
-                myfile.write(str(layer_obj.flp_df[['UnitName','BlockTemperature']])+'\n')
+               myfile.write(f'layer number:{layer_num}')
+               pd.options.display.max_rows = 600
+               myfile.write(str(layer_obj.flp_df[['UnitName','BlockTemperature']])+'\n')
         return
         
 
