@@ -1,0 +1,51 @@
+Thu Jan 28 01:29:05 EST 2021
+scc-ha2
+~/PACT/src ~/PACT/Covert2D_testcase/scripts
+lcffile = ../Covert2D_testcase/lcf_files/Haswell_tileslcf_alllayers_TSV3D.csv
+config file=  ../Covert2D_testcase/config_files/Haswell_TSV3D.config
+model params file =  ../Covert2D_testcase/modelParams_files/Haswell_TSV3D_modelParams.config
+grid file = ../Covert2D_testcase/results/CovertM3D_Haswell/CovertM3D_Haswell_64x64.grid.steady
+scp file =  ../Covert2D_testcase/CovertM3D_Haswell_64x64.grid.steady
+log file =  ../Covert2D_testcase/logs/CovertM3D_Haswell_64x64.log
+
+Analyzed Singleton Problem:
+---------------------------
+Singletons Detected!
+Num Singletons:      2
+---------------------------
+
+
+ConstructedSingleton Problem:
+---------------------------
+RatioOfDimensions:   0.99985
+RatioOfNonzeros:     0.770807
+---------------------------
+
+
+	Step size reached minimum step size bound
+
+	Step size reached minimum step size bound
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+chipstack length 0.010000000000000002
+chipstack width 0.013000000000000001
+16 x 16 ; grid_length and width: 0.0006250000000000001 0.0008125000000000001
+318.15
+high-level solver = SPICE_transient
+low-level solver = TRAP
+Traceback (most recent call last):
+  File "PACT.py", line 307, in <module>
+    grid_temperature = solver.getTemperature(solver_properties)
+  File "/usr2/collab/kdhananj/PACT/src/SPICESolver_transient.py", line 304, in getTemperature
+    reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
+ValueError: cannot reshape array of size 8960 into shape (52,16,16)
+~/PACT/Covert2D_testcase/scripts
+Thu Jan 28 01:36:01 EST 2021
+['64x64']
+8

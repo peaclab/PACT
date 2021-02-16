@@ -168,6 +168,12 @@ class GridManager:
                         self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Metal'])
                     elif(label=='Metal7_8'):
                         self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Metal7_8'])
+                    elif(label=='bcb'):
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['bcb'])
+                    elif(label=='lump0'):
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['lump0'])
+                    elif(label=='lump1'):
+                        self.label_config_dict[(label,cfile)]=LibSolid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['lump1'])
                     elif(label=='Liq'):
                         self.label_config_dict[(label,cfile)]=LibLiquid.defineGridProperties(grid_length,grid_width,thickness,self.config._sections['Liq'])
                     elif(label=='NoPackage'):

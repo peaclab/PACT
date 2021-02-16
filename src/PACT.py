@@ -72,7 +72,8 @@ defaultConfigFile = parser_args.configFile
 modelParamsFile = parser_args.modelParamsFile
 gridSteadyFile = parser_args.gridSteadyFile
 gridtransientFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-2])+'.block.transient.csv'
-
+logFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-2])+'.log'
+os.system(f"rm -rf {gridtransientFile}")
 if (parser_args.initFile is not None):
     initFile = parser.parse_args().initFile
 else:
@@ -305,7 +306,7 @@ solver_properties['layer_virtual_nodes']=dict_virtual_nodes
 solver_properties['factor_virtual_nodes']=modelParams._sections['VirtualNodes']
 solver_properties['r_amb']=chipStack.Layers_data[num_layers-1].r_amb
 ###Solver RC matrics###
-grid_temperature = solver.getTemperature(solver_properties)
+grid_temperature = solver.getTemperature(solver_properties,logFile)
 if(str(modelParams.get('Simulation','temperature_dependent'))=='True'):
     mode = 'temperature_dependent'
     count = 0

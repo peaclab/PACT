@@ -1,0 +1,92 @@
+Fri Dec 25 13:37:37 EST 2020
+scc-je1
+~/PACT/src ~/PACT/Covert2D_testcase/scripts
+lcffile = ../Covert2D_testcase/lcf_files/Haswell_tileslcf.csv
+config file=  ../Covert2D_testcase/config_files/Haswell.config
+model params file =  ../Covert2D_testcase/modelParams_files/Haswell_modelParams.config
+grid file = ../Covert2D_testcase/results/CovertM3D_Haswell/CovertM3D_Haswell_64x64.grid.steady
+scp file =  ../Covert2D_testcase/CovertM3D_Haswell_64x64.grid.steady
+log file =  ../Covert2D_testcase/logs/CovertM3D_Haswell_64x64.log
+chipstack length 0.010000000000000002
+chipstack width 0.013000000000000001
+16 x 16 ; grid_length and width: 0.0006250000000000001 0.0008125000000000001
+318.15
+high-level solver = SPICE_transient
+low-level solver = TRAP
+layer number:0
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:1
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:2
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:3
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:4
+         UnitName  BlockTemperature
+0          GX0_T1            54.128
+1          GX1_T1            52.355
+2          GX2_T1            50.371
+3          CORE_2            58.139
+4            L3_2            55.463
+5         DDR0_T1            52.595
+6          CORE_3            54.582
+7            L3_3            52.720
+8         DDR1_T1            50.637
+9       DE_SA0_T1            50.461
+10      DE_SA1_T1            49.483
+11        DDR2_T1            48.303
+12  DISP_PCIE0_T1            49.839
+13  DISP_PCIE1_T1            48.982
+14        DDR3_T1            47.935
+layer number:5
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:6
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:7
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:8
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:9
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:10
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:11
+         UnitName  BlockTemperature
+0          GX0_T0            54.128
+1          GX1_T0            52.355
+2          GX2_T0            50.371
+3          CORE_0            58.139
+4            L3_0            55.463
+5         DDR0_T0            52.595
+6          CORE_1            54.581
+7            L3_1            52.720
+8         DDR1_T0            50.637
+9       DE_SA0_T0            50.461
+10      DE_SA1_T0            49.483
+11        DDR2_T0            48.303
+12  DISP_PCIE0_T0            49.839
+13  DISP_PCIE1_T0            48.982
+14        DDR3_T0            47.935
+layer number:12
+  UnitName  BlockTemperature
+0   Unit_0            53.859
+layer number:13
+  UnitName  BlockTemperature
+0   Unit_0            53.853
+layer number:14
+  UnitName  BlockTemperature
+0   Unit_0            53.851
+~/PACT/Covert2D_testcase/scripts
+Fri Dec 25 13:41:32 EST 2020
+['64x64']
+8

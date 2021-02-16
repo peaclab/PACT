@@ -1,0 +1,53 @@
+Wed Jan 27 19:38:31 EST 2021
+scc-ne5
+~/PACT/src ~/PACT/Covert2D_testcase/scripts
+lcffile = ../Covert2D_testcase/lcf_files/Haswell_tileslcf_alllayers.csv
+config file=  ../Covert2D_testcase/config_files/Haswell.config
+model params file =  ../Covert2D_testcase/modelParams_files/Haswell_modelParams.config
+grid file = ../Covert2D_testcase/results/CovertM3D_Haswell/CovertM3D_Haswell_64x64.grid.steady
+scp file =  ../Covert2D_testcase/CovertM3D_Haswell_64x64.grid.steady
+log file =  ../Covert2D_testcase/logs/CovertM3D_Haswell_64x64.log
+
+Analyzed Singleton Problem:
+---------------------------
+Singletons Detected!
+Num Singletons:      2
+---------------------------
+
+
+ConstructedSingleton Problem:
+---------------------------
+RatioOfDimensions:   0.999944
+RatioOfNonzeros:     0.773511
+---------------------------
+
+
+	Step size reached minimum step size bound
+
+	Step size reached minimum step size bound
+
+	Step size reached minimum step size bound
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+chipstack length 0.010000000000000002
+chipstack width 0.013000000000000001
+32 x 32 ; grid_length and width: 0.00031250000000000006 0.00040625000000000004
+318.15
+high-level solver = SPICE_transient
+low-level solver = TRAP
+Traceback (most recent call last):
+  File "PACT.py", line 307, in <module>
+    grid_temperature = solver.getTemperature(solver_properties)
+  File "/usr2/collab/kdhananj/PACT/src/SPICESolver_transient.py", line 304, in getTemperature
+    reshape_x = tmp.reshape(self.nl,self.nr,self.nc)
+ValueError: cannot reshape array of size 8960 into shape (35,32,32)
+~/PACT/Covert2D_testcase/scripts
+Wed Jan 27 19:54:03 EST 2021
+['64x64']
+8

@@ -97,7 +97,7 @@ class SPICE_transientSolver:
             self.I_avg[key] = np.mean(value,axis=0)
         return
     # Solve the thermal RC matrices and return the grid temperatures
-    def getTemperature(self,dict_properties, mode=None):
+    def getTemperature(self,dict_properties, logFile,mode=None):
         res = [] 
         if(mode==None):
             self.dict_properties = dict_properties
@@ -296,9 +296,9 @@ class SPICE_transientSolver:
                 myfile.write(".SAVE TYPE=IC\n")
                 myfile.write(".end\n")
         if int(self.num_core)<=1:
-            os.system("Xyce -l RC_transient.log RC_transient.cir")
+            os.system(f"Xyce -l {logFile} RC_transient.cir")
         else:
-            os.system(f"mpirun -np {self.num_core} Xyce -l RC_transient.log RC_transient.cir")
+            os.system(f"mpirun -np {self.num_core} Xyce -l {logFile} RC_transient.cir")
         with open('RC_transient.cir.csv','r') as myfile:
             tmp = np.asarray(list(map(float,list(myfile)[-1][:].split(',')[1:])))
             reshape_x = tmp.reshape(self.nl,self.nr,self.nc)

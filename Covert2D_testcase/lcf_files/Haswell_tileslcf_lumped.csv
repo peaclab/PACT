@@ -1,0 +1,7 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,../Covert2D_testcase/flp_files/Haswell_other_lump1_flp.csv,0.000000420,,True
+1,../Covert2D_testcase/flp_files/Haswell_tier1_tilesflp.csv,0.0000005,../Covert2D_testcase/ptrace_files/Haswell_fft_tier1_tilesptrace.csv,True
+2,../Covert2D_testcase/flp_files/Haswell_other_lump0_flp.csv,0.000000720,,True
+3,../Covert2D_testcase/flp_files/Haswell_tier0_tilesflp.csv,0.0000005,../Covert2D_testcase/ptrace_files/Haswell_fft_tier0_tilesptrace.csv,True
+4,../Covert2D_testcase/flp_files/Haswell_other_poly_flp.csv,0.000076,,True
+
