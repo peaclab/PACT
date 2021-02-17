@@ -18,5 +18,5 @@ Since M3D simulation is kind of complex compared to 2D and 2.5D simulations, it 
 
 
 The steady-state simulation grid results as well as the last step transient simulation results are saved in /results folder.
-The transient grid level simulation results are saved in ~/src/RC_transient.cir.csv. 
+The transient grid level simulation results are saved in ~/M3D/results/M3D/M3D_{grid_num}.cir.csv. 
 The transient block level simulation results are saved in ~/M3D/results/M3D/M3D_{grid_num}.block.transient.csv. 
