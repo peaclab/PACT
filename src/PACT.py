@@ -73,6 +73,8 @@ modelParamsFile = parser_args.modelParamsFile
 gridSteadyFile = parser_args.gridSteadyFile
 gridtransientFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-2])+'.block.transient.csv'
 logFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-2])+'.log'
+SpiceFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-2])+'.cir'
+SpiceResultFile = '.'.join(parser_args.gridSteadyFile.split('.')[:-2])+'.cir.csv'
 os.system(f"rm -rf {gridtransientFile}")
 if (parser_args.initFile is not None):
     initFile = parser.parse_args().initFile
@@ -306,7 +308,10 @@ solver_properties['layer_virtual_nodes']=dict_virtual_nodes
 solver_properties['factor_virtual_nodes']=modelParams._sections['VirtualNodes']
 solver_properties['r_amb']=chipStack.Layers_data[num_layers-1].r_amb
 ###Solver RC matrics###
-grid_temperature = solver.getTemperature(solver_properties,logFile)
+if solver.name=="SuperLU":
+  grid_temperature = solver.getTemperature(solver_properties)
+else:
+  grid_temperature = solver.getTemperature(solver_properties,logFile,SpiceFile,SpiceResultFile)
 if(str(modelParams.get('Simulation','temperature_dependent'))=='True'):
     mode = 'temperature_dependent'
     count = 0
@@ -333,7 +338,7 @@ if(str(modelParams.get('Simulation','temperature_dependent'))=='True'):
     print("num iterations:",count)
 # Map grid to block
 if modelParams._sections['Solver'].get('name') == 'SPICE_transient':
-     with open("RC_transient.cir.csv","r")as myfile:
+     with open(SpiceResultFile,"r")as myfile:
          for num, lines in enumerate(myfile):
              if num>1:
                  tmp = np.asarray(list(map(float,lines.split(',')[1:])))

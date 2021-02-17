@@ -1,13 +1,13 @@
 import os,sys
 
-#grid_rows=['40']
+grid_rows=['40']
 #grid_rows= ['5']
-grid_rows= ['40','80','160']
+#grid_rows= ['40','80','160']
 grid_cols =  grid_rows
 grids_ll = [x+'x'+y for (x,y) in zip(grid_rows,grid_cols)]
 print(grids_ll)
-htc_ll = ['1e4', '1e5', '1e6']
-#htc_ll = ['1e5']
+#htc_ll = ['1e4', '1e5', '1e6']
+htc_ll = ['1e5']
 chiplabel='10mm'
 folder = '../Example/'
 lcf = folder + 'lcf_files/'+chiplabel+"_lcf"
