@@ -11,5 +11,4 @@ python scc.py
 ```
 
 The steady-state simulation grid results as well as the last step transient simulation results are saved in /results folder.
-The transient grid level simulation results are saved in ~/src/RC_transient.cir.csv. 
-The transient grid level simulation results are saved in ~/src/RC_transient_block_temp.csv. 
+
