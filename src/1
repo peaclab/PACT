@@ -266,7 +266,7 @@ if modelParams._sections['Solver'].get('name') == 'SuperLU':
 elif  modelParams._sections['Solver'].get('name') == 'SPICE_steady':
     print("high-level solver = SPICE_steady")
     print(f"low-level solver = {modelParams._sections['Solver'].get('ll_steady_solver')}")
-    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_steady_solver'),%s)" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core'),ambient_T))
+    exec("solver = %sSolver(modelParams._sections['Solver'].get('name'),%s,modelParams._sections['Solver'].get('ll_steady_solver'),modelParams._sections['Simulation'].get('init_file'),%s)" % (modelParams._sections['Solver'].get('name'),modelParams._sections['Simulation'].get('number_of_core'),ambient_T))
 
 elif  modelParams._sections['Solver'].get('name') == 'SPICE_transient':
     print("high-level solver = SPICE_transient")

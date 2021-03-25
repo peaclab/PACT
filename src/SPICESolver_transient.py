@@ -4,12 +4,14 @@ import math
 import os
 import re
 class SPICE_transientSolver:
-    def __init__(self,name,num_core,ll_solver,step_size,total_time,ptrace_step_size,ambient):
+    def __init__(self,name,num_core,ll_solver,step_size,total_time,ptrace_step_size,UIC,ambient):
         self.name = name
         self.num_core = num_core
         self.ll_solver = ll_solver
         self.step_size = step_size
         self.total_time = total_time
+        self.UIC = UIC
+
         # use to define the pwl current function step size
         self.ptrace_step_size = ptrace_step_size
         self.ambient = ambient
@@ -107,6 +109,9 @@ class SPICE_transientSolver:
             self.update()
         with open(SpiceFile,'w') as myfile:
                 myfile.write(".title spice transient solver\n")
+                if self.UIC=="True":
+                        print("initFile: "+SpiceFile+".ic")
+                        myfile.write(f".INCLUDE {SpiceFile}.ic\n")
                 myfile.write(f"Vg GND 0 {self.ambient}\n")
                 if 'inlet_T_constant' in self.dict_properties['others'][1].keys():
                    myfile.write(f"Vin INLET 0 {self.inlet_T_constant+273.15}\n")
@@ -278,8 +283,11 @@ class SPICE_transientSolver:
 
 
 
+                if self.UIC=="True":
+                    myfile.write(f'.TRAN {self.step_size} {self.total_time} UIC\n')
+                else:
+                    myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
 
-                myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
                 # disable zorltan for mono3D simualtion (useful for solving the linear system partitioning probelm)
                 myfile.write(f'.OPTIONS LINSOL TYPE=KLU TR_PARTITION=0 \n')
                 # enable flat round robin device partitioning (useful for device partitioning problem)

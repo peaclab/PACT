@@ -19,6 +19,7 @@ convergence = 0.1
 layer = 1
 temperature_dependent_library = TemperatureDependent.py
 number_of_core = 4
+init_file = False
 [Solver]
 name = SPICE_transient
 wrapper = SPICESolver_transient.py

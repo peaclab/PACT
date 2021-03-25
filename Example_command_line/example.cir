@@ -1,4 +1,5 @@
 .title spice transient solver
+.INCLUDE example.cir.ic
 Vg GND 0 318.15
 I_0_0_0 GND Node0_0_0 PWL(0s 0A 33.3us 0.031250000000000104A 66.6us 0.0A 99.89999999999999us 0.031250000000000104A)
 R_0_0_0_1 Node0_0_0 Node0_0_1 76.99999999999974
@@ -20916,7 +20917,7 @@ C_amb_per_in_top Node_hs_in_top GND 8.68725
 C_amb_per_in_bot Node_hs_in_bot GND 8.68725
 C_amb_per_in_left Node_hs_in_left GND 8.68725
 C_amb_per_in_right Node_hs_in_right GND 8.68725
-.TRAN 33.3us 999us
+.TRAN 33.3us 999us UIC
 .OPTIONS LINSOL TYPE=KLU TR_PARTITION=0 
 .OPTIONS DIST STRATEGY=2
 .OPTIONS TIMEINT METHOD=TRAP
