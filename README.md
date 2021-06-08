@@ -10,7 +10,7 @@ PACT takes config file, floorplan file, lcf file, modelParams file, and ptrace f
 <!---
 The config file describes the material property, initial temperature, as well as cooling package information. The floorplan file describes the chip information that includes chip size, number of blocks, block sizes and location, and block material property. Lcf file stands for the layer configuration file, which basically shows the layer stack with cooling information. Ptrace file allocates the power number for each active block inside the chip stack. ModelParams file shows the simulation information (e.g., steady-state/transient, solver type, number of grids, package information, etc.)
 -->
-More details about PACT can be found in [1].
+More details about PACT can be found in our TCAD paper [1].
 
 
 All the source codes are located inside the /src folder include the SuperLU solver as well as the SPICE solvers. Steady-state and transient SPICE-based solvers are named as SPICE_steady and SPICE_transient, respectively.
@@ -205,6 +205,10 @@ Example block-level temperature output:
 
 Here layer0 is the processor and layer1 is the cooling package. 
 
+# Citation and License:
+
+If you use the tool for your publications, please cite our TCAD paper [1].
+
 # Developers:
 
 * Prachi Shukla
@@ -217,19 +221,21 @@ Here layer0 is the processor and layer1 is the cooling package.
 
 If you have any questions regarding PACT, please send emails to yuan1z@bu.edu.
 
-# Principal Investigator (PI):
+# Principal Investigators:
 
-Prof. Ayse K Coskun from Boston University
+Prof. Ayse K. Coskun from Boston University
 
-https://www.bu.edu/eng/profile/ayse-coskun/
+http://people.bu.edu/acoskun
 
 Prof. Sherief Reda from Brown University
 
-https://vivo.brown.edu/display/sreda
+https://scale.engin.brown.edu/pages/sreda.html
 
 # Acknowledgment
 
-PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389. Some of the features in PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the superLU solver. This is a design decision to ease the use of PACT for the community.
+PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389. 
+
+Some of the features in PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the superLU solver. This is a design decision to ease the use of PACT for the community.
 
 # Reference:
 [1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To be submitted to _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)_, 2020.
