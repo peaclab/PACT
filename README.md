@@ -133,7 +133,7 @@ One needs to modify the number_of_core option in the modelParams_files [Simulati
 To enable transient thermal simulation with initial temperature file, users need to first run a steady-state simulation to generate the initial temperature file (e.g., {ChipName}.cir.ic). After that, users need to set init_file = True in the [Simulation] section in modelParams.config file. Then PACT will include the initial temperature file as the initial temperatures for each node and carry out the transient simulation. Note that, the grid resolution for steady-state simulation and transient simulation have to be the same. And every time users want to do a transient simulation with init temperature file, users have to run steady-state simulation first. 
 
 # Modeling Emerging On-Chip Cooling Methods
-The current version of PACT supports a medium-cost heat sink adopted from HotSpot [2], fixed-air convection HTC heat sink, liquid cooling via microchannels. We have also built emerging cooling packages such as thermoelectric cooler [6] and two-phase vapor chamber with micropillar wick and hybrid wick evaporators [7,8,9]. We will add these cooling packges to repo in the later version. 
+The current version of PACT supports a medium-cost heat sink adopted from HotSpot [2], fixed-air convection HTC heat sink, liquid cooling via microchannels. We have also built emerging cooling packages such as thermoelectric cooler [6] and two-phase vapor chamber with micropillar wick and hybrid wick evaporators [7,8,9]. We will add these cooling packges to PACT's repo later on. 
 
 # OpenROAD Interface:
 Please go to the [./src/OpenRoad/](./src/OpenRoad/) folder for more information.
