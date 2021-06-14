@@ -133,7 +133,7 @@ One needs to modify the number_of_core option in the modelParams_files [Simulati
 To enable transient thermal simulation with initial temperature file, users need to first run a steady-state simulation to generate the initial temperature file (e.g., {ChipName}.cir.ic). After that, users need to set init_file = True in the [Simulation] section in modelParams.config file. Then PACT will include the initial temperature file as the initial temperatures for each node and carry out the transient simulation. Note that, the grid resolution for steady-state simulation and transient simulation have to be the same. And every time users want to do a transient simulation with init temperature file, users have to run steady-state simulation first. 
 
 # Modeling Emerging On-Chip Cooling Methods
-The current version of PACT supports a medium-cost heat sink adopted from HotSpot [2], fixed-air convection HTC heat sink, liquid cooling via microchannels. We have also built emerging cooling packages such as thermoelectric cooler and two-phase vapor chamber with micropillar wick and hybrid wick evaporators. We will add these cooling packges to repo in the later version. 
+The current version of PACT supports a medium-cost heat sink adopted from HotSpot [2], fixed-air convection HTC heat sink, liquid cooling via microchannels. We have also built emerging cooling packages such as thermoelectric cooler [6] and two-phase vapor chamber with micropillar wick and hybrid wick evaporators [7,8,9]. We will add these cooling packges to repo in the later version. 
 
 # OpenROAD Interface:
 Please go to the [./src/OpenRoad/](./src/OpenRoad/) folder for more information.
@@ -251,6 +251,14 @@ Some of the features in PACT frontend have been implemented with inspiration fro
 [4] Coskun, A., Eris, F., Joshi, A., Kahng, A. B., Ma, Y., and Srinivas, V. "A cross-layer methodology for design and optimization of networks in 2.5 d systems." _Proceedings of the International Conference on Computer-Aided Design_, 2018.
 
 [5] Ajayi, Tutu, et al. "Toward an open-source digital flow: First learnings from the openroad project." _Proceedings of the 56th Annual Design Automation Conference_, 2019.
+
+[6] F. Kaplan, M. Said, S. Reda and A. K. Coskun, "LoCool: Fighting Hot Spots Locally for Improving System Energy Efficiency," in IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, vol. 39, no. 4, pp. 895-908, April 2020, doi: 10.1109/TCAD.2019.2902355.
+
+[7] Z. Yuan et al., "Two-Phase Vapor Chambers with Micropillar Evaporators: A New Approach to Remove Heat from Future High-Performance Chips," 2019 18th IEEE Intersociety Conference on Thermal and Thermomechanical Phenomena in Electronic Systems (ITherm), 2019, pp. 456-464, doi: 10.1109/ITHERM.2019.8757412.
+
+[8] Z. Yuan, G. Vaartstra, P. Shukla, S. Reda, E. Wang and A. K. Coskun, "Modeling and Optimization of Chip Cooling with Two-Phase Vapor Chambers," 2019 IEEE/ACM International Symposium on Low Power Electronics and Design (ISLPED), 2019, pp. 1-6, doi: 10.1109/ISLPED.2019.8824965.
+
+[9] Z. Yuan et al., "A Learning-Based Thermal Simulation Framework for Emerging Two-Phase Cooling Technologies," 2020 Design, Automation & Test in Europe Conference & Exhibition (DATE), 2020, pp. 400-405, doi: 10.23919/DATE48585.2020.9116480.
 
 
 
