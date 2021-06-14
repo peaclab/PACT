@@ -242,23 +242,23 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 Some of the features in PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the superLU solver. This is a design decision to ease the use of PACT for the community.
 
 # Reference:
-[1] Zihao Yuan, Prachi Shukla, Sofiane Chetoui, Sean Nemtzow, Sherief Reda, and Ayse K. Coskun, “PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies”. To appear in _IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)_, 2021.
+[1] Z. Yuan, P. Shukla, S. Chetoui, S. Nemtzow, S. Reda and A. K. Coskun, "PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies," in IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, doi: 10.1109/TCAD.2021.3079166.
 
-[2] Skadron, K., Stan, M. R., Huang, W., Velusamy, S., Sankaranarayanan, K., and Tarjan, D. "Temperature-aware microarchitecture." _ACM SIGARCH Computer Architecture News_, 2003.
+[2] Kevin Skadron, Mircea R. Stan, Wei Huang, Sivakumar Velusamy, Karthik Sankaranarayanan, and David Tarjan. "Temperature-aware microarchitecture," in Proceedings of the 30th annual international symposium on Computer architecture (ISCA '03). Association for Computing Machinery, New York, NY, USA, 2–13. DOI:https://doi.org/10.1145/859618.859620
 
-[3] Shukla, Prachi, et al. "An overview of thermal challenges and opportunities for monolithic 3D ICs." _Proceedings of the 2019 on Great Lakes Symposium on VLSI_, 2019.
+[3] Prachi Shukla, Ayse K. Coskun, Vasilis F. Pavlidis, and Emre Salman. "An Overview of Thermal Challenges and Opportunities for Monolithic 3D ICs," in Proceedings of the 2019 on Great Lakes Symposium on VLSI (GLSVLSI '19). Association for Computing Machinery, New York, NY, USA, 439–444. DOI:https://doi.org/10.1145/3299874.3319485
 
-[4] Coskun, A., Eris, F., Joshi, A., Kahng, A. B., Ma, Y., and Srinivas, V. "A cross-layer methodology for design and optimization of networks in 2.5 d systems." _Proceedings of the International Conference on Computer-Aided Design_, 2018.
+[4] Ayse Coskun, Furkan Eris, Ajay Joshi, Andrew B. Kahng, Yenai Ma, and Vaishnav Srinivas. "A cross-layer methodology for design and optimization of networks in 2.5D systems," in Proceedings of the International Conference on Computer-Aided Design (ICCAD '18). Association for Computing Machinery, New York, NY, USA, Article 101, 1–8. DOI:https://doi.org/10.1145/3240765.3240768
 
-[5] Ajayi, Tutu, et al. "Toward an open-source digital flow: First learnings from the openroad project." _Proceedings of the 56th Annual Design Automation Conference_, 2019.
+[5] Tutu Ajayi, Vidya A. Chhabria, Mateus Fogaça, Soheil Hashemi, Abdelrahman Hosny, Andrew B. Kahng, Minsoo Kim, Jeongsup Lee, Uday Mallappa, Marina Neseem, Geraldo Pradipta, Sherief Reda, Mehdi Saligane, Sachin S. Sapatnekar, Carl Sechen, Mohamed Shalan, William Swartz, Lutong Wang, Zhehong Wang, Mingyu Woo, and Bangqi Xu. "Toward an Open-Source Digital Flow: First Learnings from the OpenROAD Project," in Proceedings of the 56th Annual Design Automation Conference 2019 (DAC '19). Association for Computing Machinery, New York, NY, USA, Article 76, 1–4. DOI:https://doi.org/10.1145/3316781.3326334
 
 [6] F. Kaplan, M. Said, S. Reda and A. K. Coskun, "LoCool: Fighting Hot Spots Locally for Improving System Energy Efficiency," in IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, vol. 39, no. 4, pp. 895-908, April 2020, doi: 10.1109/TCAD.2019.2902355.
 
-[7] Z. Yuan et al., "Two-Phase Vapor Chambers with Micropillar Evaporators: A New Approach to Remove Heat from Future High-Performance Chips," 2019 18th IEEE Intersociety Conference on Thermal and Thermomechanical Phenomena in Electronic Systems (ITherm), 2019, pp. 456-464, doi: 10.1109/ITHERM.2019.8757412.
+[7] Z. Yuan, G. Vaartstra, P. Shukla, S. Reda, E. Wang and A. K. Coskun, "Two-Phase Vapor Chambers with Micropillar Evaporators: A New Approach to Remove Heat from Future High-Performance Chips," 2019 18th IEEE Intersociety Conference on Thermal and Thermomechanical Phenomena in Electronic Systems (ITherm), 2019, pp. 456-464, doi: 10.1109/ITHERM.2019.8757412.
 
 [8] Z. Yuan, G. Vaartstra, P. Shukla, S. Reda, E. Wang and A. K. Coskun, "Modeling and Optimization of Chip Cooling with Two-Phase Vapor Chambers," 2019 IEEE/ACM International Symposium on Low Power Electronics and Design (ISLPED), 2019, pp. 1-6, doi: 10.1109/ISLPED.2019.8824965.
 
-[9] Z. Yuan et al., "A Learning-Based Thermal Simulation Framework for Emerging Two-Phase Cooling Technologies," 2020 Design, Automation & Test in Europe Conference & Exhibition (DATE), 2020, pp. 400-405, doi: 10.23919/DATE48585.2020.9116480.
+[9] Z. Yuan, G. Vaartstra, P. Shukla, Zhengmao Lu, E. Wang, S. Reda, and A. K. Coskun, "A Learning-Based Thermal Simulation Framework for Emerging Two-Phase Cooling Technologies," 2020 Design, Automation & Test in Europe Conference & Exhibition (DATE), 2020, pp. 400-405, doi: 10.23919/DATE48585.2020.9116480.
 
 
 
