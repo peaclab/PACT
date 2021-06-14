@@ -83,6 +83,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     python PACT.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
     ```
     For steady-state simulation, the grid_file specific the steady-state grid temperature output of PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file.
+
 # Options for Solvers: 
 We divide the solver section into high-level solvers as well as low-level solvers. High-level solvers include SuperLU and SPICE solvers.
 Low-level solvers include KLU, KSparse, TRAP, BE, etc.
@@ -130,6 +131,9 @@ One needs to modify the number_of_core option in the modelParams_files [Simulati
 
 # Enable Transient Thermal Simulation with Initial Temperature File:
 To enable transient thermal simulation with initial temperature file, users need to first run a steady-state simulation to generate the initial temperature file (e.g., {ChipName}.cir.ic). After that, users need to set init_file = True in the [Simulation] section in modelParams.config file. Then PACT will include the initial temperature file as the initial temperatures for each node and carry out the transient simulation. Note that, the grid resolution for steady-state simulation and transient simulation have to be the same. And every time users want to do a transient simulation with init temperature file, users have to run steady-state simulation first. 
+
+# Modeling Emerging On-Chip Cooling Methods
+The current version of PACT supports a medium-cost heat sink adopted from HotSpot [2], fixed-air convection HTC heat sink, liquid cooling via microchannels. We have also built emerging cooling packages such as thermoelectric cooler and two-phase vapor chamber with micropillar wick and hybrid wick evaporators. We will add these cooling packges to repo in the later version. 
 
 # OpenROAD Interface:
 Please go to the [./src/OpenRoad/](./src/OpenRoad/) folder for more information.
