@@ -211,6 +211,7 @@ Here layer0 is the processor and layer1 is the cooling package.
 
 # Citation and License:
 
+PACT is licensed under GNU General Public License v3.0 license.
 If you use the tool for your publications, please cite our TCAD paper [1].
 
 # Developers:
