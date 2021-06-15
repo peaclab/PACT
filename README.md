@@ -202,7 +202,6 @@ Users can also modify the corresponding modelParam files in the /Example/modelPa
 For simulation using SPICE solvers, users can find the SPICE solver grid temperature simulation results located in /Example/results/{ChipName} folder as {ChipName}.cir.csv. Users can also find the SPICE transient block temperature results in /Example/results/ folder as {ChipName}.block.transient.csv. The SPICE solver log files are located in /Example/results/{ChipName} folder as {ChipName}.log. For simulation using SuperLU, users can find the grid temperature simulation results and log files in /Example/results/ and /Example/logs/ folders. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
 
 Example block-level temperature output:
-
 ![](/image/output.PNG)
 
 Here layer0 is the processor and layer1 is the cooling package. 
@@ -210,7 +209,7 @@ Here layer0 is the processor and layer1 is the cooling package.
 # Citation and License:
 
 PACT is licensed under GNU General Public License v3.0 license.
-If you use the tool for your publications, please cite our TCAD paper [1].
+If you use PACT for your publications, please cite our TCAD paper [1].
 
 # Developers:
 
@@ -240,7 +239,7 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 
 Some of the features in the PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the superLU solver. This is a design decision to ease the use of PACT for the community.
 
-# Reference:
+# References
 [1] Z. Yuan, P. Shukla, S. Chetoui, S. Nemtzow, S. Reda and A. K. Coskun, "PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies," to appear in IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, 2021, doi: 10.1109/TCAD.2021.3079166.
 
 [2] Kevin Skadron, Mircea R. Stan, Wei Huang, Sivakumar Velusamy, Karthik Sankaranarayanan, and David Tarjan. "Temperature-aware microarchitecture," in Proceedings of the 30th annual international symposium on Computer architecture (ISCA '03). Association for Computing Machinery, New York, NY, USA, 2–13. DOI:https://doi.org/10.1145/859618.859620
