@@ -204,25 +204,18 @@ If you use PACT for your publications, please cite our TCAD paper [1].
 
 # Developers:
 
-* Prachi Shukla
-
-* Zihao Yuan
-
-* Sofiane Chetoui
-
-* Sean Nemtzow 
+* Prachi Shukla, Boston University
+* Zihao Yuan, Boston University
+* Sofiane Chetoui, Brown University
+* Sean Nemtzow, Boston University 
 
 If you have any questions regarding PACT, please send emails to yuan1z@bu.edu.
 
 # Principal Investigators:
 
-Prof. Ayse K. Coskun, Boston University
+Prof. Ayse K. Coskun, Boston University, http://people.bu.edu/acoskun
 
-http://people.bu.edu/acoskun
-
-Prof. Sherief Reda, Brown University
-
-https://scale.engin.brown.edu/pages/sreda.html
+Prof. Sherief Reda, Brown University, https://scale.engin.brown.edu/pages/sreda.html
 
 # Acknowledgment
 
