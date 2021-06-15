@@ -125,8 +125,8 @@ rt "time step too small" error. To avoid this, users need to change the steady-s
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 One needs to modify the number_of_core option in the modelParams_files [Simulation] section to change the number of cores used in the PACT parallel simulation. Note that, to run parallel simulations on a Linux server, users need to start an interactive session by running _qrsh_ or _qsh_. Or, users can submit batch jobs by using _qsub_. Note that, SuperLU solver does not support parallel thermal simulation, it only supports sequential thermal simulation. If the users are running PACT with serial version of __Xyce 6.12__, please set number_of_core to 1.
 
-# Enable Transient Thermal Simulation with Initial Temperature File:
-To enable transient thermal simulation with initial temperature file, users need to first run a steady-state simulation to generate the initial temperature file (e.g., {ChipName}.cir.ic). After that, users need to set init_file = True in the [Simulation] section in modelParams.config file. Then PACT will include the initial temperature file as the initial temperatures for each node and carry out the transient simulation. Note that, the grid resolution for steady-state simulation and transient simulation have to be the same. And every time users want to do a transient simulation with init temperature file, users have to run steady-state simulation first. 
+# Enable Transient Thermal Simulation with an Initial Temperature File:
+To enable transient thermal simulation with an initial temperature file, users should typically first run a steady-state simulation to generate the initial temperature file (e.g., {ChipName}.cir.ic). Then, users need to set init_file = True in the [Simulation] section in modelParams.config file. Then PACT will include the initial temperature file as the initial temperatures for each node and carry out the transient simulation. Note that the grid resolution for steady-state simulation and transient simulation have to be the same. We recommend always running a steady-state simulation first before running a transient simulation with an initial temperature file. 
 
 # Modeling Emerging On-Chip Cooling Methods
 The current version of PACT includes a medium-cost heat sink adopted from HotSpot [2], a fixed-air convection HTC heat sink, and models for liquid cooling via microchannels. 
@@ -137,33 +137,28 @@ We have also built emerging cooling packages such as thermoelectric coolers [6] 
 Please go to the [./src/OpenRoad/](./src/OpenRoad/) folder for more information.
 
 # Example Command Line Test Case:
-The Example_command_line folder contains all the necessary files to run steady-state and transient simulations of a 10mmX10mm chip with a 500um hot spot placed at the center. The example_ptrace.csv contains 3 power traces. For steady-state simulation, PACT will average the power trace for each block and perform steady-state simulations. For transient simulation, PACT with SPICE_transient solver will performance transient simulation with user-defined ptrace step size, simulation step size, and total simulation time. User can define these 3 parameters in example_modelParams.config. The default heat sink is a medium-cost heat sink adopted from HotSpot [2] Users can uncomment the [NoPackage] and [NoPackage_sec] labels and comment out [HeatSink] and [HeatSink_sec] labels in example_modelParams.config to enable the fixed-air convection heat sink. In addtion, users also need to uncomment the [NoPackage] label and comment out the [HeatSink] label in the example.config file.
-Users can run this command line test case by typing the following command inside the Example_command_line folder:
+The Example_command_line folder contains all the necessary files to run steady-state and transient simulations of a 10mmX10mm chip with a 500um hot spot placed at the center. The example_ptrace.csv contains 3 power traces. For steady-state simulation, PACT will average the power trace for each block and perform steady-state simulations. For transient simulation, PACT with SPICE_transient solver will run with a user-defined ptrace step size, a simulation step size, and a total simulation time. Users can define these 3 parameters in example_modelParams.config. 
 
+The default heat sink is a medium-cost heat sink adopted from HotSpot [2]. Users can uncomment the [NoPackage] and [NoPackage_sec] labels and comment out [HeatSink] and [HeatSink_sec] labels in example_modelParams.config to enable the fixed-air convection heat sink. In addition, users also need to uncomment the [NoPackage] label and comment out the [HeatSink] label in the example.config file.
+
+Users can run this command line test case by typing the following command inside the Example_command_line folder:
 ```python
 python ../src/PACT.py example_lcf.csv example.config example_modelParams.config --gridSteadyFile example.grid.steady
 ```
 The layerwise grid temperature results will be saved as example.grid.steady.layer0 and example.grid.steady.layer1. Here layer0 is the processor and layer1 is the cooling package. The steady-state and transient SPICE simulation grid temperature results will be saved as example.cir.csv. The transient block temperature results will be saved as example.block.transient.csv. The SPICE simulation log information will be saved as example.log.
 
-
-Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users haven't installed these two software, please change the solver to SuperLU and change the heat sink to NoPackage. If the users are running serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. 
+Note that, this command line test case assumes the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__. If the users have not installed these two software, please change the solver to SuperLU and change the heat sink to NoPackage. If the users are running the serial version of PACT, please make sure you set the number_of_core option in the example_modelParams.config to 1. 
 
 
 # Example Script Test Cases:
 We have provided several script test cases in the Example folder for the users to test.
 
 * The test chip sizes are set to 5mmX5mm, 10mmX10mm, and 20mmX20mm.
-
 * We include uniform power density test cases of [40-200] W/cm<sup>2</sup>.
-
 * We have also included non-uniform power density test cases with a background power density of 50 W/cm<sup>2</sup> and hot spot power density of [500-2000] W/cm<sup>2</sup>. 
-
 * Users can choose the location of the hot spot as well as the number of hot spots by change the __hs_loc__ option in "qsub_Hetero_500um.py" scipt to ['center', 'edge', 'corner','multiple_center','multiple_offcenter']. The detailed non-uniform floorplans can be found in /Example/flp_files/ folder.
-
-* To test the heterogeneity, we also include chips with heterogeneous materials such as silicon and copper. 
-
+* To test heterogeneity within a layer (e.g., due to TSVs in a 3D-stacked chip), we also include chips with heterogeneous materials such as silicon and copper. 
 * The cooling package is set to fixed air convection HTC, users can change the HTC based on their need. 
-
 * Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.). Users can specify the number of grids used in the simulation as multiple of 2 and 5 or as a power of 2.
 
 To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py as shown below:
@@ -173,14 +168,11 @@ To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_2
     $python qsub_10mm.py
 ```
 or
-
 ```
     $cd Example/scripts/
     $python qsub_20mm.py
 ```
-
 or
-
 ```
     $cd Example/scripts/
     $python qsub_Hetero_500um.py
@@ -203,7 +195,6 @@ For simulation using SPICE solvers, users can find the SPICE solver grid tempera
 
 Example block-level temperature output:
 ![](/image/output.PNG)
-
 Here layer0 is the processor and layer1 is the cooling package. 
 
 # Citation and License:
