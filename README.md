@@ -56,7 +56,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     1. Thickness defines the layer thickness.
     2. HTC is the heat transfer coefficient between the ambient and the heat sink.
     3. Thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
-    4. [Init] defines as the ambient temperature.
+    4. [Init] defines the ambient temperature.
     5. Users can select the heat sink as well as its parameters.
 2. Floorplan (i.e., [./Example/flp_files/](./Example/flp_files/) (.CSV file)) describes the chip floorplan.
     1. Depending on the desired simulation granularity, users can define a standard-cell-level chip floorplan with a large number of units or an architecture-level floorplan that includes microarchitectural hardware blocks.
@@ -64,7 +64,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     3. X and Y define the location of the unit.
     4. Length (m) and Width (m) describe the unit size.
     5. Label describes the material or the cooling property of the unit.
-    6. Users can ignore the configfile option for now. The configfile option is for enabling two-phase vapor chamber with single wick evaporators and hybrid wick evaporators. We will release these two emerging cooling packages in the later version of PACT.
+    6. Users can ignore the configfile option for now. The configfile option is for enabling two-phase vapor chamber with micropillar wick evaporators and hybrid wick evaporators. We will release these two emerging cooling packages in the later version of PACT.
 3.  Layer configuration file (i.e., [./Example/lcf_files/](./Example/lcf_files/) (.CSV file)) describes the layer stack.
     1. Layer describes the layer number; all layers are stacked vertically starting from layer 0, where layer 0 is the closest from the package/heat sink.
     2. Floorplan file describes the floorplan for the specific layer.
@@ -82,7 +82,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     ```python
     python PACT.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
     ```
-    For steady-state simulation, the grid_file specifies the steady-state grid temperature output of PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file. In the meantime, both the transient grid temperature traces and the transient block temperature traces will be saved.
+    For steady-state simulation, the grid_file specifies the steady-state grid temperature output of the PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file. In the meantime, both the transient grid temperature traces and the transient block temperature traces will be saved.
 
 # Options for Solvers: 
 We divide the solver section into high-level solvers as well as low-level solvers. High-level solvers include SuperLU and SPICE solvers.
@@ -119,8 +119,8 @@ Available solvers and usage can be found in [1] and Xyce user guide:
 https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
 ## Iterative Solver Convergence Issue
-When doing steady-state simulations with iterative solvers such as AztecOO, for some of the problems, there might be convergence issue. PACT will 
-rt "time step too small" error. To avoid this, users need to change the steady-state solver for both steady-state and transient to direct solvers such as KLU or KSparse. We set the DC analysis (steady-state) solver as KLU for transient simulation as default. 
+When doing steady-state simulations with iterative solvers such as AztecOO, for some of the problems, there might be a convergence issue. PACT will 
+report "time step too small" error. To avoid this, users need to change the steady-state solver for both steady-state and transient to direct solvers such as KLU or KSparse. We set the DC analysis (steady-state) solver as KLU for transient simulation as default. 
 
 # Enable Parallel Thermal Simulation:
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
