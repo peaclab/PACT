@@ -221,7 +221,7 @@ Prof. Sherief Reda, Brown University, https://scale.engin.brown.edu/pages/sreda.
 
 # Acknowledgment
 
-PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389. 
+PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389 and NSF CCF grant #1910075/1909027.
 
 Some of the features in the PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the superLU solver. This is a design decision to ease the use of PACT for the community.
 
