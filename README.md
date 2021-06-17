@@ -4,7 +4,8 @@ PACT is a SPICE-based PArallel Compact Thermal simulator (PACT) that enables fas
 
 The simulation flow of PACT is shown in the following image.
 
-![](/image/PACTflow.PNG)
+<!-- ![](/image/PACTflow.PNG|width=100) -->
+<center><img src="/image/PACTflow.PNG" width="600" height="300">
 
 PACT takes a configuration file, a floorplan file, a layer (lcf) file, a parameter (modelParams) file, and a power trace (ptrace) file as inputs and outputs the steady-state/transient temperature results.
 <!---
@@ -55,7 +56,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     1. Thickness defines the layer thickness.
     2. HTC is the heat transfer coefficient between the ambient and the heat sink.
     3. Thermal resistivity and specific heat capacity are used to calculate the thermal resistor and capacitor values.
-    4. [Init] defines the initial temperature as well as the ambient temperature.
+    4. [Init] defines as the ambient temperature.
     5. Users can select the heat sink as well as its parameters.
 2. Floorplan (i.e., [./Example/flp_files/](./Example/flp_files/) (.CSV file)) describes the chip floorplan.
     1. Depending on the desired simulation granularity, users can define a standard-cell-level chip floorplan with a large number of units or an architecture-level floorplan that includes microarchitectural hardware blocks.
@@ -63,9 +64,9 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     3. X and Y define the location of the unit.
     4. Length (m) and Width (m) describe the unit size.
     5. Label describes the material or the cooling property of the unit.
-    6. Users can ignore the configfile option for now.
+    6. Users can ignore the configfile option for now. The configfile option is for enabling two-phase vapor chamber with single wick evaporators and hybrid wick evaporators. We will release these two emerging cooling packages in the later version of PACT.
 3.  Layer configuration file (i.e., [./Example/lcf_files/](./Example/lcf_files/) (.CSV file)) describes the layer stack.
-    1. Layer describes the layer number; all layers are stacked vertically starting from layer 0.
+    1. Layer describes the layer number; all layers are stacked vertically starting from layer 0, where layer 0 is the closest from the package/heat sink.
     2. Floorplan file describes the floorplan for the specific layer.
     3. PtraceFile: if a layer is active (consumes power), then its corresponding power trace file needs to be specified here.
 4. Power trace file (i.e., [./Example/ptrace_files/](./Example/ptrace_files/) (.CSV file)) provides the transient power consumption.
@@ -73,7 +74,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     2. Power (W) is the power consumption for the unit.
 5. Model parameter files (i.e., [./Example/modelParams_files/](./Example/modelParams_files/)):
     1. [PATH] defines the path to the library, ptrace, flp.
-    2. [Simulation] defines the simulation type. 
+    2. [Simulation] defines the simulation type (e.g, steady-state or transient). 
     3. [Solver] selects the solver (SuperLU, SPICE_steady, SPICE_transient).
     4. [Grid] is the number of grid cells used in the simulation. 
     5. Users can also define the heat sink characteristics, cooling properties, and other cooling options.
@@ -157,7 +158,7 @@ We have provided several script test cases in the Example folder for the users t
 * We include uniform power density test cases of [40-200] W/cm<sup>2</sup>.
 * We have also included non-uniform power density test cases with a background power density of 50 W/cm<sup>2</sup> and hot spot power density of [500-2000] W/cm<sup>2</sup>. 
 * Users can choose the location of the hot spot as well as the number of hot spots by change the __hs_loc__ option in "qsub_Hetero_500um.py" scipt to ['center', 'edge', 'corner','multiple_center','multiple_offcenter']. The detailed non-uniform floorplans can be found in /Example/flp_files/ folder.
-* To test heterogeneity within a layer (e.g., due to TSVs in a 3D-stacked chip), we also include chips with heterogeneous materials such as silicon and copper. 
+* To test heterogeneity within a layer (e.g., due to TSVs in a 3D-stacked chip), we also include chips with heterogeneous materials such as silicon and copper. Users can edit and run "qsub_Hetero_500um.py". The detailed floorplans can be found in /Example/flp_files/ folder.
 * The cooling package is set to fixed air convection HTC, users can change the HTC based on their need. 
 * Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.). Users can specify the number of grids used in the simulation as multiple of 2 and 5 or as a power of 2.
 
@@ -184,7 +185,7 @@ __qsub_10mm.py__: steady-state and transient analysis for homogeneous chips with
 
 __qsub_20mm.py__: steady-state and transient analysis for homogeneous chips with a chip size of 20mm with both uniform power density and non-uniform power density profiles.
 
-__qsub_Hetero_500um.py__: steady-state and transient analysis for heterogeneous chips (Copper and Silicon) with chip sizes of 5mm,10mm, and 20mm with non-uniform power density profiles. Users can select different hot spot locations and the number of hot spots.
+__qsub_Hetero_500um.py__: steady-state and transient analysis for chips with heterogeneous layers (Copper and Silicon) with chip sizes of 5mm,10mm, and 20mm with non-uniform power density profiles. Users can select different hot spot locations and the number of hot spots.
 
 Note that, these example script test cases assume the users have already installed the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
 If the users haven't installed these two software, please change the solver to SuperLU. If the users are running PACT with serial version of __Xyce 6.12__, please make sure you set the number_of_core option in the modelParams files to 1. 
@@ -194,7 +195,8 @@ Users can also modify the corresponding modelParam files in the /Example/modelPa
 For simulation using SPICE solvers, users can find the SPICE solver grid temperature simulation results located in /Example/results/{ChipName} folder as {ChipName}.cir.csv. Users can also find the SPICE transient block temperature results in /Example/results/ folder as {ChipName}.block.transient.csv. The SPICE solver log files are located in /Example/results/{ChipName} folder as {ChipName}.log. For simulation using SuperLU, users can find the grid temperature simulation results and log files in /Example/results/ and /Example/logs/ folders. For steady-state simulation, the block-level temperature results will be printed in the terminal. For transient simulation, the last step of the block-level transient temperature results will be printed in the terminal. 
 
 Example block-level temperature output:
-![](/image/output.PNG)
+<!-- ![](/image/output.PNG) -->
+<center><img src="/image/output.PNG" width="600" height="300">
 Here layer0 is the processor and layer1 is the cooling package. 
 
 # Citation and License:
