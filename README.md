@@ -82,7 +82,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     ```python
     python PACT.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
     ```
-    For steady-state simulation, the grid_file specifies the steady-state grid temperature output of PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file. In the meantime 
+    For steady-state simulation, the grid_file specifies the steady-state grid temperature output of PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file. In the meantime, both the transient grid temperature traces and the transient block temperature traces will be saved.
 
 # Options for Solvers: 
 We divide the solver section into high-level solvers as well as low-level solvers. High-level solvers include SuperLU and SPICE solvers.
