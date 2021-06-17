@@ -160,7 +160,7 @@ We have provided several script test cases in the Example folder for the users t
 * Users can choose the location of the hot spot as well as the number of hot spots by change the __hs_loc__ option in "qsub_Hetero_500um.py" scipt to ['center', 'edge', 'corner','multiple_center','multiple_offcenter']. The detailed non-uniform floorplans can be found in /Example/flp_files/ folder.
 * To test heterogeneity within a layer (e.g., due to TSVs in a 3D-stacked chip), we also include chips with heterogeneous materials such as silicon and copper. Users can edit and run "qsub_Hetero_500um.py". The detailed floorplans can be found in /Example/flp_files/ folder.
 * The cooling package is set to fixed air convection HTC, users can change the HTC based on their need. 
-* Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.). Users can specify the number of grids used in the simulation as multiple of 2 and 5 or as a power of 2.
+* Users can also choose a different number of grids used in the simulation (e.g., 40X40, 80X80, 160X160, etc.). Users can specify the number of grids used in the simulation as a multiple of 2 and 5 or as a power of 2.
 
 To run thermal simulations, go to /Example/scripts/ and run qsub_10mm.py, qsub_20mm.py, and qsub_Hetero_500um.py as shown below:
 
@@ -223,7 +223,7 @@ Prof. Sherief Reda, Brown University, https://scale.engin.brown.edu/pages/sreda.
 
 PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/1730389 and NSF CCF grant #1910075/1909027.
 
-Some of the features in the PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the superLU solver. This is a design decision to ease the use of PACT for the community.
+Some of the features in the PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the SuperLU solver. This is a design decision to ease the use of PACT for the community.
 
 # References
 [1] Z. Yuan, P. Shukla, S. Chetoui, S. Nemtzow, S. Reda and A. K. Coskun, "PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies," to appear in IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, 2021, doi:10.1109/TCAD.2021.3079166.
