@@ -82,7 +82,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
     ```python
     python PACT.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
     ```
-    For steady-state simulation, the grid_file specifies the steady-state grid temperature output of PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file.
+    For steady-state simulation, the grid_file specifies the steady-state grid temperature output of PACT simulation. For transient simulation, the last step transient grid temperature results will be saved in grid_file. In the meantime 
 
 # Options for Solvers: 
 We divide the solver section into high-level solvers as well as low-level solvers. High-level solvers include SuperLU and SPICE solvers.
@@ -101,7 +101,7 @@ Go to the '[Solver]' section in the modelParam file and modify both the solver n
 * Name = SPICE_steady
 * Wrapper = SPICESolver_steady.py
 
-Steady-state SPICE solver grid temperature files are saved as RC_steady.cir.csv. Steady-state SPICE solver log files are saved as {ChipName}.log. The steady-state block-level temperatures will be printed in the terminal.
+Steady-state SPICE solver grid temperature files are saved as {ChipName}.cir.csv. Steady-state SPICE solver log files are saved as {ChipName}.log. The steady-state block-level temperatures will be printed in the terminal.
 
 ### SPICE_transient (.TRAN):
 
@@ -109,7 +109,7 @@ Steady-state SPICE solver grid temperature files are saved as RC_steady.cir.csv.
 * Wrapper = SPICESolver_transient.py
 
 Users can modify the step_size, total_simualtion_time, and ptrace_step_size options under the [Simulation] section in modelParams_files to redefine the simulation step size and simulation time, and ptrace step size of the transient simulation, respectively.
-Transient SPICE solver grid temperature files are saved as RC_transient.cir.csv. Transient SPICE solver block temperature files are saved as {ChipName}.block.transient.csv. SPICE solver log files are saved as {ChipName}.log. The last step block_level transient temperature results will be printed in the terminal.
+Transient SPICE solver grid temperature files are saved as {ChipName}.cir.csv. Transient SPICE solver block temperature files are saved as {ChipName}.block.transient.csv. SPICE solver log files are saved as {ChipName}.log. The last step block_level transient temperature results will be printed in the terminal.
 
 ## Low-level solvers
 To change the low-level solver types for SPICE solver, users need to modify the ll_steady_solver or ll_transient_solver option under the [Solver] section in  modelParams_files. Note that, SuperLU solver does not support low-level solver.
