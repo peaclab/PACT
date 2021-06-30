@@ -209,6 +209,7 @@ If you use PACT for your publications, please cite our TCAD paper [1].
 * Prachi Shukla, Boston University
 * Zihao Yuan, Boston University
 * Sofiane Chetoui, Brown University
+* Carlton Knox, Boston University
 * Sean Nemtzow, Boston University 
 
 If you have any questions regarding PACT, please send emails to yuan1z@bu.edu.
