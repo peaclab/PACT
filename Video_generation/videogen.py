@@ -22,21 +22,6 @@ def getDimensions(file,layer):
         ncols+=1
     return nrows,ncols
 
-def getImageHeight(df_l,colors,vmin,vmax):
-    #0.98143236 * image height = heatmap height
-    testRow = np.array(next(df_l.iterrows())[1])
-    testRow = testRow.reshape(grid_rows,grid_cols)-273.15
-    plot = sns.heatmap(testRow,cmap=colors,xticklabels=False, yticklabels=False,cbar_kws={'label':'Temperature($^\circ C$)'}, vmin=vmin, vmax = vmax)
-    plot.set_aspect("equal")
-    plot.get_figure().savefig("test.png",dpi=100,bbox_inches = 'tight',pad_inches = 0)   
-    plot.get_figure().clf()
-    testIMG = cv2.imread("test.png")
-    height, width, channels = testIMG.shape
-    os.remove("test.png")
-    overlay_height = int(height*0.98143236)
-    print("image height/overlay height:",height,overlay_height)
-    return overlay_height,height
-
 def readFormatInput(file,n_rows,n_cols):
     column = [f'V(NODE{layer}_{row}_{col})' for row in range(n_rows) for col in range(n_cols)]
     df_l = pd.read_csv(file,usecols = column)
@@ -69,8 +54,9 @@ parser.add_argument('transient_data_file',action='store')
 parser.add_argument('--overlay',dest='overlay_image',action='store',default=None)
 parser.add_argument('--min',dest='vmin',action='store',type=float,default=None)
 parser.add_argument('--max',dest='vmax',action='store',type=float,default=None)
-parser.add_argument('fps',action='store',type=int)
+parser.add_argument('--fps',dest='fps',action='store',type=int,default=5)
 parser.add_argument('--layer',dest='layer',action='store',type=int,default=0)
+parser.add_argument('--dpi',dest='dpi',action='store',type=int,default=100)
 #READ PARSER ARGUUMENTS
 parser_args = parser.parse_args()
 transient_data_file = parser_args.transient_data_file
@@ -80,6 +66,7 @@ vmin = parser_args.vmin
 vmax = parser_args.vmax
 fps = parser_args.fps
 layer = parser_args.layer
+dpi = parser_args.dpi
 #SET OUTPUT PATHS
 output_path = transient_data_file.rstrip(''.join(Path(transient_data_file).suffixes))
 output_name = os.path.basename(output_path)
@@ -109,44 +96,31 @@ if vmax == None:
     vmax = df_l.max().max()-273.15
 print("vmin: "+str(vmin))
 print("vmax: "+str(vmax))
-
-i = 0
+#Set heatmap colors
 start = 0.0
 stop = 1.0
 number_of_lines= 1000
 cm_subsection = np.linspace(start, stop, number_of_lines) 
 colors = [ matplotlib.cm.jet(x) for x in cm_subsection ]  
-#overlay dimensions
+#Generate video Frames
+i=0
 if(use_overlay):
-    overlay_height,image_height = getImageHeight(df_l,colors,vmin,vmax)
-    overlay_length = int(overlay_height*grid_cols/grid_rows)
-    offset = round((image_height-overlay_height)/2)
-    #x_offset,y_offset = offset,offset
-    #y1, y2 = y_offset, y_offset + overlay.shape[0]
-    #x1, x2 = x_offset, x_offset + overlay.shape[1]
-    print("overlay:",overlay_length,overlay_height)
+    overlay =  cv2.imread(overlay_image,cv2.IMREAD_UNCHANGED)
 for index, row in df_l.iterrows():
     print("frame: "+str(i),end="\r")
     newRow = np.array(row)
     newRow = newRow.reshape(grid_rows,grid_cols)-273.15
-    #print(newRow.max())
     plot = sns.heatmap(newRow,cmap=colors,xticklabels=False, yticklabels=False,cbar_kws={'label':'Temperature($^\circ C$)'}, vmin=vmin, vmax = vmax)
     plot.set_aspect("equal")
-    plot.get_figure().savefig(f"{frame_folder}{output_name}_{i}.png",dpi=100,bbox_inches = 'tight',pad_inches = 0)
-    plot.get_figure().clf()
     if(use_overlay):
-        overlay = cv2.imread(overlay_image,cv2.IMREAD_UNCHANGED)
-        overlay = cv2.resize(overlay,(overlay_length,overlay_height))
-        background = cv2.imread(f"{frame_folder}{output_name}_{i}.png",cv2.IMREAD_UNCHANGED)
-        
-        y1, y2 = offset, offset + overlay.shape[0]
-        x1, x2 = offset, offset + overlay.shape[1]
-        #print(overlay.shape,background.shape)
-        alpha_s = 0.3
-        alpha_l = 1.0 - alpha_s
-        for c in range(0, 3):
-            background[y1:y2, x1:x2, c] = (alpha_s * overlay[:, :, c]+alpha_l * background[y1:y2, x1:x2, c])
-        cv2.imwrite(f"{frame_folder}{output_name}_{i}.png", background)
+        plot.imshow(overlay,
+                alpha=0.3,
+                zorder=1,
+               aspect=plot.get_aspect(),
+                interpolation='none',
+                extent=plot.get_xlim()+plot.get_ylim())
+    plot.get_figure().savefig(f"{frame_folder}{output_name}_{i}.png",dpi=dpi,bbox_inches = 'tight',pad_inches = 0)
+    plot.get_figure().clf()
     i+=1
 
 make_video(frame_folder,video_file)
