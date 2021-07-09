@@ -32,8 +32,14 @@ The only required input is the transient data file. This file should have the ex
 * **--dpi** : (Default=100.) Used to modify the size of the heatmap images. By default, will use 100 dpi.
 
 # Example
-Here is a simple example with the included files:
+Here are some simple examples with the included files:
 
 ```
 python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
+```
+```
+python videogen.py Example_transient_data_files/IBMPower9transientnopackage_128x128.grid.cir.csv --fps 20 --min 40 --overlay Example_overlay_images/IBMPower9.png 
+```
+```
+python videogen.py ../Example_command_line/example.cir.csv
 ```
