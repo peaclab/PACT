@@ -1,41 +1,39 @@
-This is a tool for generating a video file from transient PACT results. This tool will work with any '.cir.csv' grid file from PACT and
- will output an avi video heatmap from the data as well as the individual frames from the video. 
+### This is a tool for generating a video for a transient result file from PACT. This tool will work with any '.cir.csv' grid file from PACT and will output a heatmap video file and a folder with individual heatmap frames for each simulation step.
 
-Requirements: Python version: > 3.6.5
- Requires same libraries as PACT,
- Additional python Libraries: matplotlib, seaborn, cv2, re, pathlib, shutil 
+# Requirements:
 
-How to use:
-usage: videogen.py transient_data_file fps
-                   [-h] [--overlay OVERLAY_IMAGE] [--min VMIN] [--max VMAX]
-                   [--layer LAYER]
-                   
-transient_data_file : The first required input is the path to the transiend data file. The video and frame folder outputs will
- be placed in the same folder as the data file. This file should have the extension '.grid.cir.csv' or '.cir.csv', but it 
- should still work if the file was renamed.
+* Python version: 3.6.5
 
-fps: The second input is the frames-per-second value of the output video. For a 100 frame video, 5 fps may be a good starting point.
+* Same libraries as PACT: sys, numpy, pandas, os, scipy, argparse,
 
---overlay : This flag can be used to specify a floorplan image to overlay over the trasient heatmap images. The script will automatically
- resize the image to fit the aspect ratio of the data's grid resolution. For the 'agg' backend, the script works when the overlay_height is 
- set to 370 pixels, but this may need to be adjusted depending on your system.
+* Additional Python libraries: matplotlib 2.2.0, seaborn 0.9.0, opencv-python 4.1.0.25, re, pathlib, shutil
 
---min / --max : These flags can be used to specify the range for the heatmap scale in degrees Celcius. By default, the script will just get
- the min and max values from the data file, but --min or --max can be used to limit this range. The user may choose to specify neither, one,
- or both flags.
+* Users can directly install the correct version of the Python packages through the following commands:
+```
+pip install -r requirements.txt
+```
 
---layer : This flag can be used to specify the layer to use for the video generation. By default, the script will use layer 0.
+# Usage:
 
--h, --help : shows usage
+```
+python videogen.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min VMIN] [--max VMAX] [--layer LAYER] [--dpi DPI]
+```     
 
+The only required input is the transient data file. This file should have the extension '.grid.cir.csv' or '.cir.csv', but the script will still work if it was renamed. The video file and frame folder outputs will be saved to the same folder as the data file. All other inputs are optional:
 
-Example: python videogen.py /projectnb/peaclab-cri-cooling/PACT_Carlton/PACT/IBM_Power9/results/Power9/IBMPower9transientheatsink_100x100.grid.cir.csv 5 --overlay IBMPower9.png 
+* **--fps**: Default=5. Used to specify the frames-per-second value of the output video.
 
+* **--overlay** : Default=None. Used to specify a floorplan image to overlay over the heatmap.
 
-transient files:
-/projectnb/peaclab-cri-cooling/PACT_Carlton/PACT/IBM_Power9/results/Power9/IBMPower9transientheatsink_100x100.grid.cir.csv
-/projectnb/peaclab-cri-cooling/PACT_Carlton/PACT/IBM_Power9/results/Power9/IBMPower9transientheatsink_275x253.grid.cir.csv
-/projectnb/peaclab-cri-cooling/PACT_Carlton/PACT/IBM_Power9/results/Power9/IBMPower9transientnopackage_100x100.grid.cir.csv
-/projectnb/peaclab-cri-cooling/PACT_Carlton/PACT/OpenRoad/results/Pico/Pico95_128x128.grid.cir.csv
-/projectnb/peaclab-cri-cooling/PACT_Carlton/PACT/Example_command_line/example.cir.csv
-/projectnb/peaclab-cri-cooling/PACT_Carlton/PACT/Example/results/20mm/MyToolRun_htc_1e5_NonUniformPD_50_500Wcm2_80x80.cir.csv
+* **--min / --max** : Default=auto. Used to specify the min or max value (in degrees C) of the heatmap color scale. By default the script will use the min and max value from the data. Users may choose to specify both, only one, or niether of the values.
+
+* **--layer** : Default=0. Used to specify the layer used for video generation.
+
+* **--dpi** : Default=100. Used to modify the size of the heatmap images. By default, will use 100 dpi.
+
+# Example
+Here is a simple example with the included files:
+
+```
+python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
+```
