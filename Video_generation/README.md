@@ -31,8 +31,10 @@ The only required input is the transient data file. This file should have the ex
 
 * **--dpi** : (Default=100.) Used to modify the size of the heatmap images. By default, will use 100 dpi.
 
+When designing an overlay image, it is reccomended to use thick lines, as thin lines may not show up at lower DPI settings. Otherwise, the DPI flag can be used to increase the resolution and size of the video file.
+
 # Example
-Here are some simple examples with the included files:
+Here are some examples that work with the included files:
 
 ```
 python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
@@ -43,3 +45,16 @@ python videogen.py Example_transient_data_files/IBMPower9transientnopackage_128x
 ```
 python videogen.py ../Example_command_line/example.cir.csv
 ```
+The script will print out information such as the grid resolution, video file and image folder path, and the min and max values of the colorbar. If the script runs correctly, the output should look like this:
+```
+python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv 
+IBMPower9transientheatsink_128x128
+128 x 128
+video path: Example_transient_data_files/IBMPower9transientheatsink_128x128.avi
+image folder path: Example_transient_data_files/IBMPower9transientheatsink_128x128_frames/
+vmin: 45.0         
+vmax: 58.710000000000036
+Done.                  
+```
+
+If the script is run twice with the same transient file path, the previous video data will be replaced. To save previous video files, users can rename or move the files.

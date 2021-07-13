@@ -94,8 +94,8 @@ if vmin == None:
     vmin = df_l.min().min()-273.15
 if vmax == None:
     vmax = df_l.max().max()-273.15
-print("vmin: "+str(vmin))
-print("vmax: "+str(vmax))
+print("vmin:",vmin)
+print("vmax:",vmax)
 #Set heatmap colors
 start = 0.0
 stop = 1.0
@@ -113,12 +113,7 @@ for index, row in df_l.iterrows():
     plot = sns.heatmap(newRow,cmap=colors,xticklabels=False, yticklabels=False,cbar_kws={'label':'Temperature($^\circ C$)'}, vmin=vmin, vmax = vmax)
     plot.set_aspect("equal")
     if(use_overlay):
-        plot.imshow(overlay,
-                alpha=0.3,
-                zorder=1,
-               aspect=plot.get_aspect(),
-                interpolation='none',
-                extent=plot.get_xlim()+plot.get_ylim())
+        plot.imshow(overlay, alpha=0.3, zorder=1, aspect=plot.get_aspect(), interpolation='none', extent=plot.get_xlim()+plot.get_ylim())
     plot.get_figure().savefig(f"{frame_folder}{output_name}_{i}.png",dpi=dpi,bbox_inches = 'tight',pad_inches = 0)
     plot.get_figure().clf()
     i+=1
