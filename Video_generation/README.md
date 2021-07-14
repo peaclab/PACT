@@ -56,8 +56,6 @@ vmin: 45.0
 vmax: 58.710000000000036
 Done.                  
 ```
-<video>
-    <souruce src="Example_video/IBMPower9transientheatsink_128x128.avi" type="video/avi">
-</video>
+![IBMPower9transientheatsink_128x128](https://user-images.githubusercontent.com/12175631/125707008-1c062ef9-d45d-4b2b-8743-7e572d3b116e.gif)
 
 If the script is run twice with the same transient file path, the previous video data will be replaced. To save previous video files, users can rename or move the files.
