@@ -27,7 +27,7 @@ The only required input is the transient data file. This file should have the ex
 
 * **--min / --max** : (Default=auto) Used to specify the min or max value (in degrees C) of the heatmap color scale. By default the script will use the min and max value from the data. Users may choose to specify both, only one, or niether of the values.
 
-* **--layer** : (Default=0.) Used to specify the layer used for video generation.
+* **--layer** : (Default=0.) Used to specify the chip layer used for video generation. For chips with multiple layers, this can be used to make individual videos for each. Check the PACT README for more information.
 
 * **--dpi** : (Default=100.) Used to modify the size of the heatmap images. By default, will use 100 dpi.
 
@@ -50,11 +50,14 @@ The script will print out information such as the grid resolution, video file an
 python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv 
 IBMPower9transientheatsink_128x128
 128 x 128
-video path: Example_transient_data_files/IBMPower9transientheatsink_128x128.avi
-image folder path: Example_transient_data_files/IBMPower9transientheatsink_128x128_frames/
+video path: <Path to PACT folder>/Video_generation/Example_transient_data_files/IBMPower9transientheatsink_128x128.avi
+image folder path: <Path to PACT folder>/Video_generation/Example_transient_data_files/IBMPower9transientheatsink_128x128_frames/
 vmin: 45.0         
 vmax: 58.710000000000036
 Done.                  
 ```
+<video>
+    <souruce src="Example_video/IBMPower9transientheatsink_128x128.avi" type="video/avi">
+</video>
 
 If the script is run twice with the same transient file path, the previous video data will be replaced. To save previous video files, users can rename or move the files.
