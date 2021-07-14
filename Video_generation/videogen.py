@@ -78,8 +78,8 @@ if(grid_rows==0 or grid_cols==0):
     sys.exit(2)
 print(output_name)
 print(grid_rows,'x',grid_cols)
-print("video path: "+video_file)
-print("image folder path: "+frame_folder)
+print("video path: "+os.path.abspath(video_file))
+print("image folder path: "+os.path.abspath(frame_folder)+'/')
 #Delete any previous images folder and make a new one
 folder_path = Path(frame_folder)
 if folder_path.exists() and folder_path.is_dir():
