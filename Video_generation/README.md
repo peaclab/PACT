@@ -47,7 +47,7 @@ python videogen.py ../Example_command_line/example.cir.csv
 ```
 The script will print out information such as the grid resolution, video file and image folder path, and the min and max values of the colorbar. If the script runs correctly, the output should look like this:
 ```
-python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv 
+python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
 IBMPower9transientheatsink_128x128
 128 x 128
 video path: <Path to PACT folder>/Video_generation/Example_transient_data_files/IBMPower9transientheatsink_128x128.avi
