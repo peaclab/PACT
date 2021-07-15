@@ -47,7 +47,7 @@ python videogen.py ../Example_command_line/example.cir.csv
 ```
 The script will print out information such as the grid resolution, video file and image folder path, and the min and max values of the colorbar. If the script runs correctly, the output should look like this:
 ```
-python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv 
+python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
 IBMPower9transientheatsink_128x128
 128 x 128
 video path: <Path to PACT folder>/Video_generation/Example_transient_data_files/IBMPower9transientheatsink_128x128.avi
@@ -56,6 +56,8 @@ vmin: 45.0
 vmax: 58.710000000000036
 Done.                  
 ```
-![IBMPower9transientheatsink_128x128](https://user-images.githubusercontent.com/12175631/125707008-1c062ef9-d45d-4b2b-8743-7e572d3b116e.gif)
+IBMPower9transientheatsink_128x128.avi:
+
+![IBMPower9transientheatsink_128x128 (1)](https://user-images.githubusercontent.com/12175631/125837775-d0e5aa7a-a29e-4a1e-9e15-b8379312034f.gif)
 
 If the script is run twice with the same transient file path, the previous video data will be replaced. To save previous video files, users can rename or move the files.
