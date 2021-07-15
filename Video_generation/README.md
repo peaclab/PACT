@@ -4,7 +4,7 @@
 
 * Python version: 3.6.5
 
-* Same libraries as PACT: sys, numpy, pandas, os, scipy, argparse,
+* Same libraries as PACT: sys, numpy, pandas, os, argparse
 
 * Additional Python libraries: matplotlib 2.2.0, seaborn 0.9.0, opencv-python 4.1.0.25, re, pathlib, shutil
 
@@ -23,11 +23,11 @@ The only required input is the transient data file. This file should have the ex
 
 * **--fps**: (Default=5) Used to specify the frames-per-second value of the output video.
 
-* **--overlay** : (Default=None) Used to specify a floorplan image to overlay over the heatmap.
+* **--overlay** : (Default=None) Used to specify a floorplan image to overlay over the heatmap. (The visualize_floorplan.py script in the [Hotspot](https://github.com/uvahotspot/HotSpot) repo can be used to generate an image from a Hotspot flp file)
 
 * **--min / --max** : (Default=auto) Used to specify the min or max value (in degrees C) of the heatmap color scale. By default the script will use the min and max value from the data. Users may choose to specify both, only one, or niether of the values.
 
-* **--layer** : (Default=0.) Used to specify the chip layer used for video generation. For chips with multiple layers, this can be used to make individual videos for each. Check the PACT README for more information.
+* **--layer** : (Default=0.) Used to specify the chip layer used for video generation. For single layer chips, layer 0 is the processor layer and layer 1 is the cooling package layer. For chips with multiple layers, this can be used to make a separate video for a specific chip layer. Check the main PACT [README](https://github.com/peaclab/PACT) for more information.
 
 * **--dpi** : (Default=100.) Used to modify the size of the heatmap images. By default, will use 100 dpi.
 
