@@ -1,4 +1,5 @@
-### This is a tool for generating a video for a transient result file from PACT. This tool will work with any '.cir.csv' grid file from PACT and will output a heatmap video file and a folder with individual heatmap frames for each simulation step.
+# VisualPACT
+### VisualPACT is a tool for generating a video for a transient result file from PACT. This tool will work with any '.cir.csv' grid file from PACT and will output a heatmap .avi video file and a folder with individual heatmap images for each simulation step.
 
 # Requirements:
 
@@ -16,7 +17,7 @@ pip install -r requirements.txt
 # Usage:
 
 ```
-python videogen.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min VMIN] [--max VMAX] [--layer LAYER] [--dpi DPI]
+python VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min VMIN] [--max VMAX] [--layer LAYER] [--dpi DPI]
 ```     
 
 The only required input is the transient data file. This file should have the extension '.grid.cir.csv' or '.cir.csv', but the script will still work if it was renamed. The video file and frame folder outputs will be saved to the same folder as the data file. All other inputs are optional:
@@ -37,21 +38,21 @@ When designing an overlay image, it is reccomended to use thick lines, as thin l
 Here are some examples that work with the included files:
 
 ```
-python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
+python VisualPACT.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
 ```
 ```
-python videogen.py Example_transient_data_files/IBMPower9transientnopackage_128x128.grid.cir.csv --fps 20 --min 40 --overlay Example_overlay_images/IBMPower9.png 
+python VisualPACT.py Example_transient_data_files/IBMPower9transientnopackage_128x128.grid.cir.csv --fps 20 --min 40 --overlay Example_overlay_images/IBMPower9.png 
 ```
 ```
-python videogen.py ../Example_command_line/example.cir.csv
+python VisualPACT.py ../Example_command_line/example.cir.csv
 ```
 The script will print out information such as the grid resolution, video file and image folder path, and the min and max values of the colorbar. If the script runs correctly, the output should look like this:
 ```
-python videogen.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
+python VisualPACT.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
 IBMPower9transientheatsink_128x128
 128 x 128
-video path: <Path to PACT folder>/Video_generation/Example_transient_data_files/IBMPower9transientheatsink_128x128.avi
-image folder path: <Path to PACT folder>/Video_generation/Example_transient_data_files/IBMPower9transientheatsink_128x128_frames/
+video path: <Path to PACT folder>/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.avi
+image folder path: <Path to PACT folder>/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128_frames/
 vmin: 45.0         
 vmax: 58.710000000000036
 Done.                  

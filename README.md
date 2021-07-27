@@ -137,8 +137,9 @@ We have also built emerging cooling packages such as thermoelectric coolers [6] 
 # OpenROAD Interface:
 Please go to the [./src/OpenRoad/](./src/OpenRoad/) folder for more information.
 
-# Video Generation Tool:
-Please go to the [./Video_generation/](./Video_generation/) folder for more information.
+# VisualPACT:
+VisualPACT is a video generation tool that can be used to generate a .avi heatmap video from transient PACT simulation data.
+Please go to the [./VisualPACT/](./VisualPACT/) folder for more information.
 
 # Example Command Line Test Case:
 The Example_command_line folder contains all the necessary files to run steady-state and transient simulations of a 10mmX10mm chip with a 500um hot spot placed at the center. The example_ptrace.csv contains 3 power traces. For steady-state simulation, PACT will average the power trace for each block and perform steady-state simulations. For transient simulation, PACT with SPICE_transient solver will run with a user-defined ptrace step size, a simulation step size, and a total simulation time. Users can define these 3 parameters in example_modelParams.config. 
