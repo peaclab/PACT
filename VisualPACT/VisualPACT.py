@@ -52,8 +52,8 @@ def make_video(image_folder,video_name):
 parser = argparse.ArgumentParser()
 parser.add_argument('transient_data_file',action='store')
 parser.add_argument('--overlay',dest='overlay_image',action='store',default=None)
-parser.add_argument('--min',dest='vmin',action='store',type=float,default=None)
-parser.add_argument('--max',dest='vmax',action='store',type=float,default=None)
+parser.add_argument('--min',dest='tmin',action='store',type=float,default=None)
+parser.add_argument('--max',dest='tmax',action='store',type=float,default=None)
 parser.add_argument('--fps',dest='fps',action='store',type=int,default=5)
 parser.add_argument('--layer',dest='layer',action='store',type=int,default=0)
 parser.add_argument('--dpi',dest='dpi',action='store',type=int,default=100)
@@ -62,9 +62,12 @@ parser_args = parser.parse_args()
 transient_data_file = parser_args.transient_data_file
 overlay_image = parser_args.overlay_image
 use_overlay = overlay_image != None
-vmin = parser_args.vmin
-vmax = parser_args.vmax
+tmin = parser_args.tmin
+tmax = parser_args.tmax
 fps = parser_args.fps
+if fps < 1:
+    print("ERROR: FPS must be a positive integer.")
+    sys.exit(2)
 layer = parser_args.layer
 dpi = parser_args.dpi
 #SET OUTPUT PATHS
@@ -74,7 +77,7 @@ video_file = output_path+'.avi'
 frame_folder = output_path+'_frames/'
 grid_rows, grid_cols = getDimensions(transient_data_file,layer)
 if(grid_rows==0 or grid_cols==0):
-    print("Error: Invalid data file.")
+    print("ERROR: Invalid data file or nonexistant layer.")
     sys.exit(2)
 print(output_name)
 print(grid_rows,'x',grid_cols)
@@ -90,12 +93,23 @@ print("Reading file...",end="\r")
 df_l = readFormatInput(transient_data_file,grid_rows,grid_cols)
 print("                   ",end="\r")
 #Automatically calculate min and max heatmap valus if not specified
-if vmin == None:
-    vmin = df_l.min().min()-273.15
-if vmax == None:
-    vmax = df_l.max().max()-273.15
-print("vmin:",vmin)
-print("vmax:",vmax)
+auto_tmin = df_l.min().min()-273.15
+auto_tmax = df_l.max().max()-273.15
+if tmin == None:
+    tmin = auto_tmin
+if tmax == None:
+    tmax = auto_tmax
+print(f"data temperature range: {auto_tmin} C to {auto_tmax} C")
+print("TMIN:",tmin,'C')
+print("TMAX:",tmax,'C')
+if tmin > auto_tmax or tmax < auto_tmin:
+    print("ERROR: Specified TMIN and TMAX range is outuside of actual data range.")
+    sys.exit(2)
+if tmin == tmax:
+    print("ERROR: TMIN and TMAX have the same value.")
+    sys.exit(2)
+if tmin > tmax:
+    print("WARNING: TMIN value is greater than TMAX value.")
 #Set heatmap colors
 start = 0.0
 stop = 1.0
@@ -110,7 +124,7 @@ for index, row in df_l.iterrows():
     print("frame: "+str(i),end="\r")
     newRow = np.array(row)
     newRow = newRow.reshape(grid_rows,grid_cols)-273.15
-    plot = sns.heatmap(newRow,cmap=colors,xticklabels=False, yticklabels=False,cbar_kws={'label':'Temperature($^\circ C$)'}, vmin=vmin, vmax = vmax)
+    plot = sns.heatmap(newRow,cmap=colors,xticklabels=False, yticklabels=False,cbar_kws={'label':'Temperature($^\circ C$)'}, vmin=tmin, vmax=tmax)
     plot.set_aspect("equal")
     if(use_overlay):
         plot.imshow(overlay, alpha=0.3, zorder=1, aspect=plot.get_aspect(), interpolation='none', extent=plot.get_xlim()+plot.get_ylim())
