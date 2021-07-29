@@ -17,14 +17,18 @@ pip install -r requirements.txt
 # Usage:
 
 ```
-python VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min VMIN] [--max VMAX] [--layer LAYER] [--dpi DPI]
+python VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min TMIN] [--max TMAX] [--layer LAYER] [--dpi DPI]
 ```     
 
-The only required input is the transient data file. This file should have the extension '.grid.cir.csv' or '.cir.csv', but the script will still work if it was renamed. The video file and frame folder outputs will be saved to the same folder as the data file. All other inputs are optional:
+The only required input is the transient data file.
 
-* **--fps**: (Default=5) Used to specify the frames-per-second value of the output video.
+* The **transient data file** should have the extension '.grid.cir.csv' or '.cir.csv', but the script will still work if it was renamed. The video file and frame folder outputs will be saved to the same folder as the data file. The first row of the transient data file must be a header containing the names of all the columns of the data. Aside from the "TIME" column, all column names will have the format "V(NODE{layer}\_{row}\_{column})" (e.g. "V(NODE0\_0\_0)").
 
-* **--overlay** : (Default=None) Used to specify a floorplan image to overlay over the heatmap. (The visualize_floorplan.py script in the [Hotspot](https://github.com/uvahotspot/HotSpot) repo can be used to generate an image from a Hotspot flp file)
+All other inputs are optional:
+
+* **--fps**: (Default=5) Used to specify the framerate of the output video. Each simulation time step is represented by a single heatmap image/frame. Users may want to adjust the fps based on the simulation step size and total simulation time.
+
+* **--overlay** : (Default=None) Used to specify a floorplan image to overlay over the heatmap. (The visualize_floorplan.py script in the [Hotspot](https://github.com/uvahotspot/HotSpot) repo may be used to generate an image from a Hotspot flp file)
 
 * **--min / --max** : (Default=auto) Used to specify the min or max value (in degrees C) of the heatmap color scale. By default the script will use the min and max value from the data. Users may choose to specify both, only one, or niether of the values.
 
