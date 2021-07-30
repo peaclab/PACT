@@ -230,7 +230,7 @@ Some of the features in the PACT frontend have been implemented with inspiration
     
 # Contact Us
 If you have any questions or suggestions regarding PACT, please subscribe to the PACT user group and post your questions and suggestions over there.
-PACT users google group: https://groups.google.com/g/pact-simulator
+PACT users google group: https://groups.google.com/g/pact-simulator.
 
 # References
 [1] Z. Yuan, P. Shukla, S. Chetoui, S. Nemtzow, S. Reda and A. K. Coskun, "PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies," to appear in IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, 2021, doi:10.1109/TCAD.2021.3079166.
