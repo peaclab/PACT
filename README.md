@@ -229,7 +229,7 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 Some of the features in the PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the SuperLU solver. This is a design decision to ease the use of PACT for the community.
     
 # Contact Us
-If you have any questions or suggestions regarding PACT, please subscribe to the PACT user group and post your questions and suggestions over there.
+If you have any questions or suggestions regarding PACT, please subscribe to the PACT users group and post your questions and suggestions over there.
 PACT users google group: https://groups.google.com/g/pact-simulator.
 
 # References
