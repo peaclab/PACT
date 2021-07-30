@@ -216,7 +216,7 @@ If you use PACT for your publications, please cite our TCAD paper [1].
 * Carlton Knox, Boston University
 * Sean Nemtzow, Boston University 
 
-# Contact
+# Contact Us
 If you have any questions or suggestions regarding PACT, please subscribe to the PACT user group and post your questions and suggestions over there.
 PACT users google group: https://groups.google.com/g/pact-simulator
 
