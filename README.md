@@ -229,8 +229,7 @@ PACT has been partially funded by the NSF CRI (CI-NEW) grant #1730316/1730003/17
 Some of the features in the PACT frontend have been implemented with inspiration from HotSpot [2], such as the structure of the network of grid cells and blocks, file structure (e.g., lcf, flp, ptrace files), and the building of the matrices for the SuperLU solver. This is a design decision to ease the use of PACT for the community.
     
 # Contact Us
-If you have any questions or suggestions regarding PACT, please subscribe to the PACT users group and post your questions and suggestions over there.
-PACT users google group: https://groups.google.com/g/pact-simulator.
+If you have questions or suggestions regarding PACT, we encourage subscribing and posting to the PACT users group: https://groups.google.com/g/pact-simulator. 
 
 # References
 [1] Z. Yuan, P. Shukla, S. Chetoui, S. Nemtzow, S. Reda and A. K. Coskun, "PACT: An Extensible Parallel Thermal Simulator for Emerging Integration and Cooling Technologies," to appear in IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, 2021, doi:10.1109/TCAD.2021.3079166.
