@@ -157,7 +157,7 @@ class SPICE_transientSolver:
                             text = "I_{}_{}_{} GND Node{}_{}_{} PWL(0s 0A".format(layer,row,col,layer, row, col)
                             temp = re.compile("([0-9.]+)([a-zA-Z]+)")
                             res = temp.match(self.ptrace_step_size).groups()
-                            text+=f" {(i)*float(res[0])}{res[1]} {self.I[layer][i-1][row][col]}A"
+                            text+=f"  {(i)*float(res[0])}{res[1]} 0A {(i)*float(res[0])}{res[1]} {self.I[layer][i-1][row][col]}A"
                             i+=1
                             while i<=len(self.I[layer]):
                                 temp = re.compile("([0-9.]+)([a-zA-Z]+)")
