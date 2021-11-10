@@ -293,6 +293,9 @@ class SPICE_transientSolver:
                     myfile.write(f'.TRAN {self.step_size} {self.total_time}\n')
 
                 # disable zorltan for mono3D simualtion (useful for solving the linear system partitioning probelm)
+                # To solve the iterative solver never converge problem, we force the LINSOL TYPE to be KLU.
+                # However, to achieve the best performance, TYPE option can be eliminated and Xyce will automatically
+                # select the LINSOL solver based on the problem size.
                 myfile.write(f'.OPTIONS LINSOL TYPE=KLU TR_PARTITION=0 \n')
                 # enable flat round robin device partitioning (useful for device partitioning problem)
                 myfile.write(f'.OPTIONS DIST STRATEGY=2\n')
