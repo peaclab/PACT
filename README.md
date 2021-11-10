@@ -120,7 +120,7 @@ https://xyce.sandia.gov/downloads/_assets/documents/Users_Guide.pdf
 
 ## Iterative Solver Convergence Issue
 When doing steady-state simulations with iterative solvers such as AztecOO, for some of the problems, there might be a convergence issue. PACT will 
-report "time step too small" error. To avoid this, users need to change the steady-state solver for both steady-state and transient to direct solvers such as KLU or KSparse. We set the DC analysis (steady-state) solver as KLU for transient simulation as default. To achieve the transient simulation performance as discussed in [1]. Users need to remove the LINSOL TYPE option in the SPICESolver_transient.py.
+report "time step too small" error. To avoid this, users need to change the steady-state solver for both steady-state and transient to direct solvers such as KLU or KSparse. We set the DC analysis (steady-state) solver as KLU for transient simulation as default. To achieve the transient simulation performance as discussed in [1], users need to remove the LINSOL TYPE option in the SPICESolver_transient.py.
 
 # Enable Parallel Thermal Simulation:
 To enable Parallel Thermal Simulation with PACT, users need to install the __Xyce 6.12__ parallel version and __OpenMPI 3.1.4__.
