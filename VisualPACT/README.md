@@ -17,7 +17,7 @@ pip install -r requirements.txt
 # Usage:
 
 ```
-python VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min TMIN] [--max TMAX] [--layer LAYER] [--dpi DPI]
+python VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min TMIN] [--max TMAX] [--layer LAYER] [--dpi DPI] [--K USE_KELVIN]
 ```     
 
 The only required input is the transient data file.
@@ -35,6 +35,8 @@ All other inputs are optional:
 * **--layer** : (Default=0.) Used to specify the chip layer used for video generation. For single layer chips, layer 0 is the processor layer and layer 1 is the cooling package layer. For chips with multiple layers, this can be used to make a separate video for a specific chip layer. Check the main PACT [README](https://github.com/peaclab/PACT) for more information.
 
 * **--dpi** : (Default=100.) Used to modify the size of the heatmap images. By default, will use 100 dpi.
+
+* **--K** : (Default=False) Used to change temperature scale from Celcius to Kelvin. By default, uses Celcius. 
 
 When designing an overlay image, it is reccomended to use thick lines, as thin lines may not show up at lower DPI settings. Otherwise, the DPI flag can be used to increase the resolution and size of the video file.
 
