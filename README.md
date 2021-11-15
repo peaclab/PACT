@@ -51,7 +51,7 @@ module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3
 ```
     
 # SPICE Engine Update
-PACT is compatible with the latest verison of __Xyce__, which is __Xyce__7.4. To run PACT with __Xyce 7.4__, users need to install either __Xyce 7.4__ serial version or __Xyce 7.4__ parallel version.
+PACT is compatible with the latest verison of __Xyce__, which is __Xyce 7.4__. To run PACT with __Xyce 7.4__, users need to install either __Xyce 7.4__ serial version or __Xyce 7.4__ parallel version.
       
 Installation guideline for __Xyce 7.4__: 
 
