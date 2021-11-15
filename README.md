@@ -57,6 +57,11 @@ Installation guideline for __Xyce 7.4__:
 
 * https://xyce.sandia.gov/
 * https://xyce.sandia.gov/documentation/BuildingGuide.html
+    
+If __Xyce 7.4__ and __OpenMPI 3.1.4__ have already been installed in your Linux server, then you can simply load the following dependencies to load Xyce and OpenMPI.
+```
+module load openmpi/3.1.4_gnu-10.2.0 xyce/7.4
+```
 
 # Usage
 1. Config file (i.e., [./Example/config_files/](./Example/config_files/)) describes the layer material properties.
