@@ -49,7 +49,13 @@ If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux
 ```
 module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3.1.4 xyce/6.12
 ```
+    
+# Compatibility with  __Xyce 7.4__
+PACT is also compatible with __Xyce 7.4__
+Installation guideline for __Xyce 7.4__: 
 
+* https://xyce.sandia.gov/
+* https://xyce.sandia.gov/documentation/BuildingGuide.html
 
 # Usage
 1. Config file (i.e., [./Example/config_files/](./Example/config_files/)) describes the layer material properties.
