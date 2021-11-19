@@ -49,7 +49,19 @@ If __Xyce 6.12__ and __OpenMPI 3.1.4__ have already been installed in your Linux
 ```
 module load python3/3.6.5 gcc/5.5.0 fftw/3.3.8 netcdf/4.6.1 blis/0.6.0 openmpi/3.1.4 xyce/6.12
 ```
+    
+# SPICE Engine Update
+PACT is compatible with the latest verison of __Xyce__, which is __Xyce 7.4__. To run PACT with __Xyce 7.4__, users need to install either __Xyce 7.4__ serial version or __Xyce 7.4__ parallel version.
+      
+Installation guideline for __Xyce 7.4__: 
 
+* https://xyce.sandia.gov/
+* https://xyce.sandia.gov/documentation/BuildingGuide.html
+    
+If __Xyce 7.4__ and __OpenMPI 3.1.4__ have already been installed in your Linux server, then you can simply load the following dependencies to load Xyce and OpenMPI.
+```
+module load openmpi/3.1.4_gnu-10.2.0 xyce/7.4
+```
 
 # Usage
 1. Config file (i.e., [./Example/config_files/](./Example/config_files/)) describes the layer material properties.

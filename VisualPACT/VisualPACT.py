@@ -57,6 +57,7 @@ parser.add_argument('--max',dest='tmax',action='store',type=float,default=None)
 parser.add_argument('--fps',dest='fps',action='store',type=int,default=5)
 parser.add_argument('--layer',dest='layer',action='store',type=int,default=0)
 parser.add_argument('--dpi',dest='dpi',action='store',type=int,default=100)
+parser.add_argument('--K',dest='use_kelvin',action='store',type=bool,default=False)
 #READ PARSER ARGUUMENTS
 parser_args = parser.parse_args()
 transient_data_file = parser_args.transient_data_file
@@ -70,6 +71,9 @@ if fps < 1:
     sys.exit(2)
 layer = parser_args.layer
 dpi = parser_args.dpi
+kelvin_offset=273.15
+if(parser_args.use_kelvin):
+    kelvin_offset=0
 #SET OUTPUT PATHS
 output_path = transient_data_file.rstrip(''.join(Path(transient_data_file).suffixes))
 output_name = os.path.basename(output_path)
@@ -93,8 +97,8 @@ print("Reading file...",end="\r")
 df_l = readFormatInput(transient_data_file,grid_rows,grid_cols)
 print("                   ",end="\r")
 #Automatically calculate min and max heatmap valus if not specified
-auto_tmin = df_l.min().min()-273.15
-auto_tmax = df_l.max().max()-273.15
+auto_tmin = df_l.min().min()-kelvin_offset
+auto_tmax = df_l.max().max()-kelvin_offset
 if tmin == None:
     tmin = auto_tmin
 if tmax == None:
@@ -123,7 +127,7 @@ if(use_overlay):
 for index, row in df_l.iterrows():
     print("frame: "+str(i),end="\r")
     newRow = np.array(row)
-    newRow = newRow.reshape(grid_rows,grid_cols)-273.15
+    newRow = newRow.reshape(grid_rows,grid_cols)-kelvin_offset
     plot = sns.heatmap(newRow,cmap=colors,xticklabels=False, yticklabels=False,cbar_kws={'label':'Temperature($^\circ C$)'}, vmin=tmin, vmax=tmax)
     plot.set_aspect("equal")
     if(use_overlay):
