@@ -158,12 +158,20 @@ class SPICE_transientSolver:
                             temp = re.compile("([0-9.]+)([a-zA-Z]+)")
                             res = temp.match(self.ptrace_step_size).groups()
                             step_size = float(temp.match(self.step_size).groups()[0])
-                            text+=f" {(i)*float(res[0])}{res[1]} 0A {(i)*float(res[0])+step_size}{res[1]} {self.I[layer][i-1][row][col]}A"
-                            i+=1
+                            ptrace_step_size = float(temp.match(self.ptrace_step_size).groups()[0])
+                            if step_size<ptrace_step_size:
+                                text+=f" {(i)*float(res[0])}{res[1]} 0A {(i)*float(res[0])+step_size}{res[1]} {self.I[layer][i-1][row][col]}A"
+                                i+=1
+                            elif step_size>ptrace_step_size:
+                                raise Exception("warning! solver step size is larger than power step size")
                             while i<=len(self.I[layer]):
                                 temp = re.compile("([0-9.]+)([a-zA-Z]+)")
                                 res = temp.match(self.ptrace_step_size).groups()
-                                text+=f" {(i)*float(res[0])}{res[1]} {self.I[layer][i-2][row][col]}A {(i)*float(res[0])+step_size}{res[1]} {self.I[layer][i-1][row][col]}A"
+                                if step_size<ptrace_step_size:
+                                    text+=f" {(i)*float(res[0])}{res[1]} {self.I[layer][i-2][row][col]}A {(i)*float(res[0])+step_size}{res[1]} {self.I[layer][i-1][row][col]}A"
+                                elif step_size==ptrace_step_size:
+                                    text+=f" {(i)*float(res[0])}{res[1]} {self.I[layer][i-1][row][col]}A"
+
                                 i+=1
                             text+=")\n"
                             myfile.write(text)
