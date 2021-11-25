@@ -169,7 +169,7 @@ class SPICE_transientSolver:
                                 res = temp.match(self.ptrace_step_size).groups()
                                 if step_size<ptrace_step_size:
                                     text+=f" {(i)*float(res[0])}{res[1]} {self.I[layer][i-2][row][col]}A {(i)*float(res[0])+step_size}{res[1]} {self.I[layer][i-1][row][col]}A"
-                                elif step_size==ptrace_step_size:
+                                else:
                                     text+=f" {(i)*float(res[0])}{res[1]} {self.I[layer][i-1][row][col]}A"
 
                                 i+=1
