@@ -12,7 +12,8 @@ optional arguments:
 
 
 import os
-import argparse 
+import argparse
+from pathlib import Path 
 
 
 
@@ -146,9 +147,23 @@ def RunResizer(args,command,xcoord,ycoord,inst):
 
 if __name__ == "__main__":
 	args=ParseArg()
+	script_file = Path('Script_template')
+	if script_file.is_file():
+		print("Removing script template file")
+		os.remove('Script_template')
+
+	output_file = Path('outputhotspot')
+	if output_file.is_file():
+		print("Removing output file")
+		os.remove('outputhotspot')
+		
 	ScriptTemplate(args)
+	print("Parsing DEF file...")
 	command,xcoord,ycoorrd,inst=ParseDef(args)
+	print("Running Resizer...")
 	RunResizer(args,command,xcoord,ycoorrd,inst)
+	print("Script done. Output file is outputhotspot")
+	os.rename('Script_template', 'Script_template_saved')
 	
 	
 	
