@@ -217,7 +217,7 @@ Here layer0 is the processor and layer1 is the cooling package.
     
 # Example Tutorial Video (UBooth @ DAC):
 <a href="https://www.youtube.com/watch?v=8yFDCPk7UHs&t=241s" target="_blank"><img src="https://img.youtube.com/vi/8yFDCPk7UHs/0.jpg" 
-alt="Ubooth @ DAC tutorial" width="240" height="180" border="10" /></a>
+alt="Ubooth @ DAC tutorial" width="600" height="300" /></a>
 # Citation and License:
 
 PACT is licensed under GNU General Public License v3.0 license.
