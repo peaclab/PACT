@@ -214,7 +214,10 @@ Example block-level temperature output:
 <!-- ![](/image/output.PNG) -->
 <center><img src="/image/output.PNG" width="600" height="300">
 Here layer0 is the processor and layer1 is the cooling package. 
-
+    
+# Example Tutorial Video (UBooth @ DAC):
+<a href="https://www.youtube.com/watch?v=8yFDCPk7UHs&t=241s" target="_blank"><img src="https://img.youtube.com/vi/8yFDCPk7UHs/0.jpg" 
+alt="Ubooth @ DAC tutorial" width="240" height="180" border="10" /></a>
 # Citation and License:
 
 PACT is licensed under GNU General Public License v3.0 license.
