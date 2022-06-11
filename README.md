@@ -216,7 +216,7 @@ Example block-level temperature output:
 Here layer0 is the processor and layer1 is the cooling package. 
     
 # Example Tutorial Video (UBooth @ DAC):
-<a href="https://www.youtube.com/watch?v=8yFDCPk7UHs&t=241s" target="_blank"><img src="https://img.youtube.com/vi/8yFDCPk7UHs/0.jpg" 
+<a href="https://www.youtube.com/watch?v=8yFDCPk7UHs" target="_blank"><img src="https://img.youtube.com/vi/8yFDCPk7UHs/0.jpg" 
 alt="Ubooth @ DAC tutorial" width="600" height="300" /></a>
 # Citation and License:
 
