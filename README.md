@@ -28,7 +28,7 @@ PACT is written in Python and uses __Xyce 6.12__ as the backend SPICE engine.
 ```
 pip install -r requirements.txt
 ```
-* For users who want to simulate learning-based temperature-dependent HTC simulation framework and two-phase vapor chambers with hybrid wick evaporators, users need to run addtional command:
+* For users who want to simulate learning-based temperature-dependent HTC simulation framework and two-phase vapor chambers with hybrid wick evaporators, users need to run additional command to download and extract the regression models
     
 ```
 python DownloadML.py
