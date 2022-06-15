@@ -1,0 +1,4 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,../HybridWick/flp_files/20mm_4HS_flp.csv,0.0001,../HybridWick/ptrace_files/20mm_4HS_hybridWickNonUniformPD_50_1500Wcm2_ptrace.csv,True
+1,../HybridWick/flp_files/20mm_4HS_HybridWick_flp.csv,0.0001,,True
+
