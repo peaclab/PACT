@@ -28,7 +28,12 @@ PACT is written in Python and uses __Xyce 6.12__ as the backend SPICE engine.
 ```
 pip install -r requirements.txt
 ```
-
+* For users who want to simulate learning-based temperature-dependent HTC simulation framework and two-phase vapor chambers with hybrid wick evaporators, users need to run addtional command:
+    
+```
+python DownloadML.py
+```
+    
 The above libraries are sufficient for the users to run PACT with the SuperLU solver. For users who want to run PACT with the SPICE engine, one needs to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
 
 Installation guideline for __Xyce 6.12__: 
