@@ -8,28 +8,7 @@ For a detailed discussion of the simulation setup and experimental results, plea
 ![](/image/VC.PNG)
 
 The valid parameter range for hybrid wick is show in the following table:
-\begin{table}[ht!]
-	\centering
-	\caption{Hybrid wick geometry parameters and valid range.}
-	\label{tablehybrid}
-%	\vskip -0.8em
-	\resizebox{0.8\columnwidth}{!}{
-		\begin{tabular}{|c|c|c|}
-			\hline
-			Symbol &  Parameters & Valid range\\ \hline
-			$t$ & Nanoporous membrane thickness    & 250-1000 $nm$\\ \hline
-			$dp$ & Membrane pore diameter & 50-200 $nm$ \\ \hline
-			$\phi$ & Membrane porosity & 0.2-0.8 \\\hline
-			$AR$ & Microchannel aspect ratio & 0.5-2  \\\hline
-			$SF$ & Microchannel wall solid fraction &0.1-0.4 \\\hline
-			${w}$& Microchannel width & 2-8 $\mu m$\\\hline
-			$T_{Sat}$& Coolant saturation temperature & 50$^\circ C$\\\hline
-			$T_{Cur}$& Current temperature of the grid & NA\\\hline
-		\end{tabular}
-		
-	}
-	%\vskip 0.8em
-\end{table}	
+![](/image/HybridParam.PNG)
 To run liquid cooling simulations, go to the scripts folder and run the following commands:
 ```python
 python liquid.py
