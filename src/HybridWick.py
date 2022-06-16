@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from joblib import dump, load
+import sys
 #import sys
 #import cProfile , pstats, io
 #pr = cProfile.Profile()
@@ -21,8 +22,8 @@ w = ''  # properties['width (w)']
 prod = ''  # width*height
 ro = 0.0
 Rz = np.zeros(1)
-
 # pr.enable()
+
 water_lr = load('../MLModels/water_regression.joblib')
 water_scale = load('../MLModels/water_scaler.joblib')
 r245fa_lr = load('../MLModels/r245fa_regression.joblib')
@@ -97,7 +98,7 @@ def defineGridPropertiesMatrix(label, width, height, thickness, properties):
     #Ry[mask_xy] = ry
     direction = '0'
     out = {"Rx": Rx, "Ry": Ry, "Rz": Rz,
-           "Capacitance": Capacitance, "I": I, "direction": direction}
+           "Capacitance": Capacitance, "I": I, "direction": direction, "Conv": 0}
     # print(Rx,Ry,Rz,I)
     #print (out)
     # sys.exit(2)

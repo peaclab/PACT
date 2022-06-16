@@ -7,6 +7,7 @@ import HeatSink as LibHeatSink
 import HeatSpreader as LibHeatSpreader
 import Liquid as LibLiquid
 import HybridWick as LibHybridWick
+import MicroWick as LibMicroWick
 import sys
 
 # round functions for grid edge
@@ -184,9 +185,9 @@ class GridManager:
                     if(label == 'Si'):
                         self.label_config_dict[(label, cfile)] = LibSolid.defineGridProperties(
                             grid_length, grid_width, thickness, self.config._sections['Si'])
-                    elif(label == 'TwoPhaseVC'):
-                        self.label_config_dict[(label, cfile)] = LibTwoPhase.defineGridProperties(
-                            grid_length, grid_width, thickness, self.config._sections['TwoPhaseVC'])
+                    elif(label == 'MicroWick'):
+                        self.label_config_dict[(label, cfile)] = LibMicroWick.defineGridProperties(
+                            grid_length, grid_width, thickness, self.config._sections['MicroWick'])
                     elif(label == 'Cu'):
                         self.label_config_dict[(label, cfile)] = LibSolid.defineGridProperties(
                             grid_length, grid_width, thickness, self.config._sections['Cu'])
@@ -247,7 +248,7 @@ class GridManager:
                     self.C += self.label_config_dict[(label, cfile)
                                                      ]['Capacitance']
                     self.I += self.label_config_dict[(label, cfile)]['I']
-                    # self.Conv += self.label_config_dict[(label,cfile)]['Conv']
+                    self.Conv += self.label_config_dict[(label,cfile)]['Conv']
                     break
 
             # Vectorize thermal RC matrixs

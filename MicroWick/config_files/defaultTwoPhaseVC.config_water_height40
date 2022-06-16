@@ -1,0 +1,29 @@
+[DEFAULT]
+#thickness (m) = 0.0001
+label = 
+
+[Si]
+thermalresistivity ((m-k)/w) = 0.0077
+specificheatcapacity (j/m^3k) = 1750000
+
+[Init]
+#ambient
+ambient = 323.15 K
+temperature = 350 K
+
+[NoPackage]
+#htc = 1e7 
+htc = 1e9
+thickness (m) = 0.00001
+thermalresistivity ((m-k)/w) = 0.0025
+specificheatcapacity (j/m^3k) = 1750000
+
+[MicroWick]
+#Water:
+#htc = 36870 
+htc = 30508
+#htc = 26029
+#
+Tsat = 323.15 K 
+silicon thermalresistivity ((m-k)/w) = 0.0077
+#When MicroWick used, Tambient should be set equal to Tsat
