@@ -5,7 +5,7 @@ This folder contains scripts and files used to run two-phase VCs with micropilla
 
 For a detailed discussion of the simulation setup and experimental results, please refer to our papers [7,8].
 
-![](/image/MicroVC.PNG)
+![](/image/MicropillarVC.PNG)
 
 Figure (a) is the schematic of the vapor chamber, Figure (b) is the front view of the micropillar wick, and Figure (c) is the top view of the micropillar wick.
 
