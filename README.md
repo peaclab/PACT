@@ -64,7 +64,7 @@ module load openmpi/3.1.4_gnu-10.2.0 xyce/7.4
 ```
     
 * To simulate the learning-based temperature-dependent HTC simulation framework and two-phase vapor chambers with the hybrid wick evaporators model discussed in [9], users need to run the following script to download and extract the regression models:
-    ```
+```
 python DownloadML.py
 ```
     
