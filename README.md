@@ -28,11 +28,6 @@ PACT is written in Python and uses __Xyce 6.12__ as the backend SPICE engine.
 ```
 pip install -r requirements.txt
 ```
-* Users need to run additional commands to download and extract the regression models to simulate the learning-based temperature-dependent HTC simulation framework and two-phase vapor chambers with the hybrid wick evaporators model discussed in [9]:
-    
-```
-python DownloadML.py
-```
     
 The above libraries are sufficient for the users to run PACT with the SuperLU solver. For users who want to run PACT with the SPICE engine, one needs to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
 
@@ -67,7 +62,12 @@ If __Xyce 7.4__ and __OpenMPI 3.1.4__ have already been installed in your Linux 
 ```
 module load openmpi/3.1.4_gnu-10.2.0 xyce/7.4
 ```
-
+    
+* To simulate the learning-based temperature-dependent HTC simulation framework and two-phase vapor chambers with the hybrid wick evaporators model discussed in [9], users need to run the following script to download and extract the regression models:
+    ```
+python DownloadML.py
+```
+    
 # Usage
 1. Config file (i.e., [./Example/config_files/](./Example/config_files/)) describes the layer material properties.
     1. Thickness defines the layer thickness.
