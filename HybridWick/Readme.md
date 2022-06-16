@@ -11,7 +11,7 @@ For a detailed discussion of the simulation setup and experimental results, plea
 
 The valid parameter range for hybrid wick is show in the following table:
 <p align = "center">
-![](/image/HybridParam.png)
+  <img src="/image/HybridParam.png">
 </p>
 
 
