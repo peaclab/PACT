@@ -1,13 +1,35 @@
-# Liquid cooling via microchannel Test Cases (Section IV-C)
+# Two-Phase Vapor Chambers (VCs) with Hybrid Wick Evaporators (DATE'20 [9])
 
 
-This folder contains all the necessary files to run simulations described in Section IV-C of our paper [1].
-For a detailed discussion of the simulation setup and experimental results, please refer to our paper [1].
+This folder contains scripts and files used to run two-phase VCs with hybrid wick evaporators and learning-based temperature-dependent HTC simulation framework discussed in this paper [9]. We also include a example run script for running the proposed Multi-start simulated annealing approach (MSA).
+
+For a detailed discussion of the simulation setup and experimental results, please refer to our paper [9].
 
 ![](/image/VC.PNG)
 
-Users can manipulate the power number in ptrace_files/liquid_ptrace.csv. 
-Users can also change the liquid flow velocity in /modelParams_files/modelParams_liquid.config.
+The valid parameter range for hybrid wick is show in the following table:
+\begin{table}[ht!]
+	\centering
+	\caption{Hybrid wick geometry parameters and valid range.}
+	\label{tablehybrid}
+%	\vskip -0.8em
+	\resizebox{0.8\columnwidth}{!}{
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Symbol &  Parameters & Valid range\\ \hline
+			$t$ & Nanoporous membrane thickness    & 250-1000 $nm$\\ \hline
+			$dp$ & Membrane pore diameter & 50-200 $nm$ \\ \hline
+			$\phi$ & Membrane porosity & 0.2-0.8 \\\hline
+			$AR$ & Microchannel aspect ratio & 0.5-2  \\\hline
+			$SF$ & Microchannel wall solid fraction &0.1-0.4 \\\hline
+			${w}$& Microchannel width & 2-8 $\mu m$\\\hline
+			$T_{Sat}$& Coolant saturation temperature & 50$^\circ C$\\\hline
+			$T_{Cur}$& Current temperature of the grid & NA\\\hline
+		\end{tabular}
+		
+	}
+	%\vskip 0.8em
+\end{table}	
 To run liquid cooling simulations, go to the scripts folder and run the following commands:
 ```python
 python liquid.py
