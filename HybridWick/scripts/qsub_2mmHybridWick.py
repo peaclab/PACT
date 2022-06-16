@@ -1,6 +1,6 @@
 import os
 
-grid_rows = ['16', '32', '64', '128']
+grid_rows = ['128']
 #grid_rows = ['16']
 #grid_rows= ['16','32','64']
 grid_cols = grid_rows
