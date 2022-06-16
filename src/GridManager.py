@@ -6,7 +6,6 @@ import Solid as LibSolid
 import HeatSink as LibHeatSink
 import HeatSpreader as LibHeatSpreader
 import Liquid as LibLiquid
-import HybridWick as LibHybridWick
 import MicroWick as LibMicroWick
 import sys
 
@@ -227,6 +226,7 @@ class GridManager:
                 # Matrix mode
                 elif(label in label_ll and self.label_mode_dict[label] == 'matrix'):
                     if(label == 'HybridWick'):
+                        import HybridWick as LibHybridWick
                         if (type(self.initTemp) == float):
                             grid_temperatures = np.full(
                                 (rows, cols), float(self.initTemp))
@@ -248,7 +248,7 @@ class GridManager:
                     self.C += self.label_config_dict[(label, cfile)
                                                      ]['Capacitance']
                     self.I += self.label_config_dict[(label, cfile)]['I']
-                    self.Conv += self.label_config_dict[(label,cfile)]['Conv']
+                    self.Conv += self.label_config_dict[(label, cfile)]['Conv']
                     break
 
             # Vectorize thermal RC matrixs

@@ -10,7 +10,6 @@ from GridManager import GridManager
 from SuperLUSolver import SuperLUSolver
 from SPICESolver_steady import SPICE_steadySolver
 from SPICESolver_transient import SPICE_transientSolver
-import TemperatureDependent as LibTemperatureDependent
 
 
 def gridTemperatureToFile(arr, layer_num):
@@ -369,6 +368,7 @@ else:
     grid_temperature = solver.getTemperature(
         solver_properties, logFile, SpiceFile, SpiceResultFile)
 if(str(modelParams.get('Simulation', 'temperature_dependent')) == 'True'):
+    import TemperatureDependent as LibTemperatureDependent
     mode = 'temperature_dependent'
     count = 0
     convergence = float(modelParams.get('Simulation', 'convergence'))
