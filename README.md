@@ -55,7 +55,7 @@ PACT is compatible with the latest verison of __Xyce__, which is __Xyce 7.4__. T
       
 Installation guideline for __Xyce 7.4__: 
 
-* https://xyce.sandia.gov/ 
+* https://xyce.sandia.gov/
 * https://xyce.sandia.gov/documentation/BuildingGuide.html
     
 If __Xyce 7.4__ and __OpenMPI 3.1.4__ have already been installed in your Linux server, then you can simply load the following dependencies to load Xyce and OpenMPI.
@@ -147,7 +147,7 @@ One needs to modify the number_of_core option in the modelParams_files [Simulati
 To enable transient thermal simulation with an initial temperature file, users should typically first run a steady-state simulation to generate the initial temperature file (e.g., {ChipName}.cir.ic). Then, users need to set init_file = True in the [Simulation] section in modelParams.config file. Then PACT will include the initial temperature file as the initial temperatures for each node and carry out the transient simulation. Note that the grid resolution for steady-state simulation and transient simulation have to be the same (Xyce SPICE engine will raise an error if the grid resolution does not match). We recommend always running a steady-state simulation first before running a transient simulation with an initial temperature file. 
 
 # Modeling Emerging On-Chip Cooling Methods
-The current version of PACT includes a medium-cost heat sink adopted from HotSpot [2], a fixed-air convection HTC heat sink, liquid cooling via microchannels model, two-phase vapor chambers with micropillar wick evaporator [7,8], and [./HybridWick/](two-phase vapor chambers with hybrid wick evaporator) [9]. 
+The current version of PACT includes a medium-cost heat sink adopted from HotSpot [2], a fixed-air convection HTC heat sink, [liquid cooling via microchannels model](./Liquid/), two-phase vapor chambers with micropillar wick evaporator (./MicroWick/) [7,8], and two-phase vapor chambers with hybrid wick evaporator (./HybridWick/) [9]. 
 
 We have also built emerging cooling packages such as thermoelectric coolers [6]. We will add the TEC model to the PACT repository later on. 
 
