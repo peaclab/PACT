@@ -1,7 +1,7 @@
 # Two-Phase Vapor Chambers (VCs) with Hybrid Wick Evaporators (DATE'20 [9])
 
 
-This folder contains scripts and files used to run two-phase VCs with hybrid wick evaporators and a learning-based temperature-dependent HTC simulation framework discussed in this paper [9]. We also include an example run script for running the proposed multi-start simulated annealing approach (MSA).
+This folder contains scripts and files used to run two-phase VCs with hybrid wick evaporators and a learning-based temperature-dependent HTC simulation framework discussed in this paper [9]. We also include an example run script for running the proposed multi-start simulated annealing (MSA) optimization method.
 
 For a detailed discussion of the simulation setup and experimental results, please refer to our paper [9].
 
