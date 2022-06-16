@@ -7,8 +7,14 @@ For a detailed discussion of the simulation setup and experimental results, plea
 
 ![](/image/VC.PNG)
 
+
+
 The valid parameter range for hybrid wick is show in the following table:
 ![](/image/HybridParam.PNG)
+
+
+
+
 To run liquid cooling simulations, go to the scripts folder and run the following commands:
 ```python
 python liquid.py
