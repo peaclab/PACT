@@ -149,7 +149,7 @@ To enable transient thermal simulation with an initial temperature file, users s
 # Modeling Emerging On-Chip Cooling Methods
 The current version of PACT includes a medium-cost heat sink adopted from HotSpot [2], a fixed-air convection HTC heat sink, liquid cooling via microchannels model, two-phase vapor chambers with micropillar wick evaporator [7,8], and two-phase vapor chambers with hybrid wick evaporator [9]. 
 
-We have also built emerging cooling packages such as thermoelectric coolers [6] and two-phase vapor chambers with micropillar wick and hybrid wick evaporators [7,8,9]. We will add these cooling models to the PACT repository later on. 
+We have also built emerging cooling packages such as thermoelectric coolers [6]. We will add the TEC model to the PACT repository later on. 
 
 # OpenROAD Interface:
 Please go to the [./src/OpenRoad/](./src/OpenRoad/) folder for more information.
