@@ -14,7 +14,7 @@ The valid parameter range for hybrid wick is show in the following table:
   <img src="/image/HybridParam.png">
 </p>
 
-
+Users also need to use the dry_out.py script to test whether the current hybrid wick structure satisfies the dry-out constraint.
 
 To run two-phase VCs with hybrid wick evaporators simulations, go to the scripts folder and run the following script:
 ```python
