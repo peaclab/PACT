@@ -59,11 +59,11 @@ FROM ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt install -y nano vim python-is-python3 python3-pip gfortran bison flex libfl-dev libfftw3-dev libsuitesparse-dev libblas-dev liblapack-dev libtool
+RUN apt update && apt install -y nano vim python-is-python3 python3-pip gfortran bison flex libfl-dev libfftw3-dev libsuitesparse-dev libblas-dev liblapack-dev libtool  && rm -rf /var/lib/apt/lists/*
 WORKDIR /
 COPY --from=xyce_build /opt /opt
 
-ENV PATH /opt/XyceInstall/Parallel/bin:$PATH
+ENV PATH /opt/XyceInstall/Serial/bin:$PATH
 
 RUN useradd -ms /bin/bash pact
 
