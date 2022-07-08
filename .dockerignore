@@ -1,0 +1,4 @@
+.git
+Docker/
+*.md
+build_docker.sh
