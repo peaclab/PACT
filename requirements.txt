@@ -1,4 +1,4 @@
-numpy==1.14.5
-pandas==0.23.3
-scipy==1.1.0
+numpy==1.22.0
+pandas==1.4.3
+scipy==1.8.1
 configparser==3.5.0
