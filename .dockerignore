@@ -1,0 +1,5 @@
+.git
+.cache
+Docker/
+*.md
+build_docker.sh

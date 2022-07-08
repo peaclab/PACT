@@ -2,7 +2,7 @@ FROM ubuntu:focal as xyce_build
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt install -y gcc g++ build-essential ninja-build gfortran make cmake bison flex libfl-dev libfftw3-dev libsuitesparse-dev libblas-dev liblapack-dev libtool automake autoconf
+RUN apt update && apt install -y gcc g++ git build-essential ninja-build gfortran make cmake bison flex libfl-dev libfftw3-dev libsuitesparse-dev libblas-dev liblapack-dev libtool automake autoconf
 
 RUN git clone --branch Release-7.4.0   --depth 1 https://github.com/Xyce/Xyce.git
 
