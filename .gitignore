@@ -5,3 +5,6 @@ src/__pycache__/
 # Timing logs:
 src/Example/logs/*.log
 
+*tar.gz
+MLModels/
+
