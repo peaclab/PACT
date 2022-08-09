@@ -17,7 +17,7 @@ pip install -r requirements.txt
 # Usage:
 
 ```
-VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min TMIN] [--max TMAX] [--layer LAYER] [--dpi DPI] [--font_scale FONT_SCALE] [--steady IS_STEADY_STATE] [--K USE_KELVIN]
+python3 VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min TMIN] [--max TMAX] [--layer LAYER] [--dpi DPI] [--font_scale FONT_SCALE] [--steady IS_STEADY_STATE] [--K USE_KELVIN]
 ```     
 
 The only required input is the transient data file.
@@ -44,17 +44,17 @@ When designing an overlay image, it is reccomended to use thick lines, as thin l
 Here are some examples that work with the included files:
 
 ```
-python VisualPACT.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
+VisualPACT.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
 ```
 ```
-python VisualPACT.py Example_transient_data_files/IBMPower9transientnopackage_128x128.grid.cir.csv --fps 20 --min 40 --overlay Example_overlay_images/IBMPower9.png 
+VisualPACT.py Example_transient_data_files/IBMPower9transientnopackage_128x128.grid.cir.csv --fps 20 --min 40 --overlay Example_overlay_images/IBMPower9.png 
 ```
 ```
-python VisualPACT.py ../Example_command_line/example.cir.csv
+VisualPACT.py ../Example_command_line/example.cir.csv
 ```
 The script will print out information such as the grid resolution, video file and image folder path, and the min and max values of the colorbar. If the script runs correctly, the output should look like this:
 ```
-python VisualPACT.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
+VisualPACT.py Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay Example_overlay_images/IBMPower9.png
 IBMPower9transientheatsink_128x128
 128 x 128
 video path: <Path to PACT folder>/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.avi
