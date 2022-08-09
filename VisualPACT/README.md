@@ -17,7 +17,7 @@ pip install -r requirements.txt
 # Usage:
 
 ```
-python VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min TMIN] [--max TMAX] [--layer LAYER] [--dpi DPI] [--K USE_KELVIN]
+VisualPACT.py [transient data file] [--fps FPS] [--overlay OVERLAY_IMAGE] [--min TMIN] [--max TMAX] [--layer LAYER] [--dpi DPI] [--font_scale FONT_SCALE] [--steady IS_STEADY_STATE] [--K USE_KELVIN]
 ```     
 
 The only required input is the transient data file.
