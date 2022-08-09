@@ -28,7 +28,7 @@ PACT is written in Python and uses __Xyce 6.12__ as the backend SPICE engine.
 ```
 pip install -r requirements.txt
 ```
-
+    
 The above libraries are sufficient for the users to run PACT with the SuperLU solver. For users who want to run PACT with the SPICE engine, one needs to install either __Xyce 6.12__ serial version or __Xyce 6.12__ parallel version.
 
 Installation guideline for __Xyce 6.12__: 
@@ -62,7 +62,12 @@ If __Xyce 7.4__ and __OpenMPI 3.1.4__ have already been installed in your Linux 
 ```
 module load openmpi/3.1.4_gnu-10.2.0 xyce/7.4
 ```
-
+# DownLoad ML Regression Models 
+To simulate the learning-based temperature-dependent HTC simulation framework and two-phase vapor chambers with the hybrid wick evaporators model discussed in [9], users need to run the following script to download and extract the regression models:
+```
+python DownloadML.py
+```
+    
 # Usage
 1. Config file (i.e., [./Example/config_files/](./Example/config_files/)) describes the layer material properties.
     1. Thickness defines the layer thickness.
@@ -142,9 +147,9 @@ One needs to modify the number_of_core option in the modelParams_files [Simulati
 To enable transient thermal simulation with an initial temperature file, users should typically first run a steady-state simulation to generate the initial temperature file (e.g., {ChipName}.cir.ic). Then, users need to set init_file = True in the [Simulation] section in modelParams.config file. Then PACT will include the initial temperature file as the initial temperatures for each node and carry out the transient simulation. Note that the grid resolution for steady-state simulation and transient simulation have to be the same (Xyce SPICE engine will raise an error if the grid resolution does not match). We recommend always running a steady-state simulation first before running a transient simulation with an initial temperature file. 
 
 # Modeling Emerging On-Chip Cooling Methods
-The current version of PACT includes a medium-cost heat sink adopted from HotSpot [2], a fixed-air convection HTC heat sink, and models for liquid cooling via microchannels. 
+The current version of PACT includes a medium-cost heat sink adopted from HotSpot [2], a fixed-air convection HTC heat sink, [liquid cooling via microchannels model](./Liquid/) [6], [two-phase vapor chambers with micropillar wick evaporator](./MicroWick/) [7,8], and [two-phase vapor chambers with hybrid wick evaporator](./HybridWick/) [9]. 
 
-We have also built emerging cooling packages such as thermoelectric coolers [6] and two-phase vapor chambers with micropillar wick and hybrid wick evaporators [7,8,9]. We will add these cooling models to the PACT repository later on. 
+We have also built emerging cooling packages such as thermoelectric coolers [6]. We will add the TEC model to the PACT repository later on. 
 
 # OpenROAD Interface:
 Please go to the [./src/OpenRoad/](./src/OpenRoad/) folder for more information.
@@ -214,7 +219,10 @@ Example block-level temperature output:
 <!-- ![](/image/output.PNG) -->
 <center><img src="/image/output.PNG" width="600" height="300">
 Here layer0 is the processor and layer1 is the cooling package. 
-
+    
+# Example Tutorial Video (UBooth @ DAC):
+<a href="https://www.youtube.com/watch?v=8yFDCPk7UHs" target="_blank"><img src="https://img.youtube.com/vi/8yFDCPk7UHs/0.jpg" 
+alt="Ubooth @ DAC tutorial" width="600" height="300" /></a>
 # Citation and License:
 
 PACT is licensed under GNU General Public License v3.0 license.

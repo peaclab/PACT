@@ -1,0 +1,29 @@
+[DEFAULT]
+label = 
+
+[Si]
+thermalresistivity ((m-k)/w) = 0.0077
+specificheatcapacity (j/m^3k) = 1750000
+
+[Init]
+ambient = 323.15 K
+temperature = 273.15 K
+
+[NoPackage]
+htc = 1e9
+thickness (m) = 0.00001
+thermalresistivity ((m-k)/w) = 0.00025
+specificheatcapacity (j/m^3k) = 1750000
+
+[HybridWick]
+thickness (t) = 0.9011797599412182
+pore diameter (dp) = 0.116324144312576
+porosity (phi) = 0.39435089731350825
+aspect ratio (ar) = 1.2747274568765297
+solid fraction (sf) = 0.340711210679681
+width (w) = 7.2570685795966465
+tsat = 323.15 K
+coolant = water
+grid_temperatures = 273.15 K
+silicon thermalresistivity ((m-k)/w) = 0.0077
+
