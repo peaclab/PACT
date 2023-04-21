@@ -81,7 +81,6 @@ python DownloadML.py
     3. X and Y define the location of the unit.
     4. Length (m) and Width (m) describe the unit size.
     5. Label describes the material or the cooling property of the unit.
-    6. Users can ignore the configfile option for now. The configfile option is for enabling two-phase vapor chamber with micropillar wick evaporators and hybrid wick evaporators. We will release these two emerging cooling packages in the later version of PACT.
 3.  Layer configuration file (i.e., [./Example/lcf_files/](./Example/lcf_files/) (.CSV file)) describes the layer stack.
     1. Layer describes the layer number; all layers are stacked vertically starting from layer 0, where layer 0 is the closest from the package/heat sink.
     2. Floorplan file describes the floorplan for the specific layer.
