@@ -52,11 +52,14 @@ def make_video(image_folder,video_name):
 def make_transparent_overlay(overlay):
     h, w, c = overlay.shape
     # append Alpha channel -- required for BGRA (Blue, Green, Red, Alpha)
-    overlay_transparent_bg = np.concatenate([overlay, np.full((h, w, 1), 255, dtype=np.uint8)], axis=-1)
+    if c<4:
+        overlay_transparent_bg = np.concatenate([overlay, np.full((h, w, 1), 255, dtype=np.uint8)], axis=-1)
+    else:
+        overlay_transparent_bg = overlay
     # create a mask where white pixels ([255, 255, 255]) are True
     threshold=128
-    white = np.all(overlay >= [threshold, threshold, threshold], axis=-1)
-    black=np.all(overlay <= [threshold, threshold, threshold], axis=-1)
+    white = np.all(overlay[:, :, :3] >= [threshold, threshold, threshold], axis=-1)
+    black=np.all(overlay[:, :, :3] <= [threshold, threshold, threshold], axis=-1)
     # change the values of Alpha to 0 for all the white pixels
     overlay_transparent_bg[white, -1] = 0
     overlay_transparent_bg[black,:] = 0
