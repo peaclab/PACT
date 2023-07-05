@@ -12,20 +12,20 @@ RUN \
     cd Trilinos && \
     git checkout trilinos-release-12-12-branch
 
-# Build the trillinos dependency
-FROM trillinos_git as trillinos_build
+# Build the trillinos-serial dependency
+FROM trillinos_git as trillinos_serial_build
 COPY reconfig.sh /opt/Xyce/
 RUN \
     cd /opt/Xyce && \
-    mkdir build && \
-    cd build && \
+    mkdir build_serial && \
+    cd build_serial && \
     bash ../reconfig.sh && \
     make && \
     make install && \
-    cd .. && rm -rf Trilinos build
+    cd .. && rm -rf build_serial
 
 # Clone and build xyce- serial 
-FROM trillinos_build as xyce
+FROM trillinos_serial_build as xyce_serial
 RUN \
     git clone --depth 1 --branch Release-7.4.0 https://github.com/Xyce/Xyce.git /opt/Xyce/Xyce-7.4 && \
     cd /opt/Xyce/Xyce-7.4 && \
@@ -39,8 +39,38 @@ RUN \
     rm -rf build && \
     cd ..
 
+# Build the trillinos-serial dependency
+FROM xyce_serial as trillinos_parallel_build
+COPY reconfig_parallel.sh /opt/Xyce/
+RUN \
+    cd /opt/Xyce && \
+    mkdir build_parallel && \
+    cd build_parallel && \
+    bash ../reconfig_parallel.sh && \
+    make && \
+    make install && \
+    cd .. && rm -rf Trilinos build_parallel
+
+# Clone and build xyce- parallel 
+FROM trillinos_parallel_build as xyce_parallel
+RUN \
+    cd /opt/Xyce/Xyce-7.4 && \
+    mkdir build_parallel && \
+    cd build_parallel && \
+    ../configure CXXFLAGS="-O3" ARCHDIR="/opt/Xyce/XyceLibs/Parallel" CPPFLAGS="-I/usr/include/suitesparse" --enable-mpi \
+    CXX=mpicxx \
+    CC=mpicc \
+    F77=mpif77 \
+    --enable-stokhos \
+    --enable-amesos2 && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf build_parallel && \
+    cd ..
+
 # Install python3 
-FROM xyce as python3
+FROM xyce_parallel as python3
 RUN apt-get update && apt-get install -y python3 python3-pip
 
 # Install some python dependences
