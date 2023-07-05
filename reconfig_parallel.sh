@@ -3,7 +3,7 @@
 # Set the source code directory
 SRCDIR=/opt/Xyce/Trilinos
 # Set the installation directories
-ARCHDIR=/opt/Xyce/XyceLibs/Serial
+ARCHDIR=/opt/Xyce/XyceLibs/Parallel
 FLAGS="-O3 -fPIC"
 cmake \
   -G "Unix Makefiles" \
