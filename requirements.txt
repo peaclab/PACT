@@ -1,4 +1,3 @@
-numpy==1.14.5
 pandas
 scipy
 configparser==3.5.0
