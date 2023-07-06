@@ -75,13 +75,23 @@ RUN apt-get update && apt-get install -y python3 python3-pip
 
 # Install some python dependences
 FROM python3 as python3_deps
-COPY . /opt/app
+
 RUN pip3 install cython
 RUN pip3 install numpy
 
 # Install some PACT dependences and run it
 FROM python3_deps as pact
 RUN pip3 install -r /opt/app/requirements.txt
+# Add a new user "pactuser" with user id 8877
+RUN useradd -u 8877 pactuser
+
+# Set permissions for /opt/app directory
+RUN chown -R pactuser:pactuser /opt/app
+RUN chmod -R 755 /opt/app
+
 WORKDIR /opt/app/src
+
+# Change to non-root privilege
+USER pactuser
 ENTRYPOINT [ "python3","PACT.py" ]
 # CMD ["python3", "PACT.py", "../Intel/Intel_ID1_lcf.csv", "../Intel/Intel.config", "../Intel/modelParams_Intel.config", "--gridSteadyFile", "Intel.grid.steady"]
