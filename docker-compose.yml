@@ -17,8 +17,8 @@ services:
     volumes:
       - ./Intel:/opt/app/Intel
       - ./Example:/opt/app/Example
-      - ./VisualPACT/Example_transient_data_files:/opt/app/Example_transient_data_files
-      - ./VisualPACT/Example_overlay_images:/opt/app/Example_overlay_images
-    command: /opt/app/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/Example_overlay_images/IBMPower9.png
+      - ./VisualPACT/Example_transient_data_files:/opt/app/VisualPACT/Example_transient_data_files
+      - ./VisualPACT/Example_overlay_images:/opt/app/VisualPACT/Example_overlay_images
+    command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/VisualPACT/Example_overlay_images/IBMPower9.png
     depends_on:
       - pact_container_p
