@@ -7,3 +7,12 @@ src/Example/logs/*.log
 **/logs/*.log
 
 */results/*
+
+# Output files:
+Intel.cir
+Intel.cir.csv
+Intel.cir.ic
+Intel.grid.steady.layer0
+Intel.grid.steady.layer1
+Intel.log
+IBMPower9transientheatsink_128x128_frames

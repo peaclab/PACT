@@ -95,4 +95,3 @@ WORKDIR /opt/app/src
 # Change to non-root privilege
 USER pactuser
 ENTRYPOINT [ "python3","PACT.py" ]
-# CMD ["python3", "PACT.py", "../Intel/Intel_ID1_lcf.csv", "../Intel/Intel.config", "../Intel/modelParams_Intel.config", "--gridSteadyFile", "Intel.grid.steady"]

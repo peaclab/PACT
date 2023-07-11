@@ -1,0 +1,24 @@
+version: '3'
+services:
+  pact_container_p:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./Intel:/opt/app/Intel
+      - ./Example:/opt/app/Example
+      - ./Example_overlay_images:/opt/app/Example_overlay_images
+      - ./Example_transient_data_files:/opt/app/Example_transient_data_files
+    command: /opt/app/Intel/Intel_ID1_lcf.csv /opt/app/Intel/Intel.config /opt/app/Intel/modelParams_Intel.config --gridSteadyFile /opt/app/Intel/Intel.grid.steady
+  visual_pact_container:
+    build:
+      context: ./VisualPACT
+      dockerfile: Dockerfile
+    volumes:
+      - ./Intel:/opt/app/Intel
+      - ./Example:/opt/app/Example
+      - ./VisualPACT/Example_transient_data_files:/opt/app/Example_transient_data_files
+      - ./VisualPACT/Example_overlay_images:/opt/app/Example_overlay_images
+    command: /opt/app/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/Example_overlay_images/IBMPower9.png
+    depends_on:
+      - pact_container_p
