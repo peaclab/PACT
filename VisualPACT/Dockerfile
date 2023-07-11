@@ -12,8 +12,5 @@ RUN pip3 install -r requirements.txt
 RUN cd  ..
 COPY . /opt/app
 
-# Set the working directory
-WORKDIR /opt/app/VisualPACT
-
 # Set the entrypoint command
-ENTRYPOINT [ "python3", "VisualPACT.py" ]
+ENTRYPOINT [ "python3", "/opt/app/VisualPACT/VisualPACT.py" ]
