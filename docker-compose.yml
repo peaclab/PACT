@@ -12,8 +12,8 @@ services:
     command: /opt/app/Intel/Intel_ID1_lcf.csv /opt/app/Intel/Intel.config /opt/app/Intel/modelParams_Intel.config --gridSteadyFile /opt/app/Intel/Intel.grid.steady
   visual_pact_container:
     build:
-      context: ./VisualPACT
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./VisualPACT/Dockerfile
     volumes:
       - ./Intel:/opt/app/Intel
       - ./Example:/opt/app/Example

@@ -8,6 +8,7 @@ src/Example/logs/*.log
 
 */results/*
 
+.DS_Store
 # Output files:
 Intel.cir
 Intel.cir.csv
