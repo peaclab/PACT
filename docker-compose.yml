@@ -19,6 +19,7 @@ services:
       - ./Example:/opt/app/Example
       - ./VisualPACT/Example_transient_data_files:/opt/app/VisualPACT/Example_transient_data_files
       - ./VisualPACT/Example_overlay_images:/opt/app/VisualPACT/Example_overlay_images
-    command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/VisualPACT/Example_overlay_images/IBMPower9.png
+    # command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/VisualPACT/Example_overlay_images/IBMPower9.png
+    command: /opt/app/Intel/Intel.cir.csv --fps 20 --overlay /opt/app/VisualPACT/Example_overlay_images/Inteli7.PNG --dpi 100
     depends_on:
       - pact_container_p
