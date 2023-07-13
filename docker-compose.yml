@@ -1,9 +1,7 @@
 version: '3'
 services:
   pact_container_p:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     volumes:
       - ./Intel:/opt/app/Intel
       - ./Example:/opt/app/Example
@@ -12,8 +10,7 @@ services:
     command: /opt/app/Intel/Intel_ID1_lcf.csv /opt/app/Intel/Intel.config /opt/app/Intel/modelParams_Intel.config --gridSteadyFile /opt/app/Intel/Intel.grid.steady
   visual_pact_container:
     build:
-      context: .
-      dockerfile: ./VisualPACT/Dockerfile
+      context: ./VisualPACT
     volumes:
       - ./Intel:/opt/app/Intel
       - ./Example:/opt/app/Example
