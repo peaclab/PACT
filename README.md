@@ -228,6 +228,39 @@ alt="Ubooth @ DAC tutorial" width="600" height="300" /></a>
 PACT is licensed under GNU General Public License v3.0 license.
 If you use PACT for your publications, please cite our TCAD paper [1].
 
+# Running PACT & VisualPACT through Docker
+This repository provides a Docker Compose configuration to run PACT and VisualPACT using Docker containers. The following steps outline how to set up and run the containers:
+## Prerequisites
+-   Docker: Install Docker based on your operating system by following the instructions provided in the [official Docker documentation](https://docs.docker.com/engine/install/)
+
+## Setup
+1. Clone the PACT repository to your local machine.
+2.  Edit the respective `modelParams` file to provide the desired steady or transient specifications for PACT.
+3.  Edit the paths to the required argument files:
+-   To run PACT with input files stored in the `Intel` folder, modify the following command in the `pact_container` service:
+
+```
+command: /opt/app/Intel/Intel_ID1_lcf.csv /opt/app/Intel/Intel.config /opt/app/Intel/modelParams_Intel.config --gridSteadyFile 
+```
+-  To run VisualPACT with input files stored in the `VisualPACT/Example_transient_data_files` folder, modify the following command in the `visual_pact_container` service:
+```
+command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/VisualPACT/Example_overlay_images/IBMPower9.png
+```
+## Running the Containers
+1.  Open a terminal or command prompt and navigate to the root directory of the cloned repository.
+2.  Run the following command to start the containers:
+`docker-compose up`
+
+This command launches the containers and provides the PACT output in your terminal and Docker Desktop logs.
+
+## Using Custom Input Files
+If you want to use your own input files, follow these steps:
+1.  Add the folder containing your input files to the PACT folder on your local machine.
+2.  Edit the volumes section in the Docker Compose file to provide the PACT container access to your local folder with the input files. For example, to add the `Intel` folder, modify the following line: `./Intel:/opt/app/Intel`
+3. Replace `./Intel` with the path to your local folder containing the input files.
+   
+Note: Make sure the input files are in the expected format and follow the appropriate file structure for PACT and VisualPACT.
+
 # Developers:
 
 * Prachi Shukla, Boston University
