@@ -41,7 +41,10 @@ def make_video(image_folder,video_name):
     frame = cv2.imread(os.path.join(image_folder, images[0]))
     height, width, layers = frame.shape
 
-    video = cv2.VideoWriter(video_name, 0, fps, (width,height))
+    # Get the VIDEO_CODEC environment variable, defaulting to '0' when not using the docker container
+    video_codec = cv2.VideoWriter_fourcc(*os.environ.get('VIDEO_CODEC', '0'))
+
+    video = cv2.VideoWriter(video_name, video_codec, fps, (width,height))
 
     for image in images:
         video.write(cv2.imread(os.path.join(image_folder, image)))

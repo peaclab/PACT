@@ -1,0 +1,7 @@
+src/__pycache__/
+
+# Timing logs:
+src/Example/logs/*.log
+**/logs/*.log
+
+*/results/*
