@@ -268,6 +268,7 @@ Note: Make sure the input files are in the expected format and follow the approp
 * Sofiane Chetoui, Brown University
 * Carlton Knox, Boston University
 * Sean Nemtzow, Boston University 
+* Joreen Arigye, Boston University (PACT Docker containerization)
 
 # Principal Investigators:
 
