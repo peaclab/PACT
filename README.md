@@ -248,7 +248,12 @@ command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheat
 ```
 ## Running the Containers
 1.  Open a terminal or command prompt and navigate to the root directory of the cloned repository.
-2.  Run the following command to start the containers:
+    Windows Users:
+    If you are running on Command Prompt, Windows PowerShell, or Git Bash, follow these additional steps to ensure proper formatting:
+    - Convert the reconfig.sh file to Unix format:`dos2unix reconfig.sh`
+    - Convert the reconfig_parallel.sh file to Unix format:`dos2unix reconfig_parallel.sh`
+    If you don't have dos2unix installed, you can install it by running the following command as an administrator:`choco install dos2unix`
+2.  Make sure you are still in the root directory of the cloned PACT repository then run the following command to start the containers:
 `docker-compose up`
 
 This command launches the containers and provides the PACT output in your terminal and Docker Desktop logs.
