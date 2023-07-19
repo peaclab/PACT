@@ -248,7 +248,7 @@ command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheat
 ```
 ## Running the Containers
 1.  Open a terminal or command prompt and navigate to the root directory of the cloned repository.
-    Windows Users:
+-   Windows Users:
     If you are running on Command Prompt, Windows PowerShell, or Git Bash, follow these additional steps to ensure proper formatting:
     - Convert the reconfig.sh file to Unix format:`dos2unix reconfig.sh`
     - Convert the reconfig_parallel.sh file to Unix format:`dos2unix reconfig_parallel.sh`
