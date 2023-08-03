@@ -76,7 +76,7 @@ RUN apt-get update && apt-get install -y python3 python3-pip
 # Install some python dependences
 FROM python3 as python3_deps
 COPY requirements.txt .
-RUN pip3 install --upgrade pip 
+RUN pip3 install --upgrade pip
 RUN pip3 install cython
 RUN pip3 install numpy
 RUN pip3 install -r requirements.txt
