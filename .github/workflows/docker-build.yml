@@ -22,7 +22,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: hicsail/PACT
+          tags: hicsail/pact
           cache-from: type=gha,scope=PACT
           cache-to: type=gha,scope=PACT,mode=max
       - name: Build & Push Visual PACT Docker Build
@@ -30,6 +30,6 @@ jobs:
         with:
           context: ./VisualPACT
           push: true
-          tags: hicsail/VisualPACT
+          tags: hicsail/visualpact
           cache-from: type=gha,scope=VisualPACT
           cache-to: type=gha,scope=VisualPACT,mode=max
