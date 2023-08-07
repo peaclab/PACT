@@ -2,11 +2,11 @@ name: PACT Docker Build & Publish
 on:
   push:
     branches:
-      - main  
+      - actions_docker_hub  
 jobs:
   build-and-publish:
     name: Build and Publish Docker Image
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

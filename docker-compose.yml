@@ -9,12 +9,6 @@ services:
       - ./Example_transient_data_files:/opt/app/Example_transient_data_files
     command: /opt/app/Intel/Intel_ID1_lcf.csv /opt/app/Intel/Intel.config /opt/app/Intel/modelParams_Intel.config --gridSteadyFile /opt/app/Intel/Intel.grid.steady
     container_name: pact_container
-    healthcheck:
-      # test: ["CMD-SHELL", "docker logs pact_container 2>&1 | grep -q 'pact_container exited with code 0'"]
-      test: ["CMD-SHELL", "docker inspect -f '{{.State.ExitCode}}' pact_container | grep -q '0'"]
-      # test: ["CMD-SHELL", "docker inspect -f '{{.State.Running}}' pact_container | grep -q 'true'"]
-      interval: 20s
-      retries: 10
     
   visual_pact_container:
     build:
@@ -26,6 +20,4 @@ services:
       - ./VisualPACT/Example_overlay_images:/opt/app/VisualPACT/Example_overlay_images
     # command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/VisualPACT/Example_overlay_images/IBMPower9.png
     command: /opt/app/Intel/Intel.cir.csv --fps 20 --overlay /opt/app/VisualPACT/Example_overlay_images/Inteli7.PNG --dpi 100
-    depends_on:
-      pact_container:
-        condition: service_healthy
+    container_name: visual_pact_container
