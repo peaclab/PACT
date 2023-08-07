@@ -10,13 +10,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
-      - name: Build and Push Docker Image
-        uses: mr-smithers-excellent/docker-build-push@v6
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
         with:
-          image: joreen/pact-demo
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }
+      - name: Build & Push Docker Build
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
           tags: v1, latest
-          registry: docker.io
-          dockerfile: .
-          username: joreen #${{ secrets.DOCKER_USERNAME }}
-          password: .XJLgbMcz_RA.q2 #${{ secrets.DOCKER_PASSWORD }}
+          cache-from: type=gha,scope=PACT
+          cache-to: type=gha,scope=PACT,mode=max
