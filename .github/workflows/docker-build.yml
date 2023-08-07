@@ -13,7 +13,6 @@ jobs:
       
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v6
-        name: Build & push Docker image
         with:
           image: joreen/pact-demo
           tags: v1, latest
