@@ -1,0 +1,23 @@
+name: PACT Docker Build & Publish
+on:
+  push:
+    branches:
+      - main  
+jobs:
+  build-and-publish:
+    name: Build and Publish Docker Image
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build & push Docker image
+        with:
+          image: joreen/pact-demo
+          tags: v1, latest
+          registry: docker.io
+          dockerfile: Dockerfile.ci
+          username: joreen #${{ secrets.DOCKER_USERNAME }}
+          password: .XJLgbMcz_RA.q2 #${{ secrets.DOCKER_PASSWORD }}
