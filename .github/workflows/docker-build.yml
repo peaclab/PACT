@@ -2,14 +2,14 @@ name: PACT Docker Build & Publish
 on:
   push:
     branches:
-      - actions_docker_hub  
+      - main  
 jobs:
   build-and-publish:
     name: Build and Publish Docker Image
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
-      # - uses: docker/setup-qemu-action@v2
-      # - uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Login to Docker Hub
