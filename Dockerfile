@@ -88,7 +88,7 @@ COPY . /opt/app
 RUN useradd -u 8877 pactuser
 # Set permissions for /opt/app directory
 RUN chown -R pactuser:pactuser /opt/app
-RUN chmod -R 755 /opt/app
+RUN chmod -R 777 /opt/app
 
 WORKDIR /opt/app/src
 
