@@ -253,10 +253,12 @@ command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheat
     - Convert the reconfig.sh file to Unix format:`dos2unix reconfig.sh`
     - Convert the reconfig_parallel.sh file to Unix format:`dos2unix reconfig_parallel.sh`
     If you don't have dos2unix installed, you can install it by running the following command as an administrator:`choco install dos2unix`
+    - Windows users may face some more issues: We recommend running on unix based systems
 2.  Make sure you are still in the root directory of the cloned PACT repository then run the following command to start the containers:
 `docker-compose up`
-
 This command launches the containers and provides the PACT output in your terminal and Docker Desktop logs.
+
+- NOTE: In case you get permission issue, it could be due to the docker volume mounting, simply change the PACT folder ownership to pactuser(id 8877) as follows: `sudo chown -R 8877:8877 . `
 
 ## Using Custom Input Files
 If you want to use your own input files, follow these steps:
