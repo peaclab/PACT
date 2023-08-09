@@ -1,0 +1,2 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,../Example/flp_files/20mm_500um_Hetero_flp.csv,0.0001,../Example/ptrace_files/20mm_500um_UniformPD_160Wcm2_ptrace.csv,True

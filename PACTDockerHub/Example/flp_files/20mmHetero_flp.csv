@@ -1,0 +1,6 @@
+UnitName,X,Y,Length (m),Width (m),ConfigFile,Label
+Block_0,0,0,0.02,0.0095,,Cu
+Block_1,0,0.0095,0.0095,0.001,,Si
+Block_2,0.0095,0.0095,0.001,0.001,,Cu
+Block_3,0.0105,0.0095,0.0095,0.001,,Si
+Block_4,0,0.0105,0.02,0.0095,,Si

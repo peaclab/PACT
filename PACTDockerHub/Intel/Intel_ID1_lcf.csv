@@ -1,0 +1,2 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,../Intel/Inteli7_flp.csv,0.75e-3,../Intel/Intel_ft_5core_ptrace.csv,True
