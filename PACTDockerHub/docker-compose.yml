@@ -1,6 +1,6 @@
 version: '3'
 services:
-  pact_container_ubuntu:
+  pact_container:
     platform: linux/amd64
     image: hicsail/pact
     volumes:
@@ -9,9 +9,9 @@ services:
       - ./Example_overlay_images:/opt/app/Example_overlay_images
       - ./Example_transient_data_files:/opt/app/Example_transient_data_files
     command: /opt/app/Intel/Intel_ID1_lcf.csv /opt/app/Intel/Intel.config /opt/app/Intel/modelParams_Intel.config --gridSteadyFile /opt/app/Intel/Intel.grid.steady
-    container_name: pact_container_ubuntu
+    container_name: pact_container
     
-  visual_pact_container_ubuntu:
+  visual_pact_container:
     image: hicsail/visualpact
     platform: linux/amd64
     volumes:
@@ -21,4 +21,4 @@ services:
       - ./VisualPACT/Example_overlay_images:/opt/app/VisualPACT/Example_overlay_images
     # command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/VisualPACT/Example_overlay_images/IBMPower9.png
     command: /opt/app/Intel/Intel.cir.csv --fps 20 --overlay /opt/app/VisualPACT/Example_overlay_images/Inteli7.PNG --dpi 100
-    container_name: visual_pact_container_ubuntu
+    container_name: visual_pact_container
