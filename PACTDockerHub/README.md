@@ -42,7 +42,8 @@ To use the provided `docker-compose.yml` file to run the PACT and VisualPACT con
 
 Here is a video showing how you can run PACT simulation:
 
-![](PACT simulation.mp4)
+<video src="PACT%20simulation.mp4" controls title="PACT simulation"></video>
+
 
 Please note that the provided `docker-compose.yml` file assumes that the required input files for PACT and VisualPACT are correctly placed in the specified directories. Make sure your data files are in the right locations before running the containers.
 
