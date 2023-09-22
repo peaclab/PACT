@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   pact_container:
     build: .
@@ -9,7 +9,8 @@ services:
       - ./Example_transient_data_files:/opt/app/Example_transient_data_files
     command: /opt/app/Intel/Intel_ID1_lcf.csv /opt/app/Intel/Intel.config /opt/app/Intel/modelParams_Intel.config --gridSteadyFile /opt/app/Intel/Intel.grid.steady
     container_name: pact_container
-    
+    user: "${UID}:${GID}"
+
   visual_pact_container:
     build:
       context: ./VisualPACT
