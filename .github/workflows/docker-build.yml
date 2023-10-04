@@ -2,7 +2,7 @@ name: PACT Docker Build & Publish
 on:
   push:
     branches:
-      - master  
+      - main  
 jobs:
   build-and-publish:
     name: Build and Publish Docker Image
