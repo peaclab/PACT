@@ -279,10 +279,10 @@ To allow for flexibility, the docker file is setup so that when the container is
 
 ## How to run
 
-In order to achieve the flexibility described above, the workflow to run simulations with docker is bit involved. The general workflow goes as follows;
+In order to achieve the flexibility described above, the workflow to run simulations with docker is a bit involved. The general workflow goes as follows;
 
 1. Clone the PACT repository to your local machine.
-1. Build the docker image
+2. Build the docker image
 
 ```
 docker build -t imagename .
@@ -290,23 +290,27 @@ docker build -t imagename .
 
 '.' here is a path signifying where the Dockerfile is located. As such, the above command should be run while in the root folder. "imagename" can be anything.
 
-2. Run the image with flags to
-   a. specify a local directory that should be attached to "/opt/app/Input" inside the container.
-   b. get access to the container's command line once it starts running.
+3. Run the image with arguments to;
+
+   - a. specify a local directory that should be attached to "/opt/app/Input" inside the container.
+
+   - b. get access to the container's command line once it starts running.
 
 ```
 docker run -it  -v $(pwd)/path-to-folder-with-input-files:/opt/app/Input \imagename /bin/bash
 ```
 
-"-v $(pwd)/path-to-folder-with-input-files:/opt/app/Input" satisfies 2a.
-"/bin/bash" satisfies 2b.
+"-v $(pwd)/path-to-folder-with-input-files:/opt/app/Input" satisfies 3a.
+
+"/bin/bash" satisfies 3b.
+
 Replace path-to-folder-with-input-files with a folder of your choosing. For eg, to use the Intel folder in this repo, run
 
 ```
 docker run -it  -v $(pwd)/Intel:/opt/app/Input \imagename /bin/bash
 ```
 
-3. While inside the running container's command line, run PACT.py with arguments.
+4. While inside the running container's command line, run PACT.py with arguments.
 
 ```
 python3 PACT.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
@@ -320,6 +324,7 @@ python3 PACT.py ../Input/Intel_ID1_lcf.csv ../Input/Intel.config ../Input/modelP
 
 P.S.
 While the simualtion is running in docker, you may see repetitive command line logs that look like this
+```
 [f6e9dc540c36:00030] Read -1, expected 46967, errno = 1
 [f6e9dc540c36:00030] Read -1, expected 49216, errno = 1
 [f6e9dc540c36:00030] Read -1, expected 49657, errno = 1
@@ -330,7 +335,7 @@ While the simualtion is running in docker, you may see repetitive command line l
 [f6e9dc540c36:00030] Read -1, expected 18050, errno = 1
 [f6e9dc540c36:00030] Read -1, expected 20819, errno = 1
 ...
-
+```
 Simply ignore this and watch the Xyce produced log file (added to the same folder as the input files) instead.
 
 # Developers:
