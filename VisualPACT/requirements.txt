@@ -1,6 +1,6 @@
 pandas
 scipy
 configparser==3.5.0
-matplotlib==2.2.0
+matplotlib
 opencv-python
 seaborn==0.9.0
