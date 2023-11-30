@@ -306,7 +306,7 @@ docker build -t imagename .
    - b. get access to the container's command line once it starts running.
 
 ```
-docker run -it  -v $(pwd)/path-to-folder-with-input-files:/opt/app/Input \imagename /bin/bash
+docker run -it  -v $(pwd)/path-to-folder-with-input-files:/opt/app/Input imagename /bin/bash
 ```
 
 "-v $(pwd)/path-to-folder-with-input-files:/opt/app/Input" satisfies 3a.
@@ -316,7 +316,13 @@ docker run -it  -v $(pwd)/path-to-folder-with-input-files:/opt/app/Input \imagen
 Replace path-to-folder-with-input-files with a folder of your choosing. For eg, to use the Intel folder in this repo, run
 
 ```
-docker run -it  -v $(pwd)/Intel:/opt/app/Input \imagename /bin/bash
+docker run -u $(id -u):$(id -g) -it -v $(pwd)/Intel:/opt/app/Input imagename /bin/bash
+```
+
+On windows, run this instead
+
+```
+docker run -it -v ${pwd}/Intel:/opt/app/Input imagename /bin/bash
 ```
 
 4. While inside the running container's command line, run PACT.py with arguments.
