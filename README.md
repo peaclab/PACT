@@ -258,7 +258,7 @@ If you use PACT for your publications, please cite our TCAD paper [1].
 
 # Running PACT & VisualPACT through Docker
 
-This repository provides a Docker Compose configuration to run PACT and VisualPACT using Docker containers. The following steps outline how to set up and run the containers:
+This repository provides a Dockerfile to run PACT and VisualPACT using Docker containers. The following steps outline how to set up and run the containers:
 
 ## Prerequisites
 
@@ -270,68 +270,90 @@ This repository provides a Docker Compose configuration to run PACT and VisualPA
 sudo usermod -aG docker $USER
 ```
 
-## Setup
+## Overview
+
+To allow for flexibility, the docker file is setup so that when the container is started;
+
+- a directory inside running the container ,"/opt/app/Input", can be mounted to any local directory: this allows the user to choose any folder to keep their input files in. It also allows the user to make live changes to input files that are reflected in simulation reruns.
+- no command is executed right away: this way the user can execute a command to run PACT in the way they please and reference input files they want.
+
+## How to run
+
+In order to achieve the flexibility described above, the workflow to run simulations with docker is a bit involved. The general workflow goes as follows;
 
 1. Clone the PACT repository to your local machine.
-2. Edit the respective `modelParams` file to provide the desired steady or transient specifications for PACT.
-3. Edit the paths to the required argument files:
-
-- To run PACT with input files stored in the `Intel` folder, modify the following command in the `pact_container` service:
+2. Build the docker image
 
 ```
-command: /opt/app/Intel/Intel_ID1_lcf.csv /opt/app/Intel/Intel.config /opt/app/Intel/modelParams_Intel.config --gridSteadyFile
+docker build -t imagename .
 ```
 
-- To run VisualPACT with input files stored in the `VisualPACT/Example_transient_data_files` folder, modify the following command in the `visual_pact_container` service:
-
-```
-command: /opt/app/VisualPACT/Example_transient_data_files/IBMPower9transientheatsink_128x128.grid.cir.csv --overlay /opt/app/VisualPACT/Example_overlay_images/IBMPower9.png
-```
-
-## Running the Containers
-
-1.  Open a terminal or command prompt and navigate to the root directory of the cloned repository.
+'.' here is a path signifying where the Dockerfile is located. As such, the above command should be run while in the root folder. "imagename" can be anything.
 
 - Windows Users:
-  If you are running on Command Prompt, Windows PowerShell, or Git Bash, follow these additional steps to ensure proper formatting:
+
+  If you are running on Command Prompt, Windows PowerShell, or Git Bash, follow these additional steps to ensure proper formatting before building image:
+
   - Convert the reconfig.sh file to Unix format:`dos2unix reconfig.sh`
   - Convert the reconfig_parallel.sh file to Unix format:`dos2unix reconfig_parallel.sh`
     If you don't have dos2unix installed, you can install it by running the following command as an administrator:`choco install dos2unix`
   - Windows users may face some more issues: We recommend running on unix based systems
 
-2.  Make sure you are still in the root directory of the cloned PACT repository.
-    First, set required environment variables by executing setenv.sh:
+3. Run the image with arguments to;
+
+   - a. specify a local directory that should be attached to "/opt/app/Input" inside the container.
+
+   - b. get access to the container's command line once it starts running.
 
 ```
-source setenv.sh
+docker run -u $(id -u):$(id -g) -it  -v $(pwd)/path-to-folder-with-input-files:/opt/app/Input imagename /bin/bash
 ```
 
-To run PACT:
+"-v $(pwd)/path-to-folder-with-input-files:/opt/app/Input" satisfies 3a.
+
+"/bin/bash" satisfies 3b.
+
+Replace path-to-folder-with-input-files with a folder of your choosing. For eg, to use the Intel folder in this repo, run
 
 ```
-docker-compose up pact_container
+docker run -u $(id -u):$(id -g) -it -v $(pwd)/Intel:/opt/app/Input imagename /bin/bash
 ```
 
-Then Visual PACT:
+On windows, run this instead
 
 ```
-docker-compose up visual_pact_container
+docker run -it -v ${pwd}/Intel:/opt/app/Input imagename /bin/bash
 ```
 
-This will start the PACT and VisualPACT containers as defined in the `docker-compose.yml` file.
-The output of the simulations will appear in the terminal once it is done running
+4. While inside the running container's command line, run PACT.py with arguments in the format shown below.
 
-- NOTE: In case you get permission issue, it could be due to the docker volume mounting, simply change the PACT folder ownership to pactuser(id 8877) as follows: `sudo chown -R 8877:8877 . `
+```
+python3 PACT.py <lcf_file> <config_file> <modelParams_file> --gridSteadyFile <grid_file>
+```
 
-## Using Custom Input Files
+Replace the arguments with files in the input folder you attached to. For eg, if you attached to the Intel folder, run
 
-If you want to use your own input files, follow these steps:
+```
+python3 PACT.py ../Input/Intel_ID1_lcf.csv ../Input/Intel.config ../Input/modelParams_Intel.config --gridSteadyFile ../Input/Intel.grid.steady
+```
 
-1.  Add the folder containing your input files to the PACT folder on your local machine.
-2.  Edit the volumes section in the Docker Compose file to provide the PACT container access to your local folder with the input files. For example, to add the `Intel` folder, modify the following line: `./Intel:/opt/app/Intel`
-3.  Replace `./Intel` with the path to your local folder containing the input files.
+P.S.
+While the simualtion is running in docker, you may see repetitive command line logs that look like this
 
-Note: Make sure the input files are in the expected format and follow the appropriate file structure for PACT and VisualPACT.
+```
+[f6e9dc540c36:00030] Read -1, expected 46967, errno = 1
+[f6e9dc540c36:00030] Read -1, expected 49216, errno = 1
+[f6e9dc540c36:00030] Read -1, expected 49657, errno = 1
+[f6e9dc540c36:00030] Read -1, expected 18750, errno = 1
+[f6e9dc540c36:00030] Read -1, expected 17956, errno = 1
+[f6e9dc540c36:00030] Read -1, expected 21925, errno = 1
+[f6e9dc540c36:00030] Read -1, expected 19897, errno = 1
+[f6e9dc540c36:00030] Read -1, expected 18050, errno = 1
+[f6e9dc540c36:00030] Read -1, expected 20819, errno = 1
+...
+```
+
+Simply ignore this and watch the Xyce produced log file (added to the same folder as the input files) instead.
 
 # Developers:
 

@@ -107,7 +107,7 @@ try:
         print('Error:', 'Floorplan File must be specified for each layer')
         sys.exit(2)
 except FileNotFoundError:
-    print('Error:', 'Layer File does not exist:', lcfFile)
+    print('Error:', 'Layer File does not exist:', lcfFile, ". Current directory is", os.getcwd())
     sys.exit(2)
 
 ######! Read Default config file !######
@@ -192,7 +192,7 @@ for ff in flp_files:
     try:
         ff_df = pd.read_csv(ff)
     except FileNotFoundError:
-        print('Error: Floorplan file not found', ff)
+        print('Error: Floorplan file not found', ff, ". Current directory is", os.getcwd())
         sys.exit(2)
 
     config_label_df = config_label_df.append(

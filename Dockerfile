@@ -81,6 +81,10 @@ RUN pip3 install cython
 RUN pip3 install numpy
 RUN pip3 install -r requirements.txt
 
+# Install visual pact
+RUN pip3 install -r requirements.txt
+
+
 # Install some PACT dependences and run it
 FROM python3_deps as pact
 # Add a new user "pactuser" with user id 8877
@@ -95,5 +99,5 @@ USER pactuser
 
 WORKDIR /opt/app/src
 
-# Change to non-root privilege
-ENTRYPOINT [ "python3","PACT.py" ]
+# Declare volumes
+VOLUME /opt/app/Input
