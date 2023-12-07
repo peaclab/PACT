@@ -1,6 +1,0 @@
-UnitName,X,Y,Length (m),Width (m),ConfigFile,Label
-Block_0,0,0,0.01,0.0045,,Si
-Block_1,0,0.0045,0.0045,0.001,,Si
-Block_2,0.0045,0.0045,0.001,0.001,,Si
-Block_3,0.0055,0.0045,0.0045,0.001,,Si
-Block_4,0,0.0055,0.01,0.0045,,Si
