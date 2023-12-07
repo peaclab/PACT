@@ -48,6 +48,8 @@ It is recommended to use Linux or macOS to run PACT. To enable sequential and pa
 
 - https://www.cygwin.com/
 
+**Note: The instructions here fail to lead to a successful PACT installation on Windows. This document will be updated as we uncover and fix known issues on Windows.**
+
 If **Xyce 6.12** and **OpenMPI 3.1.4** have already been installed in your Linux server, then you can simply load the following dependencies to load Xyce and OpenMPI.
 
 ```
