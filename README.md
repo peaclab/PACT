@@ -292,14 +292,6 @@ docker build -t imagename .
 
 '.' here is a path signifying where the Dockerfile is located. As such, the above command should be run while in the root folder. "imagename" can be anything.
 
-- Windows Users:
-
-  If you are running on Command Prompt, Windows PowerShell, or Git Bash, follow these additional steps to ensure proper formatting before building image:
-
-  - Convert the reconfig.sh file to Unix format:`dos2unix reconfig.sh`
-  - Convert the reconfig_parallel.sh file to Unix format:`dos2unix reconfig_parallel.sh`
-    If you don't have dos2unix installed, you can install it by running the following command as an administrator:`choco install dos2unix`
-  - Windows users may face some more issues: We recommend running on unix based systems
 
 3. Run the image with arguments to;
 
@@ -321,11 +313,6 @@ Replace path-to-folder-with-input-files with a folder of your choosing. For eg, 
 docker run -u $(id -u):$(id -g) -it -v $(pwd)/Intel:/opt/app/Input imagename /bin/bash
 ```
 
-On windows, run this instead
-
-```
-docker run -it -v ${pwd}/Intel:/opt/app/Input imagename /bin/bash
-```
 
 4. While inside the running container's command line, run PACT.py with arguments in the format shown below.
 
@@ -356,6 +343,8 @@ While the simualtion is running in docker, you may see repetitive command line l
 ```
 
 Simply ignore this and watch the Xyce produced log file (added to the same folder as the input files) instead.
+
+Note: The Dockerized version still has some problems running in Windows. So, we highly recommend using Linux-based or MAC OS to run the dockerized version!
 
 # Developers:
 
