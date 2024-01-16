@@ -44,11 +44,7 @@ Users who want to run parallel thermal simualtions with PACT need to install **X
 
 - https://www.open-mpi.org/
 
-It is recommended to use Linux or macOS to run PACT. To enable sequential and parallel thermal simulations with PACT on Windows, users have to use **Cygwin** to build the **Xyce 6.12** and **OpenMPI 3.1.4** and run PACT using the **Cygwin** terminal. **Cygwin** download link:
-
-- https://www.cygwin.com/
-
-**Note: The instructions here fail to lead to a successful PACT installation on Windows. This document will be updated as we uncover and fix known issues on Windows.**
+**Note: It is recommended to use Linux or macOS to run PACT.** 
 
 If **Xyce 6.12** and **OpenMPI 3.1.4** have already been installed in your Linux server, then you can simply load the following dependencies to load Xyce and OpenMPI.
 
