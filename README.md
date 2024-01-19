@@ -322,6 +322,8 @@ Replace the arguments with files in the input folder you attached to. For eg, if
 python3 PACT.py ../Input/Intel_ID1_lcf.csv ../Input/Intel.config ../Input/modelParams_Intel.config --gridSteadyFile ../Input/Intel.grid.steady
 ```
 
+**Note: The local directory name with the input files is whatever you want! But, the container directory name that has the inputs is always Input. (Like the example above. Local name: Intel, container name: Input)**
+
 P.S.
 While the simualtion is running in docker, you may see repetitive command line logs that look like this
 
@@ -341,6 +343,9 @@ While the simualtion is running in docker, you may see repetitive command line l
 Simply ignore this and watch the Xyce produced log file (added to the same folder as the input files) instead.
 
 Note: The Dockerized version still has some problems running in Windows. So, we highly recommend using Linux-based or MAC OS to run the dockerized version!
+
+To run the VisualPACT, you could use the container's command line to run the VisualPACT.py in the VisualPACT directory. Currently, running through docker will only create the frames for you and will not generate the video.
+**So we highly recommend running the VisualPACT locally on your device with the outputs generated from the PACT [VisualPACT documentation](./VisualPACT/README.md)**
 
 # Developers:
 
