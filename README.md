@@ -44,11 +44,7 @@ Users who want to run parallel thermal simualtions with PACT need to install **X
 
 - https://www.open-mpi.org/
 
-It is recommended to use Linux or macOS to run PACT. To enable sequential and parallel thermal simulations with PACT on Windows, users have to use **Cygwin** to build the **Xyce 6.12** and **OpenMPI 3.1.4** and run PACT using the **Cygwin** terminal. **Cygwin** download link:
-
-- https://www.cygwin.com/
-
-**Note: The instructions here fail to lead to a successful PACT installation on Windows. This document will be updated as we uncover and fix known issues on Windows.**
+**Note: It is recommended to use Linux or macOS to run PACT.** 
 
 If **Xyce 6.12** and **OpenMPI 3.1.4** have already been installed in your Linux server, then you can simply load the following dependencies to load Xyce and OpenMPI.
 
@@ -292,14 +288,6 @@ docker build -t imagename .
 
 '.' here is a path signifying where the Dockerfile is located. As such, the above command should be run while in the root folder. "imagename" can be anything.
 
-- Windows Users:
-
-  If you are running on Command Prompt, Windows PowerShell, or Git Bash, follow these additional steps to ensure proper formatting before building image:
-
-  - Convert the reconfig.sh file to Unix format:`dos2unix reconfig.sh`
-  - Convert the reconfig_parallel.sh file to Unix format:`dos2unix reconfig_parallel.sh`
-    If you don't have dos2unix installed, you can install it by running the following command as an administrator:`choco install dos2unix`
-  - Windows users may face some more issues: We recommend running on unix based systems
 
 3. Run the image with arguments to;
 
@@ -321,11 +309,6 @@ Replace path-to-folder-with-input-files with a folder of your choosing. For eg, 
 docker run -u $(id -u):$(id -g) -it -v $(pwd)/Intel:/opt/app/Input imagename /bin/bash
 ```
 
-On windows, run this instead
-
-```
-docker run -it -v ${pwd}/Intel:/opt/app/Input imagename /bin/bash
-```
 
 4. While inside the running container's command line, run PACT.py with arguments in the format shown below.
 
@@ -338,6 +321,8 @@ Replace the arguments with files in the input folder you attached to. For eg, if
 ```
 python3 PACT.py ../Input/Intel_ID1_lcf.csv ../Input/Intel.config ../Input/modelParams_Intel.config --gridSteadyFile ../Input/Intel.grid.steady
 ```
+
+**Note: The local directory name with the input files is whatever you want! But, the container directory name that has the inputs is always Input. (Like the example above. Local name: Intel, container name: Input)**
 
 P.S.
 While the simualtion is running in docker, you may see repetitive command line logs that look like this
@@ -356,6 +341,11 @@ While the simualtion is running in docker, you may see repetitive command line l
 ```
 
 Simply ignore this and watch the Xyce produced log file (added to the same folder as the input files) instead.
+
+Note: The Dockerized version still has some problems running in Windows. So, we highly recommend using Linux-based or MAC OS to run the dockerized version!
+
+To run the VisualPACT, you could use the container's command line to run the VisualPACT.py in the VisualPACT directory. Currently, running through docker will only create the frames for you and will not generate the video.
+**So we highly recommend running the VisualPACT locally on your device with the outputs generated from the PACT [VisualPACT documentation](./VisualPACT/README.md)**
 
 # Developers:
 
