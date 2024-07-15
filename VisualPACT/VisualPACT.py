@@ -93,7 +93,7 @@ fps = parser_args.fps
 if fps < 1:
     print("ERROR: FPS must be a positive integer.")
     sys.exit(2)
-M3D = parser_args = parser_args.M3D
+M3D = parser_args.M3D
 layer = parser_args.layer
 dpi = parser_args.dpi
 font_scale = parser_args.font_scale
@@ -104,11 +104,21 @@ steady_state=parser_args.steady_state
 #SET OUTPUT PATHS
 output_path = transient_data_file.rstrip(''.join(Path(transient_data_file).suffixes))
 output_name = os.path.basename(output_path)
-video_file = output_path+'.avi'
-if steady_state:
-    frame_folder = os.path.dirname(transient_data_file)+'/steadyframes/'
+if not M3D:
+    video_file = output_path+'.avi'
+if M3D:
+    video_file = output_path + f'layer{layer}.avi'
+if not M3D:
+    if steady_state:
+        frame_folder = os.path.dirname(transient_data_file)+'/steadyframes/'
+    else:
+        frame_folder = output_path+'_frames/'
 else:
-    frame_folder = output_path+'_frames/'
+    if steady_state:
+        frame_folder = os.path.dirname(transient_data_file) + f'/steadyframes_layer{layer}/'
+    else:
+        frame_folder = output_path + f'_frames_layer{layer}/'
+
 grid_rows, grid_cols = getDimensions(transient_data_file,layer)
 if(grid_rows==0 or grid_cols==0):
     print("ERROR: Invalid data file or nonexistant layer.")
@@ -118,15 +128,14 @@ print(grid_rows,'x',grid_cols)
 print("video path: "+os.path.abspath(video_file))
 print("image folder path: "+os.path.abspath(frame_folder)+'/')
 #Delete any previous images folder and make a new one
-if not M3D:
-    folder_path = Path(frame_folder)
-    if not steady_state:
-        if folder_path.exists() and folder_path.is_dir():
-            shutil.rmtree(folder_path)
+folder_path = Path(frame_folder)
+if not steady_state:
+    if folder_path.exists() and folder_path.is_dir():
+        shutil.rmtree(folder_path)
+    os.makedirs(frame_folder)
+else:
+    if (not folder_path.exists()):
         os.makedirs(frame_folder)
-    else:
-        if (not folder_path.exists()):
-            os.makedirs(frame_folder)
 #Read data from file
 print("Reading file...",end="\r")
 df_l = readFormatInput(transient_data_file,grid_rows,grid_cols)

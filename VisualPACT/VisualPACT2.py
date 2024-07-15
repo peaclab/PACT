@@ -1,31 +1,11 @@
 #!/usr/bin/env python
 import matplotlib
-
 matplotlib.use('Agg')
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import cv2
-import re
-import os
-from pathlib import Path
-import shutil
 import sys
 import argparse
 import subprocess
 import csv
 
-
-def getDimensions(file, layer):
-    columns = pd.read_csv(file, nrows=1)
-    nrows = 0
-    ncols = 0
-    while f'V(NODE{layer}_{nrows}_0)' in columns:
-        nrows += 1
-    while f'V(NODE{layer}_0_{ncols})' in columns:
-        ncols += 1
-    return nrows, ncols
 
 
 # Read User Inputs
@@ -49,13 +29,17 @@ use_overlay = overlay_image != None
 tmin = parser_args.tmin
 tmax = parser_args.tmax
 fps = parser_args.fps
+if fps < 1:
+    print("ERROR: FPS must be a positive integer.")
+    sys.exit(2)
 lcf_file = parser_args.layer_configuration_file
 M3D = False
-
-# lcf_rows, lcf_cols = getDimensions(lcf_file, layer)
-# if(lcf_rows==0 or lcf_cols==0):
-# print("ERROR: Invalid data file or nonexistant layer.")
-# sys.exit(2)
+dpi = parser_args.dpi
+font_scale = parser_args.font_scale
+kelvin_offset = 273.15
+if (parser_args.use_kelvin):
+    kelvin_offset = 0
+steady_state = parser_args.steady_state
 
 # check if chip is M3D
 ptrace_layers = []
@@ -70,6 +54,16 @@ for i, row in enumerate(rows):
         ptrace_layers.append(i)
 if len(ptrace_layers) > 1:
     M3D = True
-for i in range(len(ptrace_layers)):
-    subprocess.Popen(f"python VisualPACT.py {transient_data_file} --layer {ptrace_layers[i]} --M3D {M3D}")
 
+for i in range(len(ptrace_layers)):
+    string = f"python VisualPACT.py {transient_data_file} --layer {ptrace_layers[i]} --M3D {M3D}"
+    if use_overlay: string += f" --overlay {overlay_image}"
+    if tmin != None: string += f" --min {tmin}"
+    if tmax != None: string += f" --max {tmax}"
+    if fps != 5: string += f" --fps {fps}"
+    if dpi != 100: string += f" --dpi {dpi}"
+    if font_scale != 1: string += f" --font_scale {font_scale}"
+    if kelvin_offset == 0: string += f" --K True"
+    if steady_state: string += f" --steady True"
+
+    subprocess.Popen(string, shell=True)
