@@ -70,6 +70,6 @@ for i, row in enumerate(rows):
         ptrace_layers.append(i)
 if len(ptrace_layers) > 1:
     M3D = True
-
-subprocess.Popen(f"VisualPACT.py {transient_data_file} --layer {ptrace_layers[0]}")
+for i in range(len(ptrace_layers)):
+    subprocess.Popen(f"python VisualPACT.py {transient_data_file} --layer {ptrace_layers[i]} --M3D {M3D}")
 

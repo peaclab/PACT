@@ -81,7 +81,7 @@ parser.add_argument('--dpi',dest='dpi',action='store',type=int,default=100)
 parser.add_argument('--K',dest='use_kelvin',action='store',type=bool,default=False)
 parser.add_argument("--steady",dest='steady_state',action='store',type=bool,default=False)
 parser.add_argument('--font_scale',dest='font_scale',action='store',type=float,default=1)
-
+parser.add_argument("--M3D",dest='M3D',action='store',type=bool,default=False)
 #READ PARSER ARGUUMENTS
 parser_args = parser.parse_args()
 transient_data_file = parser_args.transient_data_file
@@ -93,6 +93,7 @@ fps = parser_args.fps
 if fps < 1:
     print("ERROR: FPS must be a positive integer.")
     sys.exit(2)
+M3D = parser_args = parser_args.M3D
 layer = parser_args.layer
 dpi = parser_args.dpi
 font_scale = parser_args.font_scale
@@ -117,14 +118,15 @@ print(grid_rows,'x',grid_cols)
 print("video path: "+os.path.abspath(video_file))
 print("image folder path: "+os.path.abspath(frame_folder)+'/')
 #Delete any previous images folder and make a new one
-folder_path = Path(frame_folder)
-if not steady_state:
-    if folder_path.exists() and folder_path.is_dir():
-        shutil.rmtree(folder_path)
-    os.makedirs(frame_folder)
-else:
-    if (not folder_path.exists()):
+if not M3D:
+    folder_path = Path(frame_folder)
+    if not steady_state:
+        if folder_path.exists() and folder_path.is_dir():
+            shutil.rmtree(folder_path)
         os.makedirs(frame_folder)
+    else:
+        if (not folder_path.exists()):
+            os.makedirs(frame_folder)
 #Read data from file
 print("Reading file...",end="\r")
 df_l = readFormatInput(transient_data_file,grid_rows,grid_cols)
