@@ -69,23 +69,17 @@ def make_transparent_overlay(overlay):
     overlay_transparent_bg[black,:] = 0
     overlay_transparent_bg[black,-1] = 255
     return overlay_transparent_bg
-
 def is_M3D(lcf_file):
-    ptrace_layers = []
-    rows = []
     M3D = False
-    with open(lcf_file, 'r') as csvfile:
-        csvreader = csv.reader(csvfile)
-        fields = next(csvreader)
-        for row in csvreader:
-            rows.append(row)
-    for i, row in enumerate(rows):
-        if row[3] != '':
-            ptrace_layers.append(i)
-    if len(ptrace_layers) > 1:
+    df = pd.read_csv(lcf_file, header = 0, usecols = ["PtraceFile"])
+    df = df[df["PtraceFile"].notnull()]
+    rows, columns = df.shape
+    if rows > 1:
         M3D = True
+    data_top = df.head()
+    print(df)
+    ptrace_layers =(data_top.index.values)
     return M3D, ptrace_layers
-
 
 #USER INPUTS
 parser = argparse.ArgumentParser()
@@ -106,6 +100,9 @@ parser_args = parser.parse_args()
 transient_data_file = parser_args.transient_data_file
 overlay_image = parser_args.overlay_image
 use_overlay = overlay_image != None
+lcf_file = parser_args.layer_configuration_file
+
+
 tmin = parser_args.tmin
 tmax = parser_args.tmax
 fps = parser_args.fps
@@ -113,9 +110,9 @@ layer = parser_args.layer
 if fps < 1:
     print("ERROR: FPS must be a positive integer.")
     sys.exit(2)
-if parser_args.layer_configuration_file != None:
-    M3D = is_M3D(parser_args.layer_configuration_file)[0]
-    ptrace_layers = is_M3D(parser_args.layer_configuration_file)[1]
+if lcf_file != None:
+    M3D = is_M3D(lcf_file)[0]
+    ptrace_layers = is_M3D(lcf_file)[1]
 else:
     M3D = False
     ptrace_layers.append(layer)
