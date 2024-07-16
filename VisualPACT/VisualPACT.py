@@ -82,6 +82,9 @@ def is_M3D(lcf_file):
     df = pd.read_csv(lcf_file, header=0, usecols=["PtraceFile"])
     df = df[df["PtraceFile"].notnull()]
     rows, columns = df.shape
+    if (rows == 0 or columns == 0):
+        print("ERROR: Invalid data file.")
+        sys.exit(2)
     if rows > 1:
         M3D = True
     data_top = df.head()
