@@ -27,7 +27,7 @@ def getDimensions(file, layer):
     return nrows, ncols
 
 
-def readFormatInput(file, n_rows, n_cols):
+def readFormatInput(file, n_rows, n_cols, layer):
     column = [f'V(NODE{layer}_{row}_{col})' for row in range(n_rows) for col in range(n_cols)]
     df_l = pd.read_csv(file, usecols=column)
     return df_l
@@ -134,7 +134,7 @@ steady_state = parser_args.steady_state
 
 
 def main(l):
-    global tmin, tmax, overlay_image, use_overlay, fps, dpi, font_scale
+    global transient_data_file, tmax, overlay_image, use_overlay, fps, dpi, font_scale, kelvin_offset, steady_state
     layer = l
     # SET OUTPUT PATHS
     output_path = transient_data_file.rstrip(''.join(Path(transient_data_file).suffixes))
@@ -173,7 +173,7 @@ def main(l):
             os.makedirs(frame_folder)
     # Read data from file
     print("Reading file...", end="\r")
-    df_l = readFormatInput(transient_data_file, grid_rows, grid_cols)
+    df_l = readFormatInput(transient_data_file, grid_rows, grid_cols, layer)
     print("                   ", end="\r")
     # Automatically calculate min and max heatmap valus if not specified
     auto_tmin = df_l.min().min() - kelvin_offset
