@@ -119,30 +119,7 @@ kelvin_offset=273.15
 if(parser_args.use_kelvin):
     kelvin_offset=0
 steady_state=parser_args.steady_state
-#Automatically calculate min and max heatmap valus if not specified
-auto_tmin = df_l.min().min()-kelvin_offset
-auto_tmax = df_l.max().max()-kelvin_offset
-if tmin == None:
-    tmin = auto_tmin
-if tmax == None:
-    tmax = auto_tmax
-print(f"data temperature range: {auto_tmin} C to {auto_tmax} C")
-print("TMIN:",tmin,'C')
-print("TMAX:",tmax,'C')
-if tmin > auto_tmax or tmax < auto_tmin:
-    print("ERROR: Specified TMIN and TMAX range is outuside of actual data range.")
-    sys.exit(2)
-if tmin == tmax:
-    print("ERROR: TMIN and TMAX have the same value.")
-    sys.exit(2)
-if tmin > tmax:
-    print("WARNING: TMIN value is greater than TMAX value.")
-#Set heatmap colors
-start = 0.0
-stop = 1.0
-number_of_lines= 1000
-cm_subsection = np.linspace(start, stop, number_of_lines)
-colors = [ matplotlib.cm.jet(x) for x in cm_subsection ]
+
 
 
 
@@ -166,15 +143,16 @@ def main(l):
             frame_folder = os.path.dirname(transient_data_file) + f'/steadyframes_layer{layer}/'
         else:
             frame_folder = output_path + f'_frames_layer{layer}/'
-
-    grid_rows, grid_cols = getDimensions(transient_data_file,layer)
-    if(grid_rows==0 or grid_cols==0):
+    grid_rows, grid_cols = getDimensions(transient_data_file, layer)
+    if (grid_rows == 0 or grid_cols == 0):
         print("ERROR: Invalid data file or nonexistant layer.")
         sys.exit(2)
     print(output_name)
-    print(grid_rows,'x',grid_cols)
-    print("video path: "+os.path.abspath(video_file))
-    print("image folder path: "+os.path.abspath(frame_folder)+'/')
+    print(grid_rows, 'x', grid_cols)
+    print("video path: " + os.path.abspath(video_file))
+    print("image folder path: " + os.path.abspath(frame_folder) + '/')
+
+
     #Delete any previous images folder and make a new one
     folder_path = Path(frame_folder)
     if not steady_state:
@@ -188,6 +166,30 @@ def main(l):
     print("Reading file...",end="\r")
     df_l = readFormatInput(transient_data_file,grid_rows,grid_cols)
     print("                   ",end="\r")
+    # Automatically calculate min and max heatmap valus if not specified
+    auto_tmin = df_l.min().min() - kelvin_offset
+    auto_tmax = df_l.max().max() - kelvin_offset
+    if tmin == None:
+        tmin = auto_tmin
+    if tmax == None:
+        tmax = auto_tmax
+    print(f"data temperature range: {auto_tmin} C to {auto_tmax} C")
+    print("TMIN:", tmin, 'C')
+    print("TMAX:", tmax, 'C')
+    if tmin > auto_tmax or tmax < auto_tmin:
+        print("ERROR: Specified TMIN and TMAX range is outuside of actual data range.")
+        sys.exit(2)
+    if tmin == tmax:
+        print("ERROR: TMIN and TMAX have the same value.")
+        sys.exit(2)
+    if tmin > tmax:
+        print("WARNING: TMIN value is greater than TMAX value.")
+    # Set heatmap colors
+    start = 0.0
+    stop = 1.0
+    number_of_lines = 1000
+    cm_subsection = np.linspace(start, stop, number_of_lines)
+    colors = [matplotlib.cm.jet(x) for x in cm_subsection]
     #Generate video Frames
     i=0
     sns.set(font_scale=font_scale)
