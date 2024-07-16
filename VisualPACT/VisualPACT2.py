@@ -20,7 +20,7 @@ parser.add_argument('--dpi', dest='dpi', action='store', type=int, default=100)
 parser.add_argument('--K', dest='use_kelvin', action='store', type=bool, default=False)
 parser.add_argument("--steady", dest='steady_state', action='store', type=bool, default=False)
 parser.add_argument('--font_scale', dest='font_scale', action='store', type=float, default=1)
-parser.add_argument('--lcf', dest='layer_configuration_file', action='store')
+parser.add_argument('--lcf', dest='layer_configuration_file', action='store', default = None)
 # READ PARSER ARGUUMENT
 parser_args = parser.parse_args()
 transient_data_file = parser_args.transient_data_file
@@ -41,7 +41,7 @@ if (parser_args.use_kelvin):
     kelvin_offset = 0
 steady_state = parser_args.steady_state
 
-# check if chip is M3D
+#Read lcf, find all layers with powertraces, and check if chip is M3D
 ptrace_layers = []
 rows = []
 with open(lcf_file, 'r') as csvfile:
@@ -55,6 +55,7 @@ for i, row in enumerate(rows):
 if len(ptrace_layers) > 1:
     M3D = True
 
+#Run visualPACT for each layer
 for i in range(len(ptrace_layers)):
     string = f"python VisualPACT.py {transient_data_file} --layer {ptrace_layers[i]} --M3D {M3D}"
     if use_overlay: string += f" --overlay {overlay_image}"
@@ -65,5 +66,4 @@ for i in range(len(ptrace_layers)):
     if font_scale != 1: string += f" --font_scale {font_scale}"
     if kelvin_offset == 0: string += f" --K True"
     if steady_state: string += f" --steady True"
-
     subprocess.Popen(string, shell=True)
