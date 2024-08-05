@@ -1,0 +1,7 @@
+Layer,FloorplanFile,Thickness (m),PtraceFile,LateralHeatFlow
+0,flp_files/BEOL.csv,1.372E-05,,True
+1,flp_files/Inteli7_flp_tier1.csv,0.00075,ptrace_files/tier1_ptrace.csv,True
+2,flp_files/diel.csv,1E-07,,True
+3,flp_files/BEOL.csv,1.37E-05,,True
+4,flp_files/Inteli7_flp_tier0.csv,0.00075,tier0_ptrace.csv,True
+5,flp_files/Bulk.csv,7.5E-05,,True
