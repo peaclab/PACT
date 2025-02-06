@@ -44,6 +44,7 @@ python MLPACT_Demo_window.py --ptraces_dir path/to/your/ptraces --ml_dataset_dir
 * --ptraces_dir: Directory containing the ptrace folders.
 * --ml_dataset_dir: Directory for the ML dataset (where intermediate files will be written/read).
 * --max_iterations: Maximum number of samples that you want to run
+* --mode: Define your architecture is 2D or 3D
 
 ## Code Customization
 ### Model and Training Parameters:
