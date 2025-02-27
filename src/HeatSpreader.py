@@ -24,7 +24,11 @@ def defineGridProperties(length, height, thickness, properties, chip_length, chi
     # use this capacitance to validate with COMSOL
     # Capacitance=1*sp*length*height*thickness
     hk_cap = 0.33*hk_sp*heatsink_thickness*length*height
-    hs_cap = 0.33*hs_sp*heatspreader_thickness*length*height
+
+    # use this capacitance to validate with COMSOL
+    hs_cap = 1*hs_sp*length*height*heatspreader_thickness
+       # use this capacitance to validate with Hotspot (Based on the https://github.com/uvahotspot/HotSpot/blob/master/RCutil.c#L29)
+    # hs_cap = 0.33*hs_sp*heatspreader_thickness*length*height
 
     I = 0
     direction = 'z'
@@ -45,7 +49,10 @@ def defineGridPropertiesMatrix(length, height, thickness, properties):
     Rx = np.full((grid_rows, grid_cols), rx)
     Ry = np.full((grid_rows, grid_cols), ry)
     Rz = np.full((grid_rows, grid_cols), rz)
-    capacitance = 0.33*sp*thickness*length*height
+    # use this capacitance to validate with COMSOL
+    capacitance = 1*sp*length*height*thickness
+    # use this capacitance to validate with Hotspot (Based on the https://github.com/uvahotspot/HotSpot/blob/master/RCutil.c#L29)
+    # capacitance = 0.33*sp*thickness*length*height
     Capacitance = np.full((grid_rows, grid_cols), capacitance)
     Conv = 0
     print('Zihao matrix cap ********************', capacitance)

@@ -139,6 +139,7 @@ Steady-state SPICE solver grid temperature files are saved as {ChipName}.cir.csv
 Users can modify the step_size, total_simualtion_time, and ptrace_step_size options under the [Simulation] section in modelParams_files to redefine the simulation step size and simulation time, and ptrace step size of the transient simulation, respectively.
 Transient SPICE solver grid temperature files are saved as {ChipName}.cir.csv. Transient SPICE solver block temperature files are saved as {ChipName}.block.transient.csv. SPICE solver log files are saved as {ChipName}.log. The last step block_level transient temperature results will be printed in the terminal.
 
+**Note: In the source code (Solid.py and HeatSpreader.py), the default capacitance values are set for comparison with COMSOL. If you intend to compare the results with HotSpot [2], please refer to these files and modify the capacitance values accordingly based on the provided comments. ([HotSpot simulations include a scaling factor of 0.33/0.333 (C_FACTOR), which must be considered when making adjustments.](https://github.com/uvahotspot/HotSpot/blob/master/RCutil.c#L29))**
 ## Low-level solvers
 
 To change the low-level solver types for SPICE solver, users need to modify the ll_steady_solver or ll_transient_solver option under the [Solver] section in modelParams_files. Note that, SuperLU solver does not support low-level solver.
